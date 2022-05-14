@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Transition from "../../utils/Transition";
-import UserAvatar from "../../images/user-avatar-32.png";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
+import { UserAvatar } from "./UserAvatar";
 
 const UserMenu = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -52,16 +52,20 @@ const UserMenu = () => {
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
-        <img
+        <UserAvatar
+          firstName={user && user.firstName}
+          lastName={user && user.lastName}
+        />
+        {/* <img
           className="w-8 h-8"
           src={UserAvatar}
           width="32"
           height="32"
           alt="User"
-        />
+        /> */}
         <div className="flex items-center truncate">
           <span className="truncate ml-2 text-sm font-montserat group-hover:text-darkPrimary text-primary">
-            {user && user.firstName }
+            {user && user.firstName}
           </span>
           <IoIosArrowDown size="15" color="black" />
         </div>
@@ -84,10 +88,10 @@ const UserMenu = () => {
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
             <div className="font-medium text-slate-800 font-montserat">
-            {user && `${user.firstName} ${user.lastName}`}
+              {user && `${user.firstName} ${user.lastName}`}
             </div>
             <div className="text-xs text-slate-500 italic font-montserat">
-             {user && user.role}
+              {user && user.role}
             </div>
           </div>
           <ul>
