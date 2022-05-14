@@ -1,0 +1,46 @@
+######### CLIENT
+# dependencies
+client/node_modules
+client/.pnp
+client/.pnp.js
+
+# testing
+client/coverage
+
+# production
+client/build
+client/dist
+
+# misc
+client/.DS_Store
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+server/.env
+
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+client/package-lock.json
+client/yarn.lock
+
+############ Server
+# dependencies
+server/node_modules
+
+# misc
+server/.DS_Store
+server/.env
+
+server/npm-debug.log*
+server/yarn-debug.log*
+server/yarn-error.log*
+server/package-lock.json
+server/yarn.lock
+
+# Prisma
+server/prisma/migrations
+
+
+

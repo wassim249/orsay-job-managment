@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Models
+model User {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  lastConnection DateTime
+  role  String
+  Scan      Scan[]
+}
+
+model Scan {
+  id Int @id @default(autoincrement())
+  user            User     @relation(fields: [userId], references: [id])
+  userId          Int
+  sourceFile      String
+  destinationFile String
+  log             String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model OrderNumber {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  order     String
+  fileName  String
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
