@@ -4,8 +4,9 @@ import "./css/style.scss";
 import "./charts/ChartjsConfig";
 import Dashboard from "./pages/Dashboard";
 import LoginPage from "./pages/LoginPage";
-import { ScanPage } from "./pages/ScanPage";
 import UserContext from "./contexts/UserContext";
+import { CreateScanPage } from "./pages/scan/CreateScanPage";
+import { ScanDetailsPage } from "./pages/scan/ScanDetailsPage";
 
 const App = () => {
   const location = useLocation();
@@ -37,8 +38,9 @@ const App = () => {
     <UserContext.Provider value={[user, setUser]}>
       <Routes>
         <Route exact path="/home" element={<Dashboard />} />
-        <Route exact path="/" element={<LoginPage />} />
-        <Route exact path="/scan" element={<ScanPage />} />
+        <Route  path="/" element={<LoginPage />} />
+        <Route  path="/scan/create" element={<CreateScanPage />} />
+        <Route exact path="/scan/:id" element={<ScanDetailsPage />} />
       </Routes>{" "}
     </UserContext.Provider>
   );

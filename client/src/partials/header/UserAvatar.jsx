@@ -6,7 +6,7 @@ export const UserAvatar = ({firstName = 'X' , lastName = 'X'}) => {
     className = 'w-8 h-8 flex justify-center items-center  bg-lightPrimary text-primary font-montserat font-bold text-[80%] border border-primary'
     >
         
-            {`${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase()}
+            {`${firstName && firstName.charAt(0)}${lastName && lastName.charAt(0)}`.toUpperCase()}
        
     </div>
   )
