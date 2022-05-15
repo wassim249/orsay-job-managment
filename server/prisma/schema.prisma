@@ -9,34 +9,36 @@ datasource db {
 
 // Models
 model User {
-  id        Int      @id @default(autoincrement())
-  firstName String
-  lastName  String
-  email     String
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             Int      @id @default(autoincrement())
+  firstName      String
+  lastName       String
+  email          String
+  password       String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
   lastConnection DateTime
-  role  String
-  Scan      Scan[]
+  role           String
+  Scan           Scan[]
 }
 
 model Scan {
-  id Int @id @default(autoincrement())
-  user            User     @relation(fields: [userId], references: [id])
+  id              Int           @id @default(autoincrement())
+  user            User          @relation(fields: [userId], references: [id])
   userId          Int
   sourceFile      String
   destinationFile String
   log             String
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  OrderNumber     OrderNumber[]
 }
 
 model OrderNumber {
   id        Int      @id @default(autoincrement())
-  userId    String
   order     String
-  fileName  String
+  scan      Scan     @relation(fields: [scanId], references: [id])
+  scanId    Int
+  fileName  String   @default("")
   status    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -5,6 +5,11 @@ const prisma = new PrismaClient();
 const login = async (req, res) => {
   try {
     console.log(req.body);
+    if (req.body.email == "" || req.body.password == "")
+      res.json({
+        error: "true",
+        message: "Please enter email and password",
+      });
     const foundedUser = await prisma.user.findFirst({
       where: {
         email: req.body.email,
