@@ -37,3 +37,10 @@ export const scanSuccess = (scan) => {
     return true;
   } else return false;
 };
+
+export const salute = () => {
+  let hour = new Date().getHours();
+  if (hour < 12) return "Good Morning";
+  else if (hour < 18) return "Good Afternoon";
+  else return "Good Evening";
+}
