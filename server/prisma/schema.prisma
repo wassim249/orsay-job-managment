@@ -27,7 +27,8 @@ model Scan {
   userId          Int
   sourceFile      String
   destinationFile String
-  log             String
+  logFile         String
+  log             String        @db.VarChar(10000)
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
   OrderNumber     OrderNumber[]

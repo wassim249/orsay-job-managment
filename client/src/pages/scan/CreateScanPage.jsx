@@ -3,6 +3,7 @@ import UserContext from "../../contexts/UserContext";
 import Layout from "../../layout/Layout";
 import { useNavigate } from "react-router-dom";
 import { RiScan2Fill } from "react-icons/ri";
+import { createScan } from "../../services/scan";
 
 export const CreateScanPage = () => {
   const [user, setUser] = useContext(UserContext);
@@ -18,11 +19,17 @@ export const CreateScanPage = () => {
     else if (user.role === "viewer") navigate("/home");
   }, []);
 
-  const handleScan = () => {
+  const handleScan =async () => {
     if (source.trim() === "") alert("Pl-ease enter source");
     else if (destination.trim() === "") alert("Please enter destination");
     else if (orderNumbers.length === 0)
       alert("Please enter at least one order number");
+    else {
+     const {output, scanId} = await createScan(source, destination, orderNumbers, logFile, user.id);
+    if(output) {
+      navigate(`/scan/${scanId}`);
+    }
+    }
   };
 
   const addOrder = () => {
@@ -85,9 +92,7 @@ export const CreateScanPage = () => {
           <button
             type="button"
             onClick={() => {
-              if (orderNumber.current.value)
-                setOrderNumbers([...orderNumbers, orderNumber.current.value]);
-              orderNumber.current.value = "";
+              addOrder();
             }}
             className="bg-primary text-white  sm:w-1/2 w-full px-2 py-2 font-bold font-montserat"
           >

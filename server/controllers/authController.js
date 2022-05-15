@@ -4,7 +4,6 @@ const prisma = new PrismaClient();
 
 const login = async (req, res) => {
   try {
-    console.log(req.body);
     if (req.body.email == "" || req.body.password == "")
       res.json({
         error: "true",
@@ -35,7 +34,6 @@ const login = async (req, res) => {
         user: foundedUser,
       });
     }
-    console.log(foundedUser);
   } catch (error) {
     res.json({
       message: "Internal server error",

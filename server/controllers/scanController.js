@@ -10,7 +10,6 @@ const {
 
 const prisma = new PrismaClient();
 const createScan = async (req, res) => {
-
   let { source, destination, logDir, orders, userId } = req.body;
 
   let output = {
@@ -20,7 +19,7 @@ const createScan = async (req, res) => {
   let error = false;
 
   let createdOrders = [];
-
+  let scan = null;
 
   orders = orders.filter((item, pos) => orders.indexOf(item) == pos);
 
@@ -78,11 +77,11 @@ const createScan = async (req, res) => {
     });
     res.json({
       output,
+      logFile: logDir
     });
     error = true;
     return;
   }
-
 
   if (!logDir || logDir?.trim() == "") logDir = destination.trim();
   else if (!isDirectory(logDir.trim())) {
@@ -97,17 +96,6 @@ const createScan = async (req, res) => {
     return;
   }
 
-  if (orders.length == 0 || !orders[0]) {
-    output.log.push({
-      message: "VEUILLEZ CHOISIR AU MOINS UNE COMMANDE",
-      type: "error",
-    });
-    res.json({
-      output,
-    });
-    error = true;
-    return;
-  }
 
   const logFile = createLogFile(logDir);
   if (!logFile) {
@@ -117,6 +105,7 @@ const createScan = async (req, res) => {
     });
     res.json({
       output,
+      logFile : logDir
     });
     error = true;
     return;
@@ -175,7 +164,6 @@ const createScan = async (req, res) => {
           type: "info",
         });
 
-
         const success = createXmlFile(destination, order, value);
         if (!success) {
           createdOrder.status = "error";
@@ -206,12 +194,13 @@ const createScan = async (req, res) => {
     }
     if (index == orders.length - 1 && !error) {
       try {
-        const scan = await prisma.scan.create({
+        scan = await prisma.scan.create({
           data: {
             userId: userId,
             sourceFile: source,
             destinationFile: destination,
             log: JSON.stringify(output.log),
+            logFile : logFile || ''
           },
         });
         if (scan)
@@ -229,11 +218,49 @@ const createScan = async (req, res) => {
 
       res.json({
         output,
+        scanId: scan?.id,
       });
     }
   });
 };
 
+const getScan = async (req, res) => {
+  try {
+    const scan = await prisma.scan.findFirst({
+      where: {
+        id: parseInt(req.params.id),
+      },
+    });
+    if (scan) {
+      const orders = await prisma.orderNumber.findMany({
+        where: {
+          scanId: scan.id,
+        },
+      });
+      const user = await prisma.user.findFirst({
+        where: {
+          id: scan.userId,
+        },
+      });
+      res.json({
+        scan: { ...scan, user },
+        orders,
+      });
+    } else {
+      res.json({
+        scan,
+        orders: [],
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: "UNTERNAL ERROR",
+    });
+  }
+};
+
 module.exports = {
   createScan,
+  getScan,
 };

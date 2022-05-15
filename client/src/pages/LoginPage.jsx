@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import ClipLoader from "react-spinners/ClipLoader";
 import UserContext from "../contexts/UserContext";
 import { loginService } from "../services/auth";
 
@@ -80,7 +80,7 @@ const LoginPage = () => {
           }}
           className="bg-primary w-full py-3 text-white  font-bold hover:bg-darkPrimary transition duration-300"
         >
-          {loading ? "Loading..." : "Login"}
+          {loading ? <ClipLoader color="white" loading={loading} /> : "Login"}
         </button>
       </form>
     </div>

@@ -56,13 +56,6 @@ const UserMenu = () => {
           firstName={user && user.firstName}
           lastName={user && user.lastName}
         />
-        {/* <img
-          className="w-8 h-8"
-          src={UserAvatar}
-          width="32"
-          height="32"
-          alt="User"
-        /> */}
         <div className="flex items-center truncate">
           <span className="truncate ml-2 text-sm font-montserat group-hover:text-darkPrimary text-primary">
             {user && user.firstName}

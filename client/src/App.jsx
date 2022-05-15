@@ -7,10 +7,11 @@ import LoginPage from "./pages/LoginPage";
 import UserContext from "./contexts/UserContext";
 import { CreateScanPage } from "./pages/scan/CreateScanPage";
 import { ScanDetailsPage } from "./pages/scan/ScanDetailsPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 const App = () => {
   const location = useLocation();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("ORSAY_USER")));
 
   useEffect(() => {
     document.querySelector("html").style.scrollBehavior = "auto";
@@ -21,7 +22,7 @@ const App = () => {
   useEffect(() => {
     if (user)
       localStorage.setItem(
-        "user",
+        "ORSAY_USER",
         JSON.stringify({
           id: user.id,
           email: user.email,
@@ -31,7 +32,7 @@ const App = () => {
           lastConnection : new Date(user.lastConnection)
         })
       );
-    else localStorage.removeItem("user");
+    else localStorage.removeItem("ORSAY_USER");
   }, [user]);
 
   return (
@@ -40,8 +41,9 @@ const App = () => {
         <Route exact path="/home" element={<Dashboard />} />
         <Route  path="/" element={<LoginPage />} />
         <Route  path="/scan/create" element={<CreateScanPage />} />
-        <Route exact path="/scan/:id" element={<ScanDetailsPage />} />
-      </Routes>{" "}
+        <Route  path="/scan/:id" element={<ScanDetailsPage />} />
+        <Route  path="/*" element={<NotFoundPage />} />
+      </Routes>
     </UserContext.Provider>
   );
 };
