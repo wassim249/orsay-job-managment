@@ -71,9 +71,9 @@ export const ScansList = () => {
                     <td className="border p-2 font-bold">
                       {scan &&
                         (scanSuccess(scan) ? (
-                          <span className="text-green-500">Success</span>
+                          <span className="bg-green-500 text-white px-2 py-3">Success</span>
                         ) : (
-                          <span className="text-red-500">Failed</span>
+                          <span className="bg-red-500 text-white px-2 py-3">Failed</span>
                         ))}
                     </td>
                     <td className="border p-2">

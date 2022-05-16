@@ -7,7 +7,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getScan } from "../../services/scan";
 import { scanSuccess } from "../../utils/Utils";
 import SquareLoader from "react-spinners/SquareLoader";
-import { saveAs } from "file-saver";
 
 export const ScanDetailsPage = () => {
   const [user, setUser] = useContext(UserContext);

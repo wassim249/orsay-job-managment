@@ -19,16 +19,27 @@ export const CreateScanPage = () => {
     else if (user.role === "viewer") navigate("/home");
   }, []);
 
-  const handleScan =async () => {
+  const handleScan = async () => {
     if (source.trim() === "") alert("Pl-ease enter source");
     else if (destination.trim() === "") alert("Please enter destination");
     else if (orderNumbers.length === 0)
       alert("Please enter at least one order number");
     else {
-     const {output, scanId} = await createScan(source, destination, orderNumbers, logFile, user.id);
-    if(output) {
-      navigate(`/scan/${scanId}`);
-    }
+      const { output, scanId } = await createScan(
+        source,
+        destination,
+        orderNumbers,
+        logFile,
+        user.id
+      );
+      if (output) {
+        if(output.finishedOrders.length > 0) {
+      
+       navigate(`/scan/${scanId}`);
+      }
+      else 
+        alert(output.log[output.log.length - 1].message.toLowerCase());
+      }
     }
   };
 
@@ -107,7 +118,7 @@ export const CreateScanPage = () => {
           <input
             className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            placeholder="c:/folder/..."
+            placeholder="c:/folder/... ( default : destination folder )"
             value={logFile}
             onChange={(e) => setLogFile(e.target.value)}
           />
