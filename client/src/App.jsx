@@ -8,11 +8,16 @@ import UserContext from "./contexts/UserContext";
 import { CreateScanPage } from "./pages/scan/CreateScanPage";
 import { ScanDetailsPage } from "./pages/scan/ScanDetailsPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
-import { ScansList } from "./pages/scan/ScansList";
+import { UserDetailsPage } from "./pages/users/UserDetailsPage";
+import { UsersListPage } from "./pages/users/UsersListPage";
+import { ScansListPage } from "./pages/scan/ScansListPage";
+import { EditUserPage } from "./pages/users/EditUserPage";
 
 const App = () => {
   const location = useLocation();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("ORSAY_USER")));
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("ORSAY_USER"))
+  );
 
   useEffect(() => {
     document.querySelector("html").style.scrollBehavior = "auto";
@@ -30,7 +35,7 @@ const App = () => {
           firstName: user.firstName,
           lastName: user.lastName,
           role: user.role,
-          lastConnection : new Date(user.lastConnection)
+          lastConnection: new Date(user.lastConnection),
         })
       );
     else localStorage.removeItem("ORSAY_USER");
@@ -40,11 +45,14 @@ const App = () => {
     <UserContext.Provider value={[user, setUser]}>
       <Routes>
         <Route exact path="/home" element={<Dashboard />} />
-        <Route  path="/" element={<LoginPage />} />
-        <Route  path="/scan/create" element={<CreateScanPage />} />
-        <Route  path="/scan/:id" element={<ScanDetailsPage />} />
-        <Route  path="/scan/" element={<ScansList />} />
-        <Route  path="/*" element={<NotFoundPage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/scan/create" element={<CreateScanPage />} />
+        <Route path="/scan/:id" element={<ScanDetailsPage />} />
+        <Route path="/scan/" element={<ScansListPage />} />
+        <Route path="/user/" element={<UsersListPage />} />
+        <Route path="/user/:id" element={<UserDetailsPage />} />
+        <Route path="/user/edit/:id" element={<EditUserPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </UserContext.Provider>
   );

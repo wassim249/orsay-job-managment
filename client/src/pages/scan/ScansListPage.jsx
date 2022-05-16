@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import Layout from "../../layout/Layout";
 import { RiScan2Fill } from "react-icons/ri";
@@ -8,7 +8,7 @@ import moment from "moment";
 import { scanSuccess } from "../../utils/Utils";
 import { useNavigate } from "react-router-dom";
 
-export const ScansList = () => {
+export const ScansListPage = () => {
   const [user, setUser] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [scans, setScans] = useState([]);
