@@ -29,3 +29,20 @@ export const getScan = async (id)=> {
     }
 }
 
+export const getScans = async (userId) => {
+    try {
+        if(userId) {
+            const { data } = await axios.get(`/scanbyuser/${userId}`);
+            return data;
+        }
+        const { data } = await axios.get(`/scan`);
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log(error);
+        return null
+    
+        
+    }
+}
+

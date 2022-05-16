@@ -11,11 +11,11 @@ import { saveAs } from "file-saver";
 
 export const ScanDetailsPage = () => {
   const [user, setUser] = useContext(UserContext);
-  const navigate = useNavigate();
   const { id } = useParams();
   const [scan, setScan] = useState(null);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) navigate("/");

@@ -100,10 +100,9 @@ export const CreateScanPage = () => {
             Add
           </button>
         </div>
-        {/* Input de l'emplacement du fichier log */}
         <div className="col-span-2">
           <label className="block text-gray-700 text-sm mb-2 font-montserat">
-            Log file :
+            Log file location :
           </label>
           <input
             className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -113,7 +112,6 @@ export const CreateScanPage = () => {
             onChange={(e) => setLogFile(e.target.value)}
           />
         </div>
-        {/* Button de création du fichier */}
         <button
           onClick={(e) => {
             e.preventDefault();

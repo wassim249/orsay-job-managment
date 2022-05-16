@@ -8,6 +8,7 @@ import UserContext from "./contexts/UserContext";
 import { CreateScanPage } from "./pages/scan/CreateScanPage";
 import { ScanDetailsPage } from "./pages/scan/ScanDetailsPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { ScansList } from "./pages/scan/ScansList";
 
 const App = () => {
   const location = useLocation();
@@ -42,6 +43,7 @@ const App = () => {
         <Route  path="/" element={<LoginPage />} />
         <Route  path="/scan/create" element={<CreateScanPage />} />
         <Route  path="/scan/:id" element={<ScanDetailsPage />} />
+        <Route  path="/scan/" element={<ScansList />} />
         <Route  path="/*" element={<NotFoundPage />} />
       </Routes>
     </UserContext.Provider>

@@ -77,7 +77,7 @@ const createScan = async (req, res) => {
     });
     res.json({
       output,
-      logFile: logDir
+      logFile: logDir,
     });
     error = true;
     return;
@@ -96,7 +96,6 @@ const createScan = async (req, res) => {
     return;
   }
 
-
   const logFile = createLogFile(logDir);
   if (!logFile) {
     output.log.push({
@@ -105,7 +104,7 @@ const createScan = async (req, res) => {
     });
     res.json({
       output,
-      logFile : logDir
+      logFile: logDir,
     });
     error = true;
     return;
@@ -200,7 +199,7 @@ const createScan = async (req, res) => {
             sourceFile: source,
             destinationFile: destination,
             log: JSON.stringify(output.log),
-            logFile : logFile || ''
+            logFile: logFile || "",
           },
         });
         if (scan)
@@ -260,7 +259,43 @@ const getScan = async (req, res) => {
   }
 };
 
+const getAllScans = async (req, res) => {
+  try {
+    let scans = await prisma.scan.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      include: {
+        user: true,
+      },
+    });
+
+    scans = await Promise.all(
+      scans.map(async (scan) => {
+        const orders = await prisma.orderNumber.findMany({
+          where: {
+            scanId: scan.id,
+          },
+        });
+        return {
+          ...scan,
+          orders,
+        };
+      })
+    );
+    res.json({
+      scans,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: "UNTERNAL ERROR",
+    });
+  }
+};
+
 module.exports = {
   createScan,
   getScan,
+  getAllScans,
 };
