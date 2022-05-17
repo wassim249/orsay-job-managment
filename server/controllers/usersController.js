@@ -56,7 +56,7 @@ const editUser = async (req, res) => {
         id: parseInt(req.params.id),
       },
       data: {
-        ...req.body,    
+        ...req.body,
       },
     });
     res.json({
@@ -68,10 +68,42 @@ const editUser = async (req, res) => {
       message: "UNTERNAL ERROR",
     });
   }
-}
+};
+
+const createUser = async (req, res) => {
+  try {
+    // check if email is already in use
+    const user = await prisma.user.findFirst({
+      where: {
+        email: req.body.email,
+      },
+    });
+    if (user)
+      res.json({
+        message: "Email already in use",
+      });
+    else {
+      const newUser = await prisma.user.create({
+        data: {
+          ...req.body,
+          lastConnection : new Date('1970-01-01T00:00:00.000Z'),
+        },
+      });
+      res.json({
+        newUser,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: "UNTERNAL ERROR",
+    });
+  }
+};
 
 module.exports = {
   getAllUsers,
   getUser,
-  editUser
+  editUser,
+  createUser
 };

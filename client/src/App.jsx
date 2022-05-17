@@ -12,6 +12,7 @@ import { UserDetailsPage } from "./pages/users/UserDetailsPage";
 import { UsersListPage } from "./pages/users/UsersListPage";
 import { ScansListPage } from "./pages/scan/ScansListPage";
 import { EditUserPage } from "./pages/users/EditUserPage";
+import { CreateUserPage } from "./pages/users/CreateUserPage";
 
 const App = () => {
   const location = useLocation();
@@ -52,6 +53,7 @@ const App = () => {
         <Route path="/user/" element={<UsersListPage />} />
         <Route path="/user/:id" element={<UserDetailsPage />} />
         <Route path="/user/edit/:id" element={<EditUserPage />} />
+        <Route path="/user/create/" element={<CreateUserPage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </UserContext.Provider>
