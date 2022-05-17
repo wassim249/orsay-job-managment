@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+const { sendEmail } = require("../helpers/utils");
 
 const prisma = new PrismaClient();
 
@@ -59,6 +60,11 @@ const editUser = async (req, res) => {
         ...req.body,
       },
     });
+    sendEmail(
+      user.email,
+      "Your Orsay delivery job manager has been updated",
+      `Hello ${user.firstName},\n\n your account has been updated by your admin\n\n${req.body.password && ` Your new password is: ${req.body.password}`} \n \n Have a nice day !`
+    );
     res.json({
       user,
     });
@@ -86,9 +92,14 @@ const createUser = async (req, res) => {
       const newUser = await prisma.user.create({
         data: {
           ...req.body,
-          lastConnection : new Date('1970-01-01T00:00:00.000Z'),
+          lastConnection: new Date("1970-01-01T00:00:00.000Z"),
         },
       });
+      sendEmail(
+        newUser.email,
+        "Welcome to the Orsay delivery job manager",
+        `Hello ${req.body.firstName},\n your account has been created, you can now login with your email and password \n\n Your password is: ${req.body.password} \n \n Have a nice day !`
+      );
       res.json({
         newUser,
       });
@@ -105,5 +116,5 @@ module.exports = {
   getAllUsers,
   getUser,
   editUser,
-  createUser
+  createUser,
 };

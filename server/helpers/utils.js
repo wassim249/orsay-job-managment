@@ -1,7 +1,7 @@
-// Importation des modules requis
 const fs = require("fs");
 const path = require("path");
-const { searchForXmlFile } = require("./thread");
+const nodemailer = require("nodemailer");
+require("dotenv").config({path : '../.env'});
 
 // Fonction de verification si un dossier est existant ou non
 // dir @String : chemin du dossier
@@ -41,8 +41,8 @@ const extractLineFromXml = (source, file, order) => {
 // value @String : contenu du fichier
 const createXmlFile = (destination, order, value) => {
   try {
-  fs.writeFileSync(path.join(destination, `${order}.xml`), value);
-   return true;
+    fs.writeFileSync(path.join(destination, `${order}.xml`), value);
+    return true;
   } catch (error) {
     console.error(error);
     return false;
@@ -86,7 +86,6 @@ const formatLogMessage = (message) => {
   }] : ${message}\n`;
 };
 
-
 // Fonction de création d'un fichier de log dans un dossier
 // dir @String : chemin du dossier
 const createLogFile = (dir) => {
@@ -103,11 +102,32 @@ const createLogFile = (dir) => {
   }
 };
 
-// Exportation des fonctions
+const sendEmail = (email, subject, message) => {
+  const transporter = nodemailer.createTransport({
+    service: "Gmail",
+
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from:  process.env.EMAIL_USER,
+    to: email,
+    subject: subject,
+    text: message,
+  };
+  transporter.sendMail(mailOptions,  (error, info)=> {
+    if (error) console.log(error);
+    else console.log(info);
+  });
+};
 module.exports = {
   isDirectory,
   extractLineFromXml,
   createXmlFile,
   log,
   createLogFile,
+  sendEmail
 };
