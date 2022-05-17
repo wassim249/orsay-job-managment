@@ -17,3 +17,14 @@ export  const getUsers = async (id) => {
         
     }
 }
+
+export const editUser = async (id, userData) => {
+    try {
+        console.log(id, userData);
+        const { data } = await axios.put(`/user/${id}`, userData);
+        return data;
+    } catch (error) {
+        console.log(error);
+        return null
+    }
+}

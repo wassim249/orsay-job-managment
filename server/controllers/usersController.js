@@ -30,10 +30,33 @@ const getUser = async (req, res) => {
   try {
     const user = await prisma.user.findFirst({
       where: {
-        id:parseInt(req.params.id),
+        id: parseInt(req.params.id),
       },
       include: {
         Scan: true,
+      },
+    });
+    delete user.password;
+    res.json({
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: "UNTERNAL ERROR",
+    });
+  }
+};
+
+const editUser = async (req, res) => {
+  try {
+    console.log(req.params.id, req.body);
+    const user = await prisma.user.update({
+      where: {
+        id: parseInt(req.params.id),
+      },
+      data: {
+        ...req.body,    
       },
     });
     res.json({
@@ -47,9 +70,8 @@ const getUser = async (req, res) => {
   }
 }
 
-
-
 module.exports = {
-    getAllUsers,
-    getUser
-}
+  getAllUsers,
+  getUser,
+  editUser
+};

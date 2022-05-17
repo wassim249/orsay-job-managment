@@ -150,7 +150,11 @@ export const UserDetailsPage = () => {
           </table>
 
           <div className="flex justify-between items-center mt-10">
-            <button className="bg-primary text-white font-montserat font-bold py-2 px-4 hover:bg-darkPrimary ">
+            <button
+            onClick={()=> {
+              navigate(`/user/edit/${userID}`);
+            }}
+            className="bg-primary text-white font-montserat font-bold py-2 px-4 hover:bg-darkPrimary ">
               Edit
             </button>
           
