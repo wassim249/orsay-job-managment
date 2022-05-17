@@ -12,10 +12,10 @@ const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handleLogin = async () => {
     setLoading(true);
-    const response = await loginService(email, password, rememberMe);
-
+    const response = await loginService(email, password);
     if (response.user) setUser(response.user);
     else alert(response.message);
 
@@ -24,7 +24,10 @@ const LoginPage = () => {
 
 
   useEffect(()=> {
-    if (user) navigate("/home");
+    if (user) {
+      if(rememberMe) localStorage.setItem("ORSAY_USER", JSON.stringify(user));
+      navigate("/home");
+    } 
   }, [loading])
 
   return (

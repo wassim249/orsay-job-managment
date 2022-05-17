@@ -1,5 +1,5 @@
 import moment from "moment";
-import React , {useContext} from "react";
+import React, { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import { salute } from "../../utils/Utils";
 
@@ -10,12 +10,15 @@ function WelcomeBanner() {
       {/* Content */}
       <div className="relative">
         <h1 className="text-2xl md:text-xl text-secondary font-montserat font-bold mb-1">
-         {salute()}, {user && `${user.firstName} ${user.lastName}`}.
+          {salute()}, {user && `${user.firstName} ${user.lastName}`}.
         </h1>
-        <p className="font-montserat text-sm">Last connection : {
-          user &&
-    moment(user.lastConnection).format("DD/MM/YYYY HH:mm:ss")
-        }</p>
+        <p className="font-montserat text-sm">
+          Last connection :
+          {user &&
+            (moment(user.lastConnection).toDate().getFullYear() != 1970
+              ? moment(user.lastConnection).format("DD/MM/YYYY HH:mm")
+              : "Never")}
+        </p>
       </div>
     </div>
   );

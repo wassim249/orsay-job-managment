@@ -106,6 +106,7 @@ const UserMenu = () => {
                 onClick={() => {
                   setDropdownOpen(!dropdownOpen);
                   setUser(null);
+                  localStorage.removeItem("ORSAY_USER");
                 }}
               >
                 Sign Out

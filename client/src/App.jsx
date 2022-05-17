@@ -27,21 +27,7 @@ const App = () => {
     document.querySelector("html").style.scrollBehavior = "";
   }, [location.pathname]); // triggered on route change
 
-  useEffect(() => {
-    if (user)
-      localStorage.setItem(
-        "ORSAY_USER",
-        JSON.stringify({
-          id: user.id,
-          email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          role: user.role,
-          lastConnection: new Date(user.lastConnection),
-        })
-      );
-    else localStorage.removeItem("ORSAY_USER");
-  }, [user]);
+
 
   return (
     <UserContext.Provider value={[user, setUser]}>
