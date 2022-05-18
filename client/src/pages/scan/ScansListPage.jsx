@@ -15,7 +15,6 @@ export const ScansListPage = () => {
 
   const navigate = useNavigate();
 
-
   useEffect(() => {
     const fetchScans = async () => {
       setLoading(true);
@@ -58,7 +57,7 @@ export const ScansListPage = () => {
             <tbody>
               {scans &&
                 scans.map((scan, key) => (
-                  <tr key={key} className='text-sm text-center'>
+                  <tr key={key} className="text-sm text-center">
                     <td className="border p-2">
                       {scan &&
                         moment(scan.createdAt).format("DD/MM/YYYY HH:MM:SS")}
@@ -67,24 +66,30 @@ export const ScansListPage = () => {
                     <td className="border p-2">
                       {scan && scan.destinationFile}
                     </td>
-                    <td className="border p-2 font-bold">{scan && scan.orders.length}</td>
+                    <td className="border p-2 font-bold">
+                      {scan && scan.orders.length}
+                    </td>
                     <td className="border p-2 font-bold">
                       {scan &&
                         (scanSuccess(scan) ? (
-                          <span className="bg-green-500 text-white px-2 py-3">Success</span>
+                          <span className="bg-green-500 text-white px-2 py-3">
+                            Success
+                          </span>
                         ) : (
-                          <span className="bg-red-500 text-white px-2 py-3">Failed</span>
+                          <span className="bg-red-500 text-white px-2 py-3">
+                            Failed
+                          </span>
                         ))}
                     </td>
                     <td className="border p-2">
-                        <button
-                            className="bg-transparent hover:bg-secondary text-secondary font-semibold hover:text-white py-2 px-4 border border-secondary hover:border-transparent"
-                            onClick={() => {
-                                navigate(`/scan/${scan.id}`);
-                            }}
-                        >
-                            View
-                        </button>
+                      <button
+                        className="bg-transparent hover:bg-secondary text-secondary font-semibold hover:text-white py-2 px-4 border border-secondary hover:border-transparent"
+                        onClick={() => {
+                          navigate(`/scan/${scan.id}`);
+                        }}
+                      >
+                        View
+                      </button>
                     </td>
                   </tr>
                 ))}

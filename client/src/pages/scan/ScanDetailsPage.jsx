@@ -127,9 +127,9 @@ export const ScanDetailsPage = () => {
               </label>
               <div className="bg-slate-900 text-white p-2 text-sm font-montserat border-2 border-primary">
                 {scan &&
-                  JSON.parse(scan.log).map((log,key) => (
+                  JSON.parse(scan.log).map((log, key) => (
                     <span
-                    key={key}
+                      key={key}
                       className={`block font-bold text-sm ${
                         log.type === "info" ? "text-blue-500" : "text-red-500"
                       }`}

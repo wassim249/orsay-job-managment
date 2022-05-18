@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Transition from "../../utils/Transition";
-import UserAvatar from "../../images/user-avatar-32.png";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdLanguage } from "react-icons/md";
 

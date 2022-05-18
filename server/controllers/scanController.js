@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
+const prisma = require("../prisma/config");
 const { searchForXmlFile } = require("../helpers/thread");
 const {
   isDirectory,
@@ -8,7 +8,6 @@ const {
   extractLineFromXml,
 } = require("../helpers/utils");
 
-const prisma = new PrismaClient();
 const createScan = async (req, res) => {
   let { source, destination, logDir, orders, userId } = req.body;
 

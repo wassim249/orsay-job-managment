@@ -27,7 +27,7 @@ export const editUser = async (id, userData) => {
 
 export const createUser = async (userData) => {
   try {
-      console.log(userData);
+    console.log(userData);
     const { data } = await axios.post(`/user`, userData);
     return data;
   } catch (error) {

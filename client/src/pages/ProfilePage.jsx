@@ -30,7 +30,6 @@ export const ProfilePage = () => {
     fetchUser();
   }, []);
 
-
   return (
     <Layout>
       {loading ? (
@@ -40,7 +39,7 @@ export const ProfilePage = () => {
       ) : (
         <>
           <span className="font-montserat font-bold text-2xl text-secondary">
-           Your profile
+            Your profile
           </span>
           <div className="grid grid-cols-2 grid-gap-4 mt-10">
             <div>
@@ -76,8 +75,6 @@ export const ProfilePage = () => {
               </label>
               <UserRole role={fetchedUser && fetchedUser.role} />
             </div>
-
-      
           </div>
 
           <span className="font-montserat font-bold text-2xl text-secondary mt-10">
@@ -133,9 +130,6 @@ export const ProfilePage = () => {
                 ))}
             </tbody>
           </table>
-
-      
- 
         </>
       )}
     </Layout>

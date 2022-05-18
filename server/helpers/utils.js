@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const nodemailer = require("nodemailer");
-require("dotenv").config({path : '../.env'});
+require("dotenv").config({ path: "../.env" });
 
 // Fonction de verification si un dossier est existant ou non
 // dir @String : chemin du dossier
@@ -113,12 +113,12 @@ const sendEmail = (email, subject, message) => {
   });
 
   const mailOptions = {
-    from:  process.env.EMAIL_USER,
+    from: process.env.EMAIL_USER,
     to: email,
     subject: subject,
     text: message,
   };
-  transporter.sendMail(mailOptions,  (error, info)=> {
+  transporter.sendMail(mailOptions, (error, info) => {
     if (error) console.log(error);
     else console.log(info);
   });
@@ -129,5 +129,5 @@ module.exports = {
   createXmlFile,
   log,
   createLogFile,
-  sendEmail
+  sendEmail,
 };

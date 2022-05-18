@@ -14,7 +14,7 @@ process.on("message", (data) => {
 
 // Fonction de tri des fichiers XML par la date de modification
 // dir @String : chemin du dossier contenant les fichiiers
-const sortFiles = (dir ,files) => {
+const sortFiles = (dir, files) => {
   try {
     const sortedFiles = files.sort(
       (file, file2) =>

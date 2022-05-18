@@ -32,7 +32,6 @@ export const UserDetailsPage = () => {
     fetchUser();
   }, []);
 
-
   return (
     <Layout>
       {loading ? (
@@ -151,15 +150,14 @@ export const UserDetailsPage = () => {
 
           <div className="flex justify-between items-center mt-10">
             <button
-            onClick={()=> {
-              navigate(`/user/edit/${userID}`);
-            }}
-            className="bg-primary text-white font-montserat font-bold py-2 px-4 hover:bg-darkPrimary ">
+              onClick={() => {
+                navigate(`/user/edit/${userID}`);
+              }}
+              className="bg-primary text-white font-montserat font-bold py-2 px-4 hover:bg-darkPrimary "
+            >
               Edit
             </button>
-          
           </div>
- 
         </>
       )}
     </Layout>

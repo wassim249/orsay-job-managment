@@ -50,7 +50,6 @@ export const EditUserPage = () => {
     if (data) navigate(`/user/${userID}`);
     else alert("Something went wrong");
     setLoading(false);
-
   };
 
   return (

@@ -13,7 +13,7 @@ const searchForXmlFile = (source, order) => {
       if (i % childs.length === 0) chunks.push([]);
       chunks[chunks.length - 1].push(files[i]);
     }
-let counter = 0;
+    let counter = 0;
     return new Promise((resolve, reject) => {
       childs.forEach((child, index) => {
         child.send({
@@ -27,12 +27,10 @@ let counter = 0;
           if (file) {
             childs.forEach((child) => child.kill());
             resolve(file);
-          }
-          else if (counter === childs.length) {
+          } else if (counter === childs.length) {
             childs.forEach((child) => child.kill());
             resolve(null);
           }
-          
         });
       });
     });

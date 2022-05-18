@@ -1,8 +1,8 @@
-import axios from './axiosConfig'
+import axios from "./axiosConfig";
 
 export const loginService = async (email, password) => {
   try {
-    const { data } = await axios.post('/auth/login', {
+    const { data } = await axios.post("/auth/login", {
       email,
       password,
     });

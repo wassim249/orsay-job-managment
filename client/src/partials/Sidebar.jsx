@@ -5,7 +5,7 @@ import { RiHomeLine } from "react-icons/ri";
 import { BiCart } from "react-icons/bi";
 import Logo from "../images/logo.svg";
 
-const Sidebar =({ sidebarOpen, setSidebarOpen }) => {
+const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
   const { pathname } = location;
 
@@ -157,6 +157,6 @@ const Sidebar =({ sidebarOpen, setSidebarOpen }) => {
       </div>
     </div>
   );
-}
+};
 
 export default Sidebar;

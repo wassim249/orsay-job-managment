@@ -33,12 +33,9 @@ export const CreateScanPage = () => {
         user.id
       );
       if (output) {
-        if(output.finishedOrders.length > 0) {
-      
-       navigate(`/scan/${scanId}`);
-      }
-      else 
-        alert(output.log[output.log.length - 1].message.toLowerCase());
+        if (output.finishedOrders.length > 0) {
+          navigate(`/scan/${scanId}`);
+        } else alert(output.log[output.log.length - 1].message.toLowerCase());
       }
     }
   };

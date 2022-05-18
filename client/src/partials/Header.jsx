@@ -5,7 +5,7 @@ import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { BsSearch } from "react-icons/bs";
 import LangMenu from "./header/LangMenu";
 
-const Header =({ sidebarOpen, setSidebarOpen }) => {
+const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
 
   return (
@@ -48,12 +48,12 @@ const Header =({ sidebarOpen, setSidebarOpen }) => {
             {/*  Divider */}
             <hr className="w-px h-6 bg-slate-200 mx-3" />
             <UserMenu />
-           <LangMenu />
+            <LangMenu />
           </div>
         </div>
       </div>
     </header>
   );
-}
+};
 
 export default Header;

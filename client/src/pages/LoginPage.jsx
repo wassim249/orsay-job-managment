@@ -22,13 +22,12 @@ const LoginPage = () => {
     setLoading(false);
   };
 
-
-  useEffect(()=> {
+  useEffect(() => {
     if (user) {
-      if(rememberMe) localStorage.setItem("ORSAY_USER", JSON.stringify(user));
+      if (rememberMe) localStorage.setItem("ORSAY_USER", JSON.stringify(user));
       navigate("/home");
-    } 
-  }, [loading])
+    }
+  }, [loading]);
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center bg-slate-50">

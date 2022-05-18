@@ -1,7 +1,5 @@
-const { PrismaClient } = require("@prisma/client");
+const prisma = require("../prisma/config");
 const { sendEmail } = require("../helpers/utils");
-
-const prisma = new PrismaClient();
 
 const getAllUsers = async (req, res) => {
   try {
@@ -63,7 +61,11 @@ const editUser = async (req, res) => {
     sendEmail(
       user.email,
       "Your Orsay delivery job manager has been updated",
-      `Hello ${user.firstName},\n\n your account has been updated by your admin\n\n${req.body.password && ` Your new password is: ${req.body.password}`} \n \n Have a nice day !`
+      `Hello ${
+        user.firstName
+      },\n\n your account has been updated by your admin\n\n${
+        req.body.password && ` Your new password is: ${req.body.password}`
+      } \n \n Have a nice day !`
     );
     res.json({
       user,
