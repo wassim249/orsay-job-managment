@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const nodemailer = require("nodemailer");
 require("dotenv").config({ path: "../.env" });
+const jsonFile = require('../workers.json')
 
 // Fonction de verification si un dossier est existant ou non
 // dir @String : chemin du dossier
@@ -123,6 +124,24 @@ const sendEmail = (email, subject, message) => {
     else console.log(info);
   });
 };
+
+const saveWorker = async (file, data) => {
+ 
+ let workers = jsonFile.workers;
+  workers.push({
+   
+    date : new Date().toISOString().replace(/:/g, ""),
+    file,
+    data,
+    status: 'RUNNING'
+  });
+  // write workers to file 
+  fs.writeFileSync(path.join(__dirname, '../workers.json'), JSON.stringify({workers}));
+
+  console.log('saved');
+}
+
+
 module.exports = {
   isDirectory,
   extractLineFromXml,
@@ -130,4 +149,5 @@ module.exports = {
   log,
   createLogFile,
   sendEmail,
+  saveWorker
 };

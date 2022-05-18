@@ -32,6 +32,7 @@ model Scan {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
   OrderNumber     OrderNumber[]
+  scheduled       Boolean       @default(false)
 }
 
 model OrderNumber {

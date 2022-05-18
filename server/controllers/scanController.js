@@ -6,7 +6,9 @@ const {
   log,
   createXmlFile,
   extractLineFromXml,
+  saveWorker,
 } = require("../helpers/utils");
+const { Worker } = require("worker_threads");
 
 const createScan = async (req, res) => {
   let { source, destination, logDir, orders, userId } = req.body;
@@ -199,6 +201,7 @@ const createScan = async (req, res) => {
             destinationFile: destination,
             log: JSON.stringify(output.log),
             logFile: logFile || "",
+            schedulted: false,
           },
         });
         if (scan)
@@ -293,8 +296,138 @@ const getAllScans = async (req, res) => {
   }
 };
 
+const scheduleScan = async (req, res) => {
+  let { source, destination, logDir, orders, userId, cron } = req.body;
+
+  let output = {
+    finishedOrders: [],
+    log: [],
+  };
+
+  orders = orders.filter((item, pos) => orders.indexOf(item) == pos);
+
+  if (!source || source == "") {
+    output.log.push({
+      message: "VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE",
+      type: "error",
+    });
+    res.json({
+      output,
+    });
+    error = true;
+    return;
+  }
+  if (!destination || destination == "") {
+    output.log.push({
+      message: "VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION",
+      type: "error",
+    });
+    res.json({
+      output,
+    });
+    error = true;
+    return;
+  }
+
+  if (!isDirectory(source.trim())) {
+    output.log.push({
+      message: "REPERTOIRE DE SOURCE INEXISTANT",
+      type: "error",
+    });
+    res.json({
+      output,
+    });
+    error = true;
+    return;
+  }
+
+  if (!isDirectory(destination.trim())) {
+    output.log.push({
+      message: "REPERTOIRE DE DESTINATION INEXISTANT",
+      type: "error",
+    });
+    res.json({
+      output,
+    });
+    error = true;
+    return;
+  }
+
+  if (source === destination) {
+    output.log.push({
+      message: "REPERTOIRE DE SOURCE ET DESTINATION SONT IDENTIQUES",
+      type: "error",
+    });
+    res.json({
+      output,
+      logFile: logDir,
+    });
+    error = true;
+    return;
+  }
+
+  if (!logDir || logDir?.trim() == "") logDir = destination.trim();
+  else if (!isDirectory(logDir.trim())) {
+    output.log.push({
+      message: "DOSSIER DE LOG INEXISTANT",
+      type: "error",
+    });
+    res.json({
+      output,
+    });
+    error = true;
+    return;
+  }
+
+  const logFile = createLogFile(logDir);
+  if (!logFile) {
+    output.log.push({
+      message: "ERREUR LORS DE LA CREATION DU FICHIER DE LOG",
+      type: "error",
+    });
+    res.json({
+      output,
+      logFile: logDir,
+    });
+    error = true;
+    return;
+  }
+  output.log.push({
+    message: `DEMARRAGE DU SCAN`,
+    type: "info",
+  });
+  log(logFile, `DEMARRAGE DU SCAN`);
+  res.json({
+    output,
+    logFile,
+  });
+
+  const worker = new Worker("./helpers/scanWorker.js", {
+    source,
+    destination,
+    logFile,
+    orders,
+    userId,
+    output,
+    cron,
+  });
+
+  worker.postMessage({
+    source,
+    destination,
+    logFile,
+    orders,
+    userId,
+    output,
+    cron,
+  });
+
+
+};
+
 module.exports = {
   createScan,
+  scheduleScan,
   getScan,
   getAllScans,
 };
