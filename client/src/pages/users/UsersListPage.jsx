@@ -40,18 +40,18 @@ export const UsersListPage = () => {
       ) : (
         <>
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl text-secondary font-bold font-montserat flex items-center">
+            <h1 className="text-2xl text-secondary font-bold   flex items-center">
               <BiGroup size={40} color="#f88c6c" className="mr-2" /> Users list
             </h1>
             <button
-              className="bg-secondary text-white py-2 px-3 font-montserat"
+              className="bg-secondary text-white py-2 px-3  "
               onClick={() => navigate("/user/create")}
             >
               + Create user
             </button>
           </div>
 
-          <table className="table-auto w-full mt-4 font-montserat overflow-x-auto">
+          <table className="table-auto w-full mt-4   overflow-x-auto">
             <thead>
               <tr className="bg-primary text-white  font-medium text-center">
                 <th className="px-4 py-2">ID</th>

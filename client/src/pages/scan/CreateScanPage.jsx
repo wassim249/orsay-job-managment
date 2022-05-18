@@ -51,12 +51,12 @@ export const CreateScanPage = () => {
 
   return (
     <Layout>
-      <h1 className="text-2xl text-secondary font-bold font-montserat flex items-center">
+      <h1 className="text-2xl text-secondary font-bold   flex items-center">
         <RiScan2Fill size={40} color="#f88c6c" className="mr-2" /> Create a new
         Scan
       </h1>
 
-      <form className="mt-4 grid grid-cols-2 gap-4 font-montserat">
+      <form className="mt-4 grid grid-cols-2 gap-4  ">
         {/* Input de dossier source */}
         <div className="col-span-2">
           <label className="block text-secondary text-sm d mb-2">
@@ -102,14 +102,14 @@ export const CreateScanPage = () => {
             onClick={() => {
               addOrder();
             }}
-            className="bg-primary text-white  sm:w-1/2 w-full px-2 py-2 font-bold font-montserat"
+            className="bg-primary text-white  sm:w-1/2 w-full px-2 py-2 font-bold  "
           >
             <span className="text-white text-lg">+</span>
             Add
           </button>
         </div>
         <div className="col-span-2">
-          <label className="block text-gray-700 text-sm mb-2 font-montserat">
+          <label className="block text-gray-700 text-sm mb-2  ">
             Log file location :
           </label>
           <input
@@ -125,19 +125,19 @@ export const CreateScanPage = () => {
             e.preventDefault();
             handleScan();
           }}
-          className="col-span-2 bg-primary hover:bg-darkPrimary text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline font-montserat"
+          className="col-span-2 bg-primary hover:bg-darkPrimary text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline  "
           type="submit"
         >
           Create
         </button>
         {/* Table de la liste des numéros de commande */}
-        <table className="col-span-2 font-montserat">
+        <table className="col-span-2  ">
           <thead className="rounded-lg p-2">
             <tr>
               <td className="bg-pink-50 p-2 rounded-tl text-gray-700 text-sm font-bold">
                 &nbsp;
               </td>
-              <td className="bg-lightPrimary p-2 w-3/4 text-center text-white font-bold font-montserat">
+              <td className="bg-lightPrimary p-2 w-3/4 text-center text-white font-bold  ">
                 Order number
               </td>
               <td className="bg-pink-50 p-2 rounded-tr text-gray-700 text-sm font-bold">
@@ -150,7 +150,7 @@ export const CreateScanPage = () => {
               <tr>
                 <td
                   colSpan={3}
-                  className="text-center w-full bg-gray-200 py-2 text-sm font-bold font-montserat text-gray-500"
+                  className="text-center w-full bg-gray-200 py-2 text-sm font-bold   text-gray-500"
                 >
                   Order numbers list is empty
                 </td>
@@ -161,7 +161,7 @@ export const CreateScanPage = () => {
                   <td className="bg-pink-50 p-2 text-center text-gray-700 text-sm font-bold">
                     {index + 1}
                   </td>
-                  <td className="bg-lightPrimary p-2 text-center text-gray-700 text-sm font-bold font-montserat">
+                  <td className="bg-lightPrimary p-2 text-center text-gray-700 text-sm font-bold  ">
                     {orderNumber}
                   </td>
                   <td className="bg-pink-50 p-2 text-center text-gray-700 text-sm font-bold">

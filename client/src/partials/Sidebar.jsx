@@ -116,7 +116,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     <span
                       className={`text-sm font-bold e ml-3 ${
                         pathname === "/home" ? "text-white" : "text-primary"
-                      } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200 font-montserat`}
+                      } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                     >
                       Home
                     </span>
@@ -144,7 +144,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     <span
                       className={`text-sm font-bold e ml-3 ${
                         pathname === "/orders" ? "text-white" : "text-secondary"
-                      } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200 font-montserat`}
+                      } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                     >
                       Orders
                     </span>

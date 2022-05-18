@@ -30,13 +30,13 @@ const LoginPage = () => {
   }, [loading]);
 
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center bg-slate-50">
-      <h1 className="text-secondary text-2xl font-bold mb-6 font-montserat">
+    <div className="w-screen h-screen flex flex-col justify-center items-center bg-slate-50 font-montserat">
+      <h1 className="text-secondary text-2xl font-bold mb-6  ">
         Login to your account
       </h1>
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col w-1/2">
         <div className="mb-4">
-          <label className="block text-grey-darker text-sm  mb-2 font-montserat">
+          <label className="block text-grey-darker text-sm  mb-2  ">
             Email adress :
           </label>
           <input
@@ -72,7 +72,7 @@ const LoginPage = () => {
             type="checkbox"
             color="#f88c6c"
           />
-          <label className="font-montserat ml-2 text-sm">Remember me</label>
+          <label className="  ml-2 text-sm">Remember me</label>
         </div>
 
         <button

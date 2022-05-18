@@ -39,13 +39,13 @@ export const CreateUserPage = () => {
 
   return (
     <Layout>
-      <span className="font-montserat font-bold text-2xl text-secondary">
+      <span className="  font-bold text-2xl text-secondary">
         Create User
       </span>
-      <span className="block font-montserat text-sm">
+      <span className="block   text-sm">
         User will be notified by email
       </span>
-      <form className="grid grid-cols-2 gap-5 mt-8 font-montserat">
+      <form className="grid grid-cols-2 gap-5 mt-8  ">
         <div className="col-span-2">
           <label className="block text-secondary text-sm d mb-2">
             First name : <span className="text-primary">*</span>
@@ -129,7 +129,7 @@ export const CreateUserPage = () => {
             />
 
             <button
-              className="bg-transparent border font-montserat border-secondary hover:bg-primary-dark text-secondary ml-3 py-2 px-4 focus:outline-none focus:shadow-outline hover:bg-secondary hover:text-white"
+              className="bg-transparent border   border-secondary hover:bg-primary-dark text-secondary ml-3 py-2 px-4 focus:outline-none focus:shadow-outline hover:bg-secondary hover:text-white"
               onClick={(e) => {
                 e.preventDefault();
                 const password = generatePassword();

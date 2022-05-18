@@ -48,17 +48,17 @@ export const ScanDetailsPage = () => {
       ) : (
         <>
           <Status success={scanSuccess(scan && scan)} />
-          <span className="mt-10 font-montserat text-sm text-slate-500">
+          <span className="mt-10   text-sm text-slate-500">
             {moment(scan && scan.createdAt).format("DD/MM/YYYY HH:mm:ss")}
           </span>
-          <div className=" flex justify-between items-center font-montserat ">
-            <span className="font-montserat font-bold text-2xl text-secondary">
+          <div className=" flex justify-between items-center   ">
+            <span className="  font-bold text-2xl text-secondary">
               Scan #{id}
             </span>
 
             <div className="flex items-center">
               <BsFillPersonFill size={30} color={"#f88c6c"} />
-              <span className="ml-2 text-sm font-montserat hover:cursor-pointer hover:underline">
+              <span className="ml-2 text-sm   hover:cursor-pointer hover:underline">
                 By : {scan && scan.user.firstName} {scan && scan.user.lastName}
               </span>
             </div>
@@ -66,37 +66,37 @@ export const ScanDetailsPage = () => {
 
           <div className="grid gap-10 grid-cols-2 mt-6">
             <div>
-              <label className="block text-secondary text-sm d mb-2 font-montserat">
+              <label className="block text-secondary text-sm d mb-2  ">
                 Source folder :
               </label>
-              <span className="text-primary font-montserat font-bold">
+              <span className="text-primary   font-bold">
                 {scan && scan.sourceFile}
               </span>
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2 font-montserat">
+              <label className="block text-secondary text-sm d mb-2  ">
                 Destination folder :
               </label>
-              <span className="text-primary font-montserat font-bold">
+              <span className="text-primary   font-bold">
                 {scan && scan.destinationFile}
               </span>
             </div>
 
             <div className="col-span-2">
-              <label className="block text-secondary text-sm d mb-2 font-montserat">
+              <label className="block text-secondary text-sm d mb-2  ">
                 Log file :
               </label>
-              <span className="text-primary font-montserat font-bold">
+              <span className="text-primary   font-bold">
                 {scan && scan.logFile}
               </span>
             </div>
 
             <div className="col-span-2">
-              <label className="block text-secondary text-sm d mb-2 font-montserat">
+              <label className="block text-secondary text-sm d mb-2  ">
                 Orders List :
               </label>
-              <div className="bg-slate-900 text-white p-2 text-sm font-montserat border-2 border-primary">
+              <div className="bg-slate-900 text-white p-2 text-sm   border-2 border-primary">
                 {orders &&
                   orders.map((order, key) => (
                     <span className=" block" key={key}>
@@ -122,10 +122,10 @@ export const ScanDetailsPage = () => {
             </div>
 
             <div className="col-span-2">
-              <label className="block text-secondary text-sm d mb-2 font-montserat">
+              <label className="block text-secondary text-sm d mb-2  ">
                 Log :
               </label>
-              <div className="bg-slate-900 text-white p-2 text-sm font-montserat border-2 border-primary">
+              <div className="bg-slate-900 text-white p-2 text-sm   border-2 border-primary">
                 {scan &&
                   JSON.parse(scan.log).map((log, key) => (
                     <span
@@ -150,7 +150,7 @@ const Status = ({ success = true }) => (
   <div
     className={`${
       success ? "bg-green-500" : "bg-red-500"
-    }  px-3 py-2 w-32 text-center text-white font-montserat font-bold`}
+    }  px-3 py-2 w-32 text-center text-white   font-bold`}
   >
     {success ? "Success" : "Failed"}
   </div>

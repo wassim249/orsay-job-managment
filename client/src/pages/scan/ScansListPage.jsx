@@ -38,12 +38,12 @@ export const ScansListPage = () => {
         </div>
       ) : (
         <>
-          <h1 className="text-2xl text-secondary font-bold font-montserat flex items-center">
+          <h1 className="text-2xl text-secondary font-bold   flex items-center">
             <RiScan2Fill size={40} color="#f88c6c" className="mr-2" /> Scans
             list
           </h1>
 
-          <table className="table-fixed mt-4 font-montserat overflow-x-auto">
+          <table className="table-fixed mt-4   overflow-x-auto">
             <thead>
               <tr className="bg-primary text-white  font-medium text-center">
                 <th className="px-4 py-2">Date</th>

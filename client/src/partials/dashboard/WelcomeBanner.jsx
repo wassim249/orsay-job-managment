@@ -9,10 +9,10 @@ function WelcomeBanner() {
     <div className="relative bg-pink-100 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
       {/* Content */}
       <div className="relative">
-        <h1 className="text-2xl md:text-xl text-secondary font-montserat font-bold mb-1">
+        <h1 className="text-2xl md:text-xl text-secondary   font-bold mb-1">
           {salute()}, {user && `${user.firstName} ${user.lastName}`}.
         </h1>
-        <p className="font-montserat text-sm">
+        <p className="  text-sm">
           Last connection :
           {user &&
             (moment(user.lastConnection).toDate().getFullYear() != 1970

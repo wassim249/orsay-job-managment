@@ -45,7 +45,7 @@ function LangMenu() {
       >
         <div className="flex items-center truncate">
           <MdLanguage size="20" color="gray" />
-          <span className="truncate  text-sm font-montserat group-hover:text-darkPrimary">
+          <span className="truncate  text-sm   group-hover:text-darkPrimary">
             EN
           </span>
           <IoIosArrowDown size="15" color="black" />
@@ -69,13 +69,13 @@ function LangMenu() {
         >
           <ul>
             <li>
-              <a className="font-medium text-sm text-secondary font-montserat py-1 px-3 hover:cursor-pointer">
+              <a className="font-medium text-sm text-secondary   py-1 px-3 hover:cursor-pointer">
                 English <span className="text-primary">(EN)</span>
               </a>
             </li>
 
             <li>
-              <a className="font-medium text-sm text-secondary font-montserat py-1 px-3 hover:cursor-pointer">
+              <a className="font-medium text-sm text-secondary   py-1 px-3 hover:cursor-pointer">
                 French <span className="text-primary">(FR)</span>
               </a>
             </li>

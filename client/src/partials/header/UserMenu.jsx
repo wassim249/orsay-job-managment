@@ -57,7 +57,7 @@ const UserMenu = () => {
           lastName={user && user.lastName}
         />
         <div className="flex items-center truncate">
-          <span className="truncate ml-2 text-sm font-montserat group-hover:text-darkPrimary text-primary">
+          <span className="truncate ml-2 text-sm   group-hover:text-darkPrimary text-primary">
             {user && user.firstName}
           </span>
           <IoIosArrowDown size="15" color="black" />
@@ -80,17 +80,17 @@ const UserMenu = () => {
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
-            <div className="font-medium text-slate-800 font-montserat">
+            <div className="font-medium text-slate-800  ">
               {user && `${user.firstName} ${user.lastName}`}
             </div>
-            <div className="text-xs text-slate-500 italic font-montserat">
+            <div className="text-xs text-slate-500 italic  ">
               {user && user.role}
             </div>
           </div>
           <ul>
             <li>
               <Link
-                className="font-medium text-sm text-primary font-montserat hover:text-darkPrimary flex items-center py-1 px-3"
+                className="font-medium text-sm text-primary   hover:text-darkPrimary flex items-center py-1 px-3"
                 to="/"
                 onClick={() => {
                   setDropdownOpen(!dropdownOpen);
@@ -102,7 +102,7 @@ const UserMenu = () => {
             </li>
             <li>
               <span
-                className="font-medium text-sm text-primary font-montserat hover:text-darkPrimary flex items-center py-1 px-3 hover:cursor-pointer"
+                className="font-medium text-sm text-primary   hover:text-darkPrimary flex items-center py-1 px-3 hover:cursor-pointer"
                 onClick={() => {
                   setDropdownOpen(!dropdownOpen);
                   setUser(null);

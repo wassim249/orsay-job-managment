@@ -40,49 +40,49 @@ export const UserDetailsPage = () => {
         </div>
       ) : (
         <>
-          <span className="font-montserat font-bold text-2xl text-secondary">
+          <span className="  font-bold text-2xl text-secondary">
             User #{userID && userID}
           </span>
           <div className="grid grid-cols-2 grid-gap-4 mt-10">
             <div>
-              <label className="block text-secondary text-sm d mb-2 font-montserat">
+              <label className="block text-secondary text-sm d mb-2  ">
                 First name :
               </label>
-              <span className="text-primary font-montserat font-bold">
+              <span className="text-primary   font-bold">
                 {fetchedUser && fetchedUser.firstName}
               </span>
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2 font-montserat">
+              <label className="block text-secondary text-sm d mb-2  ">
                 Last name :
               </label>
-              <span className="text-primary font-montserat font-bold">
+              <span className="text-primary   font-bold">
                 {fetchedUser && fetchedUser.lastName}
               </span>
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2 font-montserat">
+              <label className="block text-secondary text-sm d mb-2  ">
                 Email adress :
               </label>
-              <span className="text-primary font-montserat font-bold">
+              <span className="text-primary   font-bold">
                 {fetchedUser && fetchedUser.email}
               </span>
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2 font-montserat">
+              <label className="block text-secondary text-sm d mb-2  ">
                 Role :
               </label>
               <UserRole role={fetchedUser && fetchedUser.role} />
             </div>
 
             <div>
-              <label className="block text-secondary text-sm  font-montserat">
+              <label className="block text-secondary text-sm   ">
                 Last connection :
               </label>
-              <span className="text-primary font-montserat font-bold">
+              <span className="text-primary   font-bold">
                 {fetchedUser &&
                   (moment(fetchedUser.lastConnection).toDate().getFullYear() !=
                   1970
@@ -94,11 +94,11 @@ export const UserDetailsPage = () => {
             </div>
           </div>
 
-          <span className="font-montserat font-bold text-2xl text-secondary mt-6">
+          <span className="  font-bold text-2xl text-secondary mt-6">
             {fetchedUser && fetchedUser.firstName}'s Scans
           </span>
 
-          <table className="table-fixed mt-4 font-montserat overflow-x-auto">
+          <table className="table-fixed mt-4   overflow-x-auto">
             <thead>
               <tr className="bg-primary text-white  font-medium text-center">
                 <th className="px-4 py-2">Date</th>
@@ -153,7 +153,7 @@ export const UserDetailsPage = () => {
               onClick={() => {
                 navigate(`/user/edit/${userID}`);
               }}
-              className="bg-primary text-white font-montserat font-bold py-2 px-4 hover:bg-darkPrimary "
+              className="bg-primary text-white   font-bold py-2 px-4 hover:bg-darkPrimary "
             >
               Edit
             </button>
@@ -168,7 +168,7 @@ const UserRole = ({ role = "viewer" }) => (
   <div
     className={`flex items-center justify-center w-1/3  ${
       role == "admin" ? "bg-primary" : "bg-secondary"
-    } font-montserat font-bold py-2 px-4 text-white`}
+    }   font-bold py-2 px-4 text-white`}
   >
     {role}
   </div>

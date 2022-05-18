@@ -94,7 +94,7 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
           <div className="py-4 px-2">
             {/* Recent searches */}
             <div className="mb-3 last:mb-0">
-              <div className="text-xs font-semibold text-lightPrimary font-montserat px-2 mb-2">
+              <div className="text-xs font-semibold text-lightPrimary   px-2 mb-2">
                 Recent searches
               </div>
               <ul className="text-sm">

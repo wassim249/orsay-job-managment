@@ -14,6 +14,7 @@ import { ScansListPage } from "./pages/scan/ScansListPage";
 import { EditUserPage } from "./pages/users/EditUserPage";
 import { CreateUserPage } from "./pages/users/CreateUserPage";
 import { ProfilePage } from "./pages/ProfilePage";
+import { ScheduleScanPage } from "./pages/scan/ScheduleScanPage";
 
 const App = () => {
   const location = useLocation();
@@ -27,8 +28,6 @@ const App = () => {
     document.querySelector("html").style.scrollBehavior = "";
   }, [location.pathname]); // triggered on route change
 
-
-
   return (
     <UserContext.Provider value={[user, setUser]}>
       <Routes>
@@ -37,11 +36,13 @@ const App = () => {
         <Route path="/scan/create" element={<CreateScanPage />} />
         <Route path="/scan/:id" element={<ScanDetailsPage />} />
         <Route path="/scan/" element={<ScansListPage />} />
+        <Route path="/scan/schedule" element={<ScheduleScanPage />} />
         <Route path="/user/" element={<UsersListPage />} />
         <Route path="/user/:id" element={<UserDetailsPage />} />
         <Route path="/user/edit/:id" element={<EditUserPage />} />
         <Route path="/user/create/" element={<CreateUserPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </UserContext.Provider>
