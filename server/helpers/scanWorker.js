@@ -1,16 +1,15 @@
 const { PrismaClient } = require("@prisma/client");
 const { parentPort } = require("worker_threads");
 const { searchForXmlFile } = require("./thread");
-const { extractLineFromXml , log } = require("./utils");
+const { extractLineFromXml, log } = require("./utils");
 const cron = require("node-cron");
 
 const prisma = new PrismaClient();
-
-let executionCount = 0;
 console.log("SCAN WORKER STARTED");
 
+let errOccurred = false;
+
 parentPort.on("message", async (data) => {
- 
   const {
     orders,
     logFile,
@@ -20,17 +19,21 @@ parentPort.on("message", async (data) => {
     output,
     cron: cronExp,
   } = data;
-console.log(cronExp);
+
   cron.schedule(cronExp, (date) => {
     console.log(date);
-    scan(orders, logFile, source, destination, userId, output, cronExp);
-    executionCount++;
+    if (errOccurred) {
+      console.log("CLOSED");
+      parentPort.postMessage({ status: "ERROR" });
+    } else scan(orders, logFile, source, destination, userId, output, cronExp);
   });
 });
 
-const scan = (orders, logFile, source, destination, userId, output) => {
+const scan = async (orders, logFile, source, destination, userId, output) => {
   let createdOrders = [];
-console.log(logFile);
+  console.log(logFile);
+  let createdScan = null;
+
   orders.forEach(async (order, index) => {
     const createdOrder = {
       order,
@@ -50,10 +53,12 @@ console.log(logFile);
         message: `LA COMMANDE ${order} N'A PAS ETE TROUVEE`,
         type: "error",
       });
+
       output.finishedOrders.push({
         order,
         success: false,
       });
+      errOccurred = true;
       createdOrders.push(createdOrder);
     } else {
       createdOrder.file = file;
@@ -76,6 +81,7 @@ console.log(logFile);
           order,
           success: false,
         });
+        errOccurred = true;
         createdOrders.push(createdOrder);
       } else {
         log(logFile, `LE NUMERO DE COMMANDE ${order} EST TROUVE`);
@@ -96,6 +102,7 @@ console.log(logFile);
             order,
             success: false,
           });
+          errOccurred = true;
           createdOrders.push(createdOrder);
         } else {
           log(logFile, `LE FICHIER ${order}.xml A ETE CREE`);
@@ -113,29 +120,26 @@ console.log(logFile);
       }
     }
     if (index == orders.length - 1) {
-      try {
-        createdScan = await prisma.scan.create({
-          data: {
-            userId: userId,
-            sourceFile: source,
-            destinationFile: destination,
-            log: JSON.stringify(output.log),
-            logFile: logFile || "",
-            scheduled : true,
-          },
+      createdScan = await prisma.scan.create({
+        data: {
+          userId: userId,
+          sourceFile: source,
+          destinationFile: destination,
+          log: JSON.stringify(output.log),
+          logFile: logFile || "",
+          scheduled: true,
+          finished: false,
+        },
+      });
+      if (createdScan)
+        await prisma.orderNumber.createMany({
+          data: createdOrders.map((order) => ({
+            order: order.order,
+            scanId: createdScan.id,
+            status: order.status,
+            fileName: order.file,
+          })),
         });
-        if (createdScan)
-          await prisma.orderNumber.createMany({
-            data: createdOrders.map((order) => ({
-              order: order.order,
-              scanId: createdScan.id,
-              status: order.status,
-              fileName: order.file,
-            })),
-          });
-      } catch (error) {
-        console.log(error);
-      }
     }
   });
 };

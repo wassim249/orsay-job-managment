@@ -33,6 +33,7 @@ model Scan {
   updatedAt       DateTime      @updatedAt
   OrderNumber     OrderNumber[]
   scheduled       Boolean       @default(false)
+  finished        Boolean       @default(false)
 }
 
 model OrderNumber {

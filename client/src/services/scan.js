@@ -47,3 +47,28 @@ export const getScans = async (userId) => {
     return null;
   }
 };
+
+export const scheduleScan = async (
+  cron,
+  source,
+  destination,
+  orders,
+  logFile,
+  userId
+) => {
+  try {
+    const { data } = await axios.post("/scan/schedule", {
+      cron,
+      source,
+      destination,
+      orders,
+      logFile,
+      userId,
+    });
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};

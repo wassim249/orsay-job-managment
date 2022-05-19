@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import Layout from "../../layout/Layout";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { RiScan2Fill } from "react-icons/ri";
 import cronstrue from "cronstrue";
+import { generateCron } from "../../utils/Utils";
+import { scheduleScan } from "../../services/scan";
 
 export const ScheduleScanPage = () => {
   const [user, setUser] = useContext(UserContext);
@@ -19,6 +21,7 @@ export const ScheduleScanPage = () => {
   const [exludeSunSat, setExludeSunSat] = useState(false);
   const [dayOfWeek, setDayOfWeek] = useState(1);
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const MONTHS_NAMES = [
     "JAN",
@@ -45,67 +48,27 @@ export const ScheduleScanPage = () => {
     "SUNDAY",
   ];
 
-  const generateCron = () => {
-    let cron = times;
-    if (repeatsChecked && repeats) {
-      if (repeats == "minute")
-        cron = {
-          minutes: "*/" + times.minutes,
-          hours: cron.hours,
-          days: cron.days,
-          months: cron.months,
-          weekdays: cron.weekdays,
-        };
-      else if (repeats === "hour")
-        cron = {
-          minutes: times.minutes || "0",
-          hours: `*/${times.hours}`,
-          days: cron.days,
-          months: cron.months,
-          weekdays: cron.weekdays,
-        };
-      else if (repeats === "day")
-        cron = {
-          minutes: times.minutes || "0",
-          hours: times.hours || "0",
-          days: `*/${times.days}`,
-          months: cron.months,
-          weekdays: cron.weekdays,
-        };
-      else if (repeats === "month")
-        cron = {
-          minutes: times.minutes || "0",
-          hours: times.hours || "0",
-          days: times.days || "0",
-          months: `*/${times.months}`,
-          weekdays: cron.weekdays,
-        };
-      else if (repeats === "week")
-        cron = {
-          minutes: times.minutes || "0",
-          hours: times.hours || "0",
-          days: times.days || "0",
-          months: times.months || "0",
-          weekdays: `${dayOfWeek}`,
-        };
-    }
-    if (exludeSunSat)
-      cron = {
-        ...cron,
-        weekdays: "1-5",
-      };
-
-    return `${cron.minutes} ${cron.hours} ${cron.days} ${cron.months} ${cron.weekdays}`;
-  };
-
-  const handleSchedule = () => {
-    const cron = generateCron();
- 
+  const handleSchedule = async () => {
+    const cron = generateCron(repeatsChecked, repeats, times, exludeSunSat);
+    const data = await scheduleScan(
+      cron,
+      state.source,
+      state.destination,
+      state.orderNumbers,
+      state.logFile,
+      user.id
+    );
+    if (data?.output?.log?.length > 0)
+      alert(data.output.log[data.output.log.length - 1].message.toLowerCase());
+      else alert("An error occured");
   };
 
   useEffect(() => {
-    if (!user) navigate("/");
-    else if (user.role != "scanner" && user.role != "admin") navigate("/home");
+    if (user?.role != "scanner" && user?.role != "admin") navigate("/home");
+  }, []);
+
+  useEffect(() => {
+    if (!state) navigate("/scan/create");
   }, []);
 
   return (
@@ -332,7 +295,10 @@ export const ScheduleScanPage = () => {
 
       <div className="bg-slate-700 w-full px-3 py-4 mt-6">
         <p className="text-slate-300 text-sm italic">
-          This scan will be executed : {cronstrue.toString(generateCron())}
+          This scan will be executed :
+          {cronstrue.toString(
+            generateCron(repeatsChecked, repeats, times, exludeSunSat)
+          )}
         </p>
       </div>
 

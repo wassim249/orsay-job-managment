@@ -20,7 +20,7 @@ export const CreateScanPage = () => {
   }, []);
 
   const handleScan = async () => {
-    if (source.trim() === "") alert("Pl-ease enter source");
+    if (source.trim() === "") alert("Please enter source");
     else if (destination.trim() === "") alert("Please enter destination");
     else if (orderNumbers.length === 0)
       alert("Please enter at least one order number");
@@ -130,7 +130,24 @@ export const CreateScanPage = () => {
         >
           Create
         </button>
-        {/* Table de la liste des numéros de commande */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            if (source.trim() === "") alert("Please enter source");
+            else if (destination.trim() === "")
+              alert("Please enter destination");
+            else if (orderNumbers.length === 0)
+              alert("Please enter at least one order number");
+            else
+              navigate("/scan/schedule", {
+                state: { source, destination, orderNumbers, logFile },
+              });
+          }}
+          className="col-span-2 border-2 border-secondary bg-transparent hover:bg-secondary hover:text-white text-secondary font-bold py-2 px-4 focus:outline-none focus:shadow-outline  "
+          type="submit"
+        >
+          Schedule
+        </button>
         <table className="col-span-2  ">
           <thead className="rounded-lg p-2">
             <tr>

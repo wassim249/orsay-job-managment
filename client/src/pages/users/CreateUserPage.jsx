@@ -13,8 +13,8 @@ export const CreateUserPage = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) navigate("/");
-    else if (user.role != "admin") navigate("/");
+  console.log(user);
+  if (user?.role != "admin") navigate("/");
   }, []);
 
   const handleUserCreate = async (e) => {

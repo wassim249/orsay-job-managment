@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getScan } from "../../services/scan";
 import { scanSuccess } from "../../utils/Utils";
 import SquareLoader from "react-spinners/SquareLoader";
+import { RiScan2Fill } from "react-icons/ri";
 
 export const ScanDetailsPage = () => {
   const [user, setUser] = useContext(UserContext);
@@ -47,14 +48,21 @@ export const ScanDetailsPage = () => {
         </div>
       ) : (
         <>
-          <Status success={scanSuccess(scan && scan)} />
-          <span className="mt-10   text-sm text-slate-500">
+          <div className="flex mb-4 ">
+            <Status success={scanSuccess(scan && scan)} className="mr-3 " />
+            <Scheduled scheduled={scan && scan.scheduled} />
+          </div>
+
+          <span className="mt-10 text-sm text-slate-500">
             {moment(scan && scan.createdAt).format("DD/MM/YYYY HH:mm:ss")}
           </span>
           <div className=" flex justify-between items-center   ">
-            <span className="  font-bold text-2xl text-secondary">
-              Scan #{id}
-            </span>
+            <div className="flex items-center">
+              <RiScan2Fill size={40} color="#f88c6c" className="mr-2" />
+              <span className="  font-bold text-2xl text-secondary">
+                Scan #{id}
+              </span>
+            </div>
 
             <div className="flex items-center">
               <BsFillPersonFill size={30} color={"#f88c6c"} />
@@ -146,12 +154,22 @@ export const ScanDetailsPage = () => {
   );
 };
 
-const Status = ({ success = true }) => (
+const Status = ({ success = true, className = "" }) => (
   <div
     className={`${
       success ? "bg-green-500" : "bg-red-500"
-    }  px-3 py-2 w-32 text-center text-white   font-bold`}
+    }  px-3 py-2 w-32 text-center text-white   font-bold ${className}`}
   >
     {success ? "Success" : "Failed"}
+  </div>
+);
+
+const Scheduled = ({ scheduled = false }) => (
+  <div
+    className={`${
+      scheduled ? "bg-slate-500" : "bg-slate-700"
+    }  px-3 py-2 text-center text-white   font-bold`}
+  >
+    {scheduled ? "Scheduled" : "Not Scheduled"}
   </div>
 );

@@ -61,3 +61,56 @@ export const validateEmail = (email) => {
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 };
+
+export const generateCron = (repeatsChecked,repeats,times ,exludeSunSat) => {
+  let cron = times;
+  if (repeatsChecked && repeats) {
+    if (repeats == "minute")
+      cron = {
+        minutes: "*/" + times.minutes,
+        hours: cron.hours,
+        days: cron.days,
+        months: cron.months,
+        weekdays: cron.weekdays,
+      };
+    else if (repeats === "hour")
+      cron = {
+        minutes: times.minutes || "0",
+        hours: `*/${times.hours}`,
+        days: cron.days,
+        months: cron.months,
+        weekdays: cron.weekdays,
+      };
+    else if (repeats === "day")
+      cron = {
+        minutes: times.minutes || "0",
+        hours: times.hours || "0",
+        days: `*/${times.days}`,
+        months: cron.months,
+        weekdays: cron.weekdays,
+      };
+    else if (repeats === "month")
+      cron = {
+        minutes: times.minutes || "0",
+        hours: times.hours || "0",
+        days: times.days || "0",
+        months: `*/${times.months}`,
+        weekdays: cron.weekdays,
+      };
+    else if (repeats === "week")
+      cron = {
+        minutes: times.minutes || "0",
+        hours: times.hours || "0",
+        days: times.days || "0",
+        months: times.months || "0",
+        weekdays: `${dayOfWeek}`,
+      };
+  }
+  if (exludeSunSat)
+    cron = {
+      ...cron,
+      weekdays: "1-5",
+    };
+
+  return `${cron.minutes} ${cron.hours} ${cron.days} ${cron.months} ${cron.weekdays}`;
+};

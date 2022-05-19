@@ -201,7 +201,8 @@ const createScan = async (req, res) => {
             destinationFile: destination,
             log: JSON.stringify(output.log),
             logFile: logFile || "",
-            schedulted: false,
+            scheduled: false,
+            finished: true,
           },
         });
         if (scan)
@@ -421,8 +422,9 @@ const scheduleScan = async (req, res) => {
     output,
     cron,
   });
-
-
+  worker.on("message", (message) => {
+    if (message.status == "ERROR") worker.terminate();
+  });
 };
 
 module.exports = {
