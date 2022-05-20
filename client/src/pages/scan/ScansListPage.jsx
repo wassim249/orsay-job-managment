@@ -9,7 +9,7 @@ import { scanSuccess } from "../../utils/Utils";
 import { useNavigate } from "react-router-dom";
 
 export const ScansListPage = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [scans, setScans] = useState([]);
 

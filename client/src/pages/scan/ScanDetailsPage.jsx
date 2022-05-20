@@ -12,7 +12,7 @@ import { Scheduled } from "../../partials/Scheduled";
 import { Status } from "../../partials/Status";
 
 export const ScanDetailsPage = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const { id } = useParams();
   const [scan, setScan] = useState(null);
   const [orders, setOrders] = useState([]);

@@ -8,8 +8,8 @@ import LANG from "../../../../i18n/lang.json";
 import LangContext from "../../contexts/LangContext";
 
 export const CreateScanPage = () => {
-  const [user, setUser] = useContext(UserContext);
-  const [lang, setLang] = useContext(LangContext);
+  const [user] = useContext(UserContext);
+  const [lang] = useContext(LangContext);
   const navigate = useNavigate();
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");

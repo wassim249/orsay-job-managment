@@ -7,7 +7,7 @@ import { BiSearchAlt, BiUserCircle } from "react-icons/bi";
 import UserContext from "../contexts/UserContext";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const location = useLocation();
   const { pathname } = location;
 
@@ -15,7 +15,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const sidebar = useRef(null);
 
   const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
-  const [sidebarExpanded, setSidebarExpanded] = useState(
+  const [sidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
 
