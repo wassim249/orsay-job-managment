@@ -38,12 +38,22 @@ export const ScansListPage = () => {
         </div>
       ) : (
         <>
-          <h1 className="text-2xl text-secondary font-bold   flex items-center">
-            <RiScan2Fill size={40} color="#f88c6c" className="mr-2" /> Scans
-            list
-          </h1>
+          <div className="flex justify-between items-center">
+            <h1 className="text-2xl text-secondary font-bold   flex items-center">
+              <RiScan2Fill size={40} color="#f88c6c" className="mr-2" /> Scans
+              list
+            </h1>
+            {user?.role == "admin" && (
+              <button
+                className="bg-secondary text-white py-2 px-3  "
+                onClick={() => navigate("/user/create")}
+              >
+                + Create user
+              </button>
+            )}
+          </div>
 
-          <table className="table-fixed mt-4   overflow-x-auto">
+          <table className="table-auto mt-4 overflow-x-auto">
             <thead>
               <tr className="bg-primary text-white  font-medium text-center">
                 <th className="px-4 py-2">Date</th>

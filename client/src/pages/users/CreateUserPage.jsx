@@ -13,7 +13,6 @@ export const CreateUserPage = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-  console.log(user);
   if (user?.role != "admin") navigate("/");
   }, []);
 

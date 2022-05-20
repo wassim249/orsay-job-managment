@@ -17,6 +17,7 @@ export const UsersListPage = () => {
 
   useEffect(() => {
     if (!user) navigate("/");
+    else if (user?.role != "admin") navigate("/home");
   }, []);
 
   useEffect(() => {

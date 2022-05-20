@@ -64,7 +64,7 @@ export const ScheduleScanPage = () => {
   };
 
   useEffect(() => {
-    if (user?.role != "scanner" && user?.role != "admin") navigate("/home");
+    if ( user?.role == "viewer") navigate("/home");
   }, []);
 
   useEffect(() => {

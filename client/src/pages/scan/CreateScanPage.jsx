@@ -19,7 +19,7 @@ export const CreateScanPage = () => {
 
   useEffect(() => {
     if (!user) navigate("/");
-    else if (user.role === "viewer") navigate("/home");
+    else if (user?.role === "viewer") navigate("/home");
   }, []);
 
   const handleScan = async () => {

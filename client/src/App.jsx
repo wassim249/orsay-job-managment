@@ -24,7 +24,11 @@ const App = () => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("ORSAY_USER"))
   );
-  const [lang, setLang] = useState("EN");
+  const [lang, setLang] = useState(localStorage.getItem("ORSAY_LANG") || "FR");
+
+useEffect(() => {
+  localStorage.setItem("ORSAY_LANG", lang);
+}, [lang]);
 
   useEffect(() => {
     document.querySelector("html").style.scrollBehavior = "auto";

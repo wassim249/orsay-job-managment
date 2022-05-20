@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import { RiHomeLine, RiScan2Line } from "react-icons/ri";
 import Logo from "../images/logo.svg";
 import { BiSearchAlt, BiUserCircle } from "react-icons/bi";
+import UserContext from "../contexts/UserContext";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+  const [user, setUser] = useContext(UserContext);
   const location = useLocation();
   const { pathname } = location;
 
@@ -113,7 +115,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                       size={20}
                       color={pathname === "/home" ? "white" : "black"}
                     />
-                     <span
+                    <span
                       className={`text-sm font-bold e ml-3 ${
                         pathname === "/home" ? "text-white" : "text-secondary"
                       } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
@@ -151,34 +153,35 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   </div>
                 </NavLink>
               </li>
-
-              <li
-                className={`px-3 py-3 mb-0.5 last:mb-0 ${
-                  pathname === "/user" && "bg-primary"
-                }`}
-              >
-                <NavLink
-                  end
-                  to="/"
-                  className={`block text-primary  ${
-                    pathname === "/user" && "text-white"
-                  } truncate transition duration-150`}
+              {user?.role == "admin" && (
+                <li
+                  className={`px-3 py-3 mb-0.5 last:mb-0 ${
+                    pathname === "/user" && "bg-primary"
+                  }`}
                 >
-                  <div className="flex items-center">
-                    <BiUserCircle
-                      size={20}
-                      color={pathname === "/user" ? "white" : "black"}
-                    />
-                    <span
-                      className={`text-sm font-bold e ml-3 ${
-                        pathname === "/user" ? "text-white" : "text-secondary"
-                      } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
-                    >
-                      Users
-                    </span>
-                  </div>
-                </NavLink>
-              </li>
+                  <NavLink
+                    end
+                    to="/"
+                    className={`block text-primary  ${
+                      pathname === "/user" && "text-white"
+                    } truncate transition duration-150`}
+                  >
+                    <div className="flex items-center">
+                      <BiUserCircle
+                        size={20}
+                        color={pathname === "/user" ? "white" : "black"}
+                      />
+                      <span
+                        className={`text-sm font-bold e ml-3 ${
+                          pathname === "/user" ? "text-white" : "text-secondary"
+                        } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
+                      >
+                        Users
+                      </span>
+                    </div>
+                  </NavLink>
+                </li>
+              )}
 
               <li
                 className={`px-3 py-3 mb-0.5 last:mb-0 ${
@@ -187,7 +190,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               >
                 <NavLink
                   end
-                  to="/"
+                  to="/search"
                   className={`block text-primary  ${
                     pathname === "/search" && "text-white"
                   } truncate transition duration-150`}

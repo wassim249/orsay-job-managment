@@ -15,7 +15,7 @@ export const EditUserPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) navigate("/");
-    else if (user.role != "admin") navigate("/");
+    else if (user?.role != "admin") navigate("/");
   }, []);
 
   useEffect(() => {
