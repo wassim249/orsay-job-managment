@@ -1,5 +1,5 @@
 import resolveConfig from "tailwindcss/resolveConfig";
-
+import LANG from '../../../i18n/lang.json';
 export const tailwindConfig = () => {
   // Tailwind config
   return resolveConfig("./src/css/tailwind.config.js");
@@ -38,9 +38,10 @@ export const scanSuccess = (scan) => {
   } else return false;
 };
 
-export const salute = () => {
+export const salute = (lang) => {
+
   let hour = new Date().getHours();
-  if (hour < 12) return "Good Morning";
+  if (hour < 12) return LANG['home']['good morning'][lang];
   else if (hour < 18) return "Good Afternoon";
   else return "Good Evening";
 };

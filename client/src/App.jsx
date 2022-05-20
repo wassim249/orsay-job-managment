@@ -17,12 +17,14 @@ import { ProfilePage } from "./pages/ProfilePage";
 import { ScheduleScanPage } from "./pages/scan/ScheduleScanPage";
 import { TestPage } from "./pages/test";
 import { SearchPage } from "./pages/SearchPage";
+import LangContext from "./contexts/LangContext";
 
 const App = () => {
   const location = useLocation();
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("ORSAY_USER"))
   );
+  const [lang, setLang] = useState("EN");
 
   useEffect(() => {
     document.querySelector("html").style.scrollBehavior = "auto";
@@ -31,24 +33,26 @@ const App = () => {
   }, [location.pathname]); // triggered on route change
 
   return (
-    <UserContext.Provider value={[user, setUser]}>
-      <Routes>
-        <Route exact path="/home" element={<Dashboard />} />
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/scan/create" element={<CreateScanPage />} />
-        <Route path="/scan/:id" element={<ScanDetailsPage />} />
-        <Route path="/scan/" element={<ScansListPage />} />
-        <Route path="/scan/schedule" element={<ScheduleScanPage />} />
-        <Route path="/user/" element={<UsersListPage />} />
-        <Route path="/user/:id" element={<UserDetailsPage />} />
-        <Route path="/user/edit/:id" element={<EditUserPage />} />
-        <Route path="/user/create/" element={<CreateUserPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/test" element={<TestPage />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/*" element={<NotFoundPage />} />
-      </Routes>
-    </UserContext.Provider>
+    <LangContext.Provider value={[lang, setLang]}>
+      <UserContext.Provider value={[user, setUser]}>
+        <Routes>
+          <Route exact path="/home" element={<Dashboard />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/scan/create" element={<CreateScanPage />} />
+          <Route path="/scan/:id" element={<ScanDetailsPage />} />
+          <Route path="/scan/" element={<ScansListPage />} />
+          <Route path="/scan/schedule" element={<ScheduleScanPage />} />
+          <Route path="/user/" element={<UsersListPage />} />
+          <Route path="/user/:id" element={<UserDetailsPage />} />
+          <Route path="/user/edit/:id" element={<EditUserPage />} />
+          <Route path="/user/create/" element={<CreateUserPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/test" element={<TestPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
+        </Routes>
+      </UserContext.Provider>
+    </LangContext.Provider>
   );
 };
 

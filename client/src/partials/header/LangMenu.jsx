@@ -1,11 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import Transition from "../../utils/Transition";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdLanguage } from "react-icons/md";
+import LangContext from "../../contexts/LangContext";
 
 function LangMenu() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const [lang, setLang] = useContext(LangContext);
   const trigger = useRef(null);
   const dropdown = useRef(null);
 
@@ -46,7 +47,7 @@ function LangMenu() {
         <div className="flex items-center truncate">
           <MdLanguage size="20" color="gray" />
           <span className="truncate  text-sm   group-hover:text-darkPrimary">
-            EN
+            {lang.toUpperCase()}
           </span>
           <IoIosArrowDown size="15" color="black" />
         </div>
@@ -69,13 +70,19 @@ function LangMenu() {
         >
           <ul>
             <li>
-              <a className="font-medium text-sm text-secondary   py-1 px-3 hover:cursor-pointer">
+              <a
+                onClick={() => setLang("EN")}
+                className="font-medium text-sm text-secondary   py-1 px-3 hover:cursor-pointer"
+              >
                 English <span className="text-primary">(EN)</span>
               </a>
             </li>
 
             <li>
-              <a className="font-medium text-sm text-secondary   py-1 px-3 hover:cursor-pointer">
+              <a
+                onClick={() => setLang("FR")}
+                className="font-medium text-sm text-secondary   py-1 px-3 hover:cursor-pointer"
+              >
                 French <span className="text-primary">(FR)</span>
               </a>
             </li>

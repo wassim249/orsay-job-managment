@@ -4,9 +4,12 @@ import Layout from "../../layout/Layout";
 import { useNavigate } from "react-router-dom";
 import { RiScan2Fill } from "react-icons/ri";
 import { createScan } from "../../services/scan";
+import LANG from "../../../../i18n/lang.json";
+import LangContext from "../../contexts/LangContext";
 
 export const CreateScanPage = () => {
   const [user, setUser] = useContext(UserContext);
+  const [lang, setLang] = useContext(LangContext);
   const navigate = useNavigate();
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
@@ -20,7 +23,7 @@ export const CreateScanPage = () => {
   }, []);
 
   const handleScan = async () => {
-    if (source.trim() === "") alert("Please enter source");
+    if (source.trim() === "") alert("Please enter source folder");
     else if (destination.trim() === "") alert("Please enter destination");
     else if (orderNumbers.length === 0)
       alert("Please enter at least one order number");
@@ -52,20 +55,21 @@ export const CreateScanPage = () => {
   return (
     <Layout>
       <h1 className="text-2xl text-secondary font-bold   flex items-center">
-        <RiScan2Fill size={40} color="#f88c6c" className="mr-2" /> Create a new
-        Scan
+        <RiScan2Fill size={40} color="#f88c6c" className="mr-2" />
+        {LANG["createScan"]["create a new scan"][lang]}
       </h1>
 
       <form className="mt-4 grid grid-cols-2 gap-4  ">
         {/* Input de dossier source */}
         <div className="col-span-2">
           <label className="block text-secondary text-sm d mb-2">
-            Source folder : <span className="text-primary">*</span>
+            {LANG["createScan"]["source folder"][lang]}:{" "}
+            <span className="text-primary">*</span>
           </label>
           <input
             className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            placeholder="c:/folder/...."
+            placeholder={LANG["createScan"]["c:/folder/..."][lang]}
             value={source}
             onChange={(e) => setSource(e.target.value)}
             required
@@ -73,12 +77,13 @@ export const CreateScanPage = () => {
         </div>
         <div className="col-span-2">
           <label className="block text-secondary text-sm mb-2">
-            Destination folder : <span className="text-primary">*</span>
+            {LANG["createScan"]["destination folder"][lang]} :{" "}
+            <span className="text-primary">*</span>
           </label>
           <input
             className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            placeholder="c:/folder/...."
+            placeholder={LANG["createScan"]["c:/folder/..."][lang]}
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
             required
@@ -86,7 +91,8 @@ export const CreateScanPage = () => {
         </div>
         <div className="col-span-1">
           <label className="block text-secondary text-sm d mb-2">
-            Order number : <span className="text-primary">*</span>
+            {LANG["createScan"]["Order number"][lang]}:{" "}
+            <span className="text-primary">*</span>
           </label>
           <input
             className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -105,17 +111,17 @@ export const CreateScanPage = () => {
             className="bg-primary text-white  sm:w-1/2 w-full px-2 py-2 font-bold  "
           >
             <span className="text-white text-lg">+</span>
-            Add
+            {LANG["createScan"]["add"][lang]}
           </button>
         </div>
         <div className="col-span-2">
           <label className="block text-gray-700 text-sm mb-2  ">
-            Log file location :
+            {LANG["createScan"]["Log file location"][lang]} :
           </label>
           <input
             className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            placeholder="c:/folder/... ( default : destination folder )"
+            placeholder={`${LANG["createScan"]["c:/folder/..."][lang]} (${LANG["createScan"]["default"][lang]} ${LANG["createScan"]["destination folder"][lang]})`}
             value={logFile}
             onChange={(e) => setLogFile(e.target.value)}
           />
@@ -128,16 +134,16 @@ export const CreateScanPage = () => {
           className="col-span-2 bg-primary hover:bg-darkPrimary text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline  "
           type="submit"
         >
-          Create
+         {LANG["createScan"]["create"][lang]}
         </button>
         <button
           onClick={(e) => {
             e.preventDefault();
-            if (source.trim() === "") alert("Please enter source");
+            if (source.trim() === "") alert(LANG["createScan"]["please enter source folder"][lang]);
             else if (destination.trim() === "")
               alert("Please enter destination");
             else if (orderNumbers.length === 0)
-              alert("Please enter at least one order number");
+              alert(LANG["createScan"]["please enter at least one order number"][lang]);
             else
               navigate("/scan/schedule", {
                 state: { source, destination, orderNumbers, logFile },
@@ -146,7 +152,7 @@ export const CreateScanPage = () => {
           className="col-span-2 border-2 border-secondary bg-transparent hover:bg-secondary hover:text-white text-secondary font-bold py-2 px-4 focus:outline-none focus:shadow-outline  "
           type="submit"
         >
-          Schedule
+          {LANG["createScan"]["schedule"][lang]}
         </button>
         <table className="col-span-2  ">
           <thead className="rounded-lg p-2">
@@ -155,7 +161,7 @@ export const CreateScanPage = () => {
                 &nbsp;
               </td>
               <td className="bg-lightPrimary p-2 w-3/4 text-center text-white font-bold  ">
-                Order number
+               {LANG["createScan"]["Order number"][lang]}
               </td>
               <td className="bg-pink-50 p-2 rounded-tr text-gray-700 text-sm font-bold">
                 &nbsp;
@@ -169,7 +175,7 @@ export const CreateScanPage = () => {
                   colSpan={3}
                   className="text-center w-full bg-gray-200 py-2 text-sm font-bold   text-gray-500"
                 >
-                  Order numbers list is empty
+                  {LANG["createScan"]["Order numbers list is empty"][lang]}
                 </td>
               </tr>
             ) : (

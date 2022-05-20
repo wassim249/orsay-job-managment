@@ -1,0 +1,78 @@
+{
+  "home": {
+    "good morning": {
+      "EN": "Good morning",
+      "FR": "Bonjour"
+    },
+    "good afternoon": {
+      "EN": "Good afternoon",
+      "FR": "Bon après-midi"
+    },
+    "good evening": {
+      "EN": "Good evening",
+      "FR": "Bonsoir"
+    },
+    "last connection": {
+      "EN": "Last connection",
+      "FR": "Dernière connexion"
+    }
+  },
+  "createScan": {
+    "create a new scan": {
+      "EN": "Create a new scan",
+      "FR": "Créer un nouveau scan"
+    },
+    "source folder": {
+      "EN": "Source folder",
+      "FR": "Dossier source"
+    },
+    "c:/folder/...": {
+      "EN": "c:/folder/...",
+      "FR": "c:/dossier/..."
+    },
+    "destination folder": {
+      "EN": "Destination folder",
+      "FR": "Dossier destination"
+    },
+    "Order number": {
+      "EN": "Order number",
+      "FR": "Numéro de commande"
+    },
+    "add": {
+      "EN": "Add",
+      "FR": "Ajouter"
+    },
+    "Log file location": {
+      "EN": "Log file location",
+      "FR": "Emplacement du fichier de log"
+    },
+    "default": {
+      "EN": "default",
+      "FR": "défaut"
+    },
+    "create": {
+      "EN": "Create",
+      "FR": "Créer"
+    },
+    "schedule": {
+      "EN": "Schedule",
+      "FR": "Planifier"
+    },
+    "Order numbers list is empty": {
+      "EN": "Order numbers list is empty",
+      "FR": "La liste des numéros de commande est vide"
+    },
+    "please enter destination folder": {
+      "EN": "Please enter destination folder",
+      "FR": "veuillez entrer le dossier de destination"
+    },
+    "please enter source folder": {
+      "EN": "Please enter source folder",
+      "FR": "veuillez entrer le dossier source"
+    },
+    "please enter at least one order number": {
+      "EN": "please enter at least one order number",
+      "FR": "veuillez entrer au moins un numéro de commande"
+    }
+  }
+}
