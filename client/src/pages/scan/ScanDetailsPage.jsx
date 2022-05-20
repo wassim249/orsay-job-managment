@@ -8,6 +8,8 @@ import { getScan } from "../../services/scan";
 import { scanSuccess } from "../../utils/Utils";
 import SquareLoader from "react-spinners/SquareLoader";
 import { RiScan2Fill } from "react-icons/ri";
+import { Scheduled } from "../../partials/Scheduled";
+import { Status } from "../../partials/Status";
 
 export const ScanDetailsPage = () => {
   const [user, setUser] = useContext(UserContext);
@@ -159,22 +161,6 @@ export const ScanDetailsPage = () => {
   );
 };
 
-const Status = ({ success = true, className = "" }) => (
-  <div
-    className={`${
-      success ? "bg-green-500" : "bg-red-500"
-    }  px-3 py-2 w-32 text-center text-white   font-bold ${className}`}
-  >
-    {success ? "Success" : "Failed"}
-  </div>
-);
 
-const Scheduled = ({ scheduled = false }) => (
-  <div
-    className={`${
-      scheduled ? "bg-slate-500" : "bg-slate-700"
-    }  px-3 py-2 text-center text-white   font-bold`}
-  >
-    {scheduled ? "Scheduled" : "Not Scheduled"}
-  </div>
-);
+
+

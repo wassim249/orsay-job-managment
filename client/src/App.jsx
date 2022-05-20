@@ -18,6 +18,7 @@ import { ScheduleScanPage } from "./pages/scan/ScheduleScanPage";
 import { TestPage } from "./pages/test";
 import { SearchPage } from "./pages/SearchPage";
 import LangContext from "./contexts/LangContext";
+import { OrdersListPage } from "./pages/orders/ordersList";
 
 const App = () => {
   const location = useLocation();
@@ -41,7 +42,7 @@ useEffect(() => {
       <UserContext.Provider value={[user, setUser]}>
         <Routes>
           <Route exact path="/home" element={<Dashboard />} />
-          <Route path="/" element={<LoginPage />} />
+          <Route index element={<LoginPage />} />
           <Route path="/scan/create" element={<CreateScanPage />} />
           <Route path="/scan/:id" element={<ScanDetailsPage />} />
           <Route path="/scan/" element={<ScansListPage />} />
@@ -53,6 +54,7 @@ useEffect(() => {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/test" element={<TestPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/orders" element={<OrdersListPage />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </UserContext.Provider>
