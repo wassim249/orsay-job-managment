@@ -66,7 +66,12 @@ export const ScanDetailsPage = () => {
 
             <div className="flex items-center">
               <BsFillPersonFill size={30} color={"#f88c6c"} />
-              <span className="ml-2 text-sm   hover:cursor-pointer hover:underline">
+              <span
+                onClick={() => {
+                  navigate(`/user/${scan && scan.user.id}`);
+                }}
+                className="ml-2 text-sm   hover:cursor-pointer hover:underline"
+              >
                 By : {scan && scan.user.firstName} {scan && scan.user.lastName}
               </span>
             </div>

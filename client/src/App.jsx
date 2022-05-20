@@ -15,6 +15,7 @@ import { EditUserPage } from "./pages/users/EditUserPage";
 import { CreateUserPage } from "./pages/users/CreateUserPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { ScheduleScanPage } from "./pages/scan/ScheduleScanPage";
+import { TestPage} from './pages/test'
 
 const App = () => {
   const location = useLocation();
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/user/edit/:id" element={<EditUserPage />} />
         <Route path="/user/create/" element={<CreateUserPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/test" element={<TestPage />} />
         
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
