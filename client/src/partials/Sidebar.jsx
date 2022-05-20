@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
-import { RiHomeLine } from "react-icons/ri";
-import { BiCart } from "react-icons/bi";
+import { RiHomeLine, RiScan2Line } from "react-icons/ri";
 import Logo from "../images/logo.svg";
+import { BiSearchAlt, BiUserCircle } from "react-icons/bi";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
@@ -84,7 +84,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             <BiArrowBack color="black" />
           </button>
           {/* Logo */}
-          <NavLink end to="/" className="block">
+          <NavLink end to="/home" className="block">
             <img src={Logo} alt="Logo" className="w-20 h-auto" />
           </NavLink>
         </div>
@@ -113,9 +113,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                       size={20}
                       color={pathname === "/home" ? "white" : "black"}
                     />
-                    <span
+                     <span
                       className={`text-sm font-bold e ml-3 ${
-                        pathname === "/home" ? "text-white" : "text-primary"
+                        pathname === "/home" ? "text-white" : "text-secondary"
                       } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                     >
                       Home
@@ -126,27 +126,83 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
               <li
                 className={`px-3 py-3 mb-0.5 last:mb-0 ${
-                  pathname === "/orders" && "bg-primary"
+                  pathname === "/scan" && "bg-primary"
+                }`}
+              >
+                <NavLink
+                  end
+                  to="/scan"
+                  className={`block text-primary  ${
+                    pathname === "/scan" && "text-white"
+                  } truncate transition duration-150`}
+                >
+                  <div className="flex items-center">
+                    <RiScan2Line
+                      size={20}
+                      color={pathname === "/scan" ? "white" : "black"}
+                    />
+                    <span
+                      className={`text-sm font-bold e ml-3 ${
+                        pathname === "/scan" ? "text-white" : "text-secondary"
+                      } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
+                    >
+                      Scans
+                    </span>
+                  </div>
+                </NavLink>
+              </li>
+
+              <li
+                className={`px-3 py-3 mb-0.5 last:mb-0 ${
+                  pathname === "/user" && "bg-primary"
                 }`}
               >
                 <NavLink
                   end
                   to="/"
                   className={`block text-primary  ${
-                    pathname === "/orders" && "text-white"
+                    pathname === "/user" && "text-white"
                   } truncate transition duration-150`}
                 >
                   <div className="flex items-center">
-                    <BiCart
+                    <BiUserCircle
                       size={20}
-                      color={pathname === "/orders" ? "white" : "black"}
+                      color={pathname === "/user" ? "white" : "black"}
                     />
                     <span
                       className={`text-sm font-bold e ml-3 ${
-                        pathname === "/orders" ? "text-white" : "text-secondary"
+                        pathname === "/user" ? "text-white" : "text-secondary"
                       } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                     >
-                      Orders
+                      Users
+                    </span>
+                  </div>
+                </NavLink>
+              </li>
+
+              <li
+                className={`px-3 py-3 mb-0.5 last:mb-0 ${
+                  pathname === "/search" && "bg-primary"
+                }`}
+              >
+                <NavLink
+                  end
+                  to="/"
+                  className={`block text-primary  ${
+                    pathname === "/search" && "text-white"
+                  } truncate transition duration-150`}
+                >
+                  <div className="flex items-center">
+                    <BiSearchAlt
+                      size={20}
+                      color={pathname === "/search" ? "white" : "black"}
+                    />
+                    <span
+                      className={`text-sm font-bold e ml-3 ${
+                        pathname === "/search" ? "text-white" : "text-secondary"
+                      } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
+                    >
+                      Search
                     </span>
                   </div>
                 </NavLink>
