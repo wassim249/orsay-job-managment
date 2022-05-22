@@ -43,12 +43,12 @@ export const ScansListPage = () => {
               <RiScan2Fill size={40} color="#f88c6c" className="mr-2" /> Scans
               list
             </h1>
-            {user?.role == "admin" && (
+            {user?.role != "viewer" && (
               <button
                 className="bg-secondary text-white py-2 px-3  "
-                onClick={() => navigate("/user/create")}
+                onClick={() => navigate("/scan/create")}
               >
-                + Create user
+                + Create Scan
               </button>
             )}
           </div>

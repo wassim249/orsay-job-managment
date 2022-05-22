@@ -20,7 +20,7 @@ function WelcomeBanner() {
           {user &&
             (moment(user.lastConnection).toDate().getFullYear() != 1970
               ? moment(user.lastConnection).format("DD/MM/YYYY HH:mm")
-              : "Never")}
+              : "Now")}
         </p>
       </div>
     </div>
