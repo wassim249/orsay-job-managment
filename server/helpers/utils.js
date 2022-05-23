@@ -156,6 +156,15 @@ const saveWorker = async (file, data) => {
   console.log("saved");
 };
 
+const scanSuccess = (scan) => {
+  if (scan) {
+    let log = JSON.parse(scan.log);
+    for (let i = 0; i < log.length; i++)
+      if (log[i].type === "error") return false;
+    return true;
+  } else return false;
+};
+
 module.exports = {
   isDirectory,
   extractLineFromXml,
@@ -164,4 +173,5 @@ module.exports = {
   createLogFile,
   sendEmail,
   saveWorker,
+  scanSuccess
 };

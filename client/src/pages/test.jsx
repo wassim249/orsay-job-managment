@@ -6,20 +6,23 @@ import FilterButton from '../partials/actions/FilterButton'
 import DashboardAvatars from '../partials/dashboard/DashboardAvatars'
 import DashboardCard01 from '../partials/dashboard/DashboardCard01'
 import DashboardCard13 from '../partials/dashboard/DashboardCard13'
+import BarChart03 from '../charts/BarChart03'
+import DoughnutChart from '../charts/DoughnutChart'
+import LineChart01 from '../charts/LineChart01'
 
 export const TestPage = () => {
   // 6 4 5 7
     return (
    <Layout>
-       <Datepicker />
+       {/* <Datepicker />
        <DateSelect />
        <div className='flex justify-end'>
               <FilterButton /> 
        </div>
-  
        <DashboardCard01/>
-       <DashboardCard13 />
+       <DashboardCard13 /> */}
        
+      
    
    </Layout>
   )

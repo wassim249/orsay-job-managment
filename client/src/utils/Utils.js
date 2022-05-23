@@ -1,5 +1,6 @@
+import moment from "moment";
 import resolveConfig from "tailwindcss/resolveConfig";
-import LANG from '../../../i18n/lang.json';
+import LANG from "../../../i18n/lang.json";
 export const tailwindConfig = () => {
   // Tailwind config
   return resolveConfig("./src/css/tailwind.config.js");
@@ -29,6 +30,14 @@ export const formatValue = (value) =>
     notation: "compact",
   }).format(value);
 
+export const getDates = (date) => {
+  let dates = [moment(date).format("MM DD")];
+  for (let i = 1; i < 3; i++)
+    dates.push(moment(dates[0]).add(i, "days").format("MM DD"));
+
+  return dates;
+};
+
 export const scanSuccess = (scan) => {
   if (scan) {
     let log = JSON.parse(scan.log);
@@ -39,9 +48,8 @@ export const scanSuccess = (scan) => {
 };
 
 export const salute = (lang) => {
-
   let hour = new Date().getHours();
-  if (hour < 12) return LANG['home']['good morning'][lang];
+  if (hour < 12) return LANG["home"]["good morning"][lang];
   else if (hour < 18) return "Good Afternoon";
   else return "Good Evening";
 };
@@ -63,7 +71,13 @@ export const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
-export const generateCron = (repeatsChecked,repeats,times ,exludeSunSat,dayOfWeek) => {
+export const generateCron = (
+  repeatsChecked,
+  repeats,
+  times,
+  exludeSunSat,
+  dayOfWeek
+) => {
   let cron = times;
   if (repeatsChecked && repeats) {
     if (repeats == "minute")

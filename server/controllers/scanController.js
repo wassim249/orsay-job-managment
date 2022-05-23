@@ -6,7 +6,6 @@ const {
   log,
   createXmlFile,
   extractLineFromXml,
-  saveWorker,
 } = require("../helpers/utils");
 const { Worker } = require("worker_threads");
 

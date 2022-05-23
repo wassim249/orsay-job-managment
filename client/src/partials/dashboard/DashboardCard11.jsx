@@ -43,7 +43,7 @@ function DashboardCard11() {
       },
       {
         label: 'Other',
-        data: [72],
+        data: [200],
         backgroundColor: tailwindConfig().theme.colors.slate[200],
         hoverBackgroundColor: tailwindConfig().theme.colors.slate[300],
         barPercentage: 1,
@@ -55,17 +55,10 @@ function DashboardCard11() {
   return (
     <div className="col-span-full xl:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Reason for Refunds</h2>
+        <h2 className="font-semibold text-slate-800">Reason for Failed scans</h2>
       </header>
-      <div className="px-5 py-3">
-        <div className="flex items-start">
-          <div className="text-3xl font-bold text-slate-800 mr-2">449</div>
-          <div className="text-sm font-semibold text-white px-1.5 bg-yellow-500 rounded-full">-22%</div>
-        </div>
-      </div>
-      {/* Chart built with Chart.js 3 */}
+     
       <div className="grow">
-        {/* Change the height attribute to adjust the chart height */}
         <BarChart data={chartData} width={595} height={48} />
       </div>
     </div>

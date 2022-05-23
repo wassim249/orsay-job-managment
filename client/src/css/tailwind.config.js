@@ -11,6 +11,7 @@ module.exports = {
         primary : '#f88c6c' ,
         darkPrimary: '#c26b51' ,
         lightPrimary: '#fcc0ae' ,
+        superLightPrimary : '#f9e6e6' ,
         secondary : '#000'
       } ,
       boxShadow: {
