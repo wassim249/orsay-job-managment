@@ -2,7 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const nodemailer = require("nodemailer");
 require("dotenv").config({ path: "../.env" });
-const jsonFile = require('../workers.json')
+const jsonFile = require("../workers.json");
+const hbs = require("nodemailer-express-handlebars");
 
 // Fonction de verification si un dossier est existant ou non
 // dir @String : chemin du dossier
@@ -103,7 +104,7 @@ const createLogFile = (dir) => {
   }
 };
 
-const sendEmail = (email, subject, message) => {
+const sendEmail = (email, subject, context) => {
   const transporter = nodemailer.createTransport({
     service: "Gmail",
 
@@ -117,8 +118,21 @@ const sendEmail = (email, subject, message) => {
     from: process.env.EMAIL_USER,
     to: email,
     subject: subject,
-    text: message,
+    // text: message,
+    template: "email.template",
+    context,
   };
+
+  const handlebarOptions = {
+    viewEngine: {
+      partialsDir: path.resolve("./views"),
+      defaultLayout: false,
+    },
+    viewPath: path.resolve("./views"),
+  };
+
+  transporter.use("compile", hbs(handlebarOptions));
+
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) console.log(error);
     else console.log(info);
@@ -126,21 +140,21 @@ const sendEmail = (email, subject, message) => {
 };
 
 const saveWorker = async (file, data) => {
- 
- let workers = jsonFile.workers;
+  let workers = jsonFile.workers;
   workers.push({
-   
-    date : new Date().toISOString().replace(/:/g, ""),
+    date: new Date().toISOString().replace(/:/g, ""),
     file,
     data,
-    status: 'RUNNING'
+    status: "RUNNING",
   });
-  // write workers to file 
-  fs.writeFileSync(path.join(__dirname, '../workers.json'), JSON.stringify({workers}));
+  // write workers to file
+  fs.writeFileSync(
+    path.join(__dirname, "../workers.json"),
+    JSON.stringify({ workers })
+  );
 
-  console.log('saved');
-}
-
+  console.log("saved");
+};
 
 module.exports = {
   isDirectory,
@@ -149,5 +163,5 @@ module.exports = {
   log,
   createLogFile,
   sendEmail,
-  saveWorker
+  saveWorker,
 };
