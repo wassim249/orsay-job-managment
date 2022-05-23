@@ -129,3 +129,13 @@ export const generateCron = (
 
   return `${cron.minutes} ${cron.hours} ${cron.days} ${cron.months} ${cron.weekdays}`;
 };
+
+export const generateColors = (length) => {
+  // generate unique colors
+  let colors = [];
+  for (let i = 0; i < length; i++) {
+    let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    if (!colors.includes(color)) colors.push({ color ,light : color.replace("#", "")});
+  }
+  return colors;
+}

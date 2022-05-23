@@ -73,7 +73,79 @@ const getScanInfo = async (req, res) => {
   }
 };
 
+const failedReason = async (req, res) => {
+  try {
+    const failedScans = await prisma.scan.findMany({
+      where: {
+        log: {
+          contains: "error",
+        },
+      },
+    });
+
+    let reasonsMsgs = [];
+    failedScans.forEach((scan) => {
+      const log = JSON.parse(scan.log);
+      log.forEach((l) => {
+        if (l.type === "error") reasonsMsgs.push(l.message);
+      });
+    });
+
+    // remove unique values
+    const wordsToKeep = [
+      "LA",
+      "COMMANDE",
+      "N'A",
+      "PAS",
+      "ETE",
+      "TROUVEE",
+      ..."VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE".split(" "),
+      "DESTINATION",
+      "INEXISTANT",
+      "SONT",
+      "IDENTIQUES",
+      "INEXISTANT",
+      ..."ERREUR LORS DE LA CREATION DU FICHIER DE LOG".split(" "),
+      ..."LE FICHIER N'A PAS PU ETRE CREE".split(" "),
+    ];
+    reasonsMsgs = reasonsMsgs.map((reason) => {
+      let newReason = reason.split(" ");
+      newReason = newReason.filter((word) => {
+        return wordsToKeep.includes(word);
+      });
+      return newReason.join(" ");
+    });
+
+    let rs = reasonsMsgs.map((reason) => {
+      let count = 0;
+      reasonsMsgs.forEach((r) => {
+        if (r === reason) count++;
+      });
+      return {
+        reason,
+        count,
+      };
+    });
+    // remove duplicates from rs
+    rs.forEach((r, index) => {
+      for (let i = index + 1; i < rs.length; i++)
+        if (rs[i].reason === r.reason) rs.splice(i, 1);
+    });
+rs = {
+  reasons : rs ,
+  count : parseInt(rs.count || 0) + parseInt( rs.map(r => r.count))
+}
+    res.json(rs);
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: "UNTERNAL ERROR",
+    });
+  }
+};
+
 module.exports = {
   successVsFailure,
-  getScanInfo
+  getScanInfo,
+  failedReason,
 };

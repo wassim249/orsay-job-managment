@@ -86,7 +86,7 @@ const createScan = async (req, res) => {
   if (!logDir || logDir?.trim() == "") logDir = destination.trim();
   else if (!isDirectory(logDir.trim())) {
     output.log.push({
-      message: "DOSSIER DE LOG INEXISTANT",
+      message: "REPERTOIRE DE LOG INEXISTANT",
       type: "error",
     });
     res.json({

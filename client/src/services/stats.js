@@ -22,3 +22,14 @@ export const getScanInfo = async () => {
         return null;
     }
 }
+
+export const getFailReason = async () => {
+    try {
+        const {data} = await axios.get('/stats/failedreason');
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
