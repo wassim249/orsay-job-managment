@@ -81,7 +81,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         }`}
       >
         {/* Sidebar header */}
-        <div className="flex justify-between mb-10 pr-3 sm:px-2">
+        <div className="flex justify-between items-center mb-10 pr-3 sm:px-2">
           {/* Close button */}
           <button
             ref={trigger}
@@ -95,7 +95,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           </button>
           {/* Logo */}
           <NavLink end to="/home" className="block">
-            <img src={Logo} alt="Logo" className="w-20 h-auto" />
+            <img src={Logo} alt="Logo" className="w-1/2 h-auto" />
           </NavLink>
         </div>
 
