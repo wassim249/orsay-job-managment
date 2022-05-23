@@ -32,6 +32,8 @@ export const OrdersListPage = () => {
     if (!user) navigate("/");
   }, []);
 
+  console.log(searchValue);
+
   return (
     <Layout>
       {loading ? (
@@ -58,14 +60,13 @@ export const OrdersListPage = () => {
             <button
               className="bg-secondary text-white py-2 px-3 ml-2 h-2/6"
               onClick={() => {
-
                 setSearchedOrders(
                   orders.filter((order) => {
-                    console.log( order.order);
-                    return order.order.startsWith(searchValue.current.value.trim())
-                  }
-                   
-                  )
+                    console.log(order.order);
+                    return order.order.startsWith(
+                      searchValue.current.value.trim()
+                    );
+                  })
                 );
                 console.log(searchValue.current.value);
                 console.log(searchedOrders);
@@ -76,21 +77,15 @@ export const OrdersListPage = () => {
           </div>
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4 mt-7">
-            {searchedOrders.length > 0 && searchValue.current != ""
-              ? searchedOrders.map((order) => (
-                  <OrderNumber key={order.id} order={order} />
-                ))
-              : searchedOrders.length == 0 && searchValue != ""?
-              <h1>
-                No order found
-              </h1>
-              : 
-                (
-                    orders.map((order) => (
-                  <OrderNumber key={order.id} order={order} />
-                ))
-                )
-                }
+            {searchValue.current == null || searchValue.current == "" ? (
+              orders.map((order, key) => (
+                <OrderNumber order={order} key={key} />
+              ))
+            ) : searchValue.current != "" && searchedOrders.length != 0 ? (
+              searchedOrders.filter((order) => order.order.startsWith(searchValue.current))
+            ) : (
+              <h1>No order found</h1>
+            )}
           </div>
         </>
       )}
