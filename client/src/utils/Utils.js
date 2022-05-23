@@ -63,7 +63,7 @@ export const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
-export const generateCron = (repeatsChecked,repeats,times ,exludeSunSat) => {
+export const generateCron = (repeatsChecked,repeats,times ,exludeSunSat,dayOfWeek) => {
   let cron = times;
   if (repeatsChecked && repeats) {
     if (repeats == "minute")

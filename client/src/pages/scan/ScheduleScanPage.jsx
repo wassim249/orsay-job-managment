@@ -24,6 +24,7 @@ export const ScheduleScanPage = () => {
   const { state } = useLocation();
 
   const MONTHS_NAMES = [
+    "NONE",
     "JAN",
     "FEB",
     "MAR",
@@ -60,11 +61,22 @@ export const ScheduleScanPage = () => {
     );
     if (data?.output?.log?.length > 0)
       alert(data.output.log[data.output.log.length - 1].message.toLowerCase());
-      else alert("An error occured");
+    else alert("An error occured");
+  };
+
+  const cronToString = () => {
+    try {
+      return cronstrue.toString(
+        generateCron(repeatsChecked, repeats, times, exludeSunSat, dayOfWeek)
+      );
+    } catch (error) {
+      console.log(error);
+      return "";
+    }
   };
 
   useEffect(() => {
-    if ( user?.role == "viewer") navigate("/home");
+    if (user?.role == "viewer") navigate("/home");
   }, []);
 
   useEffect(() => {
@@ -104,8 +116,8 @@ export const ScheduleScanPage = () => {
             }}
           >
             {["NONE", ...Array(24).keys()].map((i) => (
-              <option key={i} value={i === "NONE" ? "*" : i + 1}>
-                {i === "NONE" ? "NONE" : i + 1}
+              <option key={i} value={i === "NONE" ? "*" : i}>
+                {i === "NONE" ? "NONE" : i}
               </option>
             ))}
           </select>
@@ -131,10 +143,11 @@ export const ScheduleScanPage = () => {
           <select
             placeholder="Minutes"
             onChange={(e) => {
+              console.log(e.target.value);
               setTimes({ ...times, months: e.target.value });
             }}
           >
-            {["NONE", ...MONTHS_NAMES].map((month, index) => (
+            {MONTHS_NAMES.map((month, index) => (
               <option key={month} value={index}>
                 {month}
               </option>
@@ -295,10 +308,7 @@ export const ScheduleScanPage = () => {
 
       <div className="bg-slate-700 w-full px-3 py-4 mt-6">
         <p className="text-slate-300 text-sm italic">
-          This scan will be executed :
-          {cronstrue.toString(
-            generateCron(repeatsChecked, repeats, times, exludeSunSat)
-          )}
+          This scan will be executed :{cronToString()}
         </p>
       </div>
 
