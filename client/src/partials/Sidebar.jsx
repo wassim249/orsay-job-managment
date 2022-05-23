@@ -20,9 +20,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   );
 
   const getPathName = () => {
-    if (pathname === "/") return "home";
+    if (pathname.startsWith("/home")) return "home";
     else if (pathname.startsWith("/scan")) return "scan";
-    else if (pathname.startsWith("/user")) return "profile";
+    else if (pathname.startsWith("/user")) return "user";
     else if (pathname.startsWith("/search")) return "search";
     else return "";
   };
@@ -171,7 +171,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 >
                   <NavLink
                     end
-                    to="/"
+                    to="/user"
                     className={`block text-primary  ${
                      getPathName() == 'user' && "text-white"
                     } truncate transition duration-150`}
