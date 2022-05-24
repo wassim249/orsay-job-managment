@@ -6,22 +6,21 @@ import {
 import 'chartjs-adapter-moment';
 
 // Import utilities
-import { tailwindConfig, formatValue } from '../utils/Utils';
+import { tailwindConfig } from '../utils/Utils';
 
 Chart.register(BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend);
 
-function BarChart01({
+export const BarChart01 =({
   data,
   width,
   height
-}) {
+})=> {
 
   const canvas = useRef(null);
   const legend = useRef(null);
 
   useEffect(() => {
     const ctx = canvas.current;
-    // eslint-disable-next-line no-unused-vars
     const chart = new Chart(ctx, {
       type: 'bar',
       data: data,
@@ -37,26 +36,26 @@ function BarChart01({
         scales: {
           y: {
             grid: {
-              drawBorder: false,
+              drawBorder: true,
             },
             ticks: {
-              maxTicksLimit: 5,
-              callback: (value) => formatValue(value),
+              maxTicksLimit: data.datasets[0].data.length > data.datasets[1].data.length ? data.datasets[0].data.length : data.datasets[1].data.length,
             },
           },
           x: {
-            type: 'time',
+            type: "time",
             time: {
-              parser: 'MM-DD-YYYY',
-              unit: 'month',
+              parser: "MM-DD-YYYY",
+              unit: "day",
               displayFormats: {
-                month: 'MMM YY',
+                day: "MMM DD",
               },
             },
             grid: {
-              display: false,
+              display: true,
               drawBorder: false,
             },
+         
           },
         },
         plugins: {
@@ -66,7 +65,7 @@ function BarChart01({
           tooltip: {
             callbacks: {
               title: () => false, // Disable tooltip title
-              label: (context) => formatValue(context.parsed.y),
+              label: (context) => context.parsed.y,
             },
           },
         },
@@ -129,7 +128,7 @@ function BarChart01({
             label.style.fontSize = tailwindConfig().theme.fontSize.sm[0];
             label.style.lineHeight = tailwindConfig().theme.fontSize.sm[1].lineHeight;
             const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0);
-            const valueText = document.createTextNode(formatValue(theValue));
+            const valueText = document.createTextNode(theValue);
             const labelText = document.createTextNode(item.text);
             value.appendChild(valueText);
             label.appendChild(labelText);
@@ -158,5 +157,3 @@ function BarChart01({
     </React.Fragment>
   );
 }
-
-export default BarChart01;

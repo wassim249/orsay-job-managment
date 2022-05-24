@@ -31,7 +31,7 @@ export const BarChart = ({ data, width, height }) => {
   useEffect(() => {
     const ctx = canvas.current;
     const chart = new Chart(ctx, {
-      type: 'bar',
+      type: "bar",
       data: data,
       options: {
         layout: {
@@ -40,16 +40,15 @@ export const BarChart = ({ data, width, height }) => {
         scales: {
           y: {
             grid: {
-              drawBorder: true,
+              drawBorder: false,
               beginAtZero: true,
             },
             ticks: {
-              maxTicksLimit: 10,
-             
-
-           
+              maxTicksLimit:
+                (data.datasets[0].data?.length > data.datasets[1].data?.length
+                  ? data.datasets[0].data?.length
+                  : data.datasets[1].data?.length) || 10,
             },
-
           },
           x: {
             type: "time",
@@ -83,7 +82,7 @@ export const BarChart = ({ data, width, height }) => {
         },
         interaction: {
           intersect: false,
-          mode: 'nearest',
+          mode: "nearest",
         },
         maintainAspectRatio: false,
         resizeDelay: 400,

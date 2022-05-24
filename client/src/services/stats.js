@@ -4,7 +4,6 @@ import axios from "./axiosConfig";
 export const getSuccVsFail = async () => {
     try {
         const {data} = await axios.get('/stats/successvsfailure');
-        console.log(data);
         return data;
     } catch (error) {
         console.log(error);
@@ -15,7 +14,6 @@ export const getSuccVsFail = async () => {
 export const getScanInfo = async () => {
     try {
         const {data} = await axios.get('/stats/scaninfo');
-        console.log(data);
         return data;
     } catch (error) {
         console.log(error);
@@ -26,6 +24,16 @@ export const getScanInfo = async () => {
 export const getFailReason = async () => {
     try {
         const {data} = await axios.get('/stats/failedreason');
+        return data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export const getNewUsers = async () => {
+    try {
+        const {data} = await axios.get('/stats/newusers');
         console.log(data);
         return data;
     } catch (error) {

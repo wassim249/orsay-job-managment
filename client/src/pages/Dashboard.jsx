@@ -7,21 +7,21 @@ import { RiScan2Fill } from "react-icons/ri";
 import { MdDocumentScanner } from "react-icons/md";
 import { CgTimer } from "react-icons/cg";
 import moment from "moment";
-import DashboardCard04 from "../partials/dashboard/DashboardCard04";
 import { FailReasonChart } from "../partials/dashboard/FailReasonChart";
-import SuccededVsFailedScans from "../partials/dashboard/SuccededVsFailedScans";
-import { getFailReason, getScanInfo, getSuccVsFail } from "../services/stats";
+import { SuccededVsFailedScans } from "../partials/dashboard/SuccededVsFailedScans";
+import {
+  getFailReason,
+  getNewUsers,
+  getScanInfo,
+  getSuccVsFail,
+} from "../services/stats";
+import { NewUsersChart } from "../partials/dashboard/NewUsersChart";
 
-const Dashboard = () => {
-  const [data2, setData2] = useState({
-    dates: [],
-  });
-  const [loading2, setLoading2] = useState(false);
+export const Dashboard = () => {
+  const [data2, setData2] = useState(null);
   const [scanInfo, setScanInfo] = useState(null);
-
-  const [loading3, setLoading3] = useState(false);
   const [data3, setData3] = useState(null);
-
+  const [newUsers, setNewUsers] = useState(null);
   const [user] = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {
@@ -30,13 +30,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchDataForChart2 = async () => {
-      setLoading2(true);
       const data = await getSuccVsFail();
       if (data) {
         if (data.message) alert(data.message);
         else setData2(data);
       } else alert("Something went wrong");
-      setLoading2(false);
     };
     fetchDataForChart2();
   }, []);
@@ -54,16 +52,24 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchDataForChart3 = async () => {
-      setLoading3(true);
       const data = await getFailReason();
-      console.log(data);
       if (data) {
         if (data.message) alert(data.message);
         else setData3(data);
       } else alert("Something went wrong");
-      setLoading3(false);
     };
     fetchDataForChart3();
+  }, []);
+
+  useEffect(() => {
+    const fetchDataForChart1 = async () => {
+      const data = await getNewUsers();
+      if (data) {
+        if (data.message) alert(data.message);
+        else setNewUsers(data);
+      } else alert("Something went wrong");
+    };
+    fetchDataForChart1();
   }, []);
 
   return (
@@ -108,12 +114,10 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <DashboardCard04 />
-      {!loading2 && <SuccededVsFailedScans data={data2} className="my-10" />}
+      {newUsers && <NewUsersChart data={newUsers} />}
+      {data2 && <SuccededVsFailedScans data={data2} className="my-10" />}
 
       {data3 && <FailReasonChart data={data3} />}
     </Layout>
   );
 };
-
-export default Dashboard;

@@ -131,11 +131,60 @@ const failedReason = async (req, res) => {
       for (let i = index + 1; i < rs.length; i++)
         if (rs[i].reason === r.reason) rs.splice(i, 1);
     });
-rs = {
-  reasons : rs ,
-  count : parseInt(rs.count || 0) + parseInt( rs.map(r => r.count))
-}
+    rs = {
+      reasons: rs,
+      count: parseInt(rs.count || 0) + parseInt(rs.map((r) => r.count)),
+    };
     res.json(rs);
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: "UNTERNAL ERROR",
+    });
+  }
+};
+
+const newUsers = async (req, res) => {
+  try {
+    const scanners =
+      await prisma.$queryRaw`SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM user WHERE role='scanner' GROUP BY date`;
+    const viewers =
+      await prisma.$queryRaw`SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM user WHERE role='viewer' GROUP BY date`;
+
+    let usersScanners = [];
+    let usersViewer = [];
+    let dates = [];
+
+    scanners.forEach((user) => {
+      dates.push(moment(user.date).format("MM DD"));
+    });
+    viewers.forEach((user) => {
+      dates.push(moment(user.date).format("MM DD"));
+    });
+    dates = [...new Set(dates)];
+
+    dates.forEach((_, index) => {
+      let scannersCount = 0;
+      let viewersCount = 0;
+      scanners.forEach((user) => {
+        if (moment(user.date).format("MM DD") === dates[index]) {
+          scannersCount += user.count;
+        }
+      });
+      viewers.forEach((user) => {
+        if (moment(user.date).format("MM DD") === dates[index]) {
+          viewersCount += user.count;
+        }
+      });
+      usersScanners.push(scannersCount);
+      usersViewer.push(viewersCount);
+    });
+
+    res.json({
+      scanners: usersScanners,
+      viewers: usersViewer,
+      dates,
+    });
   } catch (error) {
     console.log(error);
     res.json({
@@ -148,4 +197,5 @@ module.exports = {
   successVsFailure,
   getScanInfo,
   failedReason,
+  newUsers,
 };

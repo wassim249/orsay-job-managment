@@ -22,14 +22,6 @@ export const hexToRGB = (h) => {
   return `${+r},${+g},${+b}`;
 };
 
-export const formatValue = (value) =>
-  Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumSignificantDigits: 3,
-    notation: "compact",
-  }).format(value);
-
 export const getDates = (date) => {
   let dates = [moment(date).format("MM DD")];
   for (let i = 1; i < 3; i++)
@@ -130,12 +122,40 @@ export const generateCron = (
   return `${cron.minutes} ${cron.hours} ${cron.days} ${cron.months} ${cron.weekdays}`;
 };
 
-export const generateColors = (length) => {
-  // generate unique colors
+export const generateColors = (length = 6) => {
+  const COLORS = [
+    {
+      primary: "#f88c6c",
+      dark: "#bf6b52",
+    },
+    {
+      primary: "#A26654",
+      dark: "#7a4c3a",
+    },
+    {
+      primary: "#FFE6D7",
+      dark: "#ffc9a5",
+    },
+    {
+      primary: "#d1c9b6",
+      dark: "#ffefd5",
+    },
+    {
+      primary: "#2d2e2e",
+      dark: "#1b1c1c",
+    },
+    {
+      primary: "#c7c5c5",
+      dark: "#d9d9d9",
+    },
+  ];
   let colors = [];
   for (let i = 0; i < length; i++) {
-    let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
-    if (!colors.includes(color)) colors.push({ color ,light : color.replace("#", "")});
+    let color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    if (colors.includes(color)) i--;
+    else colors.push(color);
   }
   return colors;
-}
+
+  return colors;
+};

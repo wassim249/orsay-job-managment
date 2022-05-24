@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./css/style.scss";
 import "./charts/ChartjsConfig";
-import Dashboard from "./pages/Dashboard";
+import {Dashboard} from "./pages/Dashboard";
 import LoginPage from "./pages/LoginPage";
 import UserContext from "./contexts/UserContext";
 import { CreateScanPage } from "./pages/scan/CreateScanPage";
@@ -15,7 +15,6 @@ import { EditUserPage } from "./pages/users/EditUserPage";
 import { CreateUserPage } from "./pages/users/CreateUserPage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { ScheduleScanPage } from "./pages/scan/ScheduleScanPage";
-import { TestPage } from "./pages/test";
 import { SearchPage } from "./pages/SearchPage";
 import LangContext from "./contexts/LangContext";
 import { OrdersListPage } from "./pages/orders/ordersList";
@@ -52,7 +51,6 @@ useEffect(() => {
           <Route path="/user/edit/:id" element={<EditUserPage />} />
           <Route path="/user/create/" element={<CreateUserPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/test" element={<TestPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/orders" element={<OrdersListPage />} />
           <Route path="/*" element={<NotFoundPage />} />

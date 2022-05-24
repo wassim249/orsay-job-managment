@@ -10,11 +10,11 @@ import { tailwindConfig } from '../utils/Utils';
 
 Chart.register(BarController, BarElement, LinearScale, CategoryScale, Tooltip, Legend);
 
-function BarChart03({
+export const BarChart03 =({
   data,
   width,
   height
-}) {
+})=> {
 
   const canvas = useRef(null);
   const legend = useRef(null);
@@ -135,5 +135,3 @@ function BarChart03({
     </div>
   );
 }
-
-export default BarChart03;
