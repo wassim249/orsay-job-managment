@@ -8,7 +8,7 @@ import { getUsers } from "../services/user";
 import { scanSuccess } from "../utils/Utils";
 
 export const ProfilePage = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(null);
 

@@ -91,10 +91,9 @@ const UserMenu = () => {
             <li>
               <Link
                 className="font-medium text-sm text-primary   hover:text-darkPrimary flex items-center py-1 px-3"
-                to="/"
+                to="/profile"
                 onClick={() => {
                   setDropdownOpen(!dropdownOpen);
-                  navigate("/profile");
                 }}
               >
                 Profile

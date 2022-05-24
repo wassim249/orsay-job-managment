@@ -24,7 +24,20 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (user) {
-      if (rememberMe) localStorage.setItem("ORSAY_USER", JSON.stringify(user));
+      if (rememberMe)
+        localStorage.setItem(
+          "ORSAY_USER",
+          JSON.stringify({
+            id: user.id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.role,
+            lastConnection: user.lastConnection,
+            updatedAt: user.updatedAt,
+            createdAt: user.createdAt,
+          })
+        );
       navigate("/home");
     }
   }, [loading]);
