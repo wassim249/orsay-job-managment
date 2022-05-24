@@ -21,9 +21,7 @@ parentPort.on("message", async (data) => {
   } = data;
 
   cron.schedule(cronExp, (date) => {
-    console.log(date);
     if (errOccurred) {
-      console.log("CLOSED");
       parentPort.postMessage({ status: "ERROR" });
     } else scan(orders, logFile, source, destination, userId, output, cronExp);
   });
@@ -31,7 +29,6 @@ parentPort.on("message", async (data) => {
 
 const scan = async (orders, logFile, source, destination, userId, output) => {
   let createdOrders = [];
-  console.log(logFile);
   let createdScan = null;
 
   orders.forEach(async (order, index) => {

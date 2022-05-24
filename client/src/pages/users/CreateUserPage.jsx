@@ -13,7 +13,7 @@ export const CreateUserPage = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-  if (user?.role != "admin") navigate("/");
+    if (user?.role != "admin") navigate("/");
   }, []);
 
   const handleUserCreate = async (e) => {
@@ -38,12 +38,8 @@ export const CreateUserPage = () => {
 
   return (
     <Layout>
-      <span className="  font-bold text-2xl text-secondary">
-        Create User
-      </span>
-      <span className="block   text-sm">
-        User will be notified by email
-      </span>
+      <span className="  font-bold text-2xl text-secondary">Create User</span>
+      <span className="block   text-sm">User will be notified by email</span>
       <form className="grid grid-cols-2 gap-5 mt-8  ">
         <div className="col-span-2">
           <label className="block text-secondary text-sm d mb-2">

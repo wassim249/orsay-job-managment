@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./css/style.scss";
 import "./charts/ChartjsConfig";
-import {Dashboard} from "./pages/Dashboard";
+import { Dashboard } from "./pages/Dashboard";
 import LoginPage from "./pages/LoginPage";
 import UserContext from "./contexts/UserContext";
 import { CreateScanPage } from "./pages/scan/CreateScanPage";
@@ -26,9 +26,9 @@ const App = () => {
   );
   const [lang, setLang] = useState(localStorage.getItem("ORSAY_LANG") || "FR");
 
-useEffect(() => {
-  localStorage.setItem("ORSAY_LANG", lang);
-}, [lang]);
+  useEffect(() => {
+    localStorage.setItem("ORSAY_LANG", lang);
+  }, [lang]);
 
   useEffect(() => {
     document.querySelector("html").style.scrollBehavior = "auto";

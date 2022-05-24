@@ -58,8 +58,6 @@ const getScanInfo = async (req, res) => {
         },
       })
     )?.createdAt;
-
-    console.log(latestScan, total7Days, total);
     res.json({
       total,
       total7Days: total7Days[0]?.count,

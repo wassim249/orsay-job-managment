@@ -8,7 +8,7 @@ import { generatePassword } from "../../utils/Utils";
 
 export const EditUserPage = () => {
   const { id: userID } = useParams();
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(null);
 
@@ -22,7 +22,6 @@ export const EditUserPage = () => {
     const fetchUser = async () => {
       setLoading(true);
       const data = await getUsers(userID);
-      console.log(data.user);
       if (data?.user) setFetchedUser(data.user);
       else navigate("/notfound");
 

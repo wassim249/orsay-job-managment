@@ -8,7 +8,7 @@ import { generateCron } from "../../utils/Utils";
 import { scheduleScan } from "../../services/scan";
 
 export const ScheduleScanPage = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [times, setTimes] = useState({
     minutes: "*",
     hours: "*",
@@ -143,7 +143,6 @@ export const ScheduleScanPage = () => {
           <select
             placeholder="Minutes"
             onChange={(e) => {
-              console.log(e.target.value);
               setTimes({ ...times, months: e.target.value });
             }}
           >
@@ -283,7 +282,6 @@ export const ScheduleScanPage = () => {
               placeholder="days of the week"
               onChange={(e) => {
                 setDayOfWeek(e.target.value);
-                console.log(e.target.value);
               }}
             >
               {DAYS_OF_THEWEEK.map((day, index) => (

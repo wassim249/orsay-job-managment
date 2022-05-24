@@ -160,7 +160,3 @@ export const ScanDetailsPage = () => {
     </Layout>
   );
 };
-
-
-
-

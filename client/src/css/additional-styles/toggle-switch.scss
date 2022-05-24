@@ -6,7 +6,7 @@
     label {
         @apply block overflow-hidden cursor-pointer h-6 rounded-full;
 
-        > span:first-child {
+        >span:first-child {
             @apply absolute block rounded-full;
             width: 20px;
             height: 20px;
@@ -18,13 +18,13 @@
     }
 
     input[type="checkbox"] {
-    
+
         &:checked {
 
-            + label {
+            +label {
                 @apply bg-indigo-500;
 
-                > span:first-child {
+                >span:first-child {
                     left: 22px;
                 }
             }

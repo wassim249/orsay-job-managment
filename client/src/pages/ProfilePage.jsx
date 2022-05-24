@@ -21,7 +21,6 @@ export const ProfilePage = () => {
     const fetchUser = async () => {
       setLoading(true);
       const data = await getUsers(user.id);
-      console.log(data.user);
       if (data?.user) setFetchedUser(data.user);
       else navigate("/notfound");
 

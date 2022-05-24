@@ -134,16 +134,21 @@ export const CreateScanPage = () => {
           className="col-span-2 bg-primary hover:bg-darkPrimary text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline  "
           type="submit"
         >
-         {LANG["createScan"]["create"][lang]}
+          {LANG["createScan"]["create"][lang]}
         </button>
         <button
           onClick={(e) => {
             e.preventDefault();
-            if (source.trim() === "") alert(LANG["createScan"]["please enter source folder"][lang]);
+            if (source.trim() === "")
+              alert(LANG["createScan"]["please enter source folder"][lang]);
             else if (destination.trim() === "")
               alert("Please enter destination");
             else if (orderNumbers.length === 0)
-              alert(LANG["createScan"]["please enter at least one order number"][lang]);
+              alert(
+                LANG["createScan"]["please enter at least one order number"][
+                  lang
+                ]
+              );
             else
               navigate("/scan/schedule", {
                 state: { source, destination, orderNumbers, logFile },
@@ -161,7 +166,7 @@ export const CreateScanPage = () => {
                 &nbsp;
               </td>
               <td className="bg-lightPrimary p-2 w-3/4 text-center text-white font-bold  ">
-               {LANG["createScan"]["Order number"][lang]}
+                {LANG["createScan"]["Order number"][lang]}
               </td>
               <td className="bg-pink-50 p-2 rounded-tr text-gray-700 text-sm font-bold">
                 &nbsp;

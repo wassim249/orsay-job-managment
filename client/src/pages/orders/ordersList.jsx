@@ -23,7 +23,6 @@ export const OrdersListPage = () => {
       if (data?.message) alert(data.message);
       else setOrders(data.orders);
       setLoading(false);
-      console.log(data);
     };
     fetchOrders();
   }, []);
@@ -31,8 +30,6 @@ export const OrdersListPage = () => {
   useEffect(() => {
     if (!user) navigate("/");
   }, []);
-
-  console.log(searchValue);
 
   return (
     <Layout>
@@ -62,14 +59,11 @@ export const OrdersListPage = () => {
               onClick={() => {
                 setSearchedOrders(
                   orders.filter((order) => {
-                    console.log(order.order);
                     return order.order.startsWith(
                       searchValue.current.value.trim()
                     );
                   })
                 );
-                console.log(searchValue.current.value);
-                console.log(searchedOrders);
               }}
             >
               <BiSearch size={20} color="white" />
@@ -82,7 +76,9 @@ export const OrdersListPage = () => {
                 <OrderNumber order={order} key={key} />
               ))
             ) : searchValue.current != "" && searchedOrders.length != 0 ? (
-              searchedOrders.filter((order) => order.order.startsWith(searchValue.current))
+              searchedOrders.filter((order) =>
+                order.order.startsWith(searchValue.current)
+              )
             ) : (
               <h1>No order found</h1>
             )}

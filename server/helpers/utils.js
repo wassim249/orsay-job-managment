@@ -135,7 +135,6 @@ const sendEmail = (email, subject, context) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) console.log(error);
-    else console.log(info);
   });
 };
 
@@ -152,8 +151,6 @@ const saveWorker = async (file, data) => {
     path.join(__dirname, "../workers.json"),
     JSON.stringify({ workers })
   );
-
-  console.log("saved");
 };
 
 const scanSuccess = (scan) => {
@@ -173,5 +170,5 @@ module.exports = {
   createLogFile,
   sendEmail,
   saveWorker,
-  scanSuccess
+  scanSuccess,
 };

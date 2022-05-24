@@ -108,24 +108,26 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               {/* Dashboard */}
               <li
                 className={`px-3 py-3 mb-0.5 last:mb-0 ${
-                  getPathName() == 'home' && "bg-primary"
+                  getPathName() == "home" && "bg-primary"
                 }`}
               >
                 <NavLink
                   end
                   to="/"
                   className={`block text-primary  ${
-                     getPathName() == 'home' && "text-white"
+                    getPathName() == "home" && "text-white"
                   } truncate transition duration-150`}
                 >
                   <div className="flex items-center">
                     <RiHomeLine
                       size={20}
-                      color={ getPathName() == 'home' ? "white" : "black"}
+                      color={getPathName() == "home" ? "white" : "black"}
                     />
                     <span
                       className={`text-sm font-bold e ml-3 ${
-                         getPathName() == 'home' ? "text-white" : "text-secondary"
+                        getPathName() == "home"
+                          ? "text-white"
+                          : "text-secondary"
                       } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                     >
                       Home
@@ -136,24 +138,24 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
               <li
                 className={`px-3 py-3 mb-0.5 last:mb-0 ${
-                  getPathName() == 'scan' && "bg-primary"
+                  getPathName() == "scan" && "bg-primary"
                 }`}
               >
                 <NavLink
                   end
                   to="/scan"
                   className={`block text-primary  ${
-                    getPathName() == 'scan' && "text-white"
+                    getPathName() == "scan" && "text-white"
                   } truncate transition duration-150`}
                 >
                   <div className="flex items-center">
                     <RiScan2Line
                       size={20}
-                      color={getPathName() == 'scan' ? "white" : "black"}
+                      color={getPathName() == "scan" ? "white" : "black"}
                     />
                     <span
                       className={`text-sm font-bold e ml-3 ${
-                        getPathName() == 'scan'
+                        getPathName() == "scan"
                           ? "text-white"
                           : "text-secondary"
                       } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
@@ -166,24 +168,26 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               {user?.role == "admin" && (
                 <li
                   className={`px-3 py-3 mb-0.5 last:mb-0 ${
-                    getPathName() == 'user' && "bg-primary"
+                    getPathName() == "user" && "bg-primary"
                   }`}
                 >
                   <NavLink
                     end
                     to="/user"
                     className={`block text-primary  ${
-                     getPathName() == 'user' && "text-white"
+                      getPathName() == "user" && "text-white"
                     } truncate transition duration-150`}
                   >
                     <div className="flex items-center">
                       <BiUserCircle
                         size={20}
-                        color={getPathName() == 'user' ? "white" : "black"}
+                        color={getPathName() == "user" ? "white" : "black"}
                       />
                       <span
                         className={`text-sm font-bold e ml-3 ${
-                         getPathName() == 'user' ? "text-white" : "text-secondary"
+                          getPathName() == "user"
+                            ? "text-white"
+                            : "text-secondary"
                         } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                       >
                         Users
@@ -195,24 +199,26 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
               <li
                 className={`px-3 py-3 mb-0.5 last:mb-0 ${
-                  getPathName() == 'search' && "bg-primary"
+                  getPathName() == "search" && "bg-primary"
                 }`}
               >
                 <NavLink
                   end
                   to="/search"
                   className={`block text-primary  ${
-                    getPathName() == 'search' && "text-white"
+                    getPathName() == "search" && "text-white"
                   } truncate transition duration-150`}
                 >
                   <div className="flex items-center">
                     <BiSearchAlt
                       size={20}
-                      color={getPathName() == 'search' ? "white" : "black"}
+                      color={getPathName() == "search" ? "white" : "black"}
                     />
                     <span
                       className={`text-sm font-bold e ml-3 ${
-                        getPathName() == 'search' ? "text-white" : "text-secondary"
+                        getPathName() == "search"
+                          ? "text-white"
+                          : "text-secondary"
                       } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                     >
                       Search

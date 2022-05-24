@@ -7,8 +7,7 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 
 export const OrderNumber = ({ order }) => {
-
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="bg-white shadow w-full flex flex-col justify-center items-center">
@@ -23,7 +22,7 @@ export const OrderNumber = ({ order }) => {
           </span>
         </div>
 
-        <Status success={order.status == 'success'} icon className="w-12 p-1" />
+        <Status success={order.status == "success"} icon className="w-12 p-1" />
       </div>
 
       <div className="text-left w-full px-4 ">
@@ -45,19 +44,16 @@ export const OrderNumber = ({ order }) => {
           <RiScan2Fill size={15} color="#f88c6c" className="mr-2" />
           <span className="text-sm text-secondary">Scan : {order.scan.id}</span>
         </div>
-        <div
-        className="flex justify-end"
-        >
+        <div className="flex justify-end">
           <button
-          className="bg-transparent hover:bg-secondary text-secondary font-semibold hover:text-white py-1 px-4 border border-secondary hover:border-transparent mb-4"
-          onClick={() => {
-            navigate(`/scan/${order.scan.id}`);
-          }}
-        >
-          See more
-        </button>   
+            className="bg-transparent hover:bg-secondary text-secondary font-semibold hover:text-white py-1 px-4 border border-secondary hover:border-transparent mb-4"
+            onClick={() => {
+              navigate(`/scan/${order.scan.id}`);
+            }}
+          >
+            See more
+          </button>
         </div>
-       
       </div>
     </div>
   );

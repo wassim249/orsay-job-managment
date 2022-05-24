@@ -13,7 +13,6 @@ const getAllUsers = async (req, res) => {
         Scan: true,
       },
     });
-    console.log(users);
     res.json({
       users,
     });
@@ -49,7 +48,6 @@ const getUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   try {
-    console.log(req.params.id, req.body);
     const user = await prisma.user.update({
       where: {
         id: parseInt(req.params.id),

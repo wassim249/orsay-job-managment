@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import LangContext from "../../contexts/LangContext";
 import UserContext from "../../contexts/UserContext";
 import { salute } from "../../utils/Utils";
-import LANG from '../../../../i18n/lang'
+import LANG from "../../../../i18n/lang";
 
 function WelcomeBanner() {
   const [user, setUser] = useContext(UserContext);
@@ -16,7 +16,7 @@ function WelcomeBanner() {
           {salute(lang)}, {user && `${user.firstName} ${user.lastName}`}.
         </h1>
         <p className="  text-sm">
-      {   LANG["home"]["last connection"][lang]} :&nbsp;
+          {LANG["home"]["last connection"][lang]} :&nbsp;
           {user &&
             (moment(user.lastConnection).toDate().getFullYear() != 1970
               ? moment(user.lastConnection).format("DD/MM/YYYY HH:mm")
