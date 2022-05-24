@@ -16,6 +16,7 @@ import {
   getSuccVsFail,
 } from "../services/stats";
 import { NewUsersChart } from "../partials/dashboard/NewUsersChart";
+import { DatePicker } from "../partials/actions/DatePicker";
 
 export const Dashboard = () => {
   const [data2, setData2] = useState(null);
@@ -23,20 +24,10 @@ export const Dashboard = () => {
   const [data3, setData3] = useState(null);
   const [newUsers, setNewUsers] = useState(null);
   const [user] = useContext(UserContext);
+  const [rangeDate, setRangeDate] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) navigate("/");
-  }, []);
-
-  useEffect(() => {
-    const fetchDataForChart2 = async () => {
-      const data = await getSuccVsFail();
-      if (data) {
-        if (data.message) alert(data.message);
-        else setData2(data);
-      } else alert("Something went wrong");
-    };
-    fetchDataForChart2();
   }, []);
 
   useEffect(() => {
@@ -48,29 +39,43 @@ export const Dashboard = () => {
       } else alert("Something went wrong");
     };
     fetchScanInfo();
-  }, []);
+  }, [rangeDate]);
 
   useEffect(() => {
     const fetchDataForChart3 = async () => {
-      const data = await getFailReason();
+      setData3(null);
+      const data = await getFailReason(rangeDate);
       if (data) {
         if (data.message) alert(data.message);
         else setData3(data);
       } else alert("Something went wrong");
     };
     fetchDataForChart3();
-  }, []);
+  }, [rangeDate]);
 
   useEffect(() => {
     const fetchDataForChart1 = async () => {
-      const data = await getNewUsers();
+      setNewUsers(null);
+      const data = await getNewUsers(rangeDate);
       if (data) {
         if (data.message) alert(data.message);
         else setNewUsers(data);
       } else alert("Something went wrong");
     };
     fetchDataForChart1();
-  }, []);
+  }, [rangeDate]);
+
+  useEffect(() => {
+    const fetchDataForChart2 = async () => {
+      setData2(null);
+      const data = await getSuccVsFail(rangeDate);
+      if (data) {
+        if (data.message) alert(data.message);
+        else setData2(data);
+      } else alert("Something went wrong");
+    };
+    fetchDataForChart2();
+  }, [rangeDate]);
 
   return (
     <Layout>
@@ -113,8 +118,19 @@ export const Dashboard = () => {
           </div>
         </div>
       </div>
+      <div className="flex items-center mb-4 w-full">
+        <DatePicker rangeDate={rangeDate} setRangeDate={setRangeDate} />
+        <span
+          onClick={() => setRangeDate([])}
+          className="ml-4 text-sm text-gray-600 hover:cursor-pointer"
+        >
+          X
+        </span>
+      </div>
 
-      {newUsers && <NewUsersChart data={newUsers} />}
+      {newUsers && user && user.role == "admin" && (
+        <NewUsersChart data={newUsers} />
+      )}
       {data2 && <SuccededVsFailedScans data={data2} className="my-10" />}
 
       {data3 && <FailReasonChart data={data3} />}

@@ -1,13 +1,33 @@
 const { PrismaClient } = require("@prisma/client");
 const moment = require("moment");
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  // log: ["query", "info", "warn", "error"],
+});
 
 const successVsFailure = async (req, res) => {
   try {
-    const succededScans =
-      await prisma.$queryRaw`SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM scan WHERE log NOT LIKE '%error%' GROUP BY date`;
-    const failedScans =
-      await prisma.$queryRaw`SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM scan WHERE log LIKE '%error%' GROUP BY date`;
+    let { range } = req.body;
+
+    let succededScans = null;
+    let failedScans = null;
+    if (range) {
+      range = [
+        moment(range[0]).format("YYYY-MM-DD hh:mm:ss"),
+        moment(range[1]).format("YYYY-MM-DD hh:mm:ss"),
+      ];
+      succededScans = await prisma.$queryRawUnsafe(
+        `SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM scan WHERE log NOT LIKE '%error%' AND DATE(createdAt) >= DATE('${range[0]}') AND DATE(createdAt) <= DATE('${range[1]}') GROUP BY date`
+      );
+      failedScans = await prisma.$queryRawUnsafe(
+        `SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM scan WHERE log LIKE '%error%' AND DATE(createdAt) >= DATE('${range[0]}') AND DATE(createdAt) <= DATE('${range[1]}') GROUP BY date`
+      );
+    } else {
+      succededScans =
+        await prisma.$queryRaw`SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM scan WHERE log NOT LIKE '%error%' GROUP BY date`;
+      failedScans =
+        await prisma.$queryRaw`SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM scan WHERE log LIKE '%error%' GROUP BY date`;
+    }
+
     let succeded = [];
     let failed = [];
     let dates = [];
@@ -73,13 +93,28 @@ const getScanInfo = async (req, res) => {
 
 const failedReason = async (req, res) => {
   try {
-    const failedScans = await prisma.scan.findMany({
-      where: {
-        log: {
-          contains: "error",
+    let { range } = req.body;
+    let failedScans = null;
+    if (range)
+      failedScans = await prisma.scan.findMany({
+        where: {
+          log: {
+            contains: "error",
+          },
+          createdAt: {
+            gte: new Date(range[0]),
+            lte: new Date(range[1]),
+          },
         },
-      },
-    });
+      });
+    else
+      failedScans = await prisma.scan.findMany({
+        where: {
+          log: {
+            contains: "error",
+          },
+        },
+      });
 
     let reasonsMsgs = [];
     failedScans.forEach((scan) => {
@@ -144,10 +179,28 @@ const failedReason = async (req, res) => {
 
 const newUsers = async (req, res) => {
   try {
-    const scanners =
-      await prisma.$queryRaw`SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM user WHERE role='scanner' GROUP BY date`;
-    const viewers =
-      await prisma.$queryRaw`SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM user WHERE role='viewer' GROUP BY date`;
+    let { range } = req.body;
+    let scanners = null;
+    let viewers = null;
+    if (range) {
+      range = [
+        moment(range[0]).format("YYYY-MM-DD hh:mm:ss"),
+        moment(range[1]).format("YYYY-MM-DD hh:mm:ss"),
+      ];
+      scanners = await prisma.$queryRawUnsafe(
+        `SELECT count(id) AS count FROM user WHERE createdAt >= DATE('${range[0]}') AND createdAt <= DATE('${range[1]}') AND role = 'scanner'`
+      );
+      viewers = await prisma.$queryRawUnsafe(
+        `SELECT count(id) AS count FROM user WHERE createdAt >= DATE('${range[0]}') AND createdAt <= DATE('${range[1]}') AND role = 'viewer'`
+      );
+    } else {
+      scanners = await prisma.$queryRawUnsafe(
+        `SELECT count(id) AS count FROM user WHERE role = 'scanner'`
+      );
+      viewers = await prisma.$queryRawUnsafe(
+        `SELECT count(id) AS count FROM user WHERE role = 'viewer'`
+      );
+    }
 
     let usersScanners = [];
     let usersViewer = [];

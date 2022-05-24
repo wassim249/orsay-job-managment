@@ -1,21 +1,26 @@
+import moment from "moment";
 import React from "react";
 import Flatpickr from "react-flatpickr";
 
-function Datepicker() {
+export const DatePicker = ({ rangeDate, setRangeDate }) => {
   const options = {
     mode: "range",
     static: true,
     monthSelectorType: "static",
     dateFormat: "M j, Y",
-    defaultDate: [new Date().setDate(new Date().getDate() - 6), new Date()],
+    defaultDate: rangeDate,
     prevArrow:
       '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z" /></svg>',
     nextArrow:
       '<svg class="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M1.4 10.8L0 9.4l4-4-4-4L1.4 0l5.4 5.4z" /></svg>',
-    onReady: (selectedDates, dateStr, instance) => {
+    onReady: (_, dateStr, instance) => {
       instance.element.value = dateStr.replace("to", "-");
     },
     onChange: (selectedDates, dateStr, instance) => {
+      if(Array.isArray(selectedDates))
+        setRangeDate([moment(selectedDates[0]).toDate(),moment(selectedDates[1]).toDate()]);
+      else
+        setRangeDate([moment(selectedDates).toDate()]);
       instance.element.value = dateStr.replace("to", "-");
     },
   };
@@ -23,7 +28,7 @@ function Datepicker() {
   return (
     <div className="relative">
       <Flatpickr
-        className="form-input pl-9 text-slate-500 hover:text-slate-600 font-medium focus:border-slate-300 w-60"
+        className="form-input pl-9 text-slate-500 hover:text-slate-600 font-medium focus:border-slate-300 hover:cursor-pointer"
         options={options}
       />
       <div className="absolute inset-0 right-auto flex items-center pointer-events-none">
@@ -36,6 +41,4 @@ function Datepicker() {
       </div>
     </div>
   );
-}
-
-export default Datepicker;
+};

@@ -31,7 +31,7 @@ export const BarChart03 = ({ data, width, height }) => {
     // Calculate sum of values
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const values = data.datasets.map((x) => x.data.reduce(reducer));
-    const max = values.reduce(reducer);
+    const max = values.length != 0 ? values.reduce(reducer) : 0;
 
     const ctx = canvas.current;
     // eslint-disable-next-line no-unused-vars

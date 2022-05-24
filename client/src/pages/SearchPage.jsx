@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import UserContext from "../contexts/UserContext";
 import Layout from "../layout/Layout";
-import Datepicker from "../partials/actions/Datepicker";
+import { DatePicker } from "../partials/actions/Datepicker";
 
 export const SearchPage = () => {
   const [user, setUser] = useContext(UserContext);
@@ -18,7 +18,7 @@ export const SearchPage = () => {
           className="w-full"
           placeholder="Scan or order number"
         />
-        <Datepicker />
+        <DatePicker />
         <select name="" id=""></select>
       </div>
     </Layout>

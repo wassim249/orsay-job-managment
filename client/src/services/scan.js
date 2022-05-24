@@ -40,7 +40,6 @@ export const getScans = async (userId) => {
       return data;
     }
     const { data } = await axios.get(`/scan`);
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);

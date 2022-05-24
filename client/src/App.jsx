@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./css/style.scss";
 import "./charts/ChartjsConfig";
-import { Dashboard } from "./pages/Dashboard";
 import LoginPage from "./pages/LoginPage";
 import UserContext from "./contexts/UserContext";
 import { CreateScanPage } from "./pages/scan/CreateScanPage";
@@ -18,6 +17,7 @@ import { ScheduleScanPage } from "./pages/scan/ScheduleScanPage";
 import { SearchPage } from "./pages/SearchPage";
 import LangContext from "./contexts/LangContext";
 import { OrdersListPage } from "./pages/orders/ordersList";
+import { Dashboard } from "./pages/Dashboard";
 
 const App = () => {
   const location = useLocation();

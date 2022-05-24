@@ -6,9 +6,9 @@ const {
 } = require("../controllers/statsController");
 const router = require("express").Router();
 
-router.get("/successvsfailure", successVsFailure);
-router.get("/scaninfo", getScanInfo);
-router.get("/failedreason", failedReason);
-router.get("/newusers", newUsers);
+router.post("/successvsfailure", successVsFailure);
+router.post("/scaninfo", getScanInfo);
+router.post("/failedreason", failedReason);
+router.post("/newusers", newUsers);
 
 module.exports = router;
