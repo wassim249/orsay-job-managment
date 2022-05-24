@@ -43,8 +43,11 @@ export const OrdersListPage = () => {
             Scanned Orders numbers List
           </h1>
           <span>
-            Showing {orders?.length} order number
-            {orders?.length != 1 && "s"}
+            Showing{" "}
+            {searchValue.current && searchValue.current.value.trim() != ""
+              ? searchedOrders.length
+              : orders?.length} order
+            {orders?.length != 1 && "s"} number
           </span>
 
           <div className="mt-4 flex items-center">
@@ -52,6 +55,9 @@ export const OrdersListPage = () => {
               type="search"
               ref={searchValue}
               placeholder="Search..."
+              onChange={(e) => {
+                console.log(searchValue.current.value);
+              }}
               className="  appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <button
@@ -71,16 +77,20 @@ export const OrdersListPage = () => {
           </div>
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4 mt-7">
-            {searchValue.current == null || searchValue.current == "" ? (
-              orders.map((order, key) => (
-                <OrderNumber order={order} key={key} />
+            {searchValue.current &&
+            searchValue.current.value.trim() != "" &&
+            searchedOrders.length != 0 ? (
+              searchedOrders.map((order, index) => (
+                <OrderNumber key={index} order={order} />
               ))
-            ) : searchValue.current != "" && searchedOrders.length != 0 ? (
-              searchedOrders.filter((order) =>
-                order.order.startsWith(searchValue.current)
-              )
+            ) : searchValue.current &&
+              searchValue.current.value.trim() != "" &&
+              searchedOrders.length == 0 ? (
+              <h1>no order found</h1>
             ) : (
-              <h1>No order found</h1>
+              orders.map((order, index) => (
+                <OrderNumber key={index} order={order} />
+              ))
             )}
           </div>
         </>

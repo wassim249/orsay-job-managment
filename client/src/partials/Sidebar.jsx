@@ -11,7 +11,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const [user] = useContext(UserContext);
   const location = useLocation();
   const { pathname } = location;
-
   const trigger = useRef(null);
   const sidebar = useRef(null);
 

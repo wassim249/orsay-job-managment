@@ -29,7 +29,6 @@ export const OrderNumber = ({ order }) => {
         <div className="text-sm text-secondary flex items-center hover:cursor-pointer hover:underline">
           <BiUserCircle size={15} color="#f88c6c" className="mr-2" /> By :
           <span>
-            {" "}
             {`${order.scan.user.firstName} ${order.scan.user.lastName}`}
           </span>
         </div>
