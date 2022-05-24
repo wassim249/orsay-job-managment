@@ -121,7 +121,7 @@ export const Dashboard = () => {
       <div className="flex items-center mb-4 w-full">
         <DatePicker rangeDate={rangeDate} setRangeDate={setRangeDate} />
         <span
-          onClick={() => setRangeDate([])}
+          onClick={() => setRangeDate(null)}
           className="ml-4 text-sm text-gray-600 hover:cursor-pointer"
         >
           X
