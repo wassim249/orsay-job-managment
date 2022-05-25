@@ -42,8 +42,8 @@ export const scanSuccess = (scan) => {
 export const salute = (lang) => {
   let hour = new Date().getHours();
   if (hour < 12) return LANG["home"]["good morning"][lang];
-  else if (hour < 18) return "Good Afternoon";
-  else return "Good Evening";
+  else if (hour < 18) return LANG["home"]["good afternoon"][lang];
+  else return LANG["home"]["good evenning"][lang];
 };
 
 export const generatePassword = () => {

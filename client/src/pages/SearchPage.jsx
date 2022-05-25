@@ -1,25 +1,31 @@
 import React, { useContext, useEffect } from "react";
 import UserContext from "../contexts/UserContext";
 import Layout from "../layout/Layout";
-import { DatePicker } from "../partials/actions/Datepicker";
+import { SearchBar } from "../partials/SearchBar";
 
 export const SearchPage = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   useEffect(() => {
     if (!user) navigate("/");
   }, []);
   return (
     <Layout>
-      <h1>Search for a scan or order number</h1>
+      <h1 className="text-2xl font-bold text-secondary mb-10">
+        Search for a scan or order number
+      </h1>
+      <SearchBar />
+
+      <span className="text-secondary font-bold text-xl mt-3">
+        Showing result for : .....
+      </span>
+      <span className="block">84 result</span>
 
       <div>
-        <input
-          type="text"
-          className="w-full"
-          placeholder="Scan or order number"
-        />
-        <DatePicker />
-        <select name="" id=""></select>
+        <h1>
+          No result found for{" "}
+        </h1>
+
+        
       </div>
     </Layout>
   );
