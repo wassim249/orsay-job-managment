@@ -7,7 +7,9 @@ import LangMenu from "./header/LangMenu";
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const [searchModalOpen, setSearchModalOpen] = useState(false);
-
+  document.addEventListener("keyup",  (e) => {
+    if (e.key == "k") setSearchModalOpen(true);
+  });
   return (
     <header className="sticky top-0 bg-white z-30">
       <div className="px-4 sm:px-6 lg:px-8">

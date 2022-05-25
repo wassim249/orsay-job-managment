@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import Transition from "../../utils/Transition";
+import { BiFilter } from "react-icons/bi";
 
-function FilterButton() {
+const FilterButton = ({ filter, setFilter }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -43,14 +44,12 @@ function FilterButton() {
       >
         <span className="sr-only">Filter</span>
         <wbr />
-        <svg className="w-4 h-4 fill-current" viewBox="0 0 16 16">
-          <path d="M9 15H7a1 1 0 010-2h2a1 1 0 010 2zM11 11H5a1 1 0 010-2h6a1 1 0 010 2zM13 7H3a1 1 0 010-2h10a1 1 0 010 2zM15 3H1a1 1 0 010-2h14a1 1 0 010 2z" />
-        </svg>
+        <BiFilter size={20} />
       </button>
       <Transition
         show={dropdownOpen}
         tag="div"
-        className="origin-top-right z-10 absolute top-full left-0 right-auto md:left-auto md:right-0 min-w-56 bg-white border border-slate-200 pt-1.5 rounded shadow-lg overflow-hidden mt-1"
+        className="origin-top-right z-10 absolute top-full left-0 right-auto md:left-auto md:right-0 min-w-56 bg-white border border-slate-200 pt-1.5 shadow-lg overflow-hidden mt-1"
         enter="transition ease-out duration-200 transform"
         enterStart="opacity-0 -translate-y-2"
         enterEnd="opacity-100 translate-y-0"
@@ -65,57 +64,91 @@ function FilterButton() {
           <ul className="mb-4">
             <li className="py-1 px-3">
               <label className="flex items-center">
-                <input type="checkbox" className="form-checkbox" />
-                <span className="text-sm font-medium ml-2">
-                  Direct VS Indirect
-                </span>
+                <input
+                  checked={filter.last7Days}
+                  onChange={() =>
+                    setFilter({ ...filter, last7Days: !filter.last7Days })
+                  }
+                  type="checkbox"
+                  className="form-checkbox"
+                />
+                <span className="text-sm font-medium ml-2">Last 7 days</span>
               </label>
             </li>
             <li className="py-1 px-3">
               <label className="flex items-center">
-                <input type="checkbox" className="form-checkbox" />
-                <span className="text-sm font-medium ml-2">
-                  Real Time Value
-                </span>
+                <input
+                  checked={filter.last30Days}
+                  onChange={() =>
+                    setFilter({ ...filter, last30Days: !filter.last30Days })
+                  }
+                  type="checkbox"
+                  className="form-checkbox"
+                />
+                <span className="text-sm font-medium ml-2">Last 30 days</span>
               </label>
             </li>
             <li className="py-1 px-3">
               <label className="flex items-center">
-                <input type="checkbox" className="form-checkbox" />
-                <span className="text-sm font-medium ml-2">Top Channels</span>
+                <input
+                  checked={filter.failed}
+                  onChange={() =>
+                    setFilter({ ...filter, failed: !filter.failed })
+                  }
+                  type="checkbox"
+                  className="form-checkbox"
+                />
+                <span className="text-sm font-medium ml-2">Failed</span>
               </label>
             </li>
             <li className="py-1 px-3">
               <label className="flex items-center">
-                <input type="checkbox" className="form-checkbox" />
-                <span className="text-sm font-medium ml-2">
-                  Sales VS Refunds
-                </span>
+                <input
+                  checked={filter.success}
+                  onChange={() =>
+                    setFilter({ ...filter, success: !filter.success })
+                  }
+                  type="checkbox"
+                  className="form-checkbox"
+                />
+                <span className="text-sm font-medium ml-2">Succeded</span>
               </label>
             </li>
             <li className="py-1 px-3">
               <label className="flex items-center">
-                <input type="checkbox" className="form-checkbox" />
-                <span className="text-sm font-medium ml-2">Last Order</span>
-              </label>
-            </li>
-            <li className="py-1 px-3">
-              <label className="flex items-center">
-                <input type="checkbox" className="form-checkbox" />
-                <span className="text-sm font-medium ml-2">Total Spent</span>
+                <input
+                  checked={filter.scheduled}
+                  onChange={() =>
+                    setFilter({ ...filter, scheduled: !filter.scheduled })
+                  }
+                  type="checkbox"
+                  className="form-checkbox"
+                />
+                <span className="text-sm font-medium ml-2">Scheduled</span>
               </label>
             </li>
           </ul>
           <div className="py-2 px-3 border-t border-slate-200 bg-slate-50">
             <ul className="flex items-center justify-between">
               <li>
-                <button className="btn-xs bg-white border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600">
+                <button
+                  onClick={() =>
+                    setFilter({
+                      last7Days: false,
+                      last30Days: false,
+                      failed: false,
+                      success: false,
+                      scheduled: false,
+                    })
+                  }
+                  className="btn-xs rounded-none bg-white border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600"
+                >
                   Clear
                 </button>
               </li>
               <li>
                 <button
-                  className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-white"
+                  className="px-3 py-1 bg-primary hover:bg-darkPrimary text-white"
                   onClick={() => setDropdownOpen(false)}
                   onBlur={() => setDropdownOpen(false)}
                 >
@@ -128,6 +161,6 @@ function FilterButton() {
       </Transition>
     </div>
   );
-}
+};
 
 export default FilterButton;
