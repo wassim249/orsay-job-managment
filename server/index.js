@@ -6,6 +6,7 @@ const scanRouter = require("./routes/scan");
 const userRouter = require("./routes/user");
 const orderRouter = require("./routes/order");
 const statsRouter = require("./routes/stats");
+const searchRouter = require("./routes/search");
 const cors = require("cors");
 
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use("/api/scan", scanRouter);
 app.use("/api/user", userRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/stats", statsRouter);
+app.use("/api/search", searchRouter);
 
 const PORT = process.env.PORT || 5000;
 

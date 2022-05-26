@@ -37,9 +37,12 @@ const FilterButton = ({ filter, setFilter }) => {
     <div className="relative inline-flex">
       <button
         ref={trigger}
-        className="btn bg-white border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600"
+        className="btn bg-white h-14 w-14 border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600"
         aria-haspopup="true"
-        onClick={() => setDropdownOpen(!dropdownOpen)}
+        onClick={e => {
+          e.preventDefault();
+          setDropdownOpen(!dropdownOpen);
+        }}
         aria-expanded={dropdownOpen}
       >
         <span className="sr-only">Filter</span>
@@ -132,14 +135,16 @@ const FilterButton = ({ filter, setFilter }) => {
             <ul className="flex items-center justify-between">
               <li>
                 <button
-                  onClick={() =>
-                    setFilter({
+                  onClick={e =>
+                    {
+                      e.preventDefault();
+                      setFilter({
                       last7Days: false,
                       last30Days: false,
                       failed: false,
                       success: false,
                       scheduled: false,
-                    })
+                    })}
                   }
                   className="btn-xs rounded-none bg-white border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600"
                 >
@@ -149,7 +154,9 @@ const FilterButton = ({ filter, setFilter }) => {
               <li>
                 <button
                   className="px-3 py-1 bg-primary hover:bg-darkPrimary text-white"
-                  onClick={() => setDropdownOpen(false)}
+                  onClick={e => {
+                    e.preventDefault()
+                    setDropdownOpen(false)}}
                   onBlur={() => setDropdownOpen(false)}
                 >
                   Apply
