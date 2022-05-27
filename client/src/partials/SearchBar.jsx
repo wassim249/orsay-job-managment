@@ -36,12 +36,12 @@ export const SearchBar = ({
             X
           </span>
         </div>
-    <button
-    className="px-3 py-1 bg-primary hover:bg-darkPrimary text-white h-14"
-    type="submit"
-    >
-      Search
-    </button>
+        <button
+          className="px-3 py-1 bg-primary hover:bg-darkPrimary text-white h-14"
+          type="submit"
+        >
+          Search
+        </button>
       </div>
       <div className="flex items-center justify-between mt-4">
         <select
@@ -55,19 +55,24 @@ export const SearchBar = ({
             Oldest to newest
           </option>
           <option value="newold">Newest to oldest</option>
-          <option value="az">A-Z</option>
-          <option value="za">Z-A</option>
+          {searchType == "orders" && <option value="az">A-Z</option>}
+          {searchType == "orders" && <option value="za">Z-A</option>}
         </select>
         <select
           onChange={(e) => {
             setSearchType(e.target.value);
           }}
           className="p-4 w-1/5 h-14 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-primary focus:border-primary  "
+          value={searchType}
         >
           <option value="scans">Scans</option>
           <option value="orders">Orders</option>
         </select>
-        <FilterButton filter={filter} setFilter={setFilter} />
+        <FilterButton
+          searchType={searchType}
+          filter={filter}
+          setFilter={setFilter}
+        />
       </div>
     </form>
   );

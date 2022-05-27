@@ -34,14 +34,14 @@ const searchForScans = async (req, res) => {
       scans = scans.filter((scan) => {
         const log = JSON.parse(scan.log);
         for (let i = 0; i < log.length; i++)
-          if (log[i].type === "error"){
-            console.log(log[i] , 'hna' , scan.id);  
-            return true};
-          console.log(scan.id);
+          if (log[i].type === "error") {
+            console.log(log[i], "hna", scan.id);
+            return true;
+          }
+        console.log(scan.id);
 
         return false;
       });
-
     else if (filter?.success)
       scans = scans.filter((scan) => {
         const log = JSON.parse(scan.log);
@@ -50,7 +50,7 @@ const searchForScans = async (req, res) => {
             return false;
           }
 
-            console.log(scan.id);
+        console.log(scan.id);
         return true;
       });
 
@@ -63,6 +63,44 @@ const searchForScans = async (req, res) => {
   }
 };
 
+const searchForOrders = async (req, res) => {
+  try {
+    const { searchValue, filter } = req.body;
+    console.log(req.body);
+    let orders = await prisma.orderNumber.findMany({
+      where: {
+        createdAt: {
+          gte: filter?.last30Days
+            ? moment().subtract(30, "days").toDate()
+            : filter?.last7Days
+            ? moment().subtract(7, "days").toDate()
+            : undefined,
+        },
+      },
+      include: {
+        scan: {
+          include: {
+            user: true,
+          },
+        },
+      },
+    });
+    orders = orders.filter((order) => order.order.includes(searchValue));
+    if (filter?.failed)
+      orders = orders.filter((order) => order.status === "error");
+    else if (filter?.success)
+      orders = orders.filter((order) => order.status === "failed");
+
+    res.json(orders);
+  } catch (e) {
+    console.log(e);
+    res.json({
+      message: "Internal Server Error",
+    });
+  }
+};
+
 module.exports = {
   searchForScans,
+  searchForOrders,
 };

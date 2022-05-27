@@ -104,8 +104,9 @@ const UserMenu = () => {
                 className="font-medium text-sm text-primary   hover:text-darkPrimary flex items-center py-1 px-3 hover:cursor-pointer"
                 onClick={() => {
                   setDropdownOpen(!dropdownOpen);
-                  setUser(null);
                   localStorage.removeItem("ORSAY_USER");
+                  localStorage.removeItem(`ORSAY_SEARCH_${user.id}`);
+                  setUser(null);
                 }}
               >
                 Sign Out

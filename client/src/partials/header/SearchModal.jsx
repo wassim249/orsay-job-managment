@@ -1,10 +1,17 @@
-import React, { useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useEffect, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../../contexts/UserContext";
 import Transition from "../../utils/Transition";
 
 function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
   const modalContent = useRef(null);
   const searchInput = useRef(null);
+  const [user] = useContext(UserContext);
+
+  const [recentSearch, setRecentSearch] = useState(
+    JSON.parse(localStorage.getItem(`ORSAY_SEARCH_${user && user.id}`)) || []
+  );
+  const navigate = useNavigate();
 
   // close on click outside
   useEffect(() => {
@@ -63,17 +70,38 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
           className="bg-white overflow-auto max-w-2xl w-full max-h-full rounded shadow-lg"
         >
           {/* Search form */}
-          <form className="border-b border-slate-200">
+          <form
+            className="border-b border-slate-200"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              console.log("dkhel");
+              localStorage.setItem(
+                `ORSAY_SEARCH_${user.id}`,
+                JSON.stringify([
+                  ...(JSON.parse(
+                    localStorage.getItem(`ORSAY_SEARCH_${user.id}`)
+                  ) || []),
+                  searchInput.current.value,
+                ])
+              );
+              setModalOpen(false);
+              navigate(`/search/`, {
+                state: {
+                  searchValue: searchInput.current.value,
+                },
+              });
+            }}
+          >
             <div className="relative">
               <label htmlFor={searchId} className="sr-only">
                 Search
               </label>
               <input
-                id={searchId}
                 className="w-full border-0 focus:ring-transparent placeholder-slate-400 appearance-none py-3 pl-10 pr-4"
                 type="search"
                 placeholder="Search Anything…"
                 ref={searchInput}
+                required
               />
               <button
                 className="absolute inset-0 right-auto group"
@@ -92,23 +120,44 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
             </div>
           </form>
           <div className="py-4 px-2">
-            {/* Recent searches */}
-            <div className="mb-3 last:mb-0">
-              <div className="text-xs font-semibold text-lightPrimary   px-2 mb-2">
-                Recent searches
-              </div>
-              <ul className="text-sm">
-                <li>
-                  <Link
-                    className="flex items-center p-2 text-secondary hover:bg-secondary hover:text-white group"
-                    to="#0"
-                    onClick={() => setModalOpen(!modalOpen)}
+            {recentSearch.length > 0 ? (
+              <div className="mb-3 last:mb-0">
+                <div className="w-full flex items-center justify-between text-xs font-semibold text-lightPrimary px-2 mb-2">
+                  <span className="">Recent searches</span>
+                  <span
+                    onClick={() => {
+                      localStorage.removeItem(`ORSAY_SEARCH_${user.id}`);
+                      setRecentSearch([]);
+                    }}
+                    className="hover:cursor-pointer hover:underline"
                   >
-                    <span>Form Builder - 23 hours on-demand video</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
+                    CLEAR
+                  </span>
+                </div>
+
+                <ul className="text-sm">
+                  {recentSearch.map((s, key) => (
+                    <li key={key}>
+                      <span
+                        className="flex items-center p-2 text-secondary hover:bg-secondary hover:cursor-pointer hover:text-white group"
+                        onClick={() => {
+                          setModalOpen(!modalOpen);
+                          navigate(`/search/`, {
+                            state: {
+                              searchValue: s,
+                            },
+                          });
+                        }}
+                      >
+                        <span>{s}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <span>Search for a scan or an order number</span>
+            )}
           </div>
         </div>
       </Transition>

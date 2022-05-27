@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Transition from "../../utils/Transition";
 import { BiFilter } from "react-icons/bi";
 
-const FilterButton = ({ filter, setFilter }) => {
+const FilterButton = ({ filter, setFilter, searchType }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -39,7 +39,7 @@ const FilterButton = ({ filter, setFilter }) => {
         ref={trigger}
         className="btn bg-white h-14 w-14 border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600"
         aria-haspopup="true"
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault();
           setDropdownOpen(!dropdownOpen);
         }}
@@ -117,35 +117,36 @@ const FilterButton = ({ filter, setFilter }) => {
                 <span className="text-sm font-medium ml-2">Succeded</span>
               </label>
             </li>
-            <li className="py-1 px-3">
-              <label className="flex items-center">
-                <input
-                  checked={filter.scheduled}
-                  onChange={() =>
-                    setFilter({ ...filter, scheduled: !filter.scheduled })
-                  }
-                  type="checkbox"
-                  className="form-checkbox"
-                />
-                <span className="text-sm font-medium ml-2">Scheduled</span>
-              </label>
-            </li>
+            {searchType == "scans" && (
+              <li className="py-1 px-3">
+                <label className="flex items-center">
+                  <input
+                    checked={filter.scheduled}
+                    onChange={() =>
+                      setFilter({ ...filter, scheduled: !filter.scheduled })
+                    }
+                    type="checkbox"
+                    className="form-checkbox"
+                  />
+                  <span className="text-sm font-medium ml-2">Scheduled</span>
+                </label>
+              </li>
+            )}
           </ul>
           <div className="py-2 px-3 border-t border-slate-200 bg-slate-50">
             <ul className="flex items-center justify-between">
               <li>
                 <button
-                  onClick={e =>
-                    {
-                      e.preventDefault();
-                      setFilter({
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setFilter({
                       last7Days: false,
                       last30Days: false,
                       failed: false,
                       success: false,
                       scheduled: false,
-                    })}
-                  }
+                    });
+                  }}
                   className="btn-xs rounded-none bg-white border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600"
                 >
                   Clear
@@ -154,9 +155,10 @@ const FilterButton = ({ filter, setFilter }) => {
               <li>
                 <button
                   className="px-3 py-1 bg-primary hover:bg-darkPrimary text-white"
-                  onClick={e => {
-                    e.preventDefault()
-                    setDropdownOpen(false)}}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setDropdownOpen(false);
+                  }}
                   onBlur={() => setDropdownOpen(false)}
                 >
                   Apply

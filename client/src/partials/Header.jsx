@@ -4,10 +4,13 @@ import UserMenu from "./header/UserMenu";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { BsSearch } from "react-icons/bs";
 import LangMenu from "./header/LangMenu";
+import { useLocation } from "react-router-dom";
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
-  document.addEventListener("keyup",  (e) => {
+  document.addEventListener("keyup", (e) => {
     if (e.key == "k") setSearchModalOpen(true);
   });
   return (
@@ -29,23 +32,28 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           </div>
 
           <div className="flex items-center">
-            <button
-              className={`w-8 h-8 flex items-center justify-center  ml-3 `}
-              onClick={(e) => {
-                e.stopPropagation();
-                setSearchModalOpen(true);
-              }}
-              aria-controls="search-modal"
-            >
-              <span className="sr-only">Search</span>
-              <BsSearch size="25" color="black" />
-            </button>
-            <SearchModal
-              id="search-modal"
-              searchId="search"
-              modalOpen={searchModalOpen}
-              setModalOpen={setSearchModalOpen}
-            />
+            {!pathname.startsWith('/search') && (
+              <>
+                <button
+                  className={`w-8 h-8 flex items-center justify-center  ml-3 `}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSearchModalOpen(true);
+                  }}
+                  aria-controls="search-modal"
+                >
+                  <span className="sr-only">Search</span>
+                  <BsSearch size="25" color="black" />
+                </button>
+
+                <SearchModal
+                  id="search-modal"
+                  searchId="search"
+                  modalOpen={searchModalOpen}
+                  setModalOpen={setSearchModalOpen}
+                />
+              </>
+            )}
 
             {/*  Divider */}
             <hr className="w-px h-6 bg-slate-200 mx-3" />
