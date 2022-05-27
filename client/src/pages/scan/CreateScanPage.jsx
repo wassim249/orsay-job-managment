@@ -6,6 +6,7 @@ import { RiScan2Fill } from "react-icons/ri";
 import { createScan } from "../../services/scan";
 import LANG from "../../../../i18n/lang.json";
 import LangContext from "../../contexts/LangContext";
+import SquareLoader from "react-spinners/SquareLoader";
 
 export const CreateScanPage = () => {
   const [user] = useContext(UserContext);
@@ -16,6 +17,7 @@ export const CreateScanPage = () => {
   const [orderNumbers, setOrderNumbers] = useState([]);
   const [logFile, setLogFile] = useState("");
   const orderNumber = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!user) navigate("/");
@@ -23,11 +25,13 @@ export const CreateScanPage = () => {
   }, []);
 
   const handleScan = async () => {
+    setLoading(true);
     if (source.trim() === "") alert("Please enter source folder");
     else if (destination.trim() === "") alert("Please enter destination");
     else if (orderNumbers.length === 0)
       alert("Please enter at least one order number");
-    else {
+    else {     
+
       const { output, scanId } = await createScan(
         source,
         destination,
@@ -35,15 +39,18 @@ export const CreateScanPage = () => {
         logFile,
         user.id
       );
+ console.log("handleScan");
       if (output) {
-        if (output.finishedOrders.length > 0) {
-          navigate(`/scan/${scanId}`);
-        } else alert(output.log[output.log.length - 1].message.toLowerCase());
+        if (output.finishedOrders.length > 0) navigate(`/scan/${scanId}`);
+        else alert(output.log[output.log.length - 1].message.toLowerCase());
       }
     }
+    console.log("wsel");
+    setLoading(false);
   };
 
-  const addOrder = () => {
+  const addOrder = (e) => {
+    e.preventDefault();
     if (orderNumber.current.value) {
       setOrderNumbers([...orderNumbers, orderNumber.current.value]);
       orderNumber.current.value = "";
@@ -134,7 +141,11 @@ export const CreateScanPage = () => {
           className="col-span-2 bg-primary hover:bg-darkPrimary text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline  "
           type="submit"
         >
-          {LANG["createScan"]["create"][lang]}
+          {loading ? (
+            <SquareLoader color="#fff" loading={loading} size="20px" />
+          ) : (
+            LANG["createScan"]["create"][lang]
+          )}
         </button>
         <button
           onClick={(e) => {

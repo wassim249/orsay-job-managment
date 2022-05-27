@@ -125,6 +125,7 @@ const createScan = async (req, res) => {
       fourthLine: `Destination : ${destination}`,
       fifthLine: `Orders : ${orders}`,
     });
+    error = true;
     res.json({
       output,
       logFile: logDir,
@@ -167,6 +168,7 @@ const createScan = async (req, res) => {
         fourthLine: `Destination : ${destination}`,
         fifthLine: `Orders : ${orders}`,
       });
+      error = true;
     } else {
       createdOrder.file = file;
       log(logFile, `LE FICHIER : ${file} EST TROUVE`);
@@ -199,6 +201,7 @@ const createScan = async (req, res) => {
           fourthLine: `Destination : ${destination}`,
           fifthLine: `Orders : ${orders}`,
         });
+        error = true;
       } else {
         log(logFile, `LE NUMERO DE COMMANDE ${order} EST TROUVE`);
         output.log.push({
@@ -244,7 +247,8 @@ const createScan = async (req, res) => {
         }
       }
     }
-    if (index == orders.length - 1 && !error) {
+
+    if (index == orders.length - 1) {
       try {
         scan = await prisma.scan.create({
           data: {
