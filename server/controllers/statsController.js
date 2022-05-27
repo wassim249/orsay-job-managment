@@ -188,17 +188,17 @@ const newUsers = async (req, res) => {
         moment(range[1]).format("YYYY-MM-DD hh:mm:ss"),
       ];
       scanners = await prisma.$queryRawUnsafe(
-        `SELECT count(id) AS count FROM user WHERE createdAt >= DATE('${range[0]}') AND createdAt <= DATE('${range[1]}') AND role = 'scanner'`
+        `SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM user WHERE createdAt >= DATE('${range[0]}') AND createdAt <= DATE('${range[1]}') AND role = 'scanner' GROUP BY date`
       );
       viewers = await prisma.$queryRawUnsafe(
-        `SELECT count(id) AS count FROM user WHERE createdAt >= DATE('${range[0]}') AND createdAt <= DATE('${range[1]}') AND role = 'viewer'`
+        `SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM user WHERE createdAt >= DATE('${range[0]}') AND createdAt <= DATE('${range[1]}') AND role = 'viewer' GROUP BY date`
       );
     } else {
       scanners = await prisma.$queryRawUnsafe(
-        `SELECT count(id) AS count FROM user WHERE role = 'scanner'`
+        `SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM user WHERE role = 'scanner' GROUP BY date`
       );
       viewers = await prisma.$queryRawUnsafe(
-        `SELECT count(id) AS count FROM user WHERE role = 'viewer'`
+        `SELECT DISTINCT DATE(createdAt) AS date , count(id) AS count FROM user WHERE role = 'viewer' GROUP BY date`
       );
     }
 
@@ -230,7 +230,11 @@ const newUsers = async (req, res) => {
       usersScanners.push(scannersCount);
       usersViewer.push(viewersCount);
     });
-
+    console.log({
+      scanners: usersScanners,
+      viewers: usersViewer,
+      dates,
+    });
     res.json({
       scanners: usersScanners,
       viewers: usersViewer,

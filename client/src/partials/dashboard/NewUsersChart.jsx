@@ -2,6 +2,7 @@ import React from "react";
 import { BarChart01 } from "../../charts/BarChart01";
 
 export const NewUsersChart = ({ data }) => {
+  console.log(data);
   const chartData = {
     labels: data?.dates,
     datasets: [

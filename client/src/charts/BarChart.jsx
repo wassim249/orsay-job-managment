@@ -35,7 +35,7 @@ export const BarChart = ({ data, width, height }) => {
       data: data,
       options: {
         layout: {
-          padding: 20,
+          padding: 50,
         },
         scales: {
           y: {
@@ -62,9 +62,10 @@ export const BarChart = ({ data, width, height }) => {
             grid: {
               display: true,
               drawBorder: false,
+              drawOnChartArea: false,
             },
             ticks: {
-              autoSkipPadding: 48,
+              autoSkipPadding: 20,
               maxRotation: 0,
             },
           },
