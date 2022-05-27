@@ -8,11 +8,19 @@ import { useLocation } from "react-router-dom";
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const { pathname } = useLocation();
-  console.log(pathname);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
-  document.addEventListener("keyup", (e) => {
-    if (e.key == "k") setSearchModalOpen(true);
+  let keysPressed = {};
+  document.addEventListener("keydown", (event) => {
+    keysPressed[event.key] = true;
+    if (keysPressed["Control"] && event.key == "k") {
+      event.preventDefault();
+     try{ setSearchModalOpen(() => !searchModalOpen);} catch(e) {}
+    }
   });
+  document.addEventListener("keyup", (event) => {
+    delete keysPressed[event.key];
+  });
+
   return (
     <header className="sticky top-0 bg-white z-30">
       <div className="px-4 sm:px-6 lg:px-8">
@@ -32,7 +40,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           </div>
 
           <div className="flex items-center">
-            {!pathname.startsWith('/search') && (
+            {!pathname.startsWith("/search") && (
               <>
                 <button
                   className={`w-8 h-8 flex items-center justify-center  ml-3 `}

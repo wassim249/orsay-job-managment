@@ -7,11 +7,11 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
   const modalContent = useRef(null);
   const searchInput = useRef(null);
   const [user] = useContext(UserContext);
-
   const [recentSearch, setRecentSearch] = useState(
     JSON.parse(localStorage.getItem(`ORSAY_SEARCH_${user && user.id}`)) || []
   );
   const navigate = useNavigate();
+ 
 
   // close on click outside
   useEffect(() => {
