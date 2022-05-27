@@ -6,11 +6,14 @@ const {
   log,
   createXmlFile,
   extractLineFromXml,
+  sendEmail,
 } = require("../helpers/utils");
 const { Worker } = require("worker_threads");
+const moment = require("moment");
 
 const createScan = async (req, res) => {
   let { source, destination, logDir, orders, userId } = req.body;
+  const user = await prisma.user.findFirst({ where: { id: userId } });
 
   let output = {
     finishedOrders: [],
@@ -92,6 +95,16 @@ const createScan = async (req, res) => {
     res.json({
       output,
     });
+    sendEmail(user?.email || "", "The following scan failed", {
+      firstName: user?.firstName,
+      firstLine: `The following scan failed at ${moment().format(
+        "DD/MM/YYYY HH:mm:ss"
+      )}`,
+      secondLine: `Reason : ${logDir} is not a directory.`,
+      thirdLine: `Source : ${source}`,
+      fourthLine: `Destination : ${destination}`,
+      fifthLine: `Orders : ${orders}`,
+    });
     error = true;
     return;
   }
@@ -101,6 +114,16 @@ const createScan = async (req, res) => {
     output.log.push({
       message: "ERREUR LORS DE LA CREATION DU FICHIER DE LOG",
       type: "error",
+    });
+    sendEmail(user?.email || "", "The following scan failed", {
+      firstName: user?.firstName,
+      firstLine: `The following scan failed at ${moment().format(
+        "DD/MM/YYYY HH:mm:ss"
+      )}`,
+      secondLine: `Reason : an error occured while creating the log file in ${logDir}`,
+      thirdLine: `Source : ${source}`,
+      fourthLine: `Destination : ${destination}`,
+      fifthLine: `Orders : ${orders}`,
     });
     res.json({
       output,
@@ -134,6 +157,16 @@ const createScan = async (req, res) => {
         success: false,
       });
       createdOrders.push(createdOrder);
+      sendEmail(user?.email || "", "The following scan failed", {
+        firstName: user?.firstName,
+        firstLine: `The following scan failed at ${moment().format(
+          "DD/MM/YYYY HH:mm:ss"
+        )}`,
+        secondLine: `Reason : the order ${order} was not found in ${source}`,
+        thirdLine: `Source : ${source}`,
+        fourthLine: `Destination : ${destination}`,
+        fifthLine: `Orders : ${orders}`,
+      });
     } else {
       createdOrder.file = file;
       log(logFile, `LE FICHIER : ${file} EST TROUVE`);
@@ -156,6 +189,16 @@ const createScan = async (req, res) => {
           success: false,
         });
         createdOrders.push(createdOrder);
+        sendEmail(user?.email || "", "The following scan failed", {
+          firstName: user?.firstName,
+          firstLine: `The following scan failed at ${moment().format(
+            "DD/MM/YYYY HH:mm:ss"
+          )}`,
+          secondLine: `Reason : the order number ${order} was not found in ${source}`,
+          thirdLine: `Source : ${source}`,
+          fourthLine: `Destination : ${destination}`,
+          fifthLine: `Orders : ${orders}`,
+        });
       } else {
         log(logFile, `LE NUMERO DE COMMANDE ${order} EST TROUVE`);
         output.log.push({
@@ -174,6 +217,16 @@ const createScan = async (req, res) => {
           output.finishedOrders.push({
             order,
             success: false,
+          });
+          sendEmail(user?.email || "", "The following scan failed", {
+            firstName: user?.firstName,
+            firstLine: `The following scan failed at ${moment().format(
+              "DD/MM/YYYY HH:mm:ss"
+            )}`,
+            secondLine: `Reason : the file ${order}.xml was not created in ${destination}`,
+            thirdLine: `Source : ${source}`,
+            fourthLine: `Destination : ${destination}`,
+            fifthLine: `Orders : ${orders}`,
           });
           createdOrders.push(createdOrder);
         } else {
@@ -216,6 +269,17 @@ const createScan = async (req, res) => {
       } catch (error) {
         console.log(error);
       }
+      if (!error)
+        sendEmail(user?.email || "", "A scan has been finished successfully", {
+          firstName: user?.firstName,
+          firstLine: `A scan has been finished successfully at ${moment().format(
+            "DD/MM/YYYY HH:mm:ss"
+          )}`,
+          secondLine: `Source : ${source}`,
+          thirdLine: `Destination : ${destination}`,
+          fourthLine: `log file : ${logFile}`,
+          fifthLine: `Orders : ${orders}`,
+        });
 
       res.json({
         output,
@@ -338,6 +402,16 @@ const scheduleScan = async (req, res) => {
       output,
     });
     error = true;
+    sendEmail(user?.email || "", "The following scan failed", {
+      firstName: user?.firstName,
+      firstLine: `The following scan failed at ${moment().format(
+        "DD/MM/YYYY HH:mm:ss"
+      )}`,
+      secondLine: `Reason : the source directory ${source} does not exist`,
+      thirdLine: `Source : ${source}`,
+      fourthLine: `Destination : ${destination}`,
+      fifthLine: `Orders : ${orders}`,
+    });
     return;
   }
 
@@ -350,6 +424,16 @@ const scheduleScan = async (req, res) => {
       output,
     });
     error = true;
+    sendEmail(user?.email || "", "The following scan failed", {
+      firstName: user?.firstName,
+      firstLine: `The following scan failed at ${moment().format(
+        "DD/MM/YYYY HH:mm:ss"
+      )}`,
+      secondLine: `Reason : the destination directory ${destination} does not exist`,
+      thirdLine: `Source : ${source}`,
+      fourthLine: `Destination : ${destination}`,
+      fifthLine: `Orders : ${orders}`,
+    });
     return;
   }
 
@@ -361,6 +445,16 @@ const scheduleScan = async (req, res) => {
     res.json({
       output,
       logFile: logDir,
+    });
+    sendEmail(user?.email || "", "The following scan failed", {
+      firstName: user?.firstName,
+      firstLine: `The following scan failed at ${moment().format(
+        "DD/MM/YYYY HH:mm:ss"
+      )}`,
+      secondLine: `Reason : the source and destination directories are the same`,
+      thirdLine: `Source : ${source}`,
+      fourthLine: `Destination : ${destination}`,
+      fifthLine: `Orders : ${orders}`,
     });
     error = true;
     return;
@@ -376,6 +470,16 @@ const scheduleScan = async (req, res) => {
       output,
     });
     error = true;
+    sendEmail(user?.email || "", "The following scan failed", {
+      firstName: user?.firstName,
+      firstLine: `The following scan failed at ${moment().format(
+        "DD/MM/YYYY HH:mm:ss"
+      )}`,
+      secondLine: `Reason : the log directory ${logDir} does not exist`,
+      thirdLine: `Source : ${source}`,
+      fourthLine: `Destination : ${destination}`,
+      fifthLine: `Orders : ${orders}`,
+    });
     return;
   }
 
@@ -390,6 +494,16 @@ const scheduleScan = async (req, res) => {
       logFile: logDir,
     });
     error = true;
+    sendEmail(user?.email || "", "The following scan failed", {
+      firstName: user?.firstName,
+      firstLine: `The following scan failed at ${moment().format(
+        "DD/MM/YYYY HH:mm:ss"
+      )}`,
+      secondLine: `Reason : the log file could not be created`,
+      thirdLine: `Source : ${source}`,
+      fourthLine: `Destination : ${destination}`,
+      fifthLine: `Orders : ${orders}`,
+    });
     return;
   }
   output.log.push({

@@ -1,8 +1,9 @@
 const { PrismaClient } = require("@prisma/client");
 const { parentPort } = require("worker_threads");
 const { searchForXmlFile } = require("./thread");
-const { extractLineFromXml, log } = require("./utils");
+const { extractLineFromXml, log, sendEmail } = require("./utils");
 const cron = require("node-cron");
+const moment = require("moment");
 
 const prisma = new PrismaClient();
 console.log("SCAN WORKER STARTED");
@@ -30,6 +31,7 @@ parentPort.on("message", async (data) => {
 const scan = async (orders, logFile, source, destination, userId, output) => {
   let createdOrders = [];
   let createdScan = null;
+  const user = await prisma.user.findFirst({ where: { id: userId } });
 
   orders.forEach(async (order, index) => {
     const createdOrder = {
@@ -57,6 +59,16 @@ const scan = async (orders, logFile, source, destination, userId, output) => {
       });
       errOccurred = true;
       createdOrders.push(createdOrder);
+      sendEmail(user?.email || "", "The following scan failed", {
+        firstName: user?.firstName,
+        firstLine: `The following scan failed at ${moment().format(
+          "DD/MM/YYYY HH:mm:ss"
+        )}`,
+        secondLine: `Reason : the order ${order} was not found`,
+        thirdLine: `Source : ${source}`,
+        fourthLine: `Destination : ${destination}`,
+        fifthLine: `Orders : ${orders}`,
+      });
     } else {
       createdOrder.file = file;
       log(logFile, `LE FICHIER : ${file} EST TROUVE`);
@@ -79,6 +91,16 @@ const scan = async (orders, logFile, source, destination, userId, output) => {
           success: false,
         });
         errOccurred = true;
+        sendEmail(user?.email || "", "The following scan failed", {
+          firstName: user?.firstName,
+          firstLine: `The following scan failed at ${moment().format(
+            "DD/MM/YYYY HH:mm:ss"
+          )}`,
+          secondLine: `Reason : the order ${order} was not found`,
+          thirdLine: `Source : ${source}`,
+          fourthLine: `Destination : ${destination}`,
+          fifthLine: `Orders : ${orders}`,
+        });
         createdOrders.push(createdOrder);
       } else {
         log(logFile, `LE NUMERO DE COMMANDE ${order} EST TROUVE`);
@@ -100,6 +122,16 @@ const scan = async (orders, logFile, source, destination, userId, output) => {
             success: false,
           });
           errOccurred = true;
+          sendEmail(user?.email || "", "The following scan failed", {
+            firstName: user?.firstName,
+            firstLine: `The following scan failed at ${moment().format(
+              "DD/MM/YYYY HH:mm:ss"
+            )}`,
+            secondLine: `Reason : the order ${order} was not found`,
+            thirdLine: `Source : ${source}`,
+            fourthLine: `Destination : ${destination}`,
+            fifthLine: `Orders : ${orders}`,
+          });
           createdOrders.push(createdOrder);
         } else {
           log(logFile, `LE FICHIER ${order}.xml A ETE CREE`);
@@ -136,6 +168,17 @@ const scan = async (orders, logFile, source, destination, userId, output) => {
             status: order.status,
             fileName: order.file,
           })),
+        });
+      if (!errOccurred)
+        sendEmail(user?.email || "", "A scan has been finished successfully", {
+          firstName: user?.firstName,
+          firstLine: `A scan has been finished successfully at ${moment().format(
+            "DD/MM/YYYY HH:mm:ss"
+          )}`,
+          secondLine: `Source : ${source}`,
+          thirdLine: `Destination : ${destination}`,
+          fourthLine: `log file : ${logFile}`,
+          fifthLine: `Orders : ${orders}`,
         });
     }
   });
