@@ -43,4 +43,7 @@ server/yarn.lock
 server/prisma/migrations
 
 
+.vscode/
+
+
 
