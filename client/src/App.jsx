@@ -18,6 +18,7 @@ import { SearchPage } from "./pages/SearchPage";
 import LangContext from "./contexts/LangContext";
 import { OrdersListPage } from "./pages/orders/ordersList";
 import { Dashboard } from "./pages/Dashboard";
+import { AlertContext } from "./contexts/AlertContext";
 
 const App = () => {
   const location = useLocation();
@@ -25,7 +26,7 @@ const App = () => {
     JSON.parse(localStorage.getItem("ORSAY_USER"))
   );
   const [lang, setLang] = useState(localStorage.getItem("ORSAY_LANG") || "FR");
-
+  const [alertData, setAlertData] = useState(null);
   useEffect(() => {
     localStorage.setItem("ORSAY_LANG", lang);
   }, [lang]);
@@ -37,26 +38,28 @@ const App = () => {
   }, [location.pathname]); // triggered on route change
 
   return (
-    <LangContext.Provider value={[lang, setLang]}>
-      <UserContext.Provider value={[user, setUser]}>
-        <Routes>
-          <Route exact path="/home" element={<Dashboard />} />
-          <Route index element={<LoginPage />} />
-          <Route path="/scan/create" element={<CreateScanPage />} />
-          <Route path="/scan/:id" element={<ScanDetailsPage />} />
-          <Route path="/scan/" element={<ScansListPage />} />
-          <Route path="/scan/schedule" element={<ScheduleScanPage />} />
-          <Route path="/user/" element={<UsersListPage />} />
-          <Route path="/user/:id" element={<UserDetailsPage />} />
-          <Route path="/user/edit/:id" element={<EditUserPage />} />
-          <Route path="/user/create/" element={<CreateUserPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/orders" element={<OrdersListPage />} />
-          <Route path="/*" element={<NotFoundPage />} />
-        </Routes>
-      </UserContext.Provider>
-    </LangContext.Provider>
+    <AlertContext.Provider value={[alertData, setAlertData]}>
+      <LangContext.Provider value={[lang, setLang]}>
+        <UserContext.Provider value={[user, setUser]}>
+          <Routes>
+            <Route exact path="/home" element={<Dashboard />} />
+            <Route index element={<LoginPage />} />
+            <Route path="/scan/create" element={<CreateScanPage />} />
+            <Route path="/scan/:id" element={<ScanDetailsPage />} />
+            <Route path="/scan/" element={<ScansListPage />} />
+            <Route path="/scan/schedule" element={<ScheduleScanPage />} />
+            <Route path="/user/" element={<UsersListPage />} />
+            <Route path="/user/:id" element={<UserDetailsPage />} />
+            <Route path="/user/edit/:id" element={<EditUserPage />} />
+            <Route path="/user/create/" element={<CreateUserPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/orders" element={<OrdersListPage />} />
+            <Route path="/*" element={<NotFoundPage />} />
+          </Routes>
+        </UserContext.Provider>
+      </LangContext.Provider>
+    </AlertContext.Provider>
   );
 };
 

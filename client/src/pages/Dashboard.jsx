@@ -17,6 +17,8 @@ import {
 } from "../services/stats";
 import { NewUsersChart } from "../partials/dashboard/NewUsersChart";
 import { DatePicker } from "../partials/actions/DatePicker";
+import { AlertContext } from "../contexts/AlertContext";
+import { AlertMessage } from "../partials/AlertMessage";
 
 export const Dashboard = () => {
   const [data2, setData2] = useState(null);
@@ -25,6 +27,8 @@ export const Dashboard = () => {
   const [newUsers, setNewUsers] = useState(null);
   const [user] = useContext(UserContext);
   const [rangeDate, setRangeDate] = useState(null);
+  const [alertData, setAlertData] = useContext(AlertContext)
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) navigate("/");
@@ -34,9 +38,15 @@ export const Dashboard = () => {
     const fetchScanInfo = async () => {
       const data = await getScanInfo();
       if (data) {
-        if (data.message) alert(data.message);
+        if (data.message) setAlertData({
+          message : data.message,
+          type : "error"
+        })
         else setScanInfo(data);
-      } else alert("Something went wrong");
+      } else  setAlertData({
+        message : "Something went wrong",
+        type : "error"
+      })
     };
     fetchScanInfo();
   }, [rangeDate]);
@@ -46,9 +56,15 @@ export const Dashboard = () => {
       setData3(null);
       const data = await getFailReason(rangeDate);
       if (data) {
-        if (data.message) alert(data.message);
+        if (data.message) setAlertData({
+          message : data.message,
+          type : "error"
+        })
         else setData3(data);
-      } else alert("Something went wrong");
+      } else setAlertData({
+        message : "Something went wrong",
+        type : "error"
+      })
     };
     fetchDataForChart3();
   }, [rangeDate]);
@@ -58,9 +74,15 @@ export const Dashboard = () => {
       setNewUsers(null);
       const data = await getNewUsers(rangeDate);
       if (data) {
-        if (data.message) alert(data.message);
+        if (data.message) setAlertData({
+          message : data.message,
+          type : "error"
+        })
         else setNewUsers(data);
-      } else alert("Something went wrong");
+      } else setAlertData({
+        message : "Something went wrong",
+        type : "error"
+      })
     };
     fetchDataForChart1();
   }, [rangeDate]);
@@ -70,15 +92,24 @@ export const Dashboard = () => {
       setData2(null);
       const data = await getSuccVsFail(rangeDate);
       if (data) {
-        if (data.message) alert(data.message);
+        if (data.message) setAlertData({
+          message : data.message,
+          type : "error"
+        })
         else setData2(data);
-      } else alert("Something went wrong");
+      } else setAlertData({
+        message : "Something went wrong",
+        type : "error"
+      })
     };
     fetchDataForChart2();
   }, [rangeDate]);
 
   return (
     <Layout>
+      {
+        alertData && <AlertMessage  />
+      }
       <WelcomeBanner />
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 mb-4">
         <div className="bg-white shadow py-8 pl-5 flex items-center">

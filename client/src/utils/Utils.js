@@ -6,6 +6,7 @@ export const tailwindConfig = () => {
   return resolveConfig("./src/css/tailwind.config.js");
 };
 
+
 export const hexToRGB = (h) => {
   let r = 0;
   let g = 0;
