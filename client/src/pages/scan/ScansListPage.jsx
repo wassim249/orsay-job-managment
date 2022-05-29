@@ -7,11 +7,13 @@ import SquareLoader from "react-spinners/SquareLoader";
 import moment from "moment";
 import { scanSuccess } from "../../utils/Utils";
 import { useNavigate } from "react-router-dom";
+import { AlertContext } from "../../contexts/AlertContext";
 
 export const ScansListPage = () => {
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [scans, setScans] = useState([]);
+  const [alertData, setAlertData] = useContext(AlertContext);
 
   const navigate = useNavigate();
 
@@ -20,7 +22,11 @@ export const ScansListPage = () => {
       setLoading(true);
       const data = await getScans();
       if (data) setScans(data.scans);
-      else alert(data?.message);
+      else
+        setAlertData({
+          message: data?.message,
+          type: "error",
+        });
       setLoading(false);
     };
     fetchScans();

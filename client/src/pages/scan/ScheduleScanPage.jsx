@@ -6,6 +6,7 @@ import { RiScan2Fill } from "react-icons/ri";
 import cronstrue from "cronstrue";
 import { generateCron } from "../../utils/Utils";
 import { scheduleScan } from "../../services/scan";
+import { AlertContext } from "../../contexts/AlertContext";
 
 export const ScheduleScanPage = () => {
   const [user] = useContext(UserContext);
@@ -20,6 +21,8 @@ export const ScheduleScanPage = () => {
   const [repeats, setRepeats] = useState(null);
   const [exludeSunSat, setExludeSunSat] = useState(false);
   const [dayOfWeek, setDayOfWeek] = useState(1);
+  const [alertData, setAlertData] = useContext(AlertContext)
+
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -60,8 +63,15 @@ export const ScheduleScanPage = () => {
       user.id
     );
     if (data?.output?.log?.length > 0)
-      alert(data.output.log[data.output.log.length - 1].message.toLowerCase());
-    else alert("An error occured");
+    setAlertData({
+      message : data.output.log[data.output.log.length - 1].message.toLowerCase(),
+      type : "error"
+    })
+    
+    else setAlertData({
+      message : "Scan scheduled successfully",
+      type : "success"
+    })
   };
 
   const cronToString = () => {

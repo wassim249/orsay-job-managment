@@ -6,11 +6,14 @@ import Layout from "../layout/Layout";
 import UserContext from "../contexts/UserContext";
 import { getUsers } from "../services/user";
 import { scanSuccess } from "../utils/Utils";
+import { AlertContext } from "../contexts/AlertContext";
 
 export const ProfilePage = () => {
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(null);
+  const [alertData, setAlertData] = useContext(AlertContext)
+
 
   const navigate = useNavigate();
   useEffect(() => {

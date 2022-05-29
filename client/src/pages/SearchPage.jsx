@@ -8,6 +8,7 @@ import moment from "moment";
 import { scanSuccess } from "../utils/Utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import { OrderNumber } from "../partials/OrderNumber";
+import { AlertContext } from "../contexts/AlertContext";
 
 export const SearchPage = () => {
   const [filter, setFilter] = useState({
@@ -27,6 +28,8 @@ export const SearchPage = () => {
   const [loading, setLoading] = useState(false);
   const [user] = useContext(UserContext);
   const [search, setSearch] = useState(false);
+  const [alertData, setAlertData] = useContext(AlertContext)
+
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -76,27 +79,38 @@ export const SearchPage = () => {
       setLoading(true);
       const result = await getSearchedScans(searchTerm, filter);
       if (result) {
-        if (result.message) alert(result.message);
+        if (result.message) setAlertData({
+          message : result.message,
+          type : "error"
+        })
         else {
           setSearch(true);
           setScans(result);
-          console.log(result);
+         
         }
-      } else alert("Something went wrong");
-      console.log(result);
+      } else setAlertData({
+        message : "Something went wrong",
+        type : "error"
+      })
+     
       setLoading(false);
     } else if (searchType == "orders") {
       setLoading(true);
       const result = await getSearchedOrders(searchTerm, filter);
       if (result) {
-        if (result.message) alert(result.message);
+        if (result.message) setAlertData({
+          message : result.message,
+          type : "error"
+        })
         else {
           setSearch(true);
           setOrders(result);
           console.log(result);
         }
-      } else alert("Something went wrong");
-      console.log(result);
+      } else setAlertData({
+        message : "Something went wrong",
+        type : "error"
+      })
       setLoading(false);
     }
   };

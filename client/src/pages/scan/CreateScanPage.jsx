@@ -7,6 +7,7 @@ import { createScan } from "../../services/scan";
 import LANG from "../../../../i18n/lang.json";
 import LangContext from "../../contexts/LangContext";
 import SquareLoader from "react-spinners/SquareLoader";
+import { AlertContext } from "../../contexts/AlertContext";
 
 export const CreateScanPage = () => {
   const [user] = useContext(UserContext);
@@ -18,6 +19,7 @@ export const CreateScanPage = () => {
   const [logFile, setLogFile] = useState("");
   const orderNumber = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [alertData, setAlertData] = useContext(AlertContext);
 
   useEffect(() => {
     if (!user) navigate("/");
@@ -26,12 +28,22 @@ export const CreateScanPage = () => {
 
   const handleScan = async () => {
     setLoading(true);
-    if (source.trim() === "") alert("Please enter source folder");
-    else if (destination.trim() === "") alert("Please enter destination");
+    if (source.trim() === "")
+      setAlertData({
+        message: "Please enter a source",
+        type: "error",
+      });
+    else if (destination.trim() === "")
+      setAlertData({
+        message: "Please enter a destination",
+        type: "error",
+      });
     else if (orderNumbers.length === 0)
-      alert("Please enter at least one order number");
-    else {     
-
+      setAlertData({
+        message: "Please enter at least one order number",
+        type: "error",
+      });
+    else {
       const { output, scanId } = await createScan(
         source,
         destination,
@@ -39,10 +51,15 @@ export const CreateScanPage = () => {
         logFile,
         user.id
       );
- console.log("handleScan");
+      console.log("handleScan");
       if (output) {
         if (output.finishedOrders.length > 0) navigate(`/scan/${scanId}`);
-        else alert(output.log[output.log.length - 1].message.toLowerCase());
+        else
+        setAlertData({
+          message : output.log[output.log.length - 1].message.toLowerCase(),
+          type : "error"
+        })
+       
       }
     }
     console.log("wsel");
@@ -55,7 +72,10 @@ export const CreateScanPage = () => {
       setOrderNumbers([...orderNumbers, orderNumber.current.value]);
       orderNumber.current.value = "";
     } else {
-      alert("Please enter an order number");
+      setAlertData({
+        message : "Please enter an order number",
+        type : "error"
+      })
     }
   };
 
@@ -151,15 +171,24 @@ export const CreateScanPage = () => {
           onClick={(e) => {
             e.preventDefault();
             if (source.trim() === "")
-              alert(LANG["createScan"]["please enter source folder"][lang]);
+              setAlertData({
+                message: LANG["createScan"]["please enter source folder"][lang],
+                type: "error",
+              });
             else if (destination.trim() === "")
-              alert("Please enter destination");
+              setAlertData({
+                message:
+                  LANG["createScan"]["please enter destination folder"][lang],
+                type: "error",
+              });
             else if (orderNumbers.length === 0)
-              alert(
-                LANG["createScan"]["please enter at least one order number"][
-                  lang
-                ]
-              );
+              setAlertData({
+                message:
+                  LANG["createScan"]["please enter at least one order number"][
+                    lang
+                  ],
+                type: "error",
+              });
             else
               navigate("/scan/schedule", {
                 state: { source, destination, orderNumbers, logFile },

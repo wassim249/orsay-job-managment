@@ -1,7 +1,7 @@
-import React from "react";
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import { AlertContext } from "../contexts/AlertContext";
 import UserContext from "../contexts/UserContext";
 import { loginService } from "../services/auth";
 
@@ -11,13 +11,18 @@ const LoginPage = () => {
   const [password, setPassword] = useState(null);
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [alertData, setAlertData] = useContext(AlertContext);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     setLoading(true);
     const response = await loginService(email, password);
     if (response.user) setUser(response.user);
-    else alert(response.message);
+    else
+      setAlertData({
+        message: response.message,
+        type: "error",
+      });
 
     setLoading(false);
   };
@@ -44,6 +49,7 @@ const LoginPage = () => {
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center bg-slate-50 font-montserat">
+      {alertData && <AlertMessage />}
       <h1 className="text-secondary text-2xl font-bold mb-6  ">
         Login to your account
       </h1>
