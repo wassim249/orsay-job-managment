@@ -8,6 +8,7 @@ import LANG from "../../../../i18n/lang.json";
 import LangContext from "../../contexts/LangContext";
 import SquareLoader from "react-spinners/SquareLoader";
 import { AlertContext } from "../../contexts/AlertContext";
+import { AlertMessage } from "../../partials/AlertMessage";
 
 export const CreateScanPage = () => {
   const [user] = useContext(UserContext);
@@ -55,11 +56,10 @@ export const CreateScanPage = () => {
       if (output) {
         if (output.finishedOrders.length > 0) navigate(`/scan/${scanId}`);
         else
-        setAlertData({
-          message : output.log[output.log.length - 1].message.toLowerCase(),
-          type : "error"
-        })
-       
+          setAlertData({
+            message: output.log[output.log.length - 1].message.toLowerCase(),
+            type: "error",
+          });
       }
     }
     console.log("wsel");
@@ -73,14 +73,15 @@ export const CreateScanPage = () => {
       orderNumber.current.value = "";
     } else {
       setAlertData({
-        message : "Please enter an order number",
-        type : "error"
-      })
+        message: "Please enter an order number",
+        type: "error",
+      });
     }
   };
 
   return (
     <Layout>
+      {alertData && <AlertMessage />}
       <h1 className="text-2xl text-secondary font-bold   flex items-center">
         <RiScan2Fill size={40} color="#f88c6c" className="mr-2" />
         {LANG["createScan"]["create a new scan"][lang]}
@@ -184,9 +185,7 @@ export const CreateScanPage = () => {
             else if (orderNumbers.length === 0)
               setAlertData({
                 message:
-                  LANG["createScan"]["please enter at least one order number"][
-                    lang
-                  ],
+                 "please enter at least one order number",
                 type: "error",
               });
             else
@@ -238,7 +237,7 @@ export const CreateScanPage = () => {
                       onClick={() => {
                         setOrderNumbers(
                           orderNumbers.filter(
-                            (orderNumber, index) => index !== index
+                            (_, index) => index !== index
                           )
                         );
                       }}

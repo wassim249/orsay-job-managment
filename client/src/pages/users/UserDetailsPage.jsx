@@ -9,14 +9,13 @@ import { scanSuccess } from "../../utils/Utils";
 
 export const UserDetailsPage = () => {
   const { id: userID } = useParams();
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(null);
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) navigate("/");
-    else if (user?.role != "admin") navigate("/");
+    if (user?.role != "admin") navigate("/");
   }, []);
 
   useEffect(() => {
@@ -41,7 +40,7 @@ export const UserDetailsPage = () => {
       ) : (
         <>
           <span className="  font-bold text-2xl text-secondary">
-            User #{userID && userID}
+            User #{userID}
           </span>
           <div className="grid grid-cols-2 grid-gap-4 mt-10">
             <div>

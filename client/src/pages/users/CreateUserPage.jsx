@@ -5,11 +5,13 @@ import UserContext from "../../contexts/UserContext";
 import SquareLoader from "react-spinners/SquareLoader";
 import { generatePassword, validateEmail } from "../../utils/Utils";
 import { createUser } from "../../services/user";
+import { AlertContext } from "../../contexts/AlertContext";
 
 export const CreateUserPage = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [createdUser, setCreatedUser] = useState(null);
+  const [alertData, setAlertData] = useContext(AlertContext);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -19,25 +21,50 @@ export const CreateUserPage = () => {
   const handleUserCreate = async (e) => {
     e.preventDefault();
     if (createdUser?.firstName.trim() === "")
-      return alert("First name is required");
+      return setAlertData({
+        message: "First name is required",
+        type: "error",
+      });
     if (createdUser?.lastName.trim() === "")
-      return alert("Last name is required");
-    if (createdUser?.email.trim() === "") return alert("Email is required");
+      return setAlertData({
+        message: "Last name is required",
+        type: "error",
+      });
+    if (createdUser?.email.trim() === "")
+      return setAlertData({
+        message: "Email is required",
+        type: "error",
+      });
     if (!validateEmail(createdUser?.email))
-      return alert("Email format is invalid");
+      return setAlertData({
+        message: "Email is not valid",
+        type: "error",
+      });
     if (createdUser?.password.trim() === "")
-      return alert("Password is required");
+      return setAlertData({
+        message: "Password is required",
+        type: "error",
+      });
     setLoading(true);
     const data = await createUser(createdUser);
     if (data) {
-      if (data.message) return alert(data.message);
+      if (data.message)
+        return setAlertData({
+          message: data.message,
+          type: "success",
+        });
       else navigate(`/user/${data.newUser.id}`);
-    } else alert("Something went wrong");
+    } else
+      setAlertData({
+        message: data?.message,
+        type: "success",
+      });
     setLoading(false);
   };
 
   return (
     <Layout>
+       {alertData && <AlertMessage />}
       <span className="  font-bold text-2xl text-secondary">Create User</span>
       <span className="block   text-sm">User will be notified by email</span>
       <form className="grid grid-cols-2 gap-5 mt-8  ">

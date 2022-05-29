@@ -7,17 +7,18 @@ import moment from "moment";
 
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../../services/user";
+import { AlertContext } from "../../contexts/AlertContext";
 
 export const UsersListPage = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
+  const [alertData, setAlertData] = useContext(AlertContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) navigate("/");
-    else if (user.role != "admin") navigate("/home");
+    if (user.role != "admin") navigate("/home");
   }, []);
 
   useEffect(() => {
@@ -25,7 +26,11 @@ export const UsersListPage = () => {
       setLoading(true);
       const data = await getUsers();
       if (data) setUsers(data.users);
-      else alert(data?.message);
+      else
+        setAlertData({
+          message: data?.message,
+          type: "success",
+        });
       setLoading(false);
     };
 
@@ -36,6 +41,7 @@ export const UsersListPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
+           {alertData && <AlertMessage />}
           <SquareLoader color="#f88c6c" loading={loading} size="20px" />
         </div>
       ) : (

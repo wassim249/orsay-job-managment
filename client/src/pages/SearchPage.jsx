@@ -42,7 +42,6 @@ export const SearchPage = () => {
 
   useEffect(() => {
     if (searchType == "scans" && scans.length) {
-      console.log(scans.length);
       switch (sort) {
         case "oldnew":
           setScans(scans.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)));
@@ -117,6 +116,7 @@ export const SearchPage = () => {
 
   return (
     <Layout>
+       {alertData && <AlertMessage />}
       <h1 className="text-2xl font-bold text-secondary mb-10">
         Search for a scan or order number
       </h1>

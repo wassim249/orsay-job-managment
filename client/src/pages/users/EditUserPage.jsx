@@ -5,17 +5,18 @@ import UserContext from "../../contexts/UserContext";
 import SquareLoader from "react-spinners/SquareLoader";
 import { editUser, getUsers } from "../../services/user";
 import { generatePassword } from "../../utils/Utils";
+import { AlertContext } from "../../contexts/AlertContext";
 
 export const EditUserPage = () => {
   const { id: userID } = useParams();
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(null);
+  const [alertData, setAlertData] = useContext(AlertContext);
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) navigate("/");
-    else if (user?.role != "admin") navigate("/");
+    if (user?.role != "admin") navigate("/");
   }, []);
 
   useEffect(() => {
@@ -33,10 +34,20 @@ export const EditUserPage = () => {
   const handleUserUpdate = async (e) => {
     e.preventDefault();
     if (fetchedUser?.firstName.trim() === "")
-      return alert("First name is required");
+      return setAlertData({
+        message: "First name is required",
+        type: "error",
+      });
     if (fetchedUser?.lastName.trim() === "")
-      return alert("Last name is required");
-    if (fetchedUser?.email.trim() === "") return alert("Email is required");
+      return setAlertData({
+        message: "Last name is required",
+        type: "error",
+      });
+    if (fetchedUser?.email.trim() === "")
+      return setAlertData({
+        message: "Email is required",
+        type: "error",
+      });
 
     setLoading(true);
     const data = await editUser(userID, {
@@ -47,7 +58,11 @@ export const EditUserPage = () => {
       password: fetchedUser?.password,
     });
     if (data) navigate(`/user/${userID}`);
-    else alert("Something went wrong");
+    else
+      setAlertData({
+        message: "Something went wrong",
+        type: "error",
+      });
     setLoading(false);
   };
 
@@ -55,12 +70,13 @@ export const EditUserPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
+           {alertData && <AlertMessage />}
           <SquareLoader color="#f88c6c" loading={loading} size="20px" />
         </div>
       ) : (
         <>
           <span className="  font-bold text-2xl text-secondary">
-            Edit User #{userID && userID}
+            Edit User #{userID}
           </span>
           <form className="grid grid-cols-2 gap-5 mt-10  ">
             <div className="col-span-2">

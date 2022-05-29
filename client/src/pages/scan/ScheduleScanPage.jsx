@@ -21,7 +21,7 @@ export const ScheduleScanPage = () => {
   const [repeats, setRepeats] = useState(null);
   const [exludeSunSat, setExludeSunSat] = useState(false);
   const [dayOfWeek, setDayOfWeek] = useState(1);
-  const [alertData, setAlertData] = useContext(AlertContext)
+  const [alertData, setAlertData] = useContext(AlertContext);
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -63,15 +63,16 @@ export const ScheduleScanPage = () => {
       user.id
     );
     if (data?.output?.log?.length > 0)
-    setAlertData({
-      message : data.output.log[data.output.log.length - 1].message.toLowerCase(),
-      type : "error"
-    })
-    
-    else setAlertData({
-      message : "Scan scheduled successfully",
-      type : "success"
-    })
+      setAlertData({
+        message:
+          data.output.log[data.output.log.length - 1].message.toLowerCase(),
+        type: "error",
+      });
+    else
+      setAlertData({
+        message: "Scan scheduled successfully",
+        type: "success",
+      });
   };
 
   const cronToString = () => {
@@ -95,6 +96,7 @@ export const ScheduleScanPage = () => {
 
   return (
     <Layout>
+       {alertData && <AlertMessage />}
       <h1 className="text-2xl text-secondary font-bold   flex items-center">
         <RiScan2Fill size={40} color="#f88c6c" className="mr-2" /> Schedule a
         Scan
