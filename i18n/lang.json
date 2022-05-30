@@ -36,9 +36,9 @@
       "EN": "Succeded scans vs failed scans (over time)",
       "FR": "Scans réussis vs échoués (en temps)"
     },
-    "Reason for Failed scans" : {
-      "EN" : "Reason for Failed scans",
-      "FR" : "Raison des scans échoués"
+    "Reason for Failed scans": {
+      "EN": "Reason for Failed scans",
+      "FR": "Raison des scans échoués"
     }
   },
   "createScan": {
@@ -99,6 +99,20 @@
       "FR": "veuillez entrer au moins un numéro de commande"
     }
   },
+  "scansList": {
+    "Scans list": {
+      "EN": "Scans list",
+      "FR": "Liste des scans"
+    },
+    "Create scan": {
+      "EN": "Create scan",
+      "FR": "Créer un scan"
+    },
+    "Scanned orders": {
+      "EN": "Scanned orders",
+      "FR": "Commandes scannées"
+    }
+  },
   "ordersList": {
     "scanned orders numbers list": {
       "EN": "Scanned orders numbers list",
@@ -137,10 +151,10 @@
         "FR": "Visionneur"
       }
     },
-    "view" : {
-      "EN" : "view" ,
-      "FR" : "Voire"
-    } ,
+    "view": {
+      "EN": "view",
+      "FR": "Voire"
+    },
     "succeed": {
       "EN": "Succeed",
       "FR": "Réussi"
@@ -196,29 +210,26 @@
       "FR": "Rechercher"
     }
   },
-  "profile" :{
-     "Your profile"  : {
-    "EN": "Your profile",
-    "FR": "Votre profil"
-  },
-  "First name" : {
-    "EN": "First name",
-    "FR": "Prénom"
-  
-  },
-  "Last name" : {
-    "EN": "Last name",
-    "FR": "Nom"
-  },
-  "Email adress" : {
-    "EN": "Email adress",
-    "FR": "Adresse email"
-  
-  },
-  "Latest scans" : {
-    "EN": "Latest scans",
-    "FR": "Derniers scans"
+  "profile": {
+    "Your profile": {
+      "EN": "Your profile",
+      "FR": "Votre profil"
+    },
+    "First name": {
+      "EN": "First name",
+      "FR": "Prénom"
+    },
+    "Last name": {
+      "EN": "Last name",
+      "FR": "Nom"
+    },
+    "Email adress": {
+      "EN": "Email adress",
+      "FR": "Adresse email"
+    },
+    "Latest scans": {
+      "EN": "Latest scans",
+      "FR": "Derniers scans"
+    }
   }
-  }
- 
 }
