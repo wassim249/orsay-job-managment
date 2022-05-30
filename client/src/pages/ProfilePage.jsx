@@ -6,12 +6,14 @@ import Layout from "../layout/Layout";
 import UserContext from "../contexts/UserContext";
 import { getUsers } from "../services/user";
 import { scanSuccess } from "../utils/Utils";
+import LangContext from "../contexts/LangContext";
+import LANG from "../../../i18n/lang.json";
 
 export const ProfilePage = () => {
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(null);
-
+  const [lang] = useContext(LangContext);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -39,21 +41,21 @@ export const ProfilePage = () => {
       ) : (
         <>
           <span className="  font-bold text-2xl text-secondary">
-            Your profile
+            {LANG["profile"]["Your profile"][lang]}
           </span>
           <div className="grid grid-cols-2 grid-gap-4 mt-10">
             <div>
               <label className="block text-secondary text-sm d mb-2  ">
-                First name :
+                {LANG["profile"]["First name"][lang]}
               </label>
               <span className="text-primary   font-bold">
-                {fetchedUser && fetchedUser.firstName}
+                {fetchedUser && fetchedUser.firstName}:
               </span>
             </div>
 
             <div>
               <label className="block text-secondary text-sm d mb-2  ">
-                Last name :
+                {LANG["profile"]["Last name"][lang]}:
               </label>
               <span className="text-primary   font-bold">
                 {fetchedUser && fetchedUser.lastName}
@@ -62,7 +64,7 @@ export const ProfilePage = () => {
 
             <div>
               <label className="block text-secondary text-sm d mb-2  ">
-                Email adress :
+               {LANG['profile']['Email adress'][lang]} :
               </label>
               <span className="text-primary   font-bold">
                 {fetchedUser && fetchedUser.email}
@@ -73,12 +75,12 @@ export const ProfilePage = () => {
               <label className="block text-secondary text-sm d mb-2  ">
                 Role :
               </label>
-              <UserRole role={fetchedUser && fetchedUser.role} />
+              <UserRole role={fetchedUser && LANG['common']['roles'][fetchedUser.role][lang]} />
             </div>
           </div>
 
           <span className="  font-bold text-2xl text-secondary mt-10">
-            Latest scans
+            {LANG["profile"]["Latest scans"][lang]}
           </span>
 
           <table className="table-fixed mt-4   overflow-x-auto">
@@ -108,11 +110,11 @@ export const ProfilePage = () => {
                       {scan &&
                         (scanSuccess(scan) ? (
                           <span className="bg-green-500 text-white px-2 py-3">
-                            Success
+                            {LANG['common']['succeed'][lang]}
                           </span>
                         ) : (
                           <span className="bg-red-500 text-white px-2 py-3">
-                            Failed
+                            {LANG['common']['failed'][lang]}
                           </span>
                         ))}
                     </td>
@@ -123,7 +125,7 @@ export const ProfilePage = () => {
                           navigate(`/scan/${scan.id}`);
                         }}
                       >
-                        View
+                        {LANG['common']['view'][lang]}
                       </button>
                     </td>
                   </tr>

@@ -137,6 +137,10 @@
         "FR": "Visionneur"
       }
     },
+    "view" : {
+      "EN" : "view" ,
+      "FR" : "Voire"
+    } ,
     "succeed": {
       "EN": "Succeed",
       "FR": "Réussi"
@@ -191,5 +195,30 @@
       "EN": "Search",
       "FR": "Rechercher"
     }
+  },
+  "profile" :{
+     "Your profile"  : {
+    "EN": "Your profile",
+    "FR": "Votre profil"
+  },
+  "First name" : {
+    "EN": "First name",
+    "FR": "Prénom"
+  
+  },
+  "Last name" : {
+    "EN": "Last name",
+    "FR": "Nom"
+  },
+  "Email adress" : {
+    "EN": "Email adress",
+    "FR": "Adresse email"
+  
+  },
+  "Latest scans" : {
+    "EN": "Latest scans",
+    "FR": "Derniers scans"
   }
+  }
+ 
 }
