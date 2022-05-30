@@ -9,8 +9,13 @@ import { scanSuccess } from "../utils/Utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import { OrderNumber } from "../partials/OrderNumber";
 import { AlertContext } from "../contexts/AlertContext";
+import LANG from "../../../i18n/lang.json";
+import LangContext from "../contexts/LangContext";
+import { Status } from "../partials/Status";
 
 export const SearchPage = () => {
+  const [lang] = useContext(LangContext);
+
   const [filter, setFilter] = useState({
     last7Days: false,
     last30Days: false,
@@ -28,8 +33,7 @@ export const SearchPage = () => {
   const [loading, setLoading] = useState(false);
   const [user] = useContext(UserContext);
   const [search, setSearch] = useState(false);
-  const [alertData, setAlertData] = useContext(AlertContext)
-
+  const [alertData, setAlertData] = useContext(AlertContext);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -38,7 +42,7 @@ export const SearchPage = () => {
 
   useEffect(() => {
     if (state?.searchValue) handleSearch();
-  },[]);
+  }, []);
 
   useEffect(() => {
     if (searchType == "scans" && scans.length) {
@@ -73,52 +77,55 @@ export const SearchPage = () => {
   }, [sort]);
 
   const handleSearch = async (e) => {
-   e && e.preventDefault();
+    e && e.preventDefault();
     if (searchType == "scans") {
       setLoading(true);
       const result = await getSearchedScans(searchTerm, filter);
       if (result) {
-        if (result.message) setAlertData({
-          message : result.message,
-          type : "error"
-        })
+        if (result.message)
+          setAlertData({
+            message: result.message,
+            type: "error",
+          });
         else {
           setSearch(true);
           setScans(result);
-         
         }
-      } else setAlertData({
-        message : "Something went wrong",
-        type : "error"
-      })
-     
+      } else
+        setAlertData({
+          message: "Something went wrong",
+          type: "error",
+        });
+
       setLoading(false);
     } else if (searchType == "orders") {
       setLoading(true);
       const result = await getSearchedOrders(searchTerm, filter);
       if (result) {
-        if (result.message) setAlertData({
-          message : result.message,
-          type : "error"
-        })
+        if (result.message)
+          setAlertData({
+            message: result.message,
+            type: "error",
+          });
         else {
           setSearch(true);
           setOrders(result);
           console.log(result);
         }
-      } else setAlertData({
-        message : "Something went wrong",
-        type : "error"
-      })
+      } else
+        setAlertData({
+          message: "Something went wrong",
+          type: "error",
+        });
       setLoading(false);
     }
   };
 
   return (
     <Layout>
-       {alertData && <AlertMessage />}
+      {alertData && <AlertMessage />}
       <h1 className="text-2xl font-bold text-secondary mb-10">
-        Search for a scan or order number
+        {LANG["search"]["Search for a scan or order number"][lang]}
       </h1>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
@@ -140,11 +147,11 @@ export const SearchPage = () => {
           {search && (
             <>
               <span className="text-secondary font-bold text-xl mt-3">
-                Showing result for : {searchTerm}
+                {LANG["search"]["Showing result for"][lang]}: {searchTerm}
               </span>
               <span className="block">{`${
                 searchType == "orders" ? orders.length : scans.length
-              } result(s)`}</span>
+              } ${LANG["search"]["result"][lang]}(s)`}</span>
               {searchType == "scans" && (
                 <>
                   {scans.length > 0 ? (
@@ -177,15 +184,8 @@ export const SearchPage = () => {
 
                               <td className="border p-2 font-bold">
                                 {scan &&
-                                  (scanSuccess(scan) ? (
-                                    <span className="bg-green-500 text-white px-2 py-3">
-                                      Success
-                                    </span>
-                                  ) : (
-                                    <span className="bg-red-500 text-white px-2 py-3">
-                                      Failed
-                                    </span>
-                                  ))}
+                                 <Status success={scanSuccess(scan)} icon />
+                                 }
                               </td>
                               <td className="border p-2">
                                 <button
@@ -194,7 +194,7 @@ export const SearchPage = () => {
                                     navigate(`/scan/${scan.id}`);
                                   }}
                                 >
-                                  View
+                                  {LANG["common"]["view"][lang]}
                                 </button>
                               </td>
                             </tr>

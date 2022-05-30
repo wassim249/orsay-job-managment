@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsSearch } from "react-icons/bs";
 import FilterButton from "./actions/FilterButton";
+import LANG from '../../../i18n/lang.json'
+import LangContext from "../contexts/LangContext";
+
 
 export const SearchBar = ({
   setSearchTerm,
@@ -13,6 +16,8 @@ export const SearchBar = ({
   setSort,
   handleSearch,
 }) => {
+  const [lang] = useContext(LangContext);
+
   return (
     <form className="bg-slate-100 p-4 w-full shadow" onSubmit={handleSearch}>
       <div className="flex items-center justify-between">
@@ -24,7 +29,7 @@ export const SearchBar = ({
             type="search"
             value={searchTerm}
             className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500  "
-            placeholder="Enter search term"
+            placeholder={LANG["search"]["Enter a search term..."][lang]}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <span
@@ -40,7 +45,7 @@ export const SearchBar = ({
           className="px-3 py-1 bg-primary hover:bg-darkPrimary text-white h-14"
           type="submit"
         >
-          Search
+          {LANG["search"]["Search"][lang]}
         </button>
       </div>
       <div className="flex items-center justify-between mt-4">
@@ -48,15 +53,20 @@ export const SearchBar = ({
           onClick={(e) => {
             setSort(e.target.value);
           }}
-          className="p-4 w-1/3 h-14 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-primary focus:border-primary  "
-          placeholder="Sort by "
+          className="p-4 w-1/3 h-14 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-primary focus:border-primary"
         >
           <option defaultValue value="oldnew">
-            Oldest to newest
+            {LANG["search"]["Oldest to newest"][lang]}
           </option>
-          <option value="newold">Newest to oldest</option>
-          {searchType == "orders" && <option value="az">A-Z</option>}
-          {searchType == "orders" && <option value="za">Z-A</option>}
+          <option value="newold">
+            {LANG["search"]["Newest to oldest"][lang]}
+          </option>
+          {searchType == "orders" && <option value="az">
+            {LANG["search"]["A-Z"][lang]}
+            </option>}
+          {searchType == "orders" && <option value="za">
+            {LANG["search"]["Z-A"][lang]}
+            </option>}
         </select>
         <select
           onChange={(e) => {
@@ -65,8 +75,12 @@ export const SearchBar = ({
           className="p-4 w-1/5 h-14 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-primary focus:border-primary  "
           value={searchType}
         >
-          <option value="scans">Scans</option>
-          <option value="orders">Orders</option>
+          <option value="scans">
+            {LANG["search"]["Scans"][lang]}
+          </option>
+          <option value="orders">
+            {LANG["search"]["Orders"][lang]}
+          </option>
         </select>
         <FilterButton
           searchType={searchType}

@@ -318,11 +318,88 @@
       "FR": "Mettre à jour"
     }
   },
+  "404": {
+    "Page not found": {
+      "EN": "Page not found",
+      "FR": "Page non trouvée"
+    }
+  },
+  "search": {
+    "Search for a scan or order number": {
+      "EN": "Search for a scan or order number",
+      "FR": "Rechercher un scan ou un numéro de commande"
+    },
+    "Search": {
+      "EN": "Search",
+      "FR": "Rechercher"
+    },
+    "Oldest to newest": {
+      "EN": "Oldest to newest",
+      "FR": "Plus ancien à plus récent"
+    },
+    "Scheduled" : {
+      "EN": "Scheduled",
+      "FR": "Planifié"
+    } ,
+    "Clear" : {
+      "EN": "Clear",
+      "FR": "Effacer"
+    } ,
+    "Apply" : {
+      "EN": "Apply",
+      "FR": "Appliquer"
+    } ,
+    "Newest to oldest": {
+      "EN": "Newest to oldest",
+      "FR": "Plus récent à plus ancien"
+    },
+    "A-Z": {
+      "EN": "A to Z",
+      "FR": "De A à Z"
+    },
+    "Z-A": {
+      "EN": "Z to A",
+      "FR": "De Z à A"
+    },
+    "Scans": {
+      "EN": "Scans",
+      "FR": "Scans"
+    },
+    "Orders": {
+      "EN": "Orders",
+      "FR": "Commandes"
+    },
+    "Filters": {
+      "EN": "Filters",
+      "FR": "Filtres"
+    },
+    "Last 7 days": {
+      "EN": "Last 7 days",
+      "FR": "Les 7 derniers jours"
+    },
+    "Last 30 days": {
+      "EN": "Last 30 days",
+      "FR": "Les 30 derniers jours"
+    },
+    "Showing result for": {
+      "EN": "Showing result for",
+      "FR": "Affichage de"
+    },
+    "result": {
+      "EN": "result",
+      "FR": "résultat"
+    },
+    "Enter a search term...": {
+      "EN": "Enter a search term...",
+      "FR": "Entrez un terme de recherche..."
+    }
+  },
   "layout": {
     "Search Anything": {
       "EN": "Search Anything",
       "FR": "Rechercher quelque chose"
     },
+
     "Search for a scan or an order number": {
       "EN": "Search for a scan or an order number",
       "FR": "Rechercher un scan ou un numéro de commande"
