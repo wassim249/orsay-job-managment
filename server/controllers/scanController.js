@@ -1,3 +1,5 @@
+const LANG = require("../../i18n/lang.json");
+
 const prisma = require("../prisma/config");
 const { searchForXmlFile } = require("../helpers/thread");
 const {
@@ -12,6 +14,8 @@ const { Worker } = require("worker_threads");
 const moment = require("moment");
 
 const createScan = async (req, res) => {
+  const {lang} = req.body
+  console.log(lang);
   let { source, destination, logDir, orders, userId } = req.body;
   const user = await prisma.user.findFirst({ where: { id: userId } });
 
@@ -28,7 +32,7 @@ const createScan = async (req, res) => {
 
   if (!source || source == "") {
     output.log.push({
-      message: "VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE",
+      message: LANG["alerts"]["VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE"][lang],
       type: "error",
     });
     res.json({
@@ -39,7 +43,8 @@ const createScan = async (req, res) => {
   }
   if (!destination || destination == "") {
     output.log.push({
-      message: "VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION",
+      message:
+        LANG["alerts"]["VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION"][lang],
       type: "error",
     });
     res.json({
@@ -51,7 +56,7 @@ const createScan = async (req, res) => {
 
   if (!isDirectory(source.trim())) {
     output.log.push({
-      message: "REPERTOIRE DE SOURCE INEXISTANT",
+      message: LANG["alerts"]["REPERTOIRE DE SOURCE INEXISTANT"][lang],
       type: "error",
     });
     res.json({
@@ -63,7 +68,7 @@ const createScan = async (req, res) => {
 
   if (!isDirectory(destination.trim())) {
     output.log.push({
-      message: "REPERTOIRE DE DESTINATION INEXISTANT",
+      message: LANG["alerts"]["REPERTOIRE DE DESTINATION INEXISTANT"][lang],
       type: "error",
     });
     res.json({
@@ -75,7 +80,10 @@ const createScan = async (req, res) => {
 
   if (source === destination) {
     output.log.push({
-      message: "REPERTOIRE DE SOURCE ET DESTINATION SONT IDENTIQUES",
+      message:
+        LANG["alerts"]["REPERTOIRE DE SOURCE ET DESTINATION SONT IDENTIQUES"][
+          lang
+        ],
       type: "error",
     });
     res.json({
@@ -89,7 +97,7 @@ const createScan = async (req, res) => {
   if (!logDir || logDir?.trim() == "") logDir = destination.trim();
   else if (!isDirectory(logDir.trim())) {
     output.log.push({
-      message: "REPERTOIRE DE LOG INEXISTANT",
+      message: LANG["alerts"]["REPERTOIRE DE LOG INEXISTANT"][lang],
       type: "error",
     });
     res.json({
@@ -112,7 +120,8 @@ const createScan = async (req, res) => {
   const logFile = createLogFile(logDir);
   if (!logFile) {
     output.log.push({
-      message: "ERREUR LORS DE LA CREATION DU FICHIER DE LOG",
+      message:
+        LANG["alerts"]["ERREUR LORS DE LA CREATION DU FICHIER DE LOG"][lang],
       type: "error",
     });
     sendEmail(user?.email || "", "The following scan failed", {
@@ -139,18 +148,24 @@ const createScan = async (req, res) => {
       order,
       status: "success",
     };
-    log(logFile, `AU COURS DE RECHERCHE DE LA COMMANDE : ${order}`);
+    log(
+      logFile,
+      `${LANG["alerts"]["AU COURS DE RECHERCHE DE LA COMMANDE"][lang]} : ${order}`
+    );
     output.log.push({
-      message: `AU COURS DE RECHERCHE DE LA COMMANDE : ${order}`,
+      message: `${LANG["alerts"]["AU COURS DE RECHERCHE DE LA COMMANDE"][lang]} : ${order}`,
       type: "info",
     });
 
     const file = await searchForXmlFile(source, order);
     if (!file) {
       createdOrder.status = "error";
-      log(logFile, `LA COMMANDE ${order} N'A PAS ETE TROUVEE`);
+      log(
+        logFile,
+        `${LANG["alerts"]["LA COMMANDE"][lang]} ${order} ${LANG["alerts"]["N'A PAS ETE TROUVEE"][lang]}`
+      );
       output.log.push({
-        message: `LA COMMANDE ${order} N'A PAS ETE TROUVEE`,
+        message: `${LANG["alerts"]["LA COMMANDE"][lang]} ${order} ${LANG["alerts"]["N'A PAS ETE TROUVEE"][lang]}`,
         type: "error",
       });
       output.finishedOrders.push({
@@ -181,9 +196,17 @@ const createScan = async (req, res) => {
 
       if (!value) {
         createdOrder.status = "error";
-        log(logFile, `LE NUMERO DE COMMANDE ${order} N'A PAS ETE TROUVE`);
+        log(logFile, `${
+          LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]
+         } ${order} ${
+          LANG["alerts"]["N'A PAS ETE TROUVE"][lang]
+         }`);
         output.log.push({
-          message: `LE NUMERO DE COMMANDE ${order} N'A PAS ETE TROUVE`,
+          message: `${
+            LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]
+          } ${order} ${
+            LANG["alerts"]["N'A PAS ETE TROUVE"][lang]
+          }`,
           type: "error",
         });
         output.finishedOrders.push({
@@ -203,18 +226,34 @@ const createScan = async (req, res) => {
         });
         error = true;
       } else {
-        log(logFile, `LE NUMERO DE COMMANDE ${order} EST TROUVE`);
+        log(logFile, `${
+          LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]
+        } ${order} ${
+          LANG["alerts"]["EST TROUVE"][lang]
+        }`);
         output.log.push({
-          message: `LE NUMERO DE COMMANDE ${order} EST TROUVE`,
+          message: `${
+            LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]
+          } ${order} ${
+            LANG["alerts"]["EST TROUVE"][lang]
+          }`,
           type: "info",
         });
 
         const success = createXmlFile(destination, order, value);
         if (!success) {
           createdOrder.status = "error";
-          log(logFile, `LE FICHIER ${order}.xml N'A PAS PU ETRE CREE`);
+          log(logFile, `${
+            LANG["alerts"]["LE FICHIER"][lang]
+          } ${order}.xml ${
+            LANG["alerts"]["N'A PAS PU ETRE CREE"][lang]
+          }`);
           output.log.push({
-            message: `LE FICHIER ${order}.xml N'A PAS PU ETRE CREE`,
+            message: `${
+              LANG["alerts"]["LE FICHIER"][lang]
+            } ${order}.xml ${
+              LANG["alerts"]["N'A PAS PU ETRE CREE"][lang]
+            }`,
             type: "error",
           });
           output.finishedOrders.push({
@@ -294,6 +333,7 @@ const createScan = async (req, res) => {
 };
 
 const getScan = async (req, res) => {
+const {lang} = req.body
   try {
     const scan = await prisma.scan.findFirst({
       where: {
@@ -324,12 +364,13 @@ const getScan = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "UNTERNAL ERROR",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };
 
 const getAllScans = async (req, res) => {
+  const {lang} = req.body
   try {
     let scans = await prisma.scan.findMany({
       orderBy: {
@@ -359,12 +400,13 @@ const getAllScans = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "UNTERNAL ERROR",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };
 
 const scheduleScan = async (req, res) => {
+  const {lang} = req.body
   let { source, destination, logDir, orders, userId, cron } = req.body;
 
   let output = {
@@ -376,7 +418,8 @@ const scheduleScan = async (req, res) => {
 
   if (!source || source == "") {
     output.log.push({
-      message: "VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE",
+      message:
+        LANG["alerts"]['"VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE"'][lang],
       type: "error",
     });
     res.json({
@@ -387,7 +430,8 @@ const scheduleScan = async (req, res) => {
   }
   if (!destination || destination == "") {
     output.log.push({
-      message: "VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION",
+      message:
+        LANG["alerts"]['"VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION"'][lang],
       type: "error",
     });
     res.json({
@@ -399,7 +443,7 @@ const scheduleScan = async (req, res) => {
 
   if (!isDirectory(source.trim())) {
     output.log.push({
-      message: "REPERTOIRE DE SOURCE INEXISTANT",
+      message: LANG["alerts"]["LE REPERTOIRE DE SOURCE N'EXISTE PAS"][lang],
       type: "error",
     });
     res.json({
@@ -421,7 +465,8 @@ const scheduleScan = async (req, res) => {
 
   if (!isDirectory(destination.trim())) {
     output.log.push({
-      message: "REPERTOIRE DE DESTINATION INEXISTANT",
+      message:
+        LANG["alerts"]["LE REPERTOIRE DE DESTINATION N'EXISTE PAS"][lang],
       type: "error",
     });
     res.json({
@@ -443,7 +488,10 @@ const scheduleScan = async (req, res) => {
 
   if (source === destination) {
     output.log.push({
-      message: "REPERTOIRE DE SOURCE ET DESTINATION SONT IDENTIQUES",
+      message:
+        LANG["alerts"][
+          "LE REPERTOIRE DE SOURCE ET DE DESTINATION SONT IDENTIQUES"
+        ][lang],
       type: "error",
     });
     res.json({
@@ -467,7 +515,7 @@ const scheduleScan = async (req, res) => {
   if (!logDir || logDir?.trim() == "") logDir = destination.trim();
   else if (!isDirectory(logDir.trim())) {
     output.log.push({
-      message: "DOSSIER DE LOG INEXISTANT",
+      message: LANG["alerts"]["LE REPERTOIRE DE LOG N'EXISTE PAS"][lang],
       type: "error",
     });
     res.json({
@@ -490,7 +538,7 @@ const scheduleScan = async (req, res) => {
   const logFile = createLogFile(logDir);
   if (!logFile) {
     output.log.push({
-      message: "ERREUR LORS DE LA CREATION DU FICHIER DE LOG",
+      message: LANG["alerts"]["LE REPERTOIRE DE LOG N'EXISTE PAS"][lang],
       type: "error",
     });
     res.json({
@@ -511,10 +559,10 @@ const scheduleScan = async (req, res) => {
     return;
   }
   output.log.push({
-    message: `DEMARRAGE DU SCAN`,
+    message: LANG["alerts"]["DEMARRAGE DU SCAN"][lang],
     type: "info",
   });
-  log(logFile, `DEMARRAGE DU SCAN`);
+  log(logFile, LANG["alerts"]["DEMARRAGE DU SCAN"][lang]);
   res.json({
     output,
     logFile,
@@ -528,6 +576,7 @@ const scheduleScan = async (req, res) => {
     userId,
     output,
     cron,
+    lang
   });
 
   worker.postMessage({

@@ -1,4 +1,5 @@
 import axios from "./axiosConfig";
+const lang = () => localStorage.getItem("ORSAY_LANG") || "en";
 
 export const createScan = async (
   source,
@@ -14,6 +15,7 @@ export const createScan = async (
       orders,
       logFile,
       userId,
+      lang: lang(),
     });
 
     return data;
@@ -63,6 +65,7 @@ export const scheduleScan = async (
       orders,
       logFile,
       userId,
+      lang: lang(),
     });
 
     return data;

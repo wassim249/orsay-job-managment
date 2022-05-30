@@ -4,6 +4,7 @@ const { searchForXmlFile } = require("./thread");
 const { extractLineFromXml, log, sendEmail } = require("./utils");
 const cron = require("node-cron");
 const moment = require("moment");
+const LANG = require("../../i18n/lang.json");
 
 const prisma = new PrismaClient();
 console.log("SCAN WORKER STARTED");
@@ -19,16 +20,26 @@ parentPort.on("message", async (data) => {
     userId,
     output,
     cron: cronExp,
+    lang,
   } = data;
 
   cron.schedule(cronExp, (date) => {
     if (errOccurred) {
       parentPort.postMessage({ status: "ERROR" });
-    } else scan(orders, logFile, source, destination, userId, output, cronExp);
+    } else
+      scan(orders, logFile, source, destination, userId, output, cronExp, lang);
   });
 });
 
-const scan = async (orders, logFile, source, destination, userId, output) => {
+const scan = async (
+  orders,
+  logFile,
+  source,
+  destination,
+  userId,
+  output,
+  lang
+) => {
   let createdOrders = [];
   let createdScan = null;
   const user = await prisma.user.findFirst({ where: { id: userId } });
@@ -38,18 +49,24 @@ const scan = async (orders, logFile, source, destination, userId, output) => {
       order,
       status: "success",
     };
-    log(logFile, `AU COURS DE RECHERCHE DE LA COMMANDE : ${order}`);
+    log(
+      logFile,
+      `${LANG["alerts"]["AU COURS DE RECHERCHE DE LA COMMANDE"][lang]} : ${order}`
+    );
     output.log.push({
-      message: `AU COURS DE RECHERCHE DE LA COMMANDE : ${order}`,
+      message: `${LANG["alerts"]["AU COURS DE RECHERCHE DE LA COMMANDE"][lang]} : ${order}`,
       type: "info",
     });
 
     const file = await searchForXmlFile(source, order);
     if (!file) {
       createdOrder.status = "error";
-      log(logFile, `LA COMMANDE ${order} N'A PAS ETE TROUVEE`);
+      log(
+        logFile,
+        `${LANG["alerts"]["LA COMMANDE"][lang]} ${order} ${LANG["alerts"]["N'A PAS ETE TROUVEE"][lang]}`
+      );
       output.log.push({
-        message: `LA COMMANDE ${order} N'A PAS ETE TROUVEE`,
+        message: `${LANG["alerts"]["LA COMMANDE"][lang]} ${order} ${LANG["alerts"]["N'A PAS ETE TROUVEE"][lang]}`,
         type: "error",
       });
 
@@ -81,9 +98,12 @@ const scan = async (orders, logFile, source, destination, userId, output) => {
 
       if (!value) {
         createdOrder.status = "error";
-        log(logFile, `LE NUMERO DE COMMANDE ${order} N'A PAS ETE TROUVE`);
+        log(
+          logFile,
+          `${LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]} ${order} ${LANG["alerts"]["N'A PAS ETE TROUVE"][lang]}`
+        );
         output.log.push({
-          message: `LE NUMERO DE COMMANDE ${order} N'A PAS ETE TROUVE`,
+          message: `${LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]} ${order} ${LANG["alerts"]["N'A PAS ETE TROUVE"][lang]}`,
           type: "error",
         });
         output.finishedOrders.push({
@@ -112,9 +132,12 @@ const scan = async (orders, logFile, source, destination, userId, output) => {
         const success = createXmlFile(destination, order, value);
         if (!success) {
           createdOrder.status = "error";
-          log(logFile, `LE FICHIER ${order}.xml N'A PAS PU ETRE CREE`);
+          log(
+            logFile,
+            `${LANG["alerts"]["LE FICHIER"][lang]} ${order}.xml ${LANG["alerts"]["N'A PAS ETE CREER"][lang]}`
+          );
           output.log.push({
-            message: `LE FICHIER ${order}.xml N'A PAS PU ETRE CREE`,
+            message: `${LANG["alerts"]["LE FICHIER"][lang]} ${order}.xml ${LANG["alerts"]["N'A PAS ETE CREER"][lang]}`,
             type: "error",
           });
           output.finishedOrders.push({
@@ -134,9 +157,12 @@ const scan = async (orders, logFile, source, destination, userId, output) => {
           });
           createdOrders.push(createdOrder);
         } else {
-          log(logFile, `LE FICHIER ${order}.xml A ETE CREE`);
+          log(
+            logFile,
+            `${LANG["alerts"]["LE FICHIER"][lang]} ${order}.xml ${LANG["alerts"]["A ETE CREE"][lang]}`
+          );
           output.log.push({
-            message: `LE FICHIER ${order}.xml A ETE CREE`,
+            message: `${LANG["alerts"]["LE FICHIER"][lang]} ${order}.xml ${LANG["alerts"]["A ETE CREE"][lang]}`,
             type: "info",
           });
           output.finishedOrders.push({

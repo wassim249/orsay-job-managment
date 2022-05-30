@@ -1,4 +1,5 @@
 import axios from "./axiosConfig";
+const lang = () => localStorage.getItem("ORSAY_LANG") || "en";
 
 export const getUsers = async (id) => {
   try {
@@ -16,7 +17,7 @@ export const getUsers = async (id) => {
 
 export const editUser = async (id, userData) => {
   try {
-    const { data } = await axios.put(`/user/${id}`, userData);
+    const { data } = await axios.put(`/user/${id}`, {...userData, lang: lang()});
     return data;
   } catch (error) {
     console.log(error);
@@ -26,7 +27,7 @@ export const editUser = async (id, userData) => {
 
 export const createUser = async (userData) => {
   try {
-    const { data } = await axios.post(`/user`, userData);
+    const { data } = await axios.post(`/user`, {...userData , lang: lang()});
     return data;
   } catch (error) {
     console.log(error);
