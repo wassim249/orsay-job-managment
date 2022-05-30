@@ -7,9 +7,14 @@ import cronstrue from "cronstrue";
 import { generateCron } from "../../utils/Utils";
 import { scheduleScan } from "../../services/scan";
 import { AlertContext } from "../../contexts/AlertContext";
+import LangContext from "../../contexts/LangContext";
+import LANG from "../../../../i18n/lang.json";
+import 'cronstrue/locales/fr';
+import 'cronstrue/locales/en';
 
 export const ScheduleScanPage = () => {
   const [user] = useContext(UserContext);
+  const [lang] = useContext(LangContext);
   const [times, setTimes] = useState({
     minutes: "*",
     hours: "*",
@@ -42,15 +47,7 @@ export const ScheduleScanPage = () => {
     "DEC",
   ];
 
-  const DAYS_OF_THEWEEK = [
-    "MONDAY",
-    "TUESDAY",
-    "WEDNESDAY",
-    "THURSDAY",
-    "FRIDAY",
-    "SATURDAY",
-    "SUNDAY",
-  ];
+  const DAYS_OF_THEWEEK = LANG["scheduleScan"]["DAYS_OF_THEWEEK"][lang];
 
   const handleSchedule = async () => {
     const cron = generateCron(repeatsChecked, repeats, times, exludeSunSat);
@@ -79,7 +76,9 @@ export const ScheduleScanPage = () => {
     try {
       return cronstrue.toString(
         generateCron(repeatsChecked, repeats, times, exludeSunSat, dayOfWeek)
-      );
+     ,{
+       locale : lang.toLowerCase()
+     } );
     } catch (error) {
       console.log(error);
       return "";
@@ -96,17 +95,19 @@ export const ScheduleScanPage = () => {
 
   return (
     <Layout>
-       {alertData && <AlertMessage />}
+      {alertData && <AlertMessage />}
       <h1 className="text-2xl text-secondary font-bold   flex items-center">
-        <RiScan2Fill size={40} color="#f88c6c" className="mr-2" /> Schedule a
-        Scan
+        <RiScan2Fill size={40} color="#f88c6c" className="mr-2" />{" "}
+        {LANG["scheduleScan"]["Schedule a Scan"][lang]}
       </h1>
 
       <div className="flex justify-between items-center mt-4 flex-wrap  ">
         <div>
-          <label className="text-sm text-secondary block mb-2">Minutes :</label>
+          <label className="text-sm text-secondary block mb-2">
+            {LANG["scheduleScan"]["Minute"][lang]}s :
+          </label>
           <select
-            placeholder="Minutes"
+            placeholder={`${LANG["scheduleScan"]["Minute"][lang]}s`}
             className=""
             onChange={(e) => {
               setTimes({ ...times, minutes: e.target.value });
@@ -120,9 +121,11 @@ export const ScheduleScanPage = () => {
           </select>
         </div>
         <div>
-          <label className="text-sm text-secondary block mb-2">Hours :</label>
+          <label className="text-sm text-secondary block mb-2">
+            {LANG["scheduleScan"]["Hour"][lang]}s :
+          </label>
           <select
-            placeholder="Minutes"
+            placeholder={`${LANG["scheduleScan"]["Hour"][lang]}s`}
             onChange={(e) => {
               setTimes({ ...times, hours: e.target.value });
             }}
@@ -135,10 +138,11 @@ export const ScheduleScanPage = () => {
           </select>
         </div>
         <div>
-          <label className="text-sm text-secondary block mb-2">Days :</label>
+          <label className="text-sm text-secondary block mb-2">
+            {LANG["scheduleScan"]["Day"][lang]}s :
+          </label>
           <select
-            placeholder="Minutes"
-            className=""
+            placeholder={`${LANG["scheduleScan"]["Day"][lang]}s`}
             onChange={(e) => {
               setTimes({ ...times, days: e.target.value });
             }}
@@ -151,9 +155,11 @@ export const ScheduleScanPage = () => {
           </select>
         </div>
         <div>
-          <label className="text-sm text-secondary block mb-2">Months :</label>
+          <label className="text-sm text-secondary block mb-2">
+            {LANG["scheduleScan"]["Month"][lang]}s :
+          </label>
           <select
-            placeholder="Minutes"
+            placeholder={`{LANG["scheduleScan"]["Month"][lang]}s`}
             onChange={(e) => {
               setTimes({ ...times, months: e.target.value });
             }}
@@ -177,7 +183,9 @@ export const ScheduleScanPage = () => {
               if (!e.target.checked) setRepeats(null);
             }}
           />
-          <span className="text-xl text-secondary">Repeats every</span>
+          <span className="text-xl text-secondary">
+            {LANG["scheduleScan"]["Repeats every"][lang]} :
+          </span>
         </div>
 
         <div className="grid grid-cols-3 gap-x-2 gap-y-4">
@@ -199,7 +207,7 @@ export const ScheduleScanPage = () => {
                 !repeatsChecked && "text-slate-400"
               }`}
             >
-              Minute
+              {LANG["scheduleScan"]["Minute"][lang]}
             </label>
           </div>
 
@@ -221,7 +229,7 @@ export const ScheduleScanPage = () => {
                 !repeatsChecked && "text-slate-400"
               }`}
             >
-              Hour
+              {LANG["scheduleScan"]["Hour"][lang]}
             </label>
           </div>
 
@@ -243,7 +251,7 @@ export const ScheduleScanPage = () => {
                 !repeatsChecked && "text-slate-400"
               }`}
             >
-              Day
+              {LANG["scheduleScan"]["Day"][lang]}
             </label>
           </div>
 
@@ -265,7 +273,7 @@ export const ScheduleScanPage = () => {
                 !repeatsChecked && "text-slate-400"
               }`}
             >
-              Month
+              {LANG["scheduleScan"]["Month"][lang]}
             </label>
           </div>
 
@@ -287,11 +295,11 @@ export const ScheduleScanPage = () => {
                 !repeatsChecked && "text-slate-400"
               }`}
             >
-              Day of the week :
+              {LANG["scheduleScan"]["Day of the week"][lang]} :
             </label>
             <select
               disabled={repeats == "dayOfwekk"}
-              placeholder="days of the week"
+              placeholder={`${LANG["scheduleScan"]["Day of the week"][lang]}`}
               onChange={(e) => {
                 setDayOfWeek(e.target.value);
               }}
@@ -313,12 +321,14 @@ export const ScheduleScanPage = () => {
             setExludeSunSat(e.target.checked);
           }}
         />
-        <span className="ml-2 text-sm">Exclude Sunday and Saturday</span>
+        <span className="ml-2 text-sm">{
+          LANG["scheduleScan"]["Exclude Sunday and Saturday"][lang]
+}</span>
       </div>
 
       <div className="bg-slate-700 w-full px-3 py-4 mt-6">
         <p className="text-slate-300 text-sm italic">
-          This scan will be executed :{cronToString()}
+          {LANG["scheduleScan"]["This scan will be executed"][lang]} {cronToString()}
         </p>
       </div>
 
@@ -328,7 +338,7 @@ export const ScheduleScanPage = () => {
         }}
         className="mt-8 bg-primary text-white font-bold py-2 w-full hover:bg-darkPrimary  "
       >
-        Schedule
+        {LANG["scheduleScan"]["Schedule"][lang]}
       </button>
     </Layout>
   );

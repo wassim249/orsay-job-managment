@@ -99,6 +99,68 @@
       "FR": "veuillez entrer au moins un numéro de commande"
     }
   },
+  "scheduleScan": {
+    "DAYS_OF_THEWEEK": {
+      "EN": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "FR": [
+        "Lundi",
+        "Mardi",
+        "Mercredi",
+        "Jeudi",
+        "Vendredi",
+        "Samedi",
+        "Dimanche"
+      ]
+    },
+    "Schedule a Scan": {
+      "EN": "Schedule a Scan",
+      "FR": "Planifier un scan"
+    },
+    "Hour": {
+      "EN": "Hour",
+      "FR": "Heure"
+    },
+    "Day": {
+      "EN": "Day",
+      "FR": "Jour"
+    },
+    "Month": {
+      "EN": "Month",
+      "FR": "Moi"
+    },
+    "Minute": {
+      "EN": "Minute",
+      "FR": "Minute"
+    },
+    "Repeats every": {
+      "EN": "Repeats every",
+      "FR": "Répéter chaque"
+    },
+    "Day of the week": {
+      "EN": "Day of the week",
+      "FR": "Jour de la semaine"
+    },
+    "Exclude Sunday and Saturday": {
+      "EN": "Exclude Sunday and Saturday",
+      "FR": "Exclure le dimanche et le samedi"
+    },
+    "This scan will be executed": {
+      "EN": "This scan will be executed",
+      "FR": "Ce scan sera exécuté"
+    },
+    "Schedule": {
+      "EN": "Schedule",
+      "FR": "Planifier"
+    }
+  },
   "scansList": {
     "Scans list": {
       "EN": "Scans list",
