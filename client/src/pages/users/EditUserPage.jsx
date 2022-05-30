@@ -6,10 +6,13 @@ import SquareLoader from "react-spinners/SquareLoader";
 import { editUser, getUsers } from "../../services/user";
 import { generatePassword } from "../../utils/Utils";
 import { AlertContext } from "../../contexts/AlertContext";
+import LANG from "../../../../i18n/lang.json";
+import LangContext from "../../contexts/LangContext";
 
 export const EditUserPage = () => {
   const { id: userID } = useParams();
   const [user] = useContext(UserContext);
+  const [lang] = useContext(LangContext);
   const [loading, setLoading] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(null);
   const [alertData, setAlertData] = useContext(AlertContext);
@@ -70,18 +73,19 @@ export const EditUserPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-           {alertData && <AlertMessage />}
+          {alertData && <AlertMessage />}
           <SquareLoader color="#f88c6c" loading={loading} size="20px" />
         </div>
       ) : (
         <>
           <span className="  font-bold text-2xl text-secondary">
-            Edit User #{userID}
+            {LANG["editUser"]["Edit User"][lang]} #{userID}
           </span>
           <form className="grid grid-cols-2 gap-5 mt-10  ">
             <div className="col-span-2">
               <label className="block text-secondary text-sm d mb-2">
-                First name : <span className="text-primary">*</span>
+                {LANG["createUser"]["First name"][lang]} :{" "}
+                <span className="text-primary">*</span>
               </label>
               <input
                 className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -89,7 +93,7 @@ export const EditUserPage = () => {
                 onChange={(e) =>
                   setFetchedUser({ ...fetchedUser, firstName: e.target.value })
                 }
-                placeholder="your firstname here ..."
+                placeholder="eg. John"
                 value={fetchedUser && fetchedUser.firstName}
                 required
               />
@@ -97,7 +101,8 @@ export const EditUserPage = () => {
 
             <div className="col-span-2">
               <label className="block text-secondary text-sm d mb-2">
-                Last name : <span className="text-primary">*</span>
+                {LANG["createUser"]["Last name"][lang]} :{" "}
+                <span className="text-primary">*</span>
               </label>
               <input
                 className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -105,7 +110,7 @@ export const EditUserPage = () => {
                 onChange={(e) =>
                   setFetchedUser({ ...fetchedUser, lastName: e.target.value })
                 }
-                placeholder="your firstname here ..."
+                placeholder="eg. Doe"
                 value={fetchedUser && fetchedUser.lastName}
                 required
               />
@@ -113,7 +118,8 @@ export const EditUserPage = () => {
 
             <div className="col-span-2">
               <label className="block text-secondary text-sm d mb-2">
-                Email adress : <span className="text-primary">*</span>
+                {LANG["createUser"]["Email adress"][lang]} :{" "}
+                <span className="text-primary">*</span>
               </label>
               <input
                 className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -121,7 +127,7 @@ export const EditUserPage = () => {
                 onChange={(e) =>
                   setFetchedUser({ ...fetchedUser, email: e.target.value })
                 }
-                placeholder="your firstname here ..."
+                placeholder="eg. john.doe@email.com"
                 value={fetchedUser && fetchedUser.email}
                 required
               />
@@ -137,19 +143,24 @@ export const EditUserPage = () => {
                 onChange={(e) =>
                   setFetchedUser({ ...fetchedUser, role: e.target.value })
                 }
-                placeholder="your firstname here ..."
                 value={fetchedUser && fetchedUser.role}
                 required
               >
-                <option value="admin">Admin</option>
-                <option value="scanner">Scanner</option>
-                <option value="viewer">Viewer</option>
+                <option value="admin">
+                  {LANG["common"]["roles"]["admin"][lang]}
+                </option>
+                <option value="scanner">
+                  {LANG["common"]["roles"]["scanner"][lang]}
+                </option>
+                <option value="viewer">
+                  {LANG["common"]["roles"]["viewer"][lang]}
+                </option>
               </select>
             </div>
 
             <div className="col-span-2 mt-4 mb-6">
               <label className="block text-secondary text-sm d mb-2">
-                Generate password :
+                {LANG["createUser"]["Generate password"][lang]} :
               </label>
               <div className="flex justify-between items-center w-full ">
                 <input
@@ -169,7 +180,7 @@ export const EditUserPage = () => {
                     setFetchedUser({ ...fetchedUser, password });
                   }}
                 >
-                  Generate
+                 {LANG["createUser"]["Generate"][lang]}
                 </button>
               </div>
             </div>
@@ -179,7 +190,7 @@ export const EditUserPage = () => {
                 onClick={handleUserUpdate}
                 className="bg-primary hover:bg-darkPrimary w-full text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
               >
-                Update
+                {LANG["editUser"]["Update"][lang]}
               </button>
             </div>
           </form>

@@ -308,6 +308,16 @@
       "FR": "Modifier"
     }
   },
+  "editUser": {
+    "Edit User": {
+      "EN": "Edit User",
+      "FR": "Modifier l'utilisateur"
+    },
+    "Update": {
+      "EN": "Update",
+      "FR": "Mettre à jour"
+    }
+  },
   "layout": {
     "Search Anything": {
       "EN": "Search Anything",
