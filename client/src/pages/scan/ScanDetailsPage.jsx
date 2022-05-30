@@ -10,9 +10,12 @@ import SquareLoader from "react-spinners/SquareLoader";
 import { RiScan2Fill } from "react-icons/ri";
 import { Scheduled } from "../../partials/Scheduled";
 import { Status } from "../../partials/Status";
+import LangContext from "../../contexts/LangContext";
+import LANG from "../../../../i18n/lang.json";
 
 export const ScanDetailsPage = () => {
   const [user] = useContext(UserContext);
+  const [lang] = useContext(LangContext);
   const { id } = useParams();
   const [scan, setScan] = useState(null);
   const [orders, setOrders] = useState([]);
@@ -74,7 +77,8 @@ export const ScanDetailsPage = () => {
                 }}
                 className="ml-2 text-sm   hover:cursor-pointer hover:underline"
               >
-                By : {scan && scan.user.firstName} {scan && scan.user.lastName}
+                {LANG["common"]["By"][lang]} : {scan && scan.user.firstName}{" "}
+                {scan && scan.user.lastName}
               </span>
             </div>
           </div>
@@ -82,7 +86,7 @@ export const ScanDetailsPage = () => {
           <div className="grid gap-10 grid-cols-2 mt-6">
             <div>
               <label className="block text-secondary text-sm d mb-2  ">
-                Source folder :
+                {LANG["createScan"]["source folder"][lang]} :
               </label>
               <span className="text-primary   font-bold">
                 {scan && scan.sourceFile}
@@ -91,7 +95,7 @@ export const ScanDetailsPage = () => {
 
             <div>
               <label className="block text-secondary text-sm d mb-2  ">
-                Destination folder :
+                {LANG["createScan"]["destination folder"][lang]} : :
               </label>
               <span className="text-primary   font-bold">
                 {scan && scan.destinationFile}
@@ -100,7 +104,7 @@ export const ScanDetailsPage = () => {
 
             <div className="col-span-2">
               <label className="block text-secondary text-sm d mb-2  ">
-                Log file :
+                {LANG["createScan"]["Log file location"][lang]} :
               </label>
               <span className="text-primary   font-bold">
                 {scan && scan.logFile}
@@ -109,7 +113,7 @@ export const ScanDetailsPage = () => {
 
             <div className="col-span-2">
               <label className="block text-secondary text-sm d mb-2  ">
-                Orders List :
+                {LANG["scanDetails"]["Orders List"][lang]} :
               </label>
               <div className="bg-slate-900 text-white p-2 text-sm   border-2 border-primary">
                 {orders &&

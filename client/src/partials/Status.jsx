@@ -1,5 +1,12 @@
+import { useContext } from "react";
+import LangContext from "../contexts/LangContext";
+import LANG  from '../../../i18n/lang.json'
+
 export const Status = ({ success = true, className = "", icon = false }) =>
-  icon ? (
+  {
+    const [lang] = useContext(LangContext);
+
+    return icon ? (
     <div
       className={`${
         success ? "bg-green-500" : "bg-red-500"
@@ -13,6 +20,6 @@ export const Status = ({ success = true, className = "", icon = false }) =>
         success ? "bg-green-500" : "bg-red-500"
       }  px-3 py-2 w-32 text-center text-white font-bold ${className}`}
     >
-      {success ? "Success" : "Failed"}
+      {success ? LANG['common']['succeed'][lang] : LANG['common']['failed'][lang]}
     </div>
-  );
+  );}

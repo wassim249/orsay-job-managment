@@ -161,6 +161,7 @@
       "FR": "Planifier"
     }
   },
+
   "scansList": {
     "Scans list": {
       "EN": "Scans list",
@@ -185,8 +186,25 @@
       "FR": "Affichage de"
     }
   },
-  "scanDetails": {},
+  "scanDetails": {
+    "Orders List": {
+      "EN": "Orders List",
+      "FR": "Liste des commandes"
+    }
+  },
   "common": {
+    "By": {
+      "EN": "By",
+      "FR": "Par"
+    },
+    "Not Scheduled": {
+      "EN": "Not Scheduled",
+      "FR": "Non planifié"
+    },
+    "Scheduled": {
+      "EN": "Scheduled",
+      "FR": "Planifié"
+    },
     "order": {
       "EN": "order",
       "FR": "commande"
