@@ -133,8 +133,8 @@ export const CreateScanPage = () => {
         <div className="flex flex-row items-end col-span-1">
           <button
             type="button"
-            onClick={() => {
-              addOrder();
+            onClick={e => {
+              addOrder(e);
             }}
             className="bg-primary text-white  sm:w-1/2 w-full px-2 py-2 font-bold  "
           >

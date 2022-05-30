@@ -47,7 +47,7 @@ export const OrdersListPage = () => {
             {searchValue.current && searchValue.current.value.trim() != ""
               ? searchedOrders.length
               : orders?.length} order
-            {orders?.length != 1 && "s"} number
+            {orders?.length > 1 && "s"} number
           </span>
 
           <div className="mt-4 flex items-center">
@@ -55,9 +55,6 @@ export const OrdersListPage = () => {
               type="search"
               ref={searchValue}
               placeholder="Search..."
-              onChange={(e) => {
-                console.log(searchValue.current.value);
-              }}
               className="  appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <button

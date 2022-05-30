@@ -74,5 +74,32 @@
       "EN": "please enter at least one order number",
       "FR": "veuillez entrer au moins un numéro de commande"
     }
+  },
+  "ordersList": {
+    "scanned orders numbers list": {
+      "EN": "Scanned orders numbers list",
+      "FR": "Liste des numéros de commande scannés"
+    },
+    "showing": {
+      "EN": "Showing",
+      "FR": "Affichage de"
+    }
+  },
+  "scanDetails" : {
+    
+  } ,
+  "common": {
+    "order": {
+      "EN": "order",
+      "FR": "commande"
+    },
+    "number": {
+      "EN": "number",
+      "FR": "numéro"
+    },
+    "search" : {
+      "EN": "Search",
+      "FR": "Rechercher"
+    }
   }
 }
