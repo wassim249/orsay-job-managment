@@ -186,9 +186,17 @@ const createScan = async (req, res) => {
       error = true;
     } else {
       createdOrder.file = file;
-      log(logFile, `LE FICHIER : ${file} EST TROUVE`);
+      log(logFile, `${
+        LANG["alerts"]["LE FICHIER"][lang]
+      } : ${file} ${
+        LANG["alerts"]["EST TROUVE"][lang]
+      }`);
       output.log.push({
-        message: `LE FICHIER : ${file} EST TROUVE`,
+        message: `${
+          LANG["alerts"]["LE FICHIER"][lang]
+        } : ${file} ${
+          LANG["alerts"]["EST TROUVE"][lang]
+        }`,
         type: "info",
       });
 
@@ -407,6 +415,7 @@ const getAllScans = async (req, res) => {
 
 const scheduleScan = async (req, res) => {
   const {lang} = req.body
+
   let { source, destination, logDir, orders, userId, cron } = req.body;
 
   let output = {
@@ -419,7 +428,7 @@ const scheduleScan = async (req, res) => {
   if (!source || source == "") {
     output.log.push({
       message:
-        LANG["alerts"]['"VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE"'][lang],
+        LANG["alerts"]['VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE'][lang],
       type: "error",
     });
     res.json({
@@ -431,7 +440,7 @@ const scheduleScan = async (req, res) => {
   if (!destination || destination == "") {
     output.log.push({
       message:
-        LANG["alerts"]['"VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION"'][lang],
+        LANG["alerts"]['VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION'][lang],
       type: "error",
     });
     res.json({
@@ -567,16 +576,16 @@ const scheduleScan = async (req, res) => {
     output,
     logFile,
   });
-
   const worker = new Worker("./helpers/scanWorker.js", {
     source,
     destination,
     logFile,
     orders,
     userId,
+    lang,
     output,
     cron,
-    lang
+   
   });
 
   worker.postMessage({

@@ -11,6 +11,7 @@ import { AlertContext } from "../../contexts/AlertContext";
 import LangContext from "../../contexts/LangContext";
 import LANG from "../../../../i18n/lang.json";
 import { Status } from "../../partials/Status";
+import { AlertMessage } from "../../partials/AlertMessage";
 
 export const ScansListPage = () => {
   const [user] = useContext(UserContext);

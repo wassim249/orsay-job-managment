@@ -1,7 +1,12 @@
 const { PrismaClient } = require("@prisma/client");
 const { parentPort } = require("worker_threads");
 const { searchForXmlFile } = require("./thread");
-const { extractLineFromXml, log, sendEmail } = require("./utils");
+const {
+  extractLineFromXml,
+  log,
+  sendEmail,
+  createXmlFile,
+} = require("./utils");
 const cron = require("node-cron");
 const moment = require("moment");
 const LANG = require("../../i18n/lang.json");
@@ -20,14 +25,13 @@ parentPort.on("message", async (data) => {
     userId,
     output,
     cron: cronExp,
-    lang,
+    lang: lg,
   } = data;
-
+  let lang = lg || "EN";
   cron.schedule(cronExp, (date) => {
     if (errOccurred) {
       parentPort.postMessage({ status: "ERROR" });
-    } else
-      scan(orders, logFile, source, destination, userId, output, cronExp, lang);
+    } else scan(orders, logFile, source, destination, userId, output, lang);
   });
 });
 
@@ -40,6 +44,7 @@ const scan = async (
   output,
   lang
 ) => {
+  console.log(lang);
   let createdOrders = [];
   let createdScan = null;
   const user = await prisma.user.findFirst({ where: { id: userId } });
@@ -88,9 +93,12 @@ const scan = async (
       });
     } else {
       createdOrder.file = file;
-      log(logFile, `LE FICHIER : ${file} EST TROUVE`);
+      log(
+        logFile,
+        `${LANG["alerts"]["LE FICHIER"][lang]} : ${file} ${LANG["alerts"]["EST TROUVE"][lang]}`
+      );
       output.log.push({
-        message: `LE FICHIER : ${file} EST TROUVE`,
+        message: `${LANG["alerts"]["LE FICHIER"][lang]} : ${file} ${LANG["alerts"]["EST TROUVE"][lang]}`,
         type: "info",
       });
 
@@ -123,9 +131,12 @@ const scan = async (
         });
         createdOrders.push(createdOrder);
       } else {
-        log(logFile, `LE NUMERO DE COMMANDE ${order} EST TROUVE`);
+        log(
+          logFile,
+          `${LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]} ${order} ${LANG["alerts"]["EST TROUVE"][lang]}`
+        );
         output.log.push({
-          message: `LE NUMERO DE COMMANDE ${order} EST TROUVE`,
+          message: `${LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]} ${order} ${LANG["alerts"]["EST TROUVE"][lang]}`,
           type: "info",
         });
 

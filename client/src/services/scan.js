@@ -27,7 +27,9 @@ export const createScan = async (
 
 export const getScan = async (id) => {
   try {
-    const { data } = await axios.get(`/scan/${id}`);
+    const { data } = await axios.post(`/scan/${id}`, {
+      lang: lang(),
+    });
     return data;
   } catch (error) {
     console.log(error);
@@ -35,13 +37,12 @@ export const getScan = async (id) => {
   }
 };
 
-export const getScans = async (userId) => {
+export const getScans = async () => {
   try {
-    if (userId) {
-      const { data } = await axios.get(`/scanbyuser/${userId}`);
-      return data;
-    }
-    const { data } = await axios.get(`/scan`);
+ 
+    const { data } = await axios.post(`/scan`,{
+      lang: lang(),
+    });
     return data;
   } catch (error) {
     console.log(error);

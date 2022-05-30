@@ -472,6 +472,11 @@
     }
   },
   "alerts": {
+    "A ETE CREE": {
+      "EN": "HAS BEEN CREATED",
+      "FR": "A ETE CREE"
+    },
+    
     "UNTERNAL ERROR": {
       "EN": "UNTERNAL ERROR",
       "FR": "ERREUR INTERNE"

@@ -8,7 +8,7 @@ const router = require("express").Router();
 
 router.post("/create", createScan);
 router.post("/schedule", scheduleScan);
-router.get("/:id", getScan);
-router.get("/", getAllScans);
+router.post("/:id", getScan);
+router.post("/", getAllScans);
 
 module.exports = router;
