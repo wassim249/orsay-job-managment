@@ -1,5 +1,4 @@
 const LANG = require("../../i18n/lang.json");
-
 const prisma = require("../prisma/config");
 const { searchForXmlFile } = require("../helpers/thread");
 const {

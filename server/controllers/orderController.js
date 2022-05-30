@@ -1,8 +1,9 @@
 const { PrismaClient } = require("@prisma/client");
-
+const LANG = require("../../i18n/lang.json");
 const prisma = new PrismaClient();
 
-const getAllOrders = async (_, res) => {
+const getAllOrders = async (req, res) => {
+  const { lang } = req.body;
   try {
     const orders = await prisma.orderNumber.findMany({
       orderBy: {
@@ -22,7 +23,7 @@ const getAllOrders = async (_, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "UNTERNAL ERROR",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };

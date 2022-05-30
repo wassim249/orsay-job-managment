@@ -1,10 +1,13 @@
 const { PrismaClient } = require("@prisma/client");
 const moment = require("moment");
+const LANG = require("../../i18n/lang.json");
 
 const prisma = new PrismaClient({
   //   log: ["query", "info", "warn", "error"],
 });
 const searchForScans = async (req, res) => {
+  const { lang } = req.body;
+
   try {
     const { searchValue, filter } = req.body;
     console.log(req.body);
@@ -35,7 +38,6 @@ const searchForScans = async (req, res) => {
         const log = JSON.parse(scan.log);
         for (let i = 0; i < log.length; i++)
           if (log[i].type === "error") {
-            console.log(log[i], "hna", scan.id);
             return true;
           }
         console.log(scan.id);
@@ -49,8 +51,6 @@ const searchForScans = async (req, res) => {
           if (log[i].type === "error") {
             return false;
           }
-
-        console.log(scan.id);
         return true;
       });
 
@@ -58,12 +58,14 @@ const searchForScans = async (req, res) => {
   } catch (e) {
     console.log(e);
     res.json({
-      message: "Internal Server Error",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };
 
 const searchForOrders = async (req, res) => {
+  const { lang } = req.body;
+
   try {
     const { searchValue, filter } = req.body;
     console.log(req.body);
@@ -95,7 +97,7 @@ const searchForOrders = async (req, res) => {
   } catch (e) {
     console.log(e);
     res.json({
-      message: "Internal Server Error",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };

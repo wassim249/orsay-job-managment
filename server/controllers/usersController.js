@@ -1,7 +1,10 @@
 const prisma = require("../prisma/config");
 const { sendEmail } = require("../helpers/utils");
+const LANG = require("../../i18n/lang.json");
 
 const getAllUsers = async (req, res) => {
+  const { lang } = req.body;
+
   try {
     const users = await prisma.user.findMany({
       where: {
@@ -19,7 +22,7 @@ const getAllUsers = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "UNTERNAL ERROR",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };
@@ -47,6 +50,8 @@ const getUser = async (req, res) => {
 };
 
 const editUser = async (req, res) => {
+  const { lang } = req.body;
+
   try {
     const user = await prisma.user.update({
       where: {
@@ -68,12 +73,14 @@ const editUser = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "UNTERNAL ERROR",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };
 
 const createUser = async (req, res) => {
+  const { lang } = req.body;
+
   try {
     // check if email is already in use
     const user = await prisma.user.findFirst({
@@ -83,7 +90,7 @@ const createUser = async (req, res) => {
     });
     if (user)
       res.json({
-        message: "Email already in use",
+        message: LANG["alerts"]["Email already in use"][lang],
       });
     else {
       const newUser = await prisma.user.create({
@@ -104,7 +111,7 @@ const createUser = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "UNTERNAL ERROR",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };

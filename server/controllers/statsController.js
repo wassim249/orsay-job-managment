@@ -3,8 +3,10 @@ const moment = require("moment");
 const prisma = new PrismaClient({
   // log: ["query", "info", "warn", "error"],
 });
+const LANG = require("../../i18n/lang.json");
 
 const successVsFailure = async (req, res) => {
+  const { lang } = req.body;
   try {
     let { range } = req.body;
 
@@ -61,12 +63,14 @@ const successVsFailure = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "UNTERNAL ERROR",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };
 
 const getScanInfo = async (req, res) => {
+  const { lang } = req.body;
+
   try {
     const total = await prisma.scan.count();
     const total7Days =
@@ -86,12 +90,14 @@ const getScanInfo = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "UNTERNAL ERROR",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };
 
 const failedReason = async (req, res) => {
+  const { lang } = req.body;
+
   try {
     let { range } = req.body;
     let failedScans = null;
@@ -172,7 +178,7 @@ const failedReason = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "UNTERNAL ERROR",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };
@@ -243,7 +249,7 @@ const newUsers = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.json({
-      message: "UNTERNAL ERROR",
+      message: LANG["alerts"]["UNTERNAL ERROR"][lang],
     });
   }
 };
