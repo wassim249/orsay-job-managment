@@ -337,18 +337,18 @@
       "EN": "Oldest to newest",
       "FR": "Plus ancien à plus récent"
     },
-    "Scheduled" : {
+    "Scheduled": {
       "EN": "Scheduled",
       "FR": "Planifié"
-    } ,
-    "Clear" : {
+    },
+    "Clear": {
       "EN": "Clear",
       "FR": "Effacer"
-    } ,
-    "Apply" : {
+    },
+    "Apply": {
       "EN": "Apply",
       "FR": "Appliquer"
-    } ,
+    },
     "Newest to oldest": {
       "EN": "Newest to oldest",
       "FR": "Plus récent à plus ancien"
@@ -392,6 +392,10 @@
     "Enter a search term...": {
       "EN": "Enter a search term...",
       "FR": "Entrez un terme de recherche..."
+    },
+    "No results found": {
+      "EN": "No results found",
+      "FR": "Aucun résultat trouvé"
     }
   },
   "layout": {

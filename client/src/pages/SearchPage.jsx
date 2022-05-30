@@ -202,7 +202,9 @@ export const SearchPage = () => {
                       </tbody>
                     </table>
                   ) : (
-                    <span>No results found</span>
+                    <span>
+                      {LANG["search"]["No results found"][lang]}
+                    </span>
                   )}
                 </>
               )}
