@@ -2,101 +2,125 @@
   "home": {
     "good morning": {
       "EN": "Good morning",
-      "FR": "Bonjour"
+      "FR": "Bonjour",
+      "DE": "Guten Morgen"
     },
     "good afternoon": {
       "EN": "Good afternoon",
-      "FR": "Bon après-midi"
+      "FR": "Bon après-midi",
+      "DE": "Guten Nachmittag"
     },
     "good evening": {
       "EN": "Good evening",
-      "FR": "Bonsoir"
+      "FR": "Bonsoir",
+      "DE": "Guten Abend"
     },
     "last connection": {
       "EN": "Last connection",
-      "FR": "Dernière connexion"
+      "FR": "Dernière connexion",
+      "DE": "Letzte Verbindung"
     },
     "Total scans": {
       "EN": "Total scans",
-      "FR": "Total des scans"
+      "FR": "Total des scans",
+      "DE": "Gesamte Scans"
     },
     "Total scan in the past 7 days": {
       "EN": "Total scan in the past 7 days",
-      "FR": "Total des scans dans les 7 derniers jours"
+      "FR": "Total des scans dans les 7 derniers jours",
+      "DE": "Gesamte Scans in den letzten 7 Tagen"
     },
     "Latest scan": {
       "EN": "Latest scan",
-      "FR": "Dernier scan"
+      "FR": "Dernier scan",
+      "DE": "Letzter Scan"
     },
     "New users": {
       "EN": "New users",
-      "FR": "Nouveaux utilisateurs"
+      "FR": "Nouveaux utilisateurs",
+      "DE": "Neue Benutzer"
     },
     "Succeded scans vs failed scans (over time)": {
       "EN": "Succeded scans vs failed scans (over time)",
-      "FR": "Scans réussis vs échoués (en temps)"
+      "FR": "Scans réussis vs échoués (en temps)",
+      "DE": "Erfolgreiche Scans vs fehlgeschlagene Scans (über Zeit)"
     },
     "Reason for Failed scans": {
       "EN": "Reason for Failed scans",
-      "FR": "Raison des scans échoués"
+      "FR": "Raison des scans échoués",
+      "DE": "Grund für fehlgeschlagene Scans"
     }
   },
   "createScan": {
     "create a new scan": {
       "EN": "Create a new scan",
-      "FR": "Créer un nouveau scan"
+      "FR": "Créer un nouveau scan",
+      "DE": "Erstelle einen neuen Scan"
     },
     "source folder": {
       "EN": "Source folder",
-      "FR": "Dossier source"
+      "FR": "Dossier source",
+      "DE": "Quellordner"
     },
     "c:/folder/...": {
       "EN": "c:/folder/...",
-      "FR": "c:/dossier/..."
+      "FR": "c:/dossier/...",
+      "DE": "c:/ordner/..."
     },
     "destination folder": {
       "EN": "Destination folder",
-      "FR": "Dossier destination"
+      "FR": "Dossier destination",
+      "DE": "Zielordner"
     },
     "Order number": {
       "EN": "Order number",
-      "FR": "Numéro de commande"
+      "FR": "Numéro de commande",
+      "DE": "Auftragsnummer"
     },
     "add": {
       "EN": "Add",
-      "FR": "Ajouter"
+      "FR": "Ajouter",
+      "DE": "Hinzufügen"
     },
     "Log file location": {
       "EN": "Log file location",
-      "FR": "Emplacement du fichier de log"
+      "FR": "Emplacement du fichier de log",
+      "DE": "Log Datei Ort"
     },
     "default": {
       "EN": "default",
-      "FR": "défaut"
+      "FR": "défaut",
+      "DE": "Standard"
     },
     "create": {
       "EN": "Create",
-      "FR": "Créer"
+      "FR": "Créer",
+      "DE": "Erstellen"
     },
     "schedule": {
       "EN": "Schedule",
-      "FR": "Planifier"
+      "FR": "Planifier",
+      "DE": "Planen"
     },
     "Order numbers list is empty": {
       "EN": "Order numbers list is empty",
-      "FR": "La liste des numéros de commande est vide"
+      "FR": "La liste des numéros de commande est vide",
+      "DE": "Die Auftragsnummern Liste ist leer"
     },
     "please enter destination folder": {
       "EN": "Please enter destination folder",
-      "FR": "veuillez entrer le dossier de destination"
+      "FR": "veuillez entrer le dossier de destination",
+      "DE": "Bitte geben Sie den Zielordner ein"
     },
     "please enter source folder": {
       "EN": "Please enter source folder",
-      "FR": "veuillez entrer le dossier source"
+      "FR": "veuillez entrer le dossier source",
+      "DE": "Bitte geben Sie den Quellordner ein"
     },
     "please enter at least one order number": {
       "EN": "please enter at least one order number",
-      "FR": "veuillez entrer au moins un numéro de commande"
+      "FR": "veuillez entrer au moins un numéro de commande",
+      "DE": "Bitte geben Sie mindestens eine Auftragsnummer ein"
     }
   },
   "scheduleScan": {
@@ -118,476 +142,595 @@
         "Vendredi",
         "Samedi",
         "Dimanche"
+      ],
+      "DE": [
+        "Montag",
+        "Dienstag",
+        "Mittwoch",
+        "Donnerstag",
+        "Freitag",
+        "Samstag",
+        "Sonntag"
       ]
     },
     "Schedule a Scan": {
       "EN": "Schedule a Scan",
-      "FR": "Planifier un scan"
+      "FR": "Planifier un scan",
+      "DE": "Scan planen"
     },
     "Hour": {
       "EN": "Hour",
-      "FR": "Heure"
+      "FR": "Heure",
+      "DE": "Stunde"
     },
     "Day": {
       "EN": "Day",
-      "FR": "Jour"
+      "FR": "Jour",
+      "DE": "Tag"
     },
     "Month": {
       "EN": "Month",
-      "FR": "Moi"
+      "FR": "Moi",
+      "DE": "Monat"
     },
     "Minute": {
       "EN": "Minute",
-      "FR": "Minute"
+      "FR": "Minute",
+      "DE": "Minute"
     },
     "Repeats every": {
       "EN": "Repeats every",
-      "FR": "Répéter chaque"
+      "FR": "Répéter chaque",
+      "DE": "Wiederholt alle"
     },
     "Day of the week": {
       "EN": "Day of the week",
-      "FR": "Jour de la semaine"
+      "FR": "Jour de la semaine",
+      "DE": "Wochentag"
     },
     "Exclude Sunday and Saturday": {
       "EN": "Exclude Sunday and Saturday",
-      "FR": "Exclure le dimanche et le samedi"
+      "FR": "Exclure le dimanche et le samedi",
+      "DE": "Ausschließen Sonntag und Samstag"
     },
     "This scan will be executed": {
       "EN": "This scan will be executed",
-      "FR": "Ce scan sera exécuté"
+      "FR": "Ce scan sera exécuté",
+      "DE": "Dieser Scan wird ausgeführt"
     },
     "Schedule": {
       "EN": "Schedule",
-      "FR": "Planifier"
+      "FR": "Planifier",
+      "DE": "Planen"
     }
   },
 
   "scansList": {
     "Scans list": {
       "EN": "Scans list",
-      "FR": "Liste des scans"
+      "FR": "Liste des scans",
+      "DE": "Scans Liste"
     },
     "Create scan": {
       "EN": "Create scan",
-      "FR": "Créer un scan"
+      "FR": "Créer un scan",
+      "DE": "Scan erstellen"
     },
     "Scanned orders": {
       "EN": "Scanned orders",
-      "FR": "Commandes scannées"
+      "FR": "Commandes scannées",
+      "DE": "Scannierte Aufträge"
     }
   },
   "ordersList": {
     "See more": {
       "EN": "See more",
-      "FR": "Voir plus"
+      "FR": "Voir plus",
+      "DE": "Mehr sehen"
     },
     "scanned orders numbers list": {
       "EN": "Scanned orders numbers list",
-      "FR": "Liste des numéros de commande scannés"
+      "FR": "Liste des numéros de commande scannés",
+      "DE": "Scannierte Auftragsnummern Liste"
     },
     "showing": {
       "EN": "Showing",
-      "FR": "Affichage de"
+      "FR": "Affichage de",
+      "DE": "Anzeige"
     },
     "Search": {
       "EN": "Search",
-      "FR": "Rechercher"
+      "FR": "Rechercher",
+      "DE": "Suche"
     }
   },
   "scanDetails": {
     "Orders List": {
       "EN": "Orders List",
-      "FR": "Liste des commandes"
+      "FR": "Liste des commandes",
+      "DE": "Auftragsliste"
     }
   },
   "createUser": {
     "First name": {
       "EN": "First name",
-      "FR": "Prénom"
+      "FR": "Prénom",
+      "DE": "Vorname"
     },
     "Last name": {
       "EN": "Last name",
-      "FR": "Nom"
+      "FR": "Nom",
+      "DE": "Nachname"
     },
     "Email adress": {
       "EN": "Email adress",
-      "FR": "Adresse email"
+      "FR": "Adresse email",
+      "DE": "E-Mail Adresse"
     },
     "Generate password": {
       "EN": "Generate password",
-      "FR": "Générer un mot de passe"
+      "FR": "Générer un mot de passe",
+      "DE": "Passwort generieren"
     },
     "Generate": {
       "EN": "Generate",
-      "FR": "Générer"
+      "FR": "Générer",
+      "DE": "Generieren"
     },
     "Create": {
       "EN": "Create",
-      "FR": "Créer"
+      "FR": "Créer",
+      "DE": "Erstellen"
     }
   },
   "common": {
     "Never": {
       "EN": "Never",
-      "FR": "Jamais"
+      "FR": "Jamais",
+      "DE": "Nie"
     },
     "File": {
       "EN": "File",
-      "FR": "Fichier"
+      "FR": "Fichier",
+      "DE": "Datei"
     },
     "By": {
       "EN": "By",
-      "FR": "Par"
+      "FR": "Par",
+      "DE": "Von"
     },
     "Not Scheduled": {
       "EN": "Not Scheduled",
-      "FR": "Non planifié"
+      "FR": "Non planifié",
+      "DE": "Nicht geplant"
     },
     "Scheduled": {
       "EN": "Scheduled",
-      "FR": "Planifié"
+      "FR": "Planifié",
+      "DE": "Geplant"
     },
     "order": {
       "EN": "order",
-      "FR": "commande"
+      "FR": "commande",
+      "DE": "Auftrag"
     },
     "number": {
       "EN": "number",
-      "FR": "numéro"
+      "FR": "numéro",
+      "DE": "Nummer"
     },
     "search": {
       "EN": "Search",
-      "FR": "Rechercher"
+      "FR": "Rechercher",
+      "DE": "Suche"
     },
     "roles": {
       "scanner": {
         "EN": "Scanner",
-        "FR": "Scanneur"
+        "FR": "Scanneur",
+        "DE": "Scanner"
       },
       "admin": {
         "EN": "Admin",
-        "FR": "Administrateur"
+        "FR": "Administrateur",
+        "DE": "Administrator"
       },
       "viewer": {
         "EN": "Viewer",
-        "FR": "Visionneur"
+        "FR": "Visionneur",
+        "DE": "Betrachter"
       }
     },
     "view": {
       "EN": "view",
-      "FR": "Voire"
+      "FR": "Voire",
+      "DE": "Anzeigen"
     },
     "succeed": {
       "EN": "Succeed",
-      "FR": "Réussi"
+      "FR": "Réussi",
+      "DE": "Erfolgreich"
     },
     "failed": {
       "EN": "Failed",
-      "FR": "Échoué"
+      "FR": "Échoué",
+      "DE": "Fehlgeschlagen"
     }
   },
   "usersList": {
     "Users list": {
       "EN": "Users list",
-      "FR": "Liste des utilisateurs"
+      "FR": "Liste des utilisateurs",
+      "DE": "Benutzerliste"
     },
     "Create user": {
       "EN": "Create user",
-      "FR": "Créer un utilisateur"
+      "FR": "Créer un utilisateur",
+      "DE": "Benutzer erstellen"
     },
     "Full name": {
       "EN": "Full name",
-      "FR": "Nom complet"
+      "FR": "Nom complet",
+      "DE": "Vollständiger Name"
     },
     "last connection": {
       "EN": "last connection",
-      "FR": "dernière connexion"
+      "FR": "dernière connexion",
+      "DE": "letzte Verbindung"
     },
     "Edit": {
       "EN": "Edit",
-      "FR": "Modifier"
+      "FR": "Modifier",
+      "DE": "Bearbeiten"
     }
   },
   "editUser": {
     "Edit User": {
       "EN": "Edit User",
-      "FR": "Modifier l'utilisateur"
+      "FR": "Modifier l'utilisateur",
+      "DE": "Benutzer bearbeiten"
     },
     "Update": {
       "EN": "Update",
-      "FR": "Mettre à jour"
+      "FR": "Mettre à jour",
+      "DE": "Aktualisieren"
     }
   },
   "404": {
     "Page not found": {
       "EN": "Page not found",
-      "FR": "Page non trouvée"
+      "FR": "Page non trouvée",
+      "DE": "Seite nicht gefunden"
     }
   },
   "search": {
     "Search for a scan or order number": {
       "EN": "Search for a scan or order number",
-      "FR": "Rechercher un scan ou un numéro de commande"
+      "FR": "Rechercher un scan ou un numéro de commande",
+      "DE": "Suche nach einem Scan oder Auftragsnummer"
     },
     "Search": {
       "EN": "Search",
-      "FR": "Rechercher"
+      "FR": "Rechercher",
+      "DE": "Suche"
     },
     "Oldest to newest": {
       "EN": "Oldest to newest",
-      "FR": "Plus ancien à plus récent"
+      "FR": "Plus ancien à plus récent",
+      "DE": "Älteste zu neuesten"
     },
     "Scheduled": {
       "EN": "Scheduled",
-      "FR": "Planifié"
+      "FR": "Planifié",
+      "DE": "Geplant"
     },
     "Clear": {
       "EN": "Clear",
-      "FR": "Effacer"
+      "FR": "Effacer",
+      "DE": "Löschen"
     },
     "Apply": {
       "EN": "Apply",
-      "FR": "Appliquer"
+      "FR": "Appliquer",
+      "DE": "Anwenden"
     },
     "Newest to oldest": {
       "EN": "Newest to oldest",
-      "FR": "Plus récent à plus ancien"
+      "FR": "Plus récent à plus ancien",
+      "DE": "Neueste zu ältesten"
     },
     "A-Z": {
       "EN": "A to Z",
-      "FR": "De A à Z"
+      "FR": "De A à Z",
+      "DE": "A bis Z"
     },
     "Z-A": {
       "EN": "Z to A",
-      "FR": "De Z à A"
+      "FR": "De Z à A",
+      "DE": "Z bis A"
     },
     "Scans": {
       "EN": "Scans",
-      "FR": "Scans"
+      "FR": "Scans",
+      "DE": "Scans"
     },
     "Orders": {
       "EN": "Orders",
-      "FR": "Commandes"
+      "FR": "Commandes",
+      "DE": "Aufträge"
     },
     "Filters": {
       "EN": "Filters",
-      "FR": "Filtres"
+      "FR": "Filtres",
+      "DE": "Filter"
     },
     "Last 7 days": {
       "EN": "Last 7 days",
-      "FR": "Les 7 derniers jours"
+      "FR": "Les 7 derniers jours",
+      "DE": "Letzte 7 Tage"
     },
     "Last 30 days": {
       "EN": "Last 30 days",
-      "FR": "Les 30 derniers jours"
+      "FR": "Les 30 derniers jours",
+      "DE": "Letzte 30 Tage"
     },
     "Showing result for": {
       "EN": "Showing result for",
-      "FR": "Affichage de"
+      "FR": "Affichage de",
+      "DE": "Anzeige für"
     },
     "result": {
       "EN": "result",
-      "FR": "résultat"
+      "FR": "résultat",
+      "DE": "Ergebnis"
     },
     "Enter a search term...": {
       "EN": "Enter a search term...",
-      "FR": "Entrez un terme de recherche..."
+      "FR": "Entrez un terme de recherche...",
+      "DE": "Geben Sie einen Suchbegriff ein..."
     },
     "No results found": {
       "EN": "No results found",
-      "FR": "Aucun résultat trouvé"
+      "FR": "Aucun résultat trouvé",
+      "DE": "Keine Ergebnisse gefunden"
     }
   },
   "layout": {
     "Search Anything": {
       "EN": "Search Anything",
-      "FR": "Rechercher quelque chose"
+      "FR": "Rechercher quelque chose",
+      "DE": "Suche"
     },
 
     "Search for a scan or an order number": {
       "EN": "Search for a scan or an order number",
-      "FR": "Rechercher un scan ou un numéro de commande"
+      "FR": "Rechercher un scan ou un numéro de commande",
+      "DE": "Suche nach einem Scan oder Auftragsnummer"
     },
     "Recent searches": {
       "EN": "Recent searches",
-      "FR": "Recherches récentes"
+      "FR": "Recherches récentes",
+      "DE": "Letzte Suche"
     },
     "CLEAR": {
       "EN": "CLEAR",
-      "FR": "EFFACER"
+      "FR": "EFFACER",
+      "DE": "LÖSCHEN"
     },
     "Profile": {
       "EN": "Profile",
-      "FR": "Profil"
+      "FR": "Profil",
+      "DE": "Profil"
     },
     "Sign Out": {
       "EN": "Sign Out",
-      "FR": "Déconnexion"
+      "FR": "Déconnexion",
+      "DE": "Abmelden"
     },
     "Home": {
       "EN": "Home",
-      "FR": "Accueil"
+      "FR": "Accueil",
+      "DE": "Startseite"
     },
     "Scans": {
       "EN": "Scans",
-      "FR": "Scans"
+      "FR": "Scans",
+      "DE": "Scans"
     },
     "Orders": {
       "EN": "Orders",
-      "FR": "Commandes"
+      "FR": "Commandes",
+      "DE": "Aufträge"
     },
     "Users": {
       "EN": "Users",
-      "FR": "Utilisateurs"
+      "FR": "Utilisateurs",
+      "DE": "Benutzer"
     },
     "Search": {
       "EN": "Search",
-      "FR": "Rechercher"
+      "FR": "Rechercher",
+      "DE": "Suche"
     }
   },
   "profile": {
     "User": {
       "EN": "User",
-      "FR": "Utilisateur"
+      "FR": "Utilisateur",
+      "DE": "Benutzer"
     },
     "Your profile": {
       "EN": "Your profile",
-      "FR": "Votre profil"
+      "FR": "Votre profil",
+      "DE": "Ihr Profil"
     },
     "First name": {
       "EN": "First name",
-      "FR": "Prénom"
+      "FR": "Prénom",
+      "DE": "Vorname"
     },
     "Last name": {
       "EN": "Last name",
-      "FR": "Nom"
+      "FR": "Nom",
+      "DE": "Nachname"
     },
     "Email adress": {
       "EN": "Email adress",
-      "FR": "Adresse email"
+      "FR": "Adresse email",
+      "DE": "E-Mail Adresse"
     },
     "Latest scans": {
       "EN": "Latest scans",
-      "FR": "Derniers scans"
+      "FR": "Derniers scans",
+      "DE": "Letzte Scans"
     }
   },
   "alerts": {
     "Email already in use": {
       "EN": "Email already in use",
-      "FR": "Email déjà utilisé"
+      "FR": "Email déjà utilisé",
+      "DE": "Email bereits in Verwendung"
     },
     "A ETE CREE": {
       "EN": "HAS BEEN CREATED",
-      "FR": "A ETE CREE" 
+      "FR": "A ETE CREE",
+      "DE": "WURDE ERSTELLT"
     },
 
     "UNTERNAL ERROR": {
       "EN": "UNTERNAL ERROR",
-      "FR": "ERREUR INTERNE"
+      "FR": "ERREUR INTERNE",
+      "DE": "INTERNE FEHLER"
     },
     "VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE": {
       "EN": "PLEASE CHOOSE A SOURCE DIRECTORY",
-      "FR": "VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE"
+      "FR": "VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE",
+      "DE": "BENUTZEN SIE BIS ZUM DATEIENABGLEICH EINEN REPERTOIRE"
     },
     "VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION": {
       "EN": "PLEASE CHOOSE A DESTINATION DIRECTORY",
-      "FR": "VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION"
+      "FR": "VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION",
+      "DE": "BENUTZEN SIE BIS ZUM DATEIENABGLEICH EINEN REPERTOIRE"
     },
     "REPERTOIRE DE SOURCE INEXISTANT": {
       "EN": "SOURCE DIRECTORY DOES NOT EXIST",
-      "FR": "REPERTOIRE DE SOURCE INEXISTANT"
+      "FR": "REPERTOIRE DE SOURCE INEXISTANT",
+      "DE": "QUELLENVERZEICHNIS EXISTIERT NICHT"
     },
     "REPERTOIRE DE DESTINATION INEXISTANT": {
       "EN": "DESTINATION DIRECTORY DOES NOT EXIST",
-      "FR": "REPERTOIRE DE DESTINATION INEXISTANT"
+      "FR": "REPERTOIRE DE DESTINATION INEXISTANT",
+      "DE": "ZIELVERZEICHNIS EXISTIERT NICHT"
     },
     "REPERTOIRE DE SOURCE ET DESTINATION SONT IDENTIQUES": {
       "EN": "SOURCE AND DESTINATION DIRECTORIES ARE THE SAME",
-      "FR": "REPERTOIRE DE SOURCE ET DESTINATION SONT IDENTIQUES"
+      "FR": "REPERTOIRE DE SOURCE ET DESTINATION SONT IDENTIQUES",
+      "DE": "QUELLENVERZEICHNIS UND ZIELVERZEICHNIS SIND DAS SELBE"
     },
     "DOSSIER DE LOG INEXISTANT": {
       "EN": "LOG DIRECTORY DOES NOT EXIST",
-      "FR": "DOSSIER DE LOG INEXISTANT"
+      "FR": "DOSSIER DE LOG INEXISTANT",
+      "DE": "LOGVERZEICHNIS EXISTIERT NICHT"
     },
     "ERREUR LORS DE LA CREATION DU FICHIER DE LOG": {
       "EN": "ERROR CREATING LOG FILE",
-      "FR": "ERREUR LORS DE LA CREATION DU FICHIER DE LOG"
+      "FR": "ERREUR LORS DE LA CREATION DU FICHIER DE LOG",
+      "DE": "FEHLER BEIM ERSTELLEN DER LOG-DATEI"
     },
     "DEMARRAGE DU SCAN": {
       "EN": "STARTING SCAN",
-      "FR": "DEMARRAGE DU SCAN"
+      "FR": "DEMARRAGE DU SCAN",
+      "DE": "SCAN WIRD GESTARTET"
     },
     "AU COURS DE RECHERCHE DE LA COMMANDE": {
       "EN": "SEARCHING FOR ORDER",
-      "FR": "AU COURS DE RECHERCHE DE LA COMMANDE"
+      "FR": "AU COURS DE RECHERCHE DE LA COMMANDE",
+      "DE": "AUF DEM ERSTELLEN DER AUFTRAG"
     },
     "LA COMMANDE": {
       "EN": "ORDER",
-      "FR": "LA COMMANDE"
+      "FR": "LA COMMANDE",
+      "DE": "AUFTRAG"
     },
     "N'A PAS ETE TROUVEE": {
       "EN": "NOT FOUND",
-      "FR": "N'A PAS ETE TROUVEE"
+      "FR": "N'A PAS ETE TROUVEE",
+      "DE": "NICHT GEFUNDEN"
     },
     "LE NUMERO DE COMMANDE": {
       "EN": "ORDER NUMBER",
-      "FR": "LE NUMERO DE COMMANDE"
+      "FR": "LE NUMERO DE COMMANDE",
+      "DE": "AUFTRAG SN"
     },
     "EST TROUVE": {
       "EN": "FOUND",
-      "FR": "EST TROUVE"
+      "FR": "EST TROUVE",
+      "DE": "WURDE GEFUNDEN"
     },
     "LE FICHIER": {
       "EN": "FILE",
-      "FR": "LE FICHIER"
+      "FR": "LE FICHIER",
+      "DE": "DATEI"
     },
     "N'A PAS PU ETRE CREE": {
       "EN": "COULD NOT BE CREATED",
-      "FR": "N'A PAS PU ETRE CREE"
+      "FR": "N'A PAS PU ETRE CREE",
+      "DE": "KONNTE NICHT ERSTELLT WERDEN"
     },
     "Something went wrong": {
       "EN": "Something went wrong",
-      "FR": "Quelque chose s'est mal passé"
+      "FR": "Quelque chose s'est mal passé",
+      "DE": "Irgendwas ist schief gelaufen"
     },
     "Please enter a source": {
       "EN": "Please enter a source",
-      "FR": "Veuillez entrer une source"
+      "FR": "Veuillez entrer une source",
+      "DE": "Bitte geben Sie eine Quelle ein"
     },
     "Please enter a destination": {
       "EN": "Please enter a destination",
-      "FR": "Veuillez entrer une destination"
+      "FR": "Veuillez entrer une destination",
+      "DE": "Bitte geben Sie ein Ziel ein"
     },
     "Please enter at least one order number": {
       "EN": "Please enter at least one order number",
-      "FR": "Veuillez entrer au moins un numéro de commande"
+      "FR": "Veuillez entrer au moins un numéro de commande",
+      "DE": "Bitte geben Sie mindestens eine Auftragsnummer ein"
     },
     "Please enter an order number": {
       "EN": "Please enter an order number",
-      "FR": "Veuillez entrer un numéro de commande"
+      "FR": "Veuillez entrer un numéro de commande",
+      "DE": "Bitte geben Sie eine Auftragsnummer ein"
     },
     "Scan scheduled successfully": {
       "EN": "Scan scheduled successfully",
-      "FR": "Scan planifié avec succès"
+      "FR": "Scan planifié avec succès",
+      "DE": "Scan erfolgreich geplant"
     },
     "First name is required": {
       "EN": "First name is required",
-      "FR": "Le prénom est requis"
+      "FR": "Le prénom est requis",
+      "DE": "Vorname ist erforderlich"
     },
     "Last name is required": {
       "EN": "Last name is required",
-      "FR": "Le nom est requis"
+      "FR": "Le nom est requis",
+      "DE": "Nachname ist erforderlich"
     },
     "Email is required": {
       "EN": "Email is required",
-      "FR": "L'email est requis"
+      "FR": "L'email est requis",
+      "DE": "Email ist erforderlich"
     },
     "Email is not valid": {
       "EN": "Email is not valid",
-      "FR": "L'email n'est pas valide"
+      "FR": "L'email n'est pas valide",
+      "DE": "Email ist nicht gültig"
     },
     "Password is required": {
       "EN": "Password is required",
-      "FR": "Le mot de passe est requis"
+      "FR": "Le mot de passe est requis",
+      "DE": "Passwort ist erforderlich"
     }
   }
 }
