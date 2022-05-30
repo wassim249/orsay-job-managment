@@ -302,6 +302,10 @@
     "last connection": {
       "EN": "last connection",
       "FR": "dernière connexion"
+    },
+    "Edit": {
+      "EN": "Edit",
+      "FR": "Modifier"
     }
   },
   "layout": {
@@ -351,6 +355,10 @@
     }
   },
   "profile": {
+    "User": {
+      "EN": "User",
+      "FR": "Utilisateur"
+    },
     "Your profile": {
       "EN": "Your profile",
       "FR": "Votre profil"

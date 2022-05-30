@@ -6,10 +6,14 @@ import SquareLoader from "react-spinners/SquareLoader";
 import { getUsers } from "../../services/user";
 import moment from "moment";
 import { scanSuccess } from "../../utils/Utils";
+import LANG from "../../../../i18n/lang.json";
+import LangContext from "../../contexts/LangContext";
+import { Status } from "../../partials/Status";
 
 export const UserDetailsPage = () => {
   const { id: userID } = useParams();
   const [user] = useContext(UserContext);
+  const [lang] = useContext(LangContext);
   const [loading, setLoading] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(null);
 
@@ -40,12 +44,12 @@ export const UserDetailsPage = () => {
       ) : (
         <>
           <span className="  font-bold text-2xl text-secondary">
-            User #{userID}
+            {LANG["profile"]["User"][lang]} #{userID}
           </span>
           <div className="grid grid-cols-2 grid-gap-4 mt-10">
             <div>
               <label className="block text-secondary text-sm d mb-2  ">
-                First name :
+                {LANG["profile"]["First name"][lang]} :
               </label>
               <span className="text-primary   font-bold">
                 {fetchedUser && fetchedUser.firstName}
@@ -54,7 +58,7 @@ export const UserDetailsPage = () => {
 
             <div>
               <label className="block text-secondary text-sm d mb-2  ">
-                Last name :
+                {LANG["profile"]["Last name"][lang]} :
               </label>
               <span className="text-primary   font-bold">
                 {fetchedUser && fetchedUser.lastName}
@@ -63,7 +67,7 @@ export const UserDetailsPage = () => {
 
             <div>
               <label className="block text-secondary text-sm d mb-2  ">
-                Email adress :
+                {LANG["profile"]["Email adress"][lang]} :
               </label>
               <span className="text-primary   font-bold">
                 {fetchedUser && fetchedUser.email}
@@ -79,7 +83,7 @@ export const UserDetailsPage = () => {
 
             <div>
               <label className="block text-secondary text-sm   ">
-                Last connection :
+                {LANG["usersList"]["last connection"][lang]} :
               </label>
               <span className="text-primary   font-bold">
                 {fetchedUser &&
@@ -121,16 +125,9 @@ export const UserDetailsPage = () => {
                     </td>
 
                     <td className="border p-2 font-bold">
-                      {scan &&
-                        (scanSuccess(scan) ? (
-                          <span className="bg-green-500 text-white px-2 py-3">
-                            Success
-                          </span>
-                        ) : (
-                          <span className="bg-red-500 text-white px-2 py-3">
-                            Failed
-                          </span>
-                        ))}
+                      {scan && (
+                        <Status success={scanSuccess(scan.status)} icon />
+                      )}
                     </td>
                     <td className="border p-2">
                       <button
@@ -139,7 +136,7 @@ export const UserDetailsPage = () => {
                           navigate(`/scan/${scan.id}`);
                         }}
                       >
-                        View
+                        {LANG["common"]["view"][lang]}
                       </button>
                     </td>
                   </tr>
@@ -154,7 +151,7 @@ export const UserDetailsPage = () => {
               }}
               className="bg-primary text-white   font-bold py-2 px-4 hover:bg-darkPrimary "
             >
-              Edit
+              {LANG["usersList"]["Edit"][lang]}
             </button>
           </div>
         </>
