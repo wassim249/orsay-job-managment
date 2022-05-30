@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
-import { RiHomeLine, RiScan2Line ,RiShoppingCart2Line } from "react-icons/ri";
+import { RiHomeLine, RiScan2Line, RiShoppingCart2Line } from "react-icons/ri";
 import Logo from "../images/logo.svg";
 import { BiSearchAlt, BiUserCircle } from "react-icons/bi";
-
 import UserContext from "../contexts/UserContext";
+import LANG from "../../../i18n/lang.json";
+import LangContext from "../contexts/LangContext";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const [user] = useContext(UserContext);
+  const [lang] = useContext(LangContext);
   const location = useLocation();
   const { pathname } = location;
 
@@ -92,7 +94,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             aria-controls="sidebar"
             aria-expanded={sidebarOpen}
           >
-            <span className="sr-only">Close sidebar</span>
             <BiArrowBack color="black" />
           </button>
           {/* Logo */}
@@ -132,7 +133,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           : "text-secondary"
                       } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                     >
-                      Home
+                      {LANG["layout"]["Home"][lang]}
                     </span>
                   </div>
                 </NavLink>
@@ -162,7 +163,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           : "text-secondary"
                       } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                     >
-                      Scans
+                      {LANG["layout"]["Scans"][lang]}
                     </span>
                   </div>
                 </NavLink>
@@ -191,7 +192,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           : "text-secondary"
                       } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                     >
-                      Orders
+                      {LANG["layout"]["Orders"][lang]}
                     </span>
                   </div>
                 </NavLink>
@@ -252,7 +253,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           : "text-secondary"
                       } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                     >
-                      Search
+                      {LANG["layout"]["Search"][lang]}
                     </span>
                   </div>
                 </NavLink>

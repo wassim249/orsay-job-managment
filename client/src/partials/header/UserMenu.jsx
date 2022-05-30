@@ -5,13 +5,15 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import { UserAvatar } from "./UserAvatar";
+import LANG from "../../../../i18n/lang.json";
+import LangContext from "../../contexts/LangContext";
 
 const UserMenu = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const trigger = useRef(null);
   const dropdown = useRef(null);
   const [user, setUser] = useContext(UserContext);
-
+  const [lang] = useContext(LangContext);
   const navigate = useNavigate();
 
   // close on click outside
@@ -84,7 +86,7 @@ const UserMenu = () => {
               {user && `${user.firstName} ${user.lastName}`}
             </div>
             <div className="text-xs text-slate-500 italic  ">
-              {user && user.role}
+              {LANG["common"]["roles"][user && user.role][lang]}
             </div>
           </div>
           <ul>
@@ -96,7 +98,7 @@ const UserMenu = () => {
                   setDropdownOpen(!dropdownOpen);
                 }}
               >
-                Profile
+                {LANG["layout"]["Profile"][lang]}
               </Link>
             </li>
             <li>
@@ -109,7 +111,7 @@ const UserMenu = () => {
                   setUser(null);
                 }}
               >
-                Sign Out
+                {LANG["layout"]["Sign Out"][lang]}
               </span>
             </li>
           </ul>

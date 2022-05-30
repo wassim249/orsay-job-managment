@@ -2,16 +2,18 @@ import React, { useRef, useEffect, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import Transition from "../../utils/Transition";
+import LANG from "../../../../i18n/lang.json";
+import LangContext from "../../contexts/LangContext";
 
 function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
   const modalContent = useRef(null);
   const searchInput = useRef(null);
   const [user] = useContext(UserContext);
+  const [lang] = useContext(LangContext);
   const [recentSearch, setRecentSearch] = useState(
     JSON.parse(localStorage.getItem(`ORSAY_SEARCH_${user && user.id}`)) || []
   );
   const navigate = useNavigate();
- 
 
   // close on click outside
   useEffect(() => {
@@ -74,7 +76,6 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
             className="border-b border-slate-200"
             onSubmit={async (e) => {
               e.preventDefault();
-              console.log("dkhel");
               localStorage.setItem(
                 `ORSAY_SEARCH_${user.id}`,
                 JSON.stringify([
@@ -99,7 +100,7 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
               <input
                 className="w-full border-0 focus:ring-transparent placeholder-slate-400 appearance-none py-3 pl-10 pr-4"
                 type="search"
-                placeholder="Search Anything…"
+                placeholder={LANG["layout"]["Search Anything"][lang]}
                 ref={searchInput}
                 required
               />
@@ -123,7 +124,9 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
             {recentSearch.length > 0 ? (
               <div className="mb-3 last:mb-0">
                 <div className="w-full flex items-center justify-between text-xs font-semibold text-lightPrimary px-2 mb-2">
-                  <span className="">Recent searches</span>
+                  <span className="">{
+                    LANG['layout']['Recent searches'][lang]
+                  }</span>
                   <span
                     onClick={() => {
                       localStorage.removeItem(`ORSAY_SEARCH_${user.id}`);
@@ -131,7 +134,7 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
                     }}
                     className="hover:cursor-pointer hover:underline"
                   >
-                    CLEAR
+                   { LANG['layout']['CLEAR'][lang]}
                   </span>
                 </div>
 
@@ -156,7 +159,9 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
                 </ul>
               </div>
             ) : (
-              <span>Search for a scan or an order number</span>
+              <span>
+                {LANG["layout"]["Search for a scan or an order number"][lang]}
+              </span>
             )}
           </div>
         </div>

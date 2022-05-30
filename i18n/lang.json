@@ -85,9 +85,7 @@
       "FR": "Affichage de"
     }
   },
-  "scanDetails" : {
-    
-  } ,
+  "scanDetails": {},
   "common": {
     "order": {
       "EN": "order",
@@ -97,7 +95,67 @@
       "EN": "number",
       "FR": "numéro"
     },
-    "search" : {
+    "search": {
+      "EN": "Search",
+      "FR": "Rechercher"
+    },
+    "roles": {
+      "scanner": {
+        "EN": "Scanner",
+        "FR": "Scanneur"
+      },
+      "admin": {
+        "EN": "Admin",
+        "FR": "Administrateur"
+      },
+      "viewer": {
+        "EN": "Viewer",
+        "FR": "Visionneur"
+      }
+    }
+  },
+  "layout": {
+    "Search Anything": {
+      "EN": "Search Anything",
+      "FR": "Rechercher quelque chose"
+    },
+    "Search for a scan or an order number": {
+      "EN": "Search for a scan or an order number",
+      "FR": "Rechercher un scan ou un numéro de commande"
+    },
+    "Recent searches": {
+      "EN": "Recent searches",
+      "FR": "Recherches récentes"
+    },
+    "CLEAR": {
+      "EN": "CLEAR",
+      "FR": "EFFACER"
+    },
+    "Profile": {
+      "EN": "Profile",
+      "FR": "Profil"
+    },
+    "Sign Out": {
+      "EN": "Sign Out",
+      "FR": "Déconnexion"
+    },
+    "Home": {
+      "EN": "Home",
+      "FR": "Accueil"
+    },
+    "Scans": {
+      "EN": "Scans",
+      "FR": "Scans"
+    },
+    "Orders": {
+      "EN": "Orders",
+      "FR": "Commandes"
+    },
+    "Users": {
+      "EN": "Users",
+      "FR": "Utilisateurs"
+    },
+    "Search": {
       "EN": "Search",
       "FR": "Rechercher"
     }
