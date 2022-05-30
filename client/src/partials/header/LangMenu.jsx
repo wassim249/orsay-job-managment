@@ -86,6 +86,17 @@ function LangMenu() {
                 French <span className="text-primary">(FR)</span>
               </a>
             </li>
+
+            <li>
+              <a
+                onClick={() => setLang("DE")}
+                className="font-medium text-sm text-secondary   py-1 px-3 hover:cursor-pointer"
+              >
+                German <span className="text-primary">(DE)</span>
+              </a>
+            </li>
+
+            
           </ul>
         </div>
       </Transition>

@@ -11,6 +11,7 @@ import LangContext from "../../contexts/LangContext";
 import LANG from "../../../../i18n/lang.json";
 import 'cronstrue/locales/fr';
 import 'cronstrue/locales/en';
+import 'cronstrue/locales/de';
 import { AlertMessage } from "../../partials/AlertMessage";
 
 export const ScheduleScanPage = () => {
