@@ -177,7 +177,7 @@
     }
   },
   "ordersList": {
-    "See more" : {
+    "See more": {
       "EN": "See more",
       "FR": "Voir plus"
     },
@@ -254,6 +254,24 @@
     "failed": {
       "EN": "Failed",
       "FR": "Échoué"
+    }
+  },
+  "usersList": {
+    "Users list": {
+      "EN": "Users list",
+      "FR": "Liste des utilisateurs"
+    },
+    "Create user": {
+      "EN": "Create user",
+      "FR": "Créer un utilisateur"
+    },
+    "Full name": {
+      "EN": "Full name",
+      "FR": "Nom complet"
+    },
+    "last connection": {
+      "EN": "last connection",
+      "FR": "dernière connexion"
     }
   },
   "layout": {

@@ -4,12 +4,14 @@ import Layout from "../../layout/Layout";
 import { BiGroup } from "react-icons/bi";
 import SquareLoader from "react-spinners/SquareLoader";
 import moment from "moment";
-
+import LANG from "../../../../i18n/lang.json";
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../../services/user";
 import { AlertContext } from "../../contexts/AlertContext";
+import LangContext from "../../contexts/LangContext";
 
 export const UsersListPage = () => {
+  const [lang] = useContext(LangContext);
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
@@ -41,30 +43,35 @@ export const UsersListPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-           {alertData && <AlertMessage />}
+          {alertData && <AlertMessage />}
           <SquareLoader color="#f88c6c" loading={loading} size="20px" />
         </div>
       ) : (
         <>
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-2xl text-secondary font-bold   flex items-center">
-              <BiGroup size={40} color="#f88c6c" className="mr-2" /> Users list
+              <BiGroup size={40} color="#f88c6c" className="mr-2" />
+              {LANG["usersList"]["Users list"][lang]}
             </h1>
             <button
               className="bg-secondary text-white py-2 px-3  "
               onClick={() => navigate("/user/create")}
             >
-              + Create user
+              + {LANG["usersList"]["Create user"][lang]}
             </button>
           </div>
 
-          <table className="table-auto w-full mt-4   overflow-x-auto">
+          <table className="table-auto w-full mt-4 overflow-x-auto">
             <thead>
               <tr className="bg-primary text-white  font-medium text-center">
                 <th className="px-4 py-2">ID</th>
-                <th className="px-4 py-2">Full name</th>
+                <th className="px-4 py-2">
+                  {LANG["usersList"]["Full name"][lang]}
+                </th>
                 <th className="px-4 py-2">Email</th>
-                <th className="px-4 py-2">last connection</th>
+                <th className="px-4 py-2">
+                  {LANG["usersList"]["last connection"][lang]}
+                </th>
                 <th className="px-4 py-2 bg-lightPrimary">Actions</th>
               </tr>
             </thead>
@@ -93,7 +100,7 @@ export const UsersListPage = () => {
                           navigate(`/user/${user.id}`);
                         }}
                       >
-                        View
+                        {LANG["common"]["view"][lang]}
                       </button>
                     </td>
                   </tr>
