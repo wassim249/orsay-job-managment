@@ -200,7 +200,37 @@
       "FR": "Liste des commandes"
     }
   },
+  "createUser": {
+    "First name": {
+      "EN": "First name",
+      "FR": "Prénom"
+    },
+    "Last name": {
+      "EN": "Last name",
+      "FR": "Nom"
+    },
+    "Email adress": {
+      "EN": "Email adress",
+      "FR": "Adresse email"
+    },
+    "Generate password": {
+      "EN": "Generate password",
+      "FR": "Générer un mot de passe"
+    },
+    "Generate": {
+      "EN": "Generate",
+      "FR": "Générer"
+    },
+    "Create": {
+      "EN": "Create",
+      "FR": "Créer"
+    }
+  },
   "common": {
+    "Never": {
+      "EN": "Never",
+      "FR": "Jamais"
+    },
     "File": {
       "EN": "File",
       "FR": "Fichier"

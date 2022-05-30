@@ -91,7 +91,7 @@ export const UsersListPage = () => {
                           ? moment(user.lastConnection).format(
                               "DD/MM/YYYY HH:mm"
                             )
-                          : "Never")}
+                          : LANG['common']['Never'][lang])}
                     </td>
                     <td className="border p-2">
                       <button

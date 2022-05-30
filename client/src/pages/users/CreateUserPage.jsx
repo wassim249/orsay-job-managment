@@ -6,8 +6,11 @@ import SquareLoader from "react-spinners/SquareLoader";
 import { generatePassword, validateEmail } from "../../utils/Utils";
 import { createUser } from "../../services/user";
 import { AlertContext } from "../../contexts/AlertContext";
+import LangContext from "../../contexts/LangContext";
+import LANG from "../../../../i18n/lang.json";
 
 export const CreateUserPage = () => {
+  const [lang] = useContext(LangContext);
   const [user] = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [createdUser, setCreatedUser] = useState(null);
@@ -64,13 +67,14 @@ export const CreateUserPage = () => {
 
   return (
     <Layout>
-       {alertData && <AlertMessage />}
+      {alertData && <AlertMessage />}
       <span className="  font-bold text-2xl text-secondary">Create User</span>
       <span className="block   text-sm">User will be notified by email</span>
       <form className="grid grid-cols-2 gap-5 mt-8  ">
         <div className="col-span-2">
           <label className="block text-secondary text-sm d mb-2">
-            First name : <span className="text-primary">*</span>
+            {LANG["createUser"]["First name"][lang]} :{" "}
+            <span className="text-primary">*</span>
           </label>
           <input
             className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -79,14 +83,15 @@ export const CreateUserPage = () => {
             onChange={(e) =>
               setCreatedUser({ ...createdUser, firstName: e.target.value })
             }
-            placeholder="your firstname here ..."
+            placeholder="eg. John"
             required
           />
         </div>
 
         <div className="col-span-2">
           <label className="block text-secondary text-sm d mb-2">
-            Last name : <span className="text-primary">*</span>
+            {LANG["createUser"]["Last name"][lang]} :{" "}
+            <span className="text-primary">*</span>
           </label>
           <input
             className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -95,14 +100,15 @@ export const CreateUserPage = () => {
             onChange={(e) =>
               setCreatedUser({ ...createdUser, lastName: e.target.value })
             }
-            placeholder="your firstname here ..."
+            placeholder="eg. Doe"
             required
           />
         </div>
 
         <div className="col-span-2">
           <label className="block text-secondary text-sm d mb-2">
-            Email adress : <span className="text-primary">*</span>
+            {LANG["createUser"]["Email adress"][lang]} :{" "}
+            <span className="text-primary">*</span>
           </label>
           <input
             className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -111,7 +117,7 @@ export const CreateUserPage = () => {
             onChange={(e) =>
               setCreatedUser({ ...createdUser, email: e.target.value })
             }
-            placeholder="your lastName here ..."
+            placeholder="eg. john.doe@email.com"
             required
           />
         </div>
@@ -127,18 +133,24 @@ export const CreateUserPage = () => {
             onChange={(e) =>
               setCreatedUser({ ...createdUser, role: e.target.value })
             }
-            placeholder="your firstname here ..."
             required
           >
-            <option value="admin">Admin</option>
-            <option value="scanner">Scanner</option>
-            <option value="viewer">Viewer</option>
+            <option value="admin">
+              {LANG["common"]["roles"]["admin"][lang]}
+            </option>
+            <option value="scanner">
+              {LANG["common"]["roles"]["scanner"][lang]}
+            </option>
+            <option value="viewer">
+              {LANG["common"]["roles"]["viewer"][lang]}
+            </option>
           </select>
         </div>
 
         <div className="col-span-2 mt-4 mb-6">
           <label className="block text-secondary text-sm d mb-2">
-            Generate password :<span className="text-primary">*</span>
+            {LANG["createUser"]["Generate password"][lang]} :
+            <span className="text-primary">*</span>
           </label>
           <div className="flex justify-between items-center w-full ">
             <input
@@ -158,7 +170,7 @@ export const CreateUserPage = () => {
                 setCreatedUser({ ...createdUser, password });
               }}
             >
-              Generate
+              {LANG["createUser"]["Generate"][lang]}
             </button>
           </div>
         </div>
@@ -168,7 +180,11 @@ export const CreateUserPage = () => {
             onClick={handleUserCreate}
             className="bg-primary hover:bg-darkPrimary w-full text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
           >
-            {loading ? <SquareLoader size={20} color={"#fff"} /> : "Create"}
+            {loading ? (
+              <SquareLoader size={20} color={"#fff"} />
+            ) : (
+              LANG["createUser"]["Create"][lang]
+            )}
           </button>
         </div>
       </form>
