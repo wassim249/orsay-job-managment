@@ -67,7 +67,7 @@ export const ScheduleScanPage = () => {
       });
     else
       setAlertData({
-        message: "Scan scheduled successfully",
+        message: LANG["alerts"]["Scan scheduled successfully"][lang],
         type: "success",
       });
   };

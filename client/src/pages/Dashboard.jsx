@@ -49,7 +49,7 @@ export const Dashboard = () => {
         else setScanInfo(data);
       } else
         setAlertData({
-          message: "Something went wrong",
+          message: LANG['alerts']['Something went wrong'],
           type: "error",
         });
     };
@@ -69,7 +69,7 @@ export const Dashboard = () => {
         else setData3(data);
       } else
         setAlertData({
-          message: "Something went wrong",
+          message: LANG['alerts']['Something went wrong'],
           type: "error",
         });
     };
@@ -89,7 +89,7 @@ export const Dashboard = () => {
         else setNewUsers(data);
       } else
         setAlertData({
-          message: "Something went wrong",
+          message: LANG['alerts']['Something went wrong'],
           type: "error",
         });
     };
@@ -109,7 +109,7 @@ export const Dashboard = () => {
         else setData2(data);
       } else
         setAlertData({
-          message: "Something went wrong",
+          message: LANG['alerts']['Something went wrong'],
           type: "error",
         });
     };

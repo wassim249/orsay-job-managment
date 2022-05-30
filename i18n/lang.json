@@ -470,5 +470,51 @@
       "EN": "Latest scans",
       "FR": "Derniers scans"
     }
+  },
+  "alerts": {
+    "Something went wrong": {
+      "EN": "Something went wrong",
+      "FR": "Quelque chose s'est mal passé"
+    },
+    "Please enter a source": {
+      "EN": "Please enter a source",
+      "FR": "Veuillez entrer une source"
+    },
+    "Please enter a destination": {
+      "EN": "Please enter a destination",
+      "FR": "Veuillez entrer une destination"
+    },
+    "Please enter at least one order number": {
+      "EN": "Please enter at least one order number",
+      "FR": "Veuillez entrer au moins un numéro de commande"
+    },
+    "Please enter an order number": {
+      "EN": "Please enter an order number",
+      "FR": "Veuillez entrer un numéro de commande"
+    },
+    "Scan scheduled successfully": {
+      "EN": "Scan scheduled successfully",
+      "FR": "Scan planifié avec succès"
+    },
+    "First name is required": {
+      "EN": "First name is required",
+      "FR": "Le prénom est requis"
+    },
+    "Last name is required": {
+      "EN": "Last name is required",
+      "FR": "Le nom est requis"
+    },
+    "Email is required": {
+      "EN": "Email is required",
+      "FR": "L'email est requis"
+    },
+    "Email is not valid": {
+      "EN": "Email is not valid",
+      "FR": "L'email n'est pas valide"
+    },
+    "Password is required": {
+      "EN": "Password is required",
+      "FR": "Le mot de passe est requis"
+    }
   }
 }

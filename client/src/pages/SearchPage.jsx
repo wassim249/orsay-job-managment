@@ -93,7 +93,7 @@ export const SearchPage = () => {
         }
       } else
         setAlertData({
-          message: "Something went wrong",
+          message: LANG['alerts']['Something went wrong'],
           type: "error",
         });
 
@@ -114,7 +114,7 @@ export const SearchPage = () => {
         }
       } else
         setAlertData({
-          message: "Something went wrong",
+          message: LANG['alerts']['Something went wrong'],
           type: "error",
         });
       setLoading(false);

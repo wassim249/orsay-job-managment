@@ -31,17 +31,17 @@ export const CreateScanPage = () => {
     setLoading(true);
     if (source.trim() === "")
       setAlertData({
-        message: "Please enter a source",
+        message: LANG['alerts']['Please enter a source'][lang],
         type: "error",
       });
     else if (destination.trim() === "")
       setAlertData({
-        message: "Please enter a destination",
+        message: LANG['alerts']['Please enter a destination'][lang],
         type: "error",
       });
     else if (orderNumbers.length === 0)
       setAlertData({
-        message: "Please enter at least one order number",
+        message: LANG['alerts']['Please enter at least one order number'][lang],
         type: "error",
       });
     else {
@@ -73,7 +73,7 @@ export const CreateScanPage = () => {
       orderNumber.current.value = "";
     } else {
       setAlertData({
-        message: "Please enter an order number",
+        message: LANG['alerts']['Please enter an order number'][lang],
         type: "error",
       });
     }
@@ -185,7 +185,7 @@ export const CreateScanPage = () => {
             else if (orderNumbers.length === 0)
               setAlertData({
                 message:
-                 "please enter at least one order number",
+                  LANG["createScan"]["please enter at least one order number"][lang],
                 type: "error",
               });
             else

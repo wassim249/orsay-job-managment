@@ -38,17 +38,17 @@ export const EditUserPage = () => {
     e.preventDefault();
     if (fetchedUser?.firstName.trim() === "")
       return setAlertData({
-        message: "First name is required",
+        message: LANG['alerts']['First name is required'][lang],
         type: "error",
       });
     if (fetchedUser?.lastName.trim() === "")
       return setAlertData({
-        message: "Last name is required",
+        message: LANG['alerts']['Last name is required'][lang],
         type: "error",
       });
     if (fetchedUser?.email.trim() === "")
       return setAlertData({
-        message: "Email is required",
+        message: LANG['alerts']['Email is required'][lang],
         type: "error",
       });
 
@@ -63,7 +63,7 @@ export const EditUserPage = () => {
     if (data) navigate(`/user/${userID}`);
     else
       setAlertData({
-        message: "Something went wrong",
+        message: LANG['alerts']['Something went wrong'][lang],
         type: "error",
       });
     setLoading(false);

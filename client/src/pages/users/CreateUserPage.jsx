@@ -25,27 +25,27 @@ export const CreateUserPage = () => {
     e.preventDefault();
     if (createdUser?.firstName.trim() === "")
       return setAlertData({
-        message: "First name is required",
+        message: LANG['alerts']['First name is required'][lang],
         type: "error",
       });
     if (createdUser?.lastName.trim() === "")
       return setAlertData({
-        message: "Last name is required",
+        message: LANG['alerts']['Last name is required'][lang],
         type: "error",
       });
     if (createdUser?.email.trim() === "")
       return setAlertData({
-        message: "Email is required",
+        message: LANG['alerts']['Email is required'][lang],
         type: "error",
       });
     if (!validateEmail(createdUser?.email))
       return setAlertData({
-        message: "Email is not valid",
+        message: LANG['alerts']['Email is not valid'][lang],
         type: "error",
       });
     if (createdUser?.password.trim() === "")
       return setAlertData({
-        message: "Password is required",
+        message: LANG['alerts']['Password is required'][lang],
         type: "error",
       });
     setLoading(true);
