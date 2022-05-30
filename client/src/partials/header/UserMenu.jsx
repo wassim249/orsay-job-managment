@@ -86,7 +86,7 @@ const UserMenu = () => {
               {user && `${user.firstName} ${user.lastName}`}
             </div>
             <div className="text-xs text-slate-500 italic  ">
-              {LANG["common"]["roles"][user && user.role][lang]}
+              {LANG["common"]["roles"][(user && user.role) || 'viewer' ][lang]}
             </div>
           </div>
           <ul>

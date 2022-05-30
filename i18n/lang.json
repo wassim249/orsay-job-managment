@@ -15,6 +15,30 @@
     "last connection": {
       "EN": "Last connection",
       "FR": "Dernière connexion"
+    },
+    "Total scans": {
+      "EN": "Total scans",
+      "FR": "Total des scans"
+    },
+    "Total scan in the past 7 days": {
+      "EN": "Total scan in the past 7 days",
+      "FR": "Total des scans dans les 7 derniers jours"
+    },
+    "Latest scan": {
+      "EN": "Latest scan",
+      "FR": "Dernier scan"
+    },
+    "New users": {
+      "EN": "New users",
+      "FR": "Nouveaux utilisateurs"
+    },
+    "Succeded scans vs failed scans (over time)": {
+      "EN": "Succeded scans vs failed scans (over time)",
+      "FR": "Scans réussis vs échoués (en temps)"
+    },
+    "Reason for Failed scans" : {
+      "EN" : "Reason for Failed scans",
+      "FR" : "Raison des scans échoués"
     }
   },
   "createScan": {
@@ -112,6 +136,14 @@
         "EN": "Viewer",
         "FR": "Visionneur"
       }
+    },
+    "succeed": {
+      "EN": "Succeed",
+      "FR": "Réussi"
+    },
+    "failed": {
+      "EN": "Failed",
+      "FR": "Échoué"
     }
   },
   "layout": {

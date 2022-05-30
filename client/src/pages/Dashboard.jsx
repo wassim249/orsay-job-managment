@@ -19,6 +19,8 @@ import { NewUsersChart } from "../partials/dashboard/NewUsersChart";
 import { DatePicker } from "../partials/actions/DatePicker";
 import { AlertContext } from "../contexts/AlertContext";
 import { AlertMessage } from "../partials/AlertMessage";
+import LangContext from "../contexts/LangContext";
+import LANG from "../../../i18n/lang.json";
 
 export const Dashboard = () => {
   const [data2, setData2] = useState(null);
@@ -27,7 +29,8 @@ export const Dashboard = () => {
   const [newUsers, setNewUsers] = useState(null);
   const [user] = useContext(UserContext);
   const [rangeDate, setRangeDate] = useState(null);
-  const [alertData, setAlertData] = useContext(AlertContext)
+  const [alertData, setAlertData] = useContext(AlertContext);
+  const [lang] = useContext(LangContext);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -38,15 +41,17 @@ export const Dashboard = () => {
     const fetchScanInfo = async () => {
       const data = await getScanInfo();
       if (data) {
-        if (data.message) setAlertData({
-          message : data.message,
-          type : "error"
-        })
+        if (data.message)
+          setAlertData({
+            message: data.message,
+            type: "error",
+          });
         else setScanInfo(data);
-      } else  setAlertData({
-        message : "Something went wrong",
-        type : "error"
-      })
+      } else
+        setAlertData({
+          message: "Something went wrong",
+          type: "error",
+        });
     };
     fetchScanInfo();
   }, [rangeDate]);
@@ -56,15 +61,17 @@ export const Dashboard = () => {
       setData3(null);
       const data = await getFailReason(rangeDate);
       if (data) {
-        if (data.message) setAlertData({
-          message : data.message,
-          type : "error"
-        })
+        if (data.message)
+          setAlertData({
+            message: data.message,
+            type: "error",
+          });
         else setData3(data);
-      } else setAlertData({
-        message : "Something went wrong",
-        type : "error"
-      })
+      } else
+        setAlertData({
+          message: "Something went wrong",
+          type: "error",
+        });
     };
     fetchDataForChart3();
   }, [rangeDate]);
@@ -74,15 +81,17 @@ export const Dashboard = () => {
       setNewUsers(null);
       const data = await getNewUsers(rangeDate);
       if (data) {
-        if (data.message) setAlertData({
-          message : data.message,
-          type : "error"
-        })
+        if (data.message)
+          setAlertData({
+            message: data.message,
+            type: "error",
+          });
         else setNewUsers(data);
-      } else setAlertData({
-        message : "Something went wrong",
-        type : "error"
-      })
+      } else
+        setAlertData({
+          message: "Something went wrong",
+          type: "error",
+        });
     };
     fetchDataForChart1();
   }, [rangeDate]);
@@ -92,24 +101,24 @@ export const Dashboard = () => {
       setData2(null);
       const data = await getSuccVsFail(rangeDate);
       if (data) {
-        if (data.message) setAlertData({
-          message : data.message,
-          type : "error"
-        })
+        if (data.message)
+          setAlertData({
+            message: data.message,
+            type: "error",
+          });
         else setData2(data);
-      } else setAlertData({
-        message : "Something went wrong",
-        type : "error"
-      })
+      } else
+        setAlertData({
+          message: "Something went wrong",
+          type: "error",
+        });
     };
     fetchDataForChart2();
   }, [rangeDate]);
 
   return (
     <Layout>
-      {
-        alertData && <AlertMessage  />
-      }
+      {alertData && <AlertMessage />}
       <WelcomeBanner />
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 mb-4">
         <div className="bg-white shadow py-8 pl-5 flex items-center">
@@ -117,7 +126,7 @@ export const Dashboard = () => {
             <RiScan2Fill color="white" size={30} />
           </div>
           <div className="ml-3">
-            <p className="text-sm">Total scans</p>
+            <p className="text-sm">{LANG["home"]["Total scans"][lang]}</p>
             <span className="text-black font-bold text-3xl">
               {scanInfo && scanInfo.total}
             </span>
@@ -129,7 +138,9 @@ export const Dashboard = () => {
             <CgTimer color="white" size={30} />
           </div>
           <div className="ml-3">
-            <p className="text-sm">Total scan in the past 7 days</p>
+            <p className="text-sm">
+              {LANG["home"]["Total scan in the past 7 days"][lang]}
+            </p>
             <span className="text-black font-bold text-3xl">
               {scanInfo && scanInfo.total7Days}
             </span>
@@ -141,7 +152,7 @@ export const Dashboard = () => {
             <MdDocumentScanner color="white" size={30} />
           </div>
           <div className="ml-3">
-            <p className="text-sm">Latest scan</p>
+            <p className="text-sm">{LANG["home"]["Latest scan"][lang]}</p>
             <span className="text-black font-bold text-xl">
               {scanInfo &&
                 moment(scanInfo?.latestScan).format("MM/DD/YYYY hh:mm")}
