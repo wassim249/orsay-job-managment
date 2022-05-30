@@ -177,6 +177,10 @@
     }
   },
   "ordersList": {
+    "See more" : {
+      "EN": "See more",
+      "FR": "Voir plus"
+    },
     "scanned orders numbers list": {
       "EN": "Scanned orders numbers list",
       "FR": "Liste des numéros de commande scannés"
@@ -184,6 +188,10 @@
     "showing": {
       "EN": "Showing",
       "FR": "Affichage de"
+    },
+    "Search": {
+      "EN": "Search",
+      "FR": "Rechercher"
     }
   },
   "scanDetails": {
@@ -193,6 +201,10 @@
     }
   },
   "common": {
+    "File": {
+      "EN": "File",
+      "FR": "Fichier"
+    },
     "By": {
       "EN": "By",
       "FR": "Par"

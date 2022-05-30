@@ -6,9 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { getAllOrders } from "../../services/order";
 import { OrderNumber } from "../../partials/OrderNumber";
 import { BiSearch } from "react-icons/bi";
+import LangContext from "../../contexts/LangContext";
+import LANG from "../../../../i18n/lang.json";
 
 export const OrdersListPage = () => {
   const [user] = useContext(UserContext);
+  const [lang] = useContext(LangContext);
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const [searchedOrders, setSearchedOrders] = useState([]);
@@ -40,13 +43,14 @@ export const OrdersListPage = () => {
       ) : (
         <>
           <h1 className="text-2xl text-secondary font-bold">
-            Scanned Orders numbers List
+            {LANG["ordersList"]["scanned orders numbers list"][lang]}
           </h1>
           <span>
-            Showing{" "}
+            {LANG['ordersList']['showing'][lang]}{" "}
             {searchValue.current && searchValue.current.value.trim() != ""
               ? searchedOrders.length
-              : orders?.length} order
+              : orders?.length}{" "}
+            order
             {orders?.length > 1 && "s"} number
           </span>
 
@@ -54,7 +58,7 @@ export const OrdersListPage = () => {
             <input
               type="search"
               ref={searchValue}
-              placeholder="Search..."
+              placeholder={`${LANG['ordersList']['Search'][lang]}...`}
               className="  appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <button

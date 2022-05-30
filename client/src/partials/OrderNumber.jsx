@@ -5,9 +5,13 @@ import { AiOutlineFile } from "react-icons/ai";
 import { Status } from "./Status";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import LANG from "../../../i18n/lang.json";
+import { useContext } from "react";
+import LangContext from "../contexts/LangContext";
 
 export const OrderNumber = ({ order }) => {
   const navigate = useNavigate();
+  const [lang] = useContext(LangContext);
 
   return (
     <div className="bg-white shadow w-full flex flex-col justify-center items-center">
@@ -27,7 +31,7 @@ export const OrderNumber = ({ order }) => {
 
       <div className="text-left w-full px-4 ">
         <div className="text-sm text-secondary flex items-center hover:cursor-pointer hover:underline">
-          <BiUserCircle size={15} color="#f88c6c" className="mr-2" /> By :
+          <BiUserCircle size={15} color="#f88c6c" className="mr-2" /> {LANG['common']['By'][lang]} :
           <span>
             {`${order.scan.user.firstName} ${order.scan.user.lastName}`}
           </span>
@@ -35,7 +39,7 @@ export const OrderNumber = ({ order }) => {
         <div className="flex items-center">
           <AiOutlineFile size={15} color="#f88c6c" className="mr-2" />
           <span className="text-sm text-secondary">
-            File : ...{order.fileName.substr(order.fileName.length - 25)}
+            {LANG['common']['File'][lang]} : ...{order.fileName.substr(order.fileName.length - 25)}
           </span>
         </div>
 
@@ -50,7 +54,7 @@ export const OrderNumber = ({ order }) => {
               navigate(`/scan/${order.scan.id}`);
             }}
           >
-            See more
+            {LANG['ordersList']['See more'][lang]}
           </button>
         </div>
       </div>
