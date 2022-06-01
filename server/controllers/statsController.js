@@ -131,7 +131,7 @@ const failedReason = async (req, res) => {
     });
 
     // remove unique values
-    const wordsToKeep = [
+    const WORDS_TO_KEEP_FR = [
       "LA",
       "COMMANDE",
       "N'A",
@@ -147,18 +147,45 @@ const failedReason = async (req, res) => {
       ..."ERREUR LORS DE LA CREATION DU FICHIER DE LOG".split(" "),
       ..."LE FICHIER N'A PAS PU ETRE CREE".split(" "),
     ];
+    const WORDS_TO_KEEP_DE = [
+      ..."KONNTE NICHT ERSTELLT WERDEN".split(" "),
+      "DATEI",
+      ..."WURDE GEFUNDEN".split(" "),
+      ..."AUFTRAG SN".split(" "),
+      ..."NICHT GEFUNDEN".split(" "),
+      ..."FEHLER BEIM ERSTELLEN DER LOG-DATEI".split(" "),
+      ..."LOGVERZEICHNIS EXISTIERT NICHT".split(" "),
+      ..."QUELLENVERZEICHNIS UND ZIELVERZEICHNIS SIND DAS SELBE".split(" "),
+      ..."ZIELVERZEICHNIS EXISTIERT NICHT".split(" "),
+      ..."QUELLENVERZEICHNIS EXISTIERT NICHT".split(" "),
+      ..."BENUTZEN SIE BIS ZUM DATEIENABGLEICH EINEN REPERTOIRE".split(" "),
+      ..."BENUTZEN SIE BIS ZUM DATEIENABGLEICH EINEN REPERTOIRE".split(" "),
+    ];
+    const WORDS_TO_KEEP_ENG = [
+      ..."PLEASE CHOOSE A SOURCE DIRECTORY".split(" "),
+      "DESTINATION",
+      ..."SOURCE DIRECTORY DOES NOT EXIST".split(" "),
+      ..."SOURCE AND DESTINATION DIRECTORIES ARE THE SAME".split(" "),
+      ..."LOG DIRECTORY DOES NOT EXIST".split(" "),
+      ..."ERROR CREATING LOG FILE".split(" "),
+      ..."ORDER NOT FOUND".split(" "),
+      ..."ORDER NUMBER".split(" "),
+    ];
     reasonsMsgs = reasonsMsgs.map((reason) => {
       let newReason = reason.split(" ");
-      newReason = newReason.filter((word) => {
-        return wordsToKeep.includes(word);
-      });
+      newReason = newReason.filter(
+        (word) =>
+          WORDS_TO_KEEP_DE.includes(word) ||
+          WORDS_TO_KEEP_ENG.includes(word) ||
+          WORDS_TO_KEEP_FR.includes(word)
+      );
       return newReason.join(" ");
     });
 
     let rs = reasonsMsgs.map((reason) => {
       let count = 0;
       reasonsMsgs.forEach((r) => {
-        if (r === reason) count++;
+        if (r == reason) count++;
       });
       return {
         reason,
@@ -166,10 +193,12 @@ const failedReason = async (req, res) => {
       };
     });
     // remove duplicates from rs
-    rs.forEach((r, index) => {
-      for (let i = index + 1; i < rs.length; i++)
-        if (rs[i].reason === r.reason) rs.splice(i, 1);
-    });
+    rs = rs.filter(
+      (v, i, a) =>
+        a.findIndex((v2) => v2.reason === v.reason || v.reason.trim() == "") ===
+        i
+    );
+
     rs = {
       reasons: rs,
       count: parseInt(rs.count || 0) + parseInt(rs.map((r) => r.count)),
@@ -236,11 +265,7 @@ const newUsers = async (req, res) => {
       usersScanners.push(scannersCount);
       usersViewer.push(viewersCount);
     });
-    console.log({
-      scanners: usersScanners,
-      viewers: usersViewer,
-      dates,
-    });
+
     res.json({
       scanners: usersScanners,
       viewers: usersViewer,
