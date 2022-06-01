@@ -8,7 +8,7 @@ import moment from "moment";
 import { scanSuccess } from "../../utils/Utils";
 import LANG from "../../../../i18n/lang.json";
 import LangContext from "../../contexts/LangContext";
-import { Status } from "../../partials/Status";
+import { Status } from "../../components/Status";
 
 export const UserDetailsPage = () => {
   const { id: userID } = useParams();

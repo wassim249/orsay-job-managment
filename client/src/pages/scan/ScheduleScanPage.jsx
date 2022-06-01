@@ -12,7 +12,7 @@ import LANG from "../../../../i18n/lang.json";
 import 'cronstrue/locales/fr';
 import 'cronstrue/locales/en';
 import 'cronstrue/locales/de';
-import { AlertMessage } from "../../partials/AlertMessage";
+import { AlertMessage } from "../../components/AlertMessage";
 
 export const ScheduleScanPage = () => {
   const [user] = useContext(UserContext);

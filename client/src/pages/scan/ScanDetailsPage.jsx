@@ -8,8 +8,8 @@ import { getScan } from "../../services/scan";
 import { scanSuccess } from "../../utils/Utils";
 import SquareLoader from "react-spinners/SquareLoader";
 import { RiScan2Fill } from "react-icons/ri";
-import { Scheduled } from "../../partials/Scheduled";
-import { Status } from "../../partials/Status";
+import { Scheduled } from "../../components/Scheduled";
+import { Status } from "../../components/Status";
 import LangContext from "../../contexts/LangContext";
 import LANG from "../../../../i18n/lang.json";
 

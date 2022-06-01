@@ -4,7 +4,7 @@ import Layout from "../../layout/Layout";
 import SquareLoader from "react-spinners/SquareLoader";
 import { useNavigate } from "react-router-dom";
 import { getAllOrders } from "../../services/order";
-import { OrderNumber } from "../../partials/OrderNumber";
+import { OrderNumber } from "../../components/OrderNumber";
 import { BiSearch } from "react-icons/bi";
 import LangContext from "../../contexts/LangContext";
 import LANG from "../../../../i18n/lang.json";

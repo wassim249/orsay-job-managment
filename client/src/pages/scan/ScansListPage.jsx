@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { AlertContext } from "../../contexts/AlertContext";
 import LangContext from "../../contexts/LangContext";
 import LANG from "../../../../i18n/lang.json";
-import { Status } from "../../partials/Status";
-import { AlertMessage } from "../../partials/AlertMessage";
+import { Status } from "../../components/Status";
+import { AlertMessage } from "../../components/AlertMessage";
 
 export const ScansListPage = () => {
   const [user] = useContext(UserContext);

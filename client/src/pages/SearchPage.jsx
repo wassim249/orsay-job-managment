@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/UserContext";
 import Layout from "../layout/Layout";
-import { SearchBar } from "../partials/SearchBar";
+import { SearchBar } from "../components/SearchBar";
 import { getSearchedOrders, getSearchedScans } from "../services/search";
 import SquareLoader from "react-spinners/SquareLoader";
 import moment from "moment";
 import { scanSuccess } from "../utils/Utils";
 import { useLocation, useNavigate } from "react-router-dom";
-import { OrderNumber } from "../partials/OrderNumber";
+import { OrderNumber } from "../components/OrderNumber";
 import { AlertContext } from "../contexts/AlertContext";
 import LANG from "../../../i18n/lang.json";
 import LangContext from "../contexts/LangContext";
-import { Status } from "../partials/Status";
+import { Status } from "../components/Status";
 
 export const SearchPage = () => {
   const [lang] = useContext(LangContext);

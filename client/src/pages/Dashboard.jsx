@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import WelcomeBanner from "../partials/dashboard/WelcomeBanner";
+import WelcomeBanner from "../components/dashboard/WelcomeBanner";
 import Layout from "../layout/Layout";
 import UserContext from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -7,18 +7,18 @@ import { RiScan2Fill } from "react-icons/ri";
 import { MdDocumentScanner } from "react-icons/md";
 import { CgTimer } from "react-icons/cg";
 import moment from "moment";
-import { FailReasonChart } from "../partials/dashboard/FailReasonChart";
-import { SuccededVsFailedScans } from "../partials/dashboard/SuccededVsFailedScans";
+import { FailReasonChart } from "../components/dashboard/FailReasonChart";
+import { SuccededVsFailedScans } from "../components/dashboard/SuccededVsFailedScans";
 import {
   getFailReason,
   getNewUsers,
   getScanInfo,
   getSuccVsFail,
 } from "../services/stats";
-import { NewUsersChart } from "../partials/dashboard/NewUsersChart";
-import { DatePicker } from "../partials/actions/DatePicker";
+import { NewUsersChart } from "../components/dashboard/NewUsersChart";
+import { DatePicker } from "../components/actions/DatePicker";
 import { AlertContext } from "../contexts/AlertContext";
-import { AlertMessage } from "../partials/AlertMessage";
+import { AlertMessage } from "../components/AlertMessage";
 import LangContext from "../contexts/LangContext";
 import LANG from "../../../i18n/lang.json";
 

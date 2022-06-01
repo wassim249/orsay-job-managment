@@ -8,7 +8,7 @@ import LANG from "../../../../i18n/lang.json";
 import LangContext from "../../contexts/LangContext";
 import SquareLoader from "react-spinners/SquareLoader";
 import { AlertContext } from "../../contexts/AlertContext";
-import { AlertMessage } from "../../partials/AlertMessage";
+import { AlertMessage } from "../../components/AlertMessage";
 
 export const CreateScanPage = () => {
   const [user] = useContext(UserContext);
