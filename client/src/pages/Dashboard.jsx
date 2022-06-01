@@ -49,7 +49,7 @@ export const Dashboard = () => {
         else setScanInfo(data);
       } else
         setAlertData({
-          message: LANG['alerts']['Something went wrong'],
+          message: LANG["alerts"]["Something went wrong"],
           type: "error",
         });
     };
@@ -69,7 +69,7 @@ export const Dashboard = () => {
         else setData3(data);
       } else
         setAlertData({
-          message: LANG['alerts']['Something went wrong'],
+          message: LANG["alerts"]["Something went wrong"],
           type: "error",
         });
     };
@@ -89,7 +89,7 @@ export const Dashboard = () => {
         else setNewUsers(data);
       } else
         setAlertData({
-          message: LANG['alerts']['Something went wrong'],
+          message: LANG["alerts"]["Something went wrong"],
           type: "error",
         });
     };
@@ -109,7 +109,7 @@ export const Dashboard = () => {
         else setData2(data);
       } else
         setAlertData({
-          message: LANG['alerts']['Something went wrong'],
+          message: LANG["alerts"]["Something went wrong"],
           type: "error",
         });
     };
@@ -155,7 +155,9 @@ export const Dashboard = () => {
             <p className="text-sm">{LANG["home"]["Latest scan"][lang]}</p>
             <span className="text-black font-bold text-xl">
               {scanInfo &&
-                moment(scanInfo?.latestScan).format("MM/DD/YYYY hh:mm")}
+                (scanInfo.latestScan
+                  ? moment(scanInfo?.latestScan).format("MM/DD/YYYY hh:mm")
+                  : "No scan")}
             </span>
           </div>
         </div>
