@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
-import { RiHomeLine, RiScan2Line, RiShoppingCart2Line } from "react-icons/ri";
+import { RiHomeLine, RiScan2Line, RiShoppingCart2Line, RiFilePaperLine } from "react-icons/ri";
 import Logo from "../images/logo.svg";
 import { BiSearchAlt, BiUserCircle } from "react-icons/bi";
 import UserContext from "../contexts/UserContext";
@@ -27,6 +27,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     else if (pathname.startsWith("/scan")) return "scan";
     else if (pathname.startsWith("/orders")) return "orders";
     else if (pathname.startsWith("/user")) return "user";
+    else if (pathname.startsWith("/request")) return "request";
     else if (pathname.startsWith("/search")) return "search";
     else return "";
   };
@@ -223,6 +224,38 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                         } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                       >
                         Users
+                      </span>
+                    </div>
+                  </NavLink>
+                </li>
+              )}
+
+              {user?.role == "admin" && (
+                <li
+                  className={`px-3 py-3 mb-0.5 last:mb-0 ${
+                    getPathName() == "request" && "bg-primary"
+                  }`}
+                >
+                  <NavLink
+                    end
+                    to="/requests"
+                    className={`block text-primary  ${
+                      getPathName() == "request" && "text-white"
+                    } truncate transition duration-150`}
+                  >
+                    <div className="flex items-center">
+                      <RiFilePaperLine
+                        size={20}
+                        color={getPathName() == "request" ? "white" : "black"}
+                      />
+                      <span
+                        className={`text-sm font-bold e ml-3 ${
+                          getPathName() == "request"
+                            ? "text-white"
+                            : "text-secondary"
+                        } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
+                      >
+                         Requests
                       </span>
                     </div>
                   </NavLink>

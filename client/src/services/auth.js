@@ -18,3 +18,15 @@ export const loginService = async (email, password) => {
     };
   }
 };
+
+export const requestService = async () => {
+  try {
+    const { data } = await axios.get("/auth/register/request");
+    return data;
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Unkown error",
+    };
+  }
+};

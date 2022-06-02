@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
-import { AlertContext } from "../contexts/AlertContext";
-import UserContext from "../contexts/UserContext";
-import { loginService } from "../services/auth";
+import { AlertContext } from "../../contexts/AlertContext";
+import UserContext from "../../contexts/UserContext";
+import { loginService } from "../../services/auth";
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const [user, setUser] = useContext(UserContext);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -107,5 +107,3 @@ const LoginPage = () => {
     </div>
   );
 };
-
-export default LoginPage;

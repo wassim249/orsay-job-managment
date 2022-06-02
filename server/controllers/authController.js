@@ -1,4 +1,6 @@
 const prisma = require("../prisma/config");
+const os = require("os");
+const moment = require("moment");
 
 const login = async (req, res) => {
   try {
@@ -40,6 +42,56 @@ const login = async (req, res) => {
   }
 };
 
+const registerRequest = async (req, res) => {
+  try {
+    const { username } = os.userInfo();
+    if (username) {
+      // check if user already have a pending or accepted request
+      const nonAcceptedRequest = await prisma.request.findFirst({
+        where: {
+          username: username,
+          OR: [
+            {
+              status: "PENDING",
+            },
+            {
+              status: "ACCEPTED",
+            },
+          ],
+        },
+      });
+      // if so send message
+      if (nonAcceptedRequest)
+        res.json({
+          message: `you already submitted a request in ${moment(
+            nonAcceptedRequest.createdAt
+          ).format("DD/MM/YYYY")} please contact your administrator`,
+        });
+      // otherwise create a new request in the database and send it
+      else {
+        const request = await prisma.request.create({
+          data: {
+            username: username,
+          },
+        });
+        res.json({
+          request,
+        });
+      }
+    } else
+      res.json({
+        message: "Unvalid user name",
+      });
+  } catch (error) {
+    console.log(error);
+
+    res.json({
+      message: "Internal server error",
+    });
+  }
+};
+
 module.exports = {
   login,
+  registerRequest,
 };

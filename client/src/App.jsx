@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./css/style.scss";
 import "./charts/ChartjsConfig";
-import LoginPage from "./pages/LoginPage";
 import UserContext from "./contexts/UserContext";
 import { CreateScanPage } from "./pages/scan/CreateScanPage";
 import { ScanDetailsPage } from "./pages/scan/ScanDetailsPage";
@@ -19,6 +18,9 @@ import LangContext from "./contexts/LangContext";
 import { OrdersListPage } from "./pages/orders/ordersList";
 import { Dashboard } from "./pages/Dashboard";
 import { AlertContext } from "./contexts/AlertContext";
+import { RegisterPage } from "./pages/auth/RegisterPage";
+import { LoginPage } from "./pages/auth/LoginPage";
+import { RequestsListPage } from "./pages/requests/requestsListPage";
 
 const App = () => {
   const location = useLocation();
@@ -44,6 +46,7 @@ const App = () => {
           <Routes>
             <Route exact path="/home" element={<Dashboard />} />
             <Route index element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/scan/create" element={<CreateScanPage />} />
             <Route path="/scan/:id" element={<ScanDetailsPage />} />
             <Route path="/scan/" element={<ScansListPage />} />
@@ -52,6 +55,7 @@ const App = () => {
             <Route path="/user/:id" element={<UserDetailsPage />} />
             <Route path="/user/edit/:id" element={<EditUserPage />} />
             <Route path="/user/create/" element={<CreateUserPage />} />
+            <Route path="/requests/" element={<RequestsListPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/orders" element={<OrdersListPage />} />

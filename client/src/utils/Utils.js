@@ -6,7 +6,6 @@ export const tailwindConfig = () => {
   return resolveConfig("./src/css/tailwind.config.js");
 };
 
-
 export const hexToRGB = (h) => {
   let r = 0;
   let g = 0;
@@ -157,6 +156,20 @@ export const generateColors = (length = 6) => {
     else colors.push(color);
   }
   return colors;
+};
 
-  return colors;
+export const toCsv = (data) => {
+  try {
+    let csv = ""
+    let headers = Object.keys(data[0])
+    csv += headers.join(",") + "\n"
+    data.forEach(row => {
+      csv += headers.map(field => {
+        return row[field]
+      }).join(",") + "\n"
+    })
+    
+  } catch (error) {
+    console.log(error);
+  }
 };
