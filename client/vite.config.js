@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     watch: {
       include: ["src/**/*"],
-      usePolling: true,
+      usePolling: false,
     },
   },
   css: {

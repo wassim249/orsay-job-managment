@@ -30,3 +30,15 @@ export const requestService = async () => {
     };
   }
 };
+
+export const getAllRequests = async () => {
+  try {
+    const { data } = await axios.get("/register/request/all");
+    return data;
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Unkown error",
+    };
+  }
+};

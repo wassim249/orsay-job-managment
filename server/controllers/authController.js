@@ -91,7 +91,39 @@ const registerRequest = async (req, res) => {
   }
 };
 
+const getAuthRequests = async (_, res) => {
+  try {
+    const requests = await prisma.request.findMany();
+    return res.json({
+      requests,
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.json({
+      message: "Internal server error",
+    });
+  }
+};
+
+const changeRequestStatus = (req, res) => {
+  try {
+    const { status } = req.body;
+    if (status == "ACCEPTED") {
+      // create new user
+    }
+    // update request status
+  } catch (error) {
+    console.log(error);
+
+    res.json({
+      message: "Internal server error",
+    });
+  }
+};
+
 module.exports = {
   login,
   registerRequest,
+  getAuthRequests,
 };

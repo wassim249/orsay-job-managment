@@ -213,6 +213,8 @@ const failedReason = async (req, res) => {
 };
 
 const newUsers = async (req, res) => {
+  const { lang } = req.body;
+
   try {
     let { range } = req.body;
     let scanners = null;
