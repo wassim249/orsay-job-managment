@@ -83,6 +83,7 @@ export const LoginPage = () => {
             }}
           />
         </div>
+       
         <div className="flex justify-start items-center mb-3">
           <input
             onChange={(e) => {
@@ -93,7 +94,6 @@ export const LoginPage = () => {
           />
           <label className="  ml-2 text-sm">Remember me</label>
         </div>
-
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -103,6 +103,16 @@ export const LoginPage = () => {
         >
           {loading ? <ClipLoader color="white" loading={loading} /> : "Login"}
         </button>
+        <div
+        className="mt-3 text-center"
+        >
+          <span
+            onClick={() => navigate("/register")}
+            className="text-sm hover:cursor-pointer hover:underline"
+          >
+            Get a new account
+          </span>
+        </div>
       </form>
     </div>
   );
