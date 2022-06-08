@@ -11,6 +11,7 @@ import { BsCheck } from "react-icons/bs";
 import { getAllRequests, changeStatus } from "../../services/auth";
 import { AiOutlineClose } from "react-icons/ai";
 import moment from "moment";
+import LANG from "../../../../i18n/lang.json";
 
 export const RequestsListPage = () => {
   const [user] = useContext(UserContext);
@@ -64,13 +65,13 @@ export const RequestsListPage = () => {
           {alertData && <AlertMessage />}
           <h1 className="text-2xl text-secondary font-bold flex items-center">
             <RiFilePaperLine size={40} color="#f88c6c" className="mr-2" />
-            Lastest authentification requests
+            {LANG["requests"]["Lastest authentification requests"][lang]}
           </h1>
           <table className="table-auto w-full mt-4 overflow-x-auto">
             <thead>
               <tr className="bg-primary text-white  font-medium text-center">
                 <th className=" py-2">ID</th>
-                <th className=" py-2">user</th>
+                <th className=" py-2">{LANG["requests"]["user"][lang]}</th>
                 <th className=" py-2">Date</th>
                 <th className=" py-2">status</th>
                 <th className=" py-2 bg-lightPrimary">Actions</th>
@@ -96,12 +97,14 @@ export const RequestsListPage = () => {
                             handleAccept={() =>
                               changeRequestStatus(request.id, "ACCEPTED")
                             }
+                            lang={lang}
                           />
 
                           <RefuseButton
                             handleRefuse={() =>
                               changeRequestStatus(request.id, "REFUSED")
                             }
+                            lang={lang}
                           />
                         </>
                       )}
@@ -116,7 +119,7 @@ export const RequestsListPage = () => {
   );
 };
 
-const RequestStatus = ({ status = "PENDING" }) => {
+const RequestStatus = ({ status = "PENDING", lang = "EN" }) => {
   let color = "slate";
   if (status == "ACCEPTED") color = "green";
   else if (status == "REFUSED") color = "red";
@@ -125,7 +128,9 @@ const RequestStatus = ({ status = "PENDING" }) => {
     <div
       className={`flex justify-center items-center bg-${color}-500 px-4 py-2`}
     >
-      <span className={`test-sm text-white`}>{status}</span>
+      <span className={`test-sm text-white`}>
+        {LANG["requests"][status][lang]}
+      </span>
     </div>
   );
 };
