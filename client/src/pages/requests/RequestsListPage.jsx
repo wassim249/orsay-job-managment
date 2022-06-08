@@ -3,31 +3,52 @@ import Layout from "../../layout/Layout";
 import SquareLoader from "react-spinners/SquareLoader";
 import UserContext from "../../contexts/UserContext";
 import LangContext from "../../contexts/LangContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AlertMessage } from "../../components/AlertMessage";
 import { AlertContext } from "../../contexts/AlertContext";
 import { RiFilePaperLine } from "react-icons/ri";
 import { BsCheck } from "react-icons/bs";
-import { getAuthRequests } from "../../../../server/controllers/authController";
+import { getAllRequests, changeStatus } from "../../services/auth";
+import { AiOutlineClose } from "react-icons/ai";
+import moment from "moment";
 
 export const RequestsListPage = () => {
   const [user] = useContext(UserContext);
   const [lang] = useContext(LangContext);
   const [loading, setLoading] = useState(false);
   const [alertData, setAlertData] = useContext(AlertContext);
-  const [requests, setRequests] = useState(null)
-alert('hhh')
-  useEffect(()=> {
-    const fetchRequests = async ()=> {
-      setLoading(true)
-      const data  = await getAuthRequests()
-      setRequests(data)
-      setLoading(false)
-      console.log(data);
-    }
-    fetchRequests()
-  },[])
+  const [requests, setRequests] = useState(null);
+  const location = useLocation();
+  useEffect(() => {
+    const fetchRequests = async () => {
+      setLoading(true);
+      const data = await getAllRequests();
+      if (data.message)
+        setAlertData({
+          type: "error",
+          message: data.message,
+        });
+      else setRequests(data.requests);
+      console.log(data.requests);
+      setLoading(false);
+    };
+    fetchRequests();
+  }, []);
 
+  const changeRequestStatus = async (id, status) => {
+    setLoading(true);
+    const data = await changeStatus(id, status);
+    if (data?.message)
+      setAlertData({
+        type: data.request ? "success" : "error",
+        message: data.message,
+      });
+    if (data?.request)
+      setRequests(
+        requests.map((request) => (request.id == id ? data.request : request))
+      );
+    setLoading(false);
+  };
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) navigate("/");
@@ -40,7 +61,6 @@ alert('hhh')
         </div>
       ) : (
         <>
-          {" "}
           {alertData && <AlertMessage />}
           <h1 className="text-2xl text-secondary font-bold flex items-center">
             <RiFilePaperLine size={40} color="#f88c6c" className="mr-2" />
@@ -57,29 +77,37 @@ alert('hhh')
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="border p-2">01</td>
-                <td className="border p-2">wassim.elbakkouri</td>
-                <td
-                className="border p-2"
-                >01vflkfkl</td>
-                <td className="border p-2">
-                  <RequestStatus status="ACCEPTED" />
-                </td>
-                <td className="border p-2">
-            
-                  <button className="bg-transparent pr-3" onClick={() => {}}>
-                    <BsCheck color="#22c55e" size={30} />
-                  </button>
+              {requests &&
+                requests.map((request) => (
+                  <tr key={request.id}>
+                    <td className="border p-2">{request.id}</td>
+                    <td className="border p-2">{request.username}</td>
+                    <td className="border p-2">
+                      {moment(request.createdAt).format("DD/MM/YYYY : HH:mm")}
+                    </td>
+                    <td className="border p-2 ">
+                      <RequestStatus status={request.status} />
+                    </td>
 
-                  <button
-                    className="bg-transparent text-red-500 font-bold text-2xl"
-                    onClick={() => {}}
-                  >
-                    X
-                  </button>
-                </td>
-              </tr>
+                    <td className="border p-2 flex items-center justify-between">
+                      {request.status == "PENDING" && (
+                        <>
+                          <AcceptButton
+                            handleAccept={() =>
+                              changeRequestStatus(request.id, "ACCEPTED")
+                            }
+                          />
+
+                          <RefuseButton
+                            handleRefuse={() =>
+                              changeRequestStatus(request.id, "REFUSED")
+                            }
+                          />
+                        </>
+                      )}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </>
@@ -88,16 +116,34 @@ alert('hhh')
   );
 };
 
-const RequestStatus = (status = "PENDING") => {
+const RequestStatus = ({ status = "PENDING" }) => {
   let color = "slate";
   if (status == "ACCEPTED") color = "green";
   else if (status == "REFUSED") color = "red";
 
   return (
     <div
-      className={`flex justify-center items-center text-${color}-500 px-4 py-2`}
+      className={`flex justify-center items-center bg-${color}-500 px-4 py-2`}
     >
-      <span className={`test-sm text-white`}>PENDING</span>
+      <span className={`test-sm text-white`}>{status}</span>
     </div>
   );
 };
+
+const AcceptButton = ({ handleAccept }) => (
+  <div
+    onClick={() => handleAccept()}
+    className="flex bg-green-500 p-1 hover:cursor-pointer"
+  >
+    <BsCheck color="white" size={23} />
+  </div>
+);
+
+const RefuseButton = ({ handleRefuse }) => (
+  <div
+    onClick={() => handleRefuse()}
+    className="flex bg-red-500 p-1 hover:cursor-pointer"
+  >
+    <AiOutlineClose color="white" size={23} />
+  </div>
+);

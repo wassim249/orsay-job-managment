@@ -1,6 +1,7 @@
 const prisma = require("../prisma/config");
 const os = require("os");
 const moment = require("moment");
+const { generatePassword, sendEmail } = require("../helpers/utils");
 
 const login = async (req, res) => {
   try {
@@ -106,14 +107,59 @@ const getAuthRequests = async (_, res) => {
   }
 };
 
-const changeRequestStatus = (req, res) => {
+const changeRequestStatus = async (req, res) => {
   try {
-    const { status } = req.body;
+    const { status ,id  } = req.body;
+    console.log(req.body);
+    const {username} = os.userInfo()
+    const pwd = generatePassword()
+    console.log(req.body);
     if (status == "ACCEPTED") {
+      
       // create new user
+      const user = await prisma.user.create({
+        data: {
+          firstName : username.split(".")[0],
+          lastName : username.split(".")[1],
+          email : `${username}@cgi.com`,
+          role : 'viewer',
+          password : pwd
+        }
+      });
     }
     // update request status
-  } catch (error) {
+    const request = await prisma.request.update({
+      where: {
+        id,
+      },
+      data :{
+        status : status
+      }
+    });
+    if (request) {
+      res.json({
+        message: "Request status updated",
+        request,
+      });
+      const context = status == 'ACCEPTED' ? {
+        firstName: username.split(".")[0],
+        firstLine: `Welcome to the JOB manager tool`,
+      
+        secondLine: `Here are your credentials :`,
+        thirdLine: `Email : ${username}@cgi.com`,
+        fourthLine: `Password : ${pwd}`,
+      
+      } : {
+        firstName: username.split(".")[0],
+        firstLine: `Your request has been rejected`,
+        secondLine: `Please contact your administrator`,
+      }
+      sendEmail(`${username}@cgi.com`,'Your request has been accepted' ,context );
+    }
+    else res.json({
+      message: "Internal server error",
+    });
+        } catch (error) {
     console.log(error);
 
     res.json({
@@ -126,4 +172,5 @@ module.exports = {
   login,
   registerRequest,
   getAuthRequests,
+  changeRequestStatus
 };

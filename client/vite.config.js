@@ -9,8 +9,9 @@ export default defineConfig({
   },
   server: {
     watch: {
-      include: ["src/**/*"],
-      usePolling: false,
+      include: ["src/**/**"],
+      usePolling: true,
+
     },
   },
   css: {
@@ -30,6 +31,8 @@ export default defineConfig({
   build: {
     commonjsOptions: {
       transformMixedEsModules: true,
+
     },
+    
   },
 });

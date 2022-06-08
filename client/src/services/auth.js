@@ -33,7 +33,24 @@ export const requestService = async () => {
 
 export const getAllRequests = async () => {
   try {
-    const { data } = await axios.get("/register/request/all");
+    const { data } = await axios.get("auth/register/request/all");
+    return data;
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Unkown error",
+    };
+  }
+};
+
+export const changeStatus = async (id, status) => {
+  try {
+    const { data } = await axios.post("auth/register/request/status", {
+     
+        id,
+        status,
+      
+    });
     return data;
   } catch (error) {
     console.log(error);
