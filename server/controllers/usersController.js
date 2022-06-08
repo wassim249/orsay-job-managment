@@ -15,6 +15,8 @@ const getAllUsers = async (req, res) => {
       include: {
         Scan: true,
       },
+      orderBy : {
+        createdAt : "desc"      }
     });
     res.json({
       users,
