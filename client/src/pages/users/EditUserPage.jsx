@@ -35,6 +35,12 @@ export const EditUserPage = () => {
     fetchUser();
   }, []);
 
+  const dotsPwd = (length) => {
+    let pwd = "";
+    for (let i = 0; i < length; i++) pwd += "•";
+    return pwd;
+  };
+
   const handleUserUpdate = async (e) => {
     e.preventDefault();
     console.log(!validateEmail(fetchedUser?.email.trim()));
@@ -178,24 +184,31 @@ export const EditUserPage = () => {
                 {LANG["createUser"]["Generate password"][lang]} :
               </label>
               <div className="flex justify-between items-center w-full ">
-                <input
-                  className="appearance-none border grow py-2 px-3 text-slate-700 bg-slate-100 leading-tight focus:outline-none focus:shadow-outline"
-                  type="password"
-                  disabled
-                  value={fetchedUser && fetchedUser.password}
-                  placeholder="•••••••••••••••"
-                  required
-                />
+                {fetchedUser?.password && (
+                  <div className="border border-gray-600 bg-white w-full py-2 px-3">
+                    <span className="font-bold text-xl">
+                      {dotsPwd(fetchedUser?.password.length)}
+                    </span>
+                  </div>
+                )}
 
                 <button
-                  className="bg-transparent border   border-secondary hover:bg-primary-dark text-secondary ml-3 py-2 px-4 focus:outline-none focus:shadow-outline hover:bg-secondary hover:text-white"
+                  className={`bg-transparent border border-secondary hover:bg-primary-dark text-secondary ml-3 py-2 px-4 focus:outline-none focus:shadow-outline hover:bg-secondary hover:text-white ${
+                    !fetchedUser?.password && `w-full`
+                  }`}
                   onClick={(e) => {
                     e.preventDefault();
-                    const password = generatePassword();
-                    setFetchedUser({ ...fetchedUser, password });
+                    if (!fetchedUser.password) {
+                      const password = generatePassword();
+                      setFetchedUser({ ...fetchedUser, password });
+                    } else {
+                      setFetchedUser({ ...fetchedUser, password: null });
+                    }
                   }}
                 >
-                  {LANG["createUser"]["Generate"][lang]}
+                  {fetchedUser?.password
+                    ? "X"
+                    : LANG["createUser"]["Generate"][lang]}
                 </button>
               </div>
             </div>
