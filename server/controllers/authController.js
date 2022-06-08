@@ -2,6 +2,7 @@ const prisma = require("../prisma/config");
 const os = require("os");
 const moment = require("moment");
 const { generatePassword, sendEmail } = require("../helpers/utils");
+const LANG = require("../../i18n/lang.json");
 
 const login = async (req, res) => {
   try {
@@ -45,6 +46,8 @@ const login = async (req, res) => {
 
 const registerRequest = async (req, res) => {
   try {
+    const { lang } = req.body;
+    console.log(req.body);
     const { username } = os.userInfo();
     if (username) {
       // check if user already have a pending or accepted request
@@ -64,9 +67,11 @@ const registerRequest = async (req, res) => {
       // if so send message
       if (nonAcceptedRequest)
         res.json({
-          message: `you already submitted a request in ${moment(
-            nonAcceptedRequest.createdAt
-          ).format("DD/MM/YYYY")} please contact your administrator`,
+          message: `${
+            LANG["alerts"]["you already submitted a request in"][lang || "EN"]
+          } ${moment(nonAcceptedRequest.createdAt).format("DD/MM/YYYY")} ${
+            LANG["alerts"]["please contact your administrator"][lang || "EN"]
+          }}`,
         });
       // otherwise create a new request in the database and send it
       else {
@@ -81,19 +86,21 @@ const registerRequest = async (req, res) => {
       }
     } else
       res.json({
-        message: "Unvalid user name",
+        message: LANG["alerts"]["Unvalid user name"][lang || "EN"],
       });
   } catch (error) {
     console.log(error);
 
     res.json({
-      message: "Internal server error",
+      message: LANG["alerts"]["Internal server error"][lang || "EN"],
     });
   }
 };
 
-const getAuthRequests = async (_, res) => {
+const getAuthRequests = async (req, res) => {
   try {
+    const { lang } = req.body;
+
     const requests = await prisma.request.findMany();
     return res.json({
       requests,
@@ -109,22 +116,20 @@ const getAuthRequests = async (_, res) => {
 
 const changeRequestStatus = async (req, res) => {
   try {
-    const { status ,id  } = req.body;
-    console.log(req.body);
-    const {username} = os.userInfo()
-    const pwd = generatePassword()
+    const { status, id, lang } = req.body;
+    const { username } = os.userInfo();
+    const pwd = generatePassword();
     console.log(req.body);
     if (status == "ACCEPTED") {
-      
       // create new user
-      const user = await prisma.user.create({
+      await prisma.user.create({
         data: {
-          firstName : username.split(".")[0],
-          lastName : username.split(".")[1],
-          email : `${username}@cgi.com`,
-          role : 'viewer',
-          password : pwd
-        }
+          firstName: username.split(".")[0],
+          lastName: username.split(".")[1],
+          email: `${username}@cgi.com`,
+          role: "viewer",
+          password: pwd,
+        },
       });
     }
     // update request status
@@ -132,34 +137,40 @@ const changeRequestStatus = async (req, res) => {
       where: {
         id,
       },
-      data :{
-        status : status
-      }
+      data: {
+        status: status,
+      },
     });
     if (request) {
       res.json({
-        message: "Request status updated",
+        message: LANG["alerts"]["Request status updated"][lang || "EN"],
         request,
       });
-      const context = status == 'ACCEPTED' ? {
-        firstName: username.split(".")[0],
-        firstLine: `Welcome to the JOB manager tool`,
-      
-        secondLine: `Here are your credentials :`,
-        thirdLine: `Email : ${username}@cgi.com`,
-        fourthLine: `Password : ${pwd}`,
-      
-      } : {
-        firstName: username.split(".")[0],
-        firstLine: `Your request has been rejected`,
-        secondLine: `Please contact your administrator`,
-      }
-      sendEmail(`${username}@cgi.com`,'Your request has been accepted' ,context );
-    }
-    else res.json({
-      message: "Internal server error",
-    });
-        } catch (error) {
+      const context =
+        status == "ACCEPTED"
+          ? {
+              firstName: username.split(".")[0],
+              firstLine: `Welcome to the JOB manager tool`,
+
+              secondLine: `Here are your credentials :`,
+              thirdLine: `Email : ${username}@cgi.com`,
+              fourthLine: `Password : ${pwd}`,
+            }
+          : {
+              firstName: username.split(".")[0],
+              firstLine: `Your request has been rejected`,
+              secondLine: `Please contact your administrator`,
+            };
+      sendEmail(
+        `${username}@cgi.com`,
+        "Your request has been accepted",
+        context
+      );
+    } else
+      res.json({
+        message: LANG["alerts"]["Internal server error"][lang || "EN"],
+      });
+  } catch (error) {
     console.log(error);
 
     res.json({
@@ -172,5 +183,5 @@ module.exports = {
   login,
   registerRequest,
   getAuthRequests,
-  changeRequestStatus
+  changeRequestStatus,
 };

@@ -205,6 +205,34 @@
     }
   },
 
+  "requests": {
+    "Lastest authentification requests": {
+      "EN": "Lastest authentification requests",
+      "FR": "Dernières demandes d'authentification",
+      "DE": "Letzte Authentifizierungsanfragen"
+    },
+    "user": {
+      "EN": "user",
+      "FR": "utilisateur",
+      "DE": "Benutzer"
+    },
+    "PENDING": {
+      "EN": "PENDING",
+      "FR": "EN ATTENTE",
+      "DE": "AUSSTEHEND"
+    },
+    "ACCEPTED": {
+      "EN": "ACCEPTED",
+      "FR": "ACCEPTE",
+      "DE": "AKZEPTIERT"
+    },
+    "REFUSED": {
+      "EN": "REFUSED",
+      "FR": "REFUSE",
+      "DE": "ABGELEHNT"
+    }
+  },
+
   "scansList": {
     "Scans list": {
       "EN": "Scans list",
@@ -586,6 +614,37 @@
     }
   },
   "alerts": {
+    "you already submitted a request in" : {
+      "EN": "you already submitted a request in",
+      "FR": "vous avez déjà soumis une demande dans",
+      "DE": "Sie haben bereits eine Anfrage in"
+    
+    } ,
+    "please contact your administrator" : {
+      "EN": "please contact your administrator",
+      "FR": "veuillez contacter votre administrateur",
+      "DE": "Bitte kontaktieren Sie Ihren Administrator"
+    } ,
+    "Unvalid user name" : {
+      "EN": "Unvalid user name",
+      "FR": "Nom d'utilisateur non valide",
+      "DE": "Ungültiger Benutzername"
+    
+    } ,
+    "Internal server error" : {
+      "EN": "Internal server error",
+      "FR": "Erreur interne du serveur",
+      "DE": "Interner Serverfehler"
+    
+    
+    } ,
+    "Request status updated" : {
+      "EN": "Request status updated",
+      "FR": "Statut de la demande mis à jour",
+      "DE": "Anfrage Status aktualisiert"
+    
+    
+    },
     "Email already in use": {
       "EN": "Email already in use",
       "FR": "Email déjà utilisé",

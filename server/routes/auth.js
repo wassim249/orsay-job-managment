@@ -2,7 +2,7 @@ const { login, registerRequest, getAuthRequests, changeRequestStatus } = require
 const router = require("express").Router();
 
 router.post("/login", login);
-router.get("/register/request", registerRequest);
+router.post("/register/request", registerRequest);
 router.get("/register/request/all", getAuthRequests);
 router.post("/register/request/status", changeRequestStatus);
 

@@ -21,7 +21,10 @@ export const loginService = async (email, password) => {
 
 export const requestService = async () => {
   try {
-    const { data } = await axios.get("/auth/register/request");
+    console.log(lang());
+    const { data } = await axios.post("/auth/register/request", {
+      lang: lang(),
+    });
     return data;
   } catch (error) {
     console.log(error);
@@ -33,7 +36,9 @@ export const requestService = async () => {
 
 export const getAllRequests = async () => {
   try {
-    const { data } = await axios.get("auth/register/request/all");
+    const { data } = await axios.get("auth/register/request/all", {
+      lang: lang(),
+    });
     return data;
   } catch (error) {
     console.log(error);
@@ -46,10 +51,9 @@ export const getAllRequests = async () => {
 export const changeStatus = async (id, status) => {
   try {
     const { data } = await axios.post("auth/register/request/status", {
-     
-        id,
-        status,
-      
+      lang: lang(),
+      id,
+      status,
     });
     return data;
   } catch (error) {
