@@ -51,7 +51,7 @@ const getUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   const { lang } = req.body;
-
+  delete req.body.lang;
   try {
     const user = await prisma.user.update({
       where: {

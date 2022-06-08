@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { getUsers } from "../../services/user";
 import { AlertContext } from "../../contexts/AlertContext";
 import LangContext from "../../contexts/LangContext";
+import { AlertMessage } from "../../components/AlertMessage";
 
 export const UsersListPage = () => {
   const [lang] = useContext(LangContext);
