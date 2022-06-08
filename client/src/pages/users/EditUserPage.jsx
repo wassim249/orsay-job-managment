@@ -4,10 +4,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import SquareLoader from "react-spinners/SquareLoader";
 import { editUser, getUsers } from "../../services/user";
-import { generatePassword } from "../../utils/Utils";
+import { generatePassword, validateEmail } from "../../utils/Utils";
 import { AlertContext } from "../../contexts/AlertContext";
 import LANG from "../../../../i18n/lang.json";
 import LangContext from "../../contexts/LangContext";
+import { AlertMessage } from "../../components/AlertMessage";
 
 export const EditUserPage = () => {
   const { id: userID } = useParams();
@@ -36,21 +37,35 @@ export const EditUserPage = () => {
 
   const handleUserUpdate = async (e) => {
     e.preventDefault();
-    if (fetchedUser?.firstName.trim() === "")
-      return setAlertData({
-        message: LANG['alerts']['First name is required'][lang],
+    console.log(!validateEmail(fetchedUser?.email.trim()));
+    if (fetchedUser?.firstName.trim() === "") {
+      setAlertData({
+        message: LANG["alerts"]["First name is required"][lang],
         type: "error",
       });
-    if (fetchedUser?.lastName.trim() === "")
-      return setAlertData({
-        message: LANG['alerts']['Last name is required'][lang],
+      return;
+    }
+    if (fetchedUser?.lastName.trim() === "") {
+      setAlertData({
+        message: LANG["alerts"]["Last name is required"][lang],
         type: "error",
       });
-    if (fetchedUser?.email.trim() === "")
-      return setAlertData({
-        message: LANG['alerts']['Email is required'][lang],
+      return;
+    }
+    if (fetchedUser?.email.trim() === "") {
+      setAlertData({
+        message: LANG["alerts"]["Email is required"][lang],
         type: "error",
       });
+      return;
+    }
+    if (!validateEmail(fetchedUser?.email.trim())) {
+      setAlertData({
+        message: "Email is not valid",
+        type: "error",
+      });
+      return;
+    }
 
     setLoading(true);
     const data = await editUser(userID, {
@@ -63,7 +78,7 @@ export const EditUserPage = () => {
     if (data) navigate(`/user/${userID}`);
     else
       setAlertData({
-        message: LANG['alerts']['Something went wrong'][lang],
+        message: LANG["alerts"]["Something went wrong"][lang],
         type: "error",
       });
     setLoading(false);
@@ -73,11 +88,11 @@ export const EditUserPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          {alertData && <AlertMessage />}
           <SquareLoader color="#f88c6c" loading={loading} size="20px" />
         </div>
       ) : (
         <>
+          {alertData && <AlertMessage />}
           <span className="  font-bold text-2xl text-secondary">
             {LANG["editUser"]["Edit User"][lang]} #{userID}
           </span>
@@ -180,7 +195,7 @@ export const EditUserPage = () => {
                     setFetchedUser({ ...fetchedUser, password });
                   }}
                 >
-                 {LANG["createUser"]["Generate"][lang]}
+                  {LANG["createUser"]["Generate"][lang]}
                 </button>
               </div>
             </div>
