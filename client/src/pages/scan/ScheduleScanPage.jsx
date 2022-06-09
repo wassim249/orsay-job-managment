@@ -167,7 +167,7 @@ export const ScheduleScanPage = () => {
             }}
           >
             {MONTHS_NAMES.map((month, index) => (
-              <option key={month} value={index}>
+              <option key={month} value={index || "*"}>
                 {month}
               </option>
             ))}
@@ -338,7 +338,8 @@ export const ScheduleScanPage = () => {
         onClick={() => {
           handleSchedule();
         }}
-        className="mt-8 bg-primary text-white font-bold py-2 w-full hover:bg-darkPrimary  "
+        disabled={cronToString() == ""}
+        className="mt-8 bg-primary text-white font-bold py-2 w-full hover:bg-darkPrimary disabled:bg-lightPrimary"
       >
         {LANG["scheduleScan"]["Schedule"][lang]}
       </button>

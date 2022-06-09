@@ -118,7 +118,7 @@ export const generateCron = (
       ...cron,
       weekdays: "1-5",
     };
-
+console.log( `${cron.minutes} ${cron.hours} ${cron.days} ${cron.months} ${cron.weekdays}`);
   return `${cron.minutes} ${cron.hours} ${cron.days} ${cron.months} ${cron.weekdays}`;
 };
 
