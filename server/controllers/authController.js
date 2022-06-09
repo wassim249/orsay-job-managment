@@ -5,6 +5,7 @@ const { generatePassword, sendEmail } = require("../helpers/utils");
 const LANG = require("../../i18n/lang.json");
 
 const login = async (req, res) => {
+  console.log(req.body);
   try {
     if (req.body.email == "" || req.body.password == "")
       res.json({
@@ -17,6 +18,7 @@ const login = async (req, res) => {
         password: req.body.password,
       },
     });
+    console.log(foundedUser);
     if (!foundedUser) {
       res.json({
         message: "Invalid credentials",

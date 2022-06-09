@@ -29,7 +29,7 @@ export const UserDetailsPage = () => {
       console.log(data.user);
       if (data?.user) setFetchedUser(data.user);
       else navigate("/notfound");
-
+console.log(data.user);
       setLoading(false);
     };
     fetchUser();
@@ -43,6 +43,9 @@ export const UserDetailsPage = () => {
         </div>
       ) : (
         <>
+          {
+            fetchedUser?.disabled && <Disabled lang={lang} />
+          }
           <span className="  font-bold text-2xl text-secondary">
             {LANG["profile"]["User"][lang]} #{userID}
           </span>
@@ -169,3 +172,15 @@ const UserRole = ({ role = "viewer" }) => (
     {role}
   </div>
 );
+const Disabled = ({lang})=> (
+  <div
+  className="flex flex-col items-center justify-center p-3 bg-slate-700 text-white w-1/6"
+  >
+    <span
+    className="font-bold"
+    >
+      {LANG["editUser"]["Disabled"][lang]}
+    </span>
+  </div>
+)
+

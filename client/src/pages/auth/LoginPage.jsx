@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import { AlertMessage } from "../../components/AlertMessage";
 import { AlertContext } from "../../contexts/AlertContext";
 import UserContext from "../../contexts/UserContext";
 import { loginService } from "../../services/auth";
@@ -18,32 +19,40 @@ export const LoginPage = () => {
     setLoading(true);
     const response = await loginService(email, password);
     if (response.user) setUser(response.user);
-    else
+    else {
+      setUser(null);
       setAlertData({
         message: response.message,
         type: "error",
       });
-
+    }
+    console.log(response);
     setLoading(false);
   };
 
   useEffect(() => {
     if (user) {
-      if (rememberMe)
-        localStorage.setItem(
-          "ORSAY_USER",
-          JSON.stringify({
-            id: user.id,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            role: user.role,
-            lastConnection: user.lastConnection,
-            updatedAt: user.updatedAt,
-            createdAt: user.createdAt,
-          })
-        );
-      navigate("/home");
+      if (user.disabled == false) {
+        if (rememberMe)
+          localStorage.setItem(
+            "ORSAY_USER",
+            JSON.stringify({
+              id: user.id,
+              email: user.email,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              role: user.role,
+              lastConnection: user.lastConnection,
+              updatedAt: user.updatedAt,
+              createdAt: user.createdAt,
+            })
+          );
+        navigate("/home");
+      } else if (user.disabled == true)
+        setAlertData({
+          message: "Your account has been disabled",
+          type: "error",
+        });
     }
   }, [loading]);
 
@@ -83,7 +92,7 @@ export const LoginPage = () => {
             }}
           />
         </div>
-       
+
         <div className="flex justify-start items-center mb-3">
           <input
             onChange={(e) => {
@@ -103,9 +112,7 @@ export const LoginPage = () => {
         >
           {loading ? <ClipLoader color="white" loading={loading} /> : "Login"}
         </button>
-        <div
-        className="mt-3 text-center"
-        >
+        <div className="mt-3 text-center">
           <span
             onClick={() => navigate("/register")}
             className="text-sm hover:cursor-pointer hover:underline"

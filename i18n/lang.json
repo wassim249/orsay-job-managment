@@ -413,6 +413,31 @@
     }
   },
   "editUser": {
+    "Enable account": {
+      "EN": "Enable account",
+      "FR": "Activer le compte",
+      "DE": "Konto aktivieren"
+    },
+    "Disable account": {
+      "EN": "Disable account",
+      "FR": "Désactiver le compte",
+      "DE": "Konto deaktivieren"
+    },
+    "Account enabled": {
+      "EN": "Account enabled",
+      "FR": "Compte activé",
+      "DE": "Konto aktiviert"
+    },
+    "Account disabled": {
+      "EN": "Account disabled",
+      "FR": "Compte désactivé",
+      "DE": "Konto deaktiviert"
+    },
+    "Disabled": {
+      "EN": "Disabled",
+      "FR": "Désactivé",
+      "DE": "Deaktiviert"
+    },
     "Edit User": {
       "EN": "Edit User",
       "FR": "Modifier l'utilisateur",
@@ -614,37 +639,35 @@
     }
   },
   "alerts": {
-    
-    "you already submitted a request in" : {
+    "Account disabled": {
+      "EN": "Account disabled",
+      "FR": "Compte désactivé",
+      "DE": "Konto deaktiviert"
+    },
+    "you already submitted a request in": {
       "EN": "you already submitted a request in",
       "FR": "vous avez déjà soumis une demande dans",
       "DE": "Sie haben bereits eine Anfrage in"
-    
-    } ,
-    "please contact your administrator" : {
+    },
+    "please contact your administrator": {
       "EN": "please contact your administrator",
       "FR": "veuillez contacter votre administrateur",
       "DE": "Bitte kontaktieren Sie Ihren Administrator"
-    } ,
-    "Unvalid user name" : {
+    },
+    "Unvalid user name": {
       "EN": "Unvalid user name",
       "FR": "Nom d'utilisateur non valide",
       "DE": "Ungültiger Benutzername"
-    
-    } ,
-    "Internal server error" : {
+    },
+    "Internal server error": {
       "EN": "Internal server error",
       "FR": "Erreur interne du serveur",
       "DE": "Interner Serverfehler"
-    
-    
-    } ,
-    "Request status updated" : {
+    },
+    "Request status updated": {
       "EN": "Request status updated",
       "FR": "Statut de la demande mis à jour",
       "DE": "Anfrage Status aktualisiert"
-    
-    
     },
     "Email already in use": {
       "EN": "Email already in use",

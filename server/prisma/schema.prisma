@@ -19,6 +19,7 @@ model User {
   lastConnection DateTime?
   role           String    @default("viewer")
   Scan           Scan[]
+  disabled       Boolean   @default(false)
 }
 
 model Scan {

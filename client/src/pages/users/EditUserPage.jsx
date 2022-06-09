@@ -90,6 +90,28 @@ export const EditUserPage = () => {
     setLoading(false);
   };
 
+  const handleDisableAccount = async (e) => {
+    e.preventDefault();
+    setLoading(true)
+   
+    const data = await editUser(userID, {
+      disabled : !fetchedUser?.disabled }); console.log(data);
+    if (data) {setAlertData({
+      message: data.user?.disabled ?  LANG["alerts"]["Account disabled"][lang] : LANG["alerts"]["Account enabled"][lang],
+      type: "success",
+    });
+    navigate(`/user/${userID}`);
+  }
+      else 
+          setAlertData({
+          message: LANG["alerts"]["Something went wrong"][lang],
+          type: "error",
+        });
+
+      
+      setLoading(false);
+  }
+
   return (
     <Layout>
       {loading ? (
@@ -99,6 +121,7 @@ export const EditUserPage = () => {
       ) : (
         <>
           {alertData && <AlertMessage />}
+        
           <span className="  font-bold text-2xl text-secondary">
             {LANG["editUser"]["Edit User"][lang]} #{userID}
           </span>
@@ -122,7 +145,7 @@ export const EditUserPage = () => {
 
             <div className="col-span-2">
               <label className="block text-secondary text-sm d mb-2">
-                {LANG["createUser"]["Last name"][lang]} :{" "}
+                {LANG["createUser"]["Last name"][lang]} :
                 <span className="text-primary">*</span>
               </label>
               <input
@@ -213,6 +236,16 @@ export const EditUserPage = () => {
               </div>
             </div>
 
+            <div className="col-span-2 text-center">
+              <span
+              onClick={(e)=>handleDisableAccount(e)}
+              className="text-secondary text-sm d mb-2 hover:underline hover:text-primary hover:cursor-pointer"
+              >
+                {fetchedUser?.disabled ? LANG["editUser"]["Enable account"][lang] : LANG["editUser"]["Disable account"][lang]}
+                
+              </span>
+            </div>
+
             <div className="col-span-2">
               <button
                 onClick={handleUserUpdate}
@@ -227,3 +260,4 @@ export const EditUserPage = () => {
     </Layout>
   );
 };
+
