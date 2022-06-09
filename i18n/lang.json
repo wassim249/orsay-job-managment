@@ -449,6 +449,76 @@
       "DE": "Aktualisieren"
     }
   },
+  "login": {
+    "Login to your account": {
+      "EN": "Login to your account",
+      "FR": "Connectez-vous à votre compte",
+      "DE": "Melden Sie sich bei Ihrem Konto an"
+    },
+    "Email adress": {
+      "EN": "Email adress",
+      "FR": "Adresse email",
+      "DE": "E-Mail Adresse"
+    },
+    "Password": {
+      "EN": "Password",
+      "FR": "Mot de passe",
+      "DE": "Passwort"
+    },
+    "Remember me": {
+      "EN": "Remember me",
+      "FR": "Se souvenir de moi",
+      "DE": "Erinnere dich an mich"
+    },
+    "Login": {
+      "EN": "Login",
+      "FR": "Connexion",
+      "DE": "Anmelden"
+    },
+    "register": {
+      "Send authentification request": {
+        "EN": "Send authentification request",
+        "FR": "Envoyer une demande d'authentification",
+        "DE": "Authentifizierungsanfrage senden"
+      },
+      "Thank you": {
+        "EN": "Thank you",
+        "FR": "Merci",
+        "DE": "Vielen Dank"
+      },
+      "your request has been submited": {
+        "EN": "your request has been submited",
+        "FR": "votre demande a été soumise",
+        "DE": "Ihre Anfrage wurde übermittelt"
+      },
+      "Your information will be sent to the adminstrator , you'll get your credentials once your request is accepted": {
+        "EN": "Your information will be sent to the adminstrator , you'll get your credentials once your request is accepted",
+        "FR": "Vos informations seront envoyées à l'administrateur, vous recevrez vos identifiants une fois votre demande acceptée",
+        "DE": "Ihre Informationen werden an den Administrator gesendet, Sie erhalten Ihre Zugangsdaten, sobald Ihre Anfrage akzeptiert wurde"
+      },
+      "GO BACK TO LOGIN": {
+        "EN": "GO BACK TO LOGIN",
+        "FR": "RETOUR À LA CONNEXION",
+        "DE": "ZURÜCK ZUR ANMELDUNG"
+      },
+      "SEND": {
+        "EN": "SEND",
+        "FR": "ENVOYER",
+        "DE": "SENDEN"
+      }
+    },
+
+    "Get a new account": {
+      "EN": "Get a new account",
+      "FR": "Obtenir un nouveau compte",
+      "DE": "Erhalten Sie ein neues Konto"
+    },
+    "Your account has been disabled": {
+      "EN": "Your account has been disabled",
+      "FR": "Votre compte a été désactivé",
+      "DE": "Ihr Konto wurde deaktiviert"
+    }
+  },
   "404": {
     "Page not found": {
       "EN": "Page not found",

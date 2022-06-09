@@ -5,6 +5,9 @@ import { AlertMessage } from "../../components/AlertMessage";
 import { AlertContext } from "../../contexts/AlertContext";
 import UserContext from "../../contexts/UserContext";
 import { requestService } from "../../services/auth";
+import LANG from '../../../../i18n/lang.json'
+import LangContext from "../../contexts/LangContext";
+
 
 export const RegisterPage = () => {
   const [user] = useContext(UserContext);
@@ -12,6 +15,8 @@ export const RegisterPage = () => {
   const [request, setRequest] = useState(null);
   const [alertData, setAlertData] = useContext(AlertContext);
   const navigate = useNavigate();
+  const [lang, setLang] = useContext(LangContext);
+
 
   const handleRequest = async () => {
     if (request) navigate("/");
@@ -37,15 +42,21 @@ export const RegisterPage = () => {
     <div className="w-screen h-screen flex flex-col justify-center items-center bg-slate-50 font-montserat">
       {alertData && <AlertMessage />}
       <h1 className="text-secondary text-2xl font-bold mb-6  ">
-        Send authentification request
+        {LANG['register']['Send authentification request'][lang]}
       </h1>
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col w-1/2">
         <p className="text-sm text-center">
           {request
-            ? `Thank you ${request.username.split(".")[0]} ${
+            ? `${
+                LANG['register']['Thank you'][lang]
+            } ${request.username.split(".")[0]} ${
                 request.username.split(".")[1]
-              } , your request has been submited`
-            : "Your information will be sent to the adminstrator , you'll get your credentials once your request is accepted"}
+              } , ${
+                LANG['register']['your request has been submited'][lang]
+              }`
+            : 
+            "Your information will be sent to the adminstrator , you'll get your credentials once your request is accepted"}
+
         </p>
         <button
           onClick={(e) => {
@@ -57,9 +68,9 @@ export const RegisterPage = () => {
           {loading ? (
             <ClipLoader color="white" loading={loading} />
           ) : request ? (
-            "GO BACK TO LOGIN"
+           LANG['register']['GO BACK TO LOGIN'][lang]
           ) : (
-            "SEND"
+            LANG['register']['SEND'][lang]
           )}
         </button>
       </div>
