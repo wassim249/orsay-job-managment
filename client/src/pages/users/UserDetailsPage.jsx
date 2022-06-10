@@ -165,9 +165,9 @@ console.log(data.user);
 
 const UserRole = ({ role = "viewer" }) => (
   <div
-    className={`flex items-center justify-center w-1/3  ${
-      role == "admin" ? "bg-primary" : "bg-secondary"
-    }   font-bold py-2 px-4 text-white`}
+    className={`flex items-center justify-center w-1/3 border  ${
+      role == "admin" ? "border-primary text-primary" : "border-secondary text-secondary"
+    }   font-bold py-2 px-4 `}
   >
     {role}
   </div>
