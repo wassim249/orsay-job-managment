@@ -117,7 +117,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               >
                 <NavLink
                   end
-                  to="/"
+                  to="/home"
                   className={`block text-primary  ${
                     getPathName() == "home" && "text-white"
                   } truncate transition duration-150`}

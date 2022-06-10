@@ -120,7 +120,7 @@ console.log(data.user);
                   <tr key={key} className="text-sm text-center">
                     <td className="border p-2">
                       {scan &&
-                        moment(scan.createdAt).format("DD/MM/YYYY HH:MM:SS")}
+                        moment(scan.createdAt).format("DD/MM/YYYY HH:mm:ss")}
                     </td>
                     <td className="border p-2">{scan && scan.sourceFile}</td>
                     <td className="border p-2">

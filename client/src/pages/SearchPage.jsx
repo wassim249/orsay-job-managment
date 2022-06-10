@@ -172,7 +172,7 @@ export const SearchPage = () => {
                               <td className="border p-2">
                                 {scan &&
                                   moment(scan.createdAt).format(
-                                    "DD/MM/YYYY HH:MM:SS"
+                                    "DD/MM/YYYY HH:mm:ss"
                                   )}
                               </td>
                               <td className="border p-2">

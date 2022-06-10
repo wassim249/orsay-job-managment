@@ -67,11 +67,14 @@ export const ScheduleScanPage = () => {
           data.output.log[data.output.log.length - 1].message.toLowerCase(),
         type: "success",
       });
-    else
-      setAlertData({
+    else {
+        setAlertData({
         message: LANG["alerts"]["Scan scheduled successfully"][lang],
         type: "success",
       });
+      navigate('/scan')
+    }
+      
   };
 
   const cronToString = () => {
