@@ -171,13 +171,11 @@ export const Dashboard = () => {
           X
         </span>
       </div>
-
+      {data2 && <SuccededVsFailedScans data={data2} className="my-10" />}
+      {data3 && <FailReasonChart data={data3} />}{" "}
       {newUsers && user && user.role == "admin" && (
         <NewUsersChart data={newUsers} />
       )}
-      {data2 && <SuccededVsFailedScans data={data2} className="my-10" />}
-
-      {data3 && <FailReasonChart data={data3} />}
     </Layout>
   );
 };
