@@ -251,6 +251,11 @@
     }
   },
   "ordersList": {
+    "Please enter an order number" : {
+      "EN": "Please enter an order number",
+      "FR": "Veuillez entrer un numéro de commande",
+      "DE": "Bitte geben Sie eine Auftragsnummer ein"
+    } ,
     "See more": {
       "EN": "See more",
       "FR": "Voir plus",

@@ -8,6 +8,8 @@ import { OrderNumber } from "../../components/OrderNumber";
 import { BiSearch } from "react-icons/bi";
 import LangContext from "../../contexts/LangContext";
 import LANG from "../../../../i18n/lang.json";
+import { AlertContext } from "../../contexts/AlertContext";
+import { AlertMessage } from "../../components/AlertMessage";
 
 export const OrdersListPage = () => {
   const [user] = useContext(UserContext);
@@ -16,6 +18,7 @@ export const OrdersListPage = () => {
   const [orders, setOrders] = useState([]);
   const [searchedOrders, setSearchedOrders] = useState([]);
   const searchValue = useRef("");
+  const [alertData, setAlertData] = useContext(AlertContext);
 
   const navigate = useNavigate();
 
@@ -42,14 +45,15 @@ export const OrdersListPage = () => {
         </div>
       ) : (
         <>
+          {alertData && <AlertMessage />}
           <h1 className="text-2xl text-secondary font-bold">
             {LANG["ordersList"]["scanned orders numbers list"][lang]}
           </h1>
           <span>
-            {LANG['ordersList']['showing'][lang]}{" "}
+            {LANG["ordersList"]["showing"][lang]}{" "}
             {searchValue.current && searchValue.current.value.trim() != ""
               ? searchedOrders.length
-              : orders?.length}{" "}
+              : orders?.length}
             order
             {orders?.length > 1 && "s"} number
           </span>
@@ -58,19 +62,26 @@ export const OrdersListPage = () => {
             <input
               type="search"
               ref={searchValue}
-              placeholder={`${LANG['ordersList']['Search'][lang]}...`}
+              placeholder={`${LANG["ordersList"]["Search"][lang]}...`}
               className="  appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <button
               className="bg-secondary text-white py-2 px-3 ml-2 h-2/6"
               onClick={() => {
-                setSearchedOrders(
-                  orders.filter((order) => {
-                    return order.order.startsWith(
-                      searchValue.current.value.trim()
-                    );
-                  })
-                );
+                if (searchValue.current.value.trim() != "") {
+                  setSearchedOrders(
+                    orders.filter((order) => {
+                      return order.order.startsWith(
+                        searchValue.current.value.trim()
+                      );
+                    })
+                  );
+                } else
+                  setAlertData({
+                    type: "error",
+                    message:
+                      LANG["ordersList"]["Please enter an order number"][lang],
+                  });
               }}
             >
               <BiSearch size={20} color="white" />

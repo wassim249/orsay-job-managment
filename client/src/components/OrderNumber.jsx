@@ -30,7 +30,9 @@ export const OrderNumber = ({ order }) => {
       </div>
 
       <div className="text-left w-full px-4 ">
-        <div className="text-sm text-secondary flex items-center hover:cursor-pointer hover:underline">
+        <div 
+        onClick={()=> navigate(`/user/${order.scan.user.id}`)}
+        className="text-sm text-secondary flex items-center hover:cursor-pointer hover:underline">
           <BiUserCircle size={15} color="#f88c6c" className="mr-2" /> {LANG['common']['By'][lang]} :
           <span>
             {`${order.scan.user.firstName} ${order.scan.user.lastName}`}
