@@ -65,7 +65,7 @@ export const ScheduleScanPage = () => {
       setAlertData({
         message:
           data.output.log[data.output.log.length - 1].message.toLowerCase(),
-        type: "error",
+        type: "success",
       });
     else
       setAlertData({
