@@ -15,8 +15,9 @@ const getAllUsers = async (req, res) => {
       include: {
         Scan: true,
       },
-      orderBy : {
-        createdAt : "desc"      }
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     res.json({
       users,
@@ -68,6 +69,7 @@ const editUser = async (req, res) => {
       firstLine: `Your account has been updated`,
       secondLine:
         req.body.password && ` Your new password is: ${req.body.password}`,
+      thirdLine: req.body.disabled  ? `Your account has been disabled` : (req.body.disabled == false ? `Your account has been enabled` : ""),
     });
     res.json({
       user,

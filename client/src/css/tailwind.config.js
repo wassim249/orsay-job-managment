@@ -19,7 +19,7 @@ module.exports = {
         xl: "0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.01)",
       },
       outline: {
-        blue: "2px solid rgba(0, 112, 244, 0.5)",
+        blue: "2px solid #f88c6c",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],

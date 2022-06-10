@@ -97,7 +97,7 @@ export const EditUserPage = () => {
     const data = await editUser(userID, {
       disabled : !fetchedUser?.disabled }); console.log(data);
     if (data) {setAlertData({
-      message: data.user?.disabled ?  LANG["alerts"]["Account disabled"][lang] : LANG["alerts"]["Account enabled"][lang],
+      message: data.user?.disabled ?  LANG["editUser"]["Account disabled"][lang] : LANG["editUser"]["Account enabled"][lang],
       type: "success",
     });
     navigate(`/user/${userID}`);
