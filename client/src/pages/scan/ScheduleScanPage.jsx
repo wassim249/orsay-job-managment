@@ -9,9 +9,9 @@ import { scheduleScan } from "../../services/scan";
 import { AlertContext } from "../../contexts/AlertContext";
 import LangContext from "../../contexts/LangContext";
 import LANG from "../../../../i18n/lang.json";
-import 'cronstrue/locales/fr';
-import 'cronstrue/locales/en';
-import 'cronstrue/locales/de';
+import "cronstrue/locales/fr";
+import "cronstrue/locales/en";
+import "cronstrue/locales/de";
 import { AlertMessage } from "../../components/AlertMessage";
 
 export const ScheduleScanPage = () => {
@@ -51,6 +51,17 @@ export const ScheduleScanPage = () => {
 
   const DAYS_OF_THEWEEK = LANG["scheduleScan"]["DAYS_OF_THEWEEK"][lang];
 
+  window.onpopstate = () => {
+    navigate("/scan/create", {
+      state: {
+        source: state?.source,
+        destination: state?.destination,
+        orderNumbers: state?.orderNumbers,
+        logFile: state?.logFile,
+      },
+    });
+  };
+
   const handleSchedule = async () => {
     const cron = generateCron(repeatsChecked, repeats, times, exludeSunSat);
     const data = await scheduleScan(
@@ -68,22 +79,22 @@ export const ScheduleScanPage = () => {
         type: "success",
       });
     else {
-        setAlertData({
+      setAlertData({
         message: LANG["alerts"]["Scan scheduled successfully"][lang],
         type: "success",
       });
-      navigate('/scan')
+      navigate("/scan");
     }
-      
   };
 
   const cronToString = () => {
     try {
       return cronstrue.toString(
-        generateCron(repeatsChecked, repeats, times, exludeSunSat, dayOfWeek)
-     ,{
-       locale : lang.toLowerCase()
-     } );
+        generateCron(repeatsChecked, repeats, times, exludeSunSat, dayOfWeek),
+        {
+          locale: lang.toLowerCase(),
+        }
+      );
     } catch (error) {
       console.log(error);
       return "";
@@ -326,14 +337,15 @@ export const ScheduleScanPage = () => {
             setExludeSunSat(e.target.checked);
           }}
         />
-        <span className="ml-2 text-sm">{
-          LANG["scheduleScan"]["Exclude Sunday and Saturday"][lang]
-}</span>
+        <span className="ml-2 text-sm">
+          {LANG["scheduleScan"]["Exclude Sunday and Saturday"][lang]}
+        </span>
       </div>
 
       <div className="bg-slate-700 w-full px-3 py-4 mt-6">
         <p className="text-slate-300 text-sm italic">
-          {LANG["scheduleScan"]["This scan will be executed"][lang]} {cronToString()}
+          {LANG["scheduleScan"]["This scan will be executed"][lang]}{" "}
+          {cronToString()}
         </p>
       </div>
 

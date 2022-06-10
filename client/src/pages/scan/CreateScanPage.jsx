@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import UserContext from "../../contexts/UserContext";
 import Layout from "../../layout/Layout";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { RiScan2Fill } from "react-icons/ri";
 import { createScan } from "../../services/scan";
 import LANG from "../../../../i18n/lang.json";
@@ -13,14 +13,24 @@ import { AlertMessage } from "../../components/AlertMessage";
 export const CreateScanPage = () => {
   const [user] = useContext(UserContext);
   const [lang] = useContext(LangContext);
-  const navigate = useNavigate();
-  const [source, setSource] = useState("");
+  const navigate = useNavigate(); 
+   const {state} = useLocation()
+
+  const [source, setSource] = useState( "");
   const [destination, setDestination] = useState("");
-  const [orderNumbers, setOrderNumbers] = useState([]);
-  const [logFile, setLogFile] = useState("");
+  const [orderNumbers, setOrderNumbers] = useState( []);
+  const [logFile, setLogFile] = useState( "");
   const orderNumber = useRef(null);
   const [loading, setLoading] = useState(false);
   const [alertData, setAlertData] = useContext(AlertContext);
+
+  useEffect(()=> {
+    setSource(state?.source || "");
+    setDestination(state?.destination || "");
+    setOrderNumbers(state?.orderNumbers || []);
+    setLogFile(state?.logFile || "");
+
+  },[])
 
   useEffect(() => {
     if (!user) navigate("/");
@@ -62,14 +72,13 @@ export const CreateScanPage = () => {
           });
       }
     }
-    console.log("wsel");
     setLoading(false);
   };
 
   const addOrder = (e) => {
     e.preventDefault();
     if (orderNumber.current.value) {
-      setOrderNumbers([...orderNumbers, orderNumber.current.value]);
+      setOrderNumbers([...orderNumbers, orderNumber.current.value.trim()]);
       orderNumber.current.value = "";
     } else {
       setAlertData({
