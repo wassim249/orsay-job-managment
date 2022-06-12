@@ -575,6 +575,7 @@ const scheduleScan = async (req, res) => {
     output,
     logFile,
   });
+  console.log(cron ,' cron');
   const worker = new Worker("./helpers/scanWorker.js", {
     source,
     destination,

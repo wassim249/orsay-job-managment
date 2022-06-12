@@ -68,7 +68,7 @@ export const scheduleScan = async (
       userId,
       lang: lang(),
     });
-
+console.log(cron);
     return data;
   } catch (error) {
     console.log(error);

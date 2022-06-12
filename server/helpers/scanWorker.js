@@ -28,6 +28,7 @@ parentPort.on("message", async (data) => {
     lang: lg,
   } = data;
   let lang = lg || "EN";
+ console.log(data);
   cron.schedule(cronExp, (date) => {
     if (errOccurred) {
       parentPort.postMessage({ status: "ERROR" });

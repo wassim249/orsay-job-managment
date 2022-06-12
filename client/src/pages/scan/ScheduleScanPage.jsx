@@ -51,7 +51,8 @@ export const ScheduleScanPage = () => {
 
   const DAYS_OF_THEWEEK = LANG["scheduleScan"]["DAYS_OF_THEWEEK"][lang];
 
-  window.onpopstate = () => {
+  window.onpopstate = (e) => {
+    e.preventDefault()
     navigate("/scan/create", {
       state: {
         source: state?.source,
@@ -64,6 +65,7 @@ export const ScheduleScanPage = () => {
 
   const handleSchedule = async () => {
     const cron = generateCron(repeatsChecked, repeats, times, exludeSunSat);
+   console.log(cron);
     const data = await scheduleScan(
       cron,
       state.source,

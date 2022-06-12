@@ -118,8 +118,11 @@ export const CreateScanPage = () => {
             placeholder={LANG["createScan"]["c:/folder/..."][lang]}
             value={source}
             onChange={(e) => setSource(e.target.value)}
+            directory="true"
+            webkitdirectory="true"
             required
           />
+      
         </div>
         <div className="col-span-2">
           <label className="block text-secondary text-sm mb-2">
@@ -282,4 +285,3 @@ export const CreateScanPage = () => {
     </Layout>
   );
 };
-
