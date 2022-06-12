@@ -13,8 +13,7 @@ const { Worker } = require("worker_threads");
 const moment = require("moment");
 
 const createScan = async (req, res) => {
-  const {lang} = req.body
-  console.log(lang);
+  const { lang } = req.body;
   let { source, destination, logDir, orders, userId } = req.body;
   const user = await prisma.user.findFirst({ where: { id: userId } });
 
@@ -185,17 +184,12 @@ const createScan = async (req, res) => {
       error = true;
     } else {
       createdOrder.file = file;
-      log(logFile, `${
-        LANG["alerts"]["LE FICHIER"][lang]
-      } : ${file} ${
-        LANG["alerts"]["EST TROUVE"][lang]
-      }`);
+      log(
+        logFile,
+        `${LANG["alerts"]["LE FICHIER"][lang]} : ${file} ${LANG["alerts"]["EST TROUVE"][lang]}`
+      );
       output.log.push({
-        message: `${
-          LANG["alerts"]["LE FICHIER"][lang]
-        } : ${file} ${
-          LANG["alerts"]["EST TROUVE"][lang]
-        }`,
+        message: `${LANG["alerts"]["LE FICHIER"][lang]} : ${file} ${LANG["alerts"]["EST TROUVE"][lang]}`,
         type: "info",
       });
 
@@ -203,17 +197,12 @@ const createScan = async (req, res) => {
 
       if (!value) {
         createdOrder.status = "error";
-        log(logFile, `${
-          LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]
-         } ${order} ${
-          LANG["alerts"]["N'A PAS ETE TROUVE"][lang]
-         }`);
+        log(
+          logFile,
+          `${LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]} ${order} ${LANG["alerts"]["N'A PAS ETE TROUVE"][lang]}`
+        );
         output.log.push({
-          message: `${
-            LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]
-          } ${order} ${
-            LANG["alerts"]["N'A PAS ETE TROUVE"][lang]
-          }`,
+          message: `${LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]} ${order} ${LANG["alerts"]["N'A PAS ETE TROUVE"][lang]}`,
           type: "error",
         });
         output.finishedOrders.push({
@@ -233,34 +222,24 @@ const createScan = async (req, res) => {
         });
         error = true;
       } else {
-        log(logFile, `${
-          LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]
-        } ${order} ${
-          LANG["alerts"]["EST TROUVE"][lang]
-        }`);
+        log(
+          logFile,
+          `${LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]} ${order} ${LANG["alerts"]["EST TROUVE"][lang]}`
+        );
         output.log.push({
-          message: `${
-            LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]
-          } ${order} ${
-            LANG["alerts"]["EST TROUVE"][lang]
-          }`,
+          message: `${LANG["alerts"]["LE NUMERO DE COMMANDE"][lang]} ${order} ${LANG["alerts"]["EST TROUVE"][lang]}`,
           type: "info",
         });
 
         const success = createXmlFile(destination, order, value);
         if (!success) {
           createdOrder.status = "error";
-          log(logFile, `${
-            LANG["alerts"]["LE FICHIER"][lang]
-          } ${order}.xml ${
-            LANG["alerts"]["N'A PAS PU ETRE CREE"][lang]
-          }`);
+          log(
+            logFile,
+            `${LANG["alerts"]["LE FICHIER"][lang]} ${order}.xml ${LANG["alerts"]["N'A PAS PU ETRE CREE"][lang]}`
+          );
           output.log.push({
-            message: `${
-              LANG["alerts"]["LE FICHIER"][lang]
-            } ${order}.xml ${
-              LANG["alerts"]["N'A PAS PU ETRE CREE"][lang]
-            }`,
+            message: `${LANG["alerts"]["LE FICHIER"][lang]} ${order}.xml ${LANG["alerts"]["N'A PAS PU ETRE CREE"][lang]}`,
             type: "error",
           });
           output.finishedOrders.push({
@@ -340,7 +319,7 @@ const createScan = async (req, res) => {
 };
 
 const getScan = async (req, res) => {
-const {lang} = req.body
+  const { lang } = req.body;
   try {
     const scan = await prisma.scan.findFirst({
       where: {
@@ -377,7 +356,7 @@ const {lang} = req.body
 };
 
 const getAllScans = async (req, res) => {
-  const {lang} = req.body
+  const { lang } = req.body;
   try {
     let scans = await prisma.scan.findMany({
       orderBy: {
@@ -413,7 +392,7 @@ const getAllScans = async (req, res) => {
 };
 
 const scheduleScan = async (req, res) => {
-  const {lang} = req.body
+  const { lang } = req.body;
 
   let { source, destination, logDir, orders, userId, cron } = req.body;
 
@@ -426,8 +405,7 @@ const scheduleScan = async (req, res) => {
 
   if (!source || source == "") {
     output.log.push({
-      message:
-        LANG["alerts"]['VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE'][lang],
+      message: LANG["alerts"]["VEUILLEZ CHOISIR UN REPERTOIRE DE SOURCE"][lang],
       type: "error",
     });
     res.json({
@@ -439,7 +417,7 @@ const scheduleScan = async (req, res) => {
   if (!destination || destination == "") {
     output.log.push({
       message:
-        LANG["alerts"]['VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION'][lang],
+        LANG["alerts"]["VEUILLEZ CHOISIR UN REPERTOIRE DE DESTINATION"][lang],
       type: "error",
     });
     res.json({
@@ -575,7 +553,6 @@ const scheduleScan = async (req, res) => {
     output,
     logFile,
   });
-  console.log(cron ,' cron');
   const worker = new Worker("./helpers/scanWorker.js", {
     source,
     destination,
@@ -585,7 +562,6 @@ const scheduleScan = async (req, res) => {
     lang,
     output,
     cron,
-   
   });
 
   worker.postMessage({

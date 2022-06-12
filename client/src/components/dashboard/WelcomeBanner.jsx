@@ -6,8 +6,8 @@ import { salute } from "../../utils/Utils";
 import LANG from "../../../../i18n/lang";
 
 function WelcomeBanner() {
-  const [user, setUser] = useContext(UserContext);
-  const [lang, setLang] = useContext(LangContext);
+  const [user] = useContext(UserContext);
+  const [lang] = useContext(LangContext);
   return (
     <div className="relative bg-pink-100 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
       {/* Content */}

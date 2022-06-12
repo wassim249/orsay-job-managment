@@ -83,7 +83,7 @@ export const BarChart03 = ({ data, width, height }) => {
       plugins: [
         {
           id: "htmlLegend",
-          afterUpdate(c, args, options) {
+          afterUpdate(c) {
             const ul = legend.current;
             if (!ul) return;
             // Remove old legend items

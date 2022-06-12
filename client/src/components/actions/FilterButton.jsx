@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import Transition from "../../utils/Transition";
 import { BiFilter } from "react-icons/bi";
 import LangContext from "../../contexts/LangContext";
-import LANG from '../../../../i18n/lang.json'
+import LANG from "../../../../i18n/lang.json";
 
 const FilterButton = ({ filter, setFilter, searchType }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -65,7 +65,7 @@ const FilterButton = ({ filter, setFilter, searchType }) => {
       >
         <div ref={dropdown}>
           <div className="text-xs font-semibold text-slate-400 uppercase pt-1.5 pb-2 px-4">
-            {LANG['search']['Filters'][lang]}
+            {LANG["search"]["Filters"][lang]}
           </div>
           <ul className="mb-4">
             <li className="py-1 px-3">
@@ -79,7 +79,7 @@ const FilterButton = ({ filter, setFilter, searchType }) => {
                   className="form-checkbox"
                 />
                 <span className="text-sm font-medium ml-2">
-                  {LANG['search']['Last 7 days'][lang]}
+                  {LANG["search"]["Last 7 days"][lang]}
                 </span>
               </label>
             </li>
@@ -94,7 +94,7 @@ const FilterButton = ({ filter, setFilter, searchType }) => {
                   className="form-checkbox"
                 />
                 <span className="text-sm font-medium ml-2">
-                  {LANG['search']['Last 30 days'][lang]}
+                  {LANG["search"]["Last 30 days"][lang]}
                 </span>
               </label>
             </li>
@@ -109,7 +109,7 @@ const FilterButton = ({ filter, setFilter, searchType }) => {
                   className="form-checkbox"
                 />
                 <span className="text-sm font-medium ml-2">
-                  {LANG['common']['failed'][lang]}
+                  {LANG["common"]["failed"][lang]}
                 </span>
               </label>
             </li>
@@ -124,7 +124,7 @@ const FilterButton = ({ filter, setFilter, searchType }) => {
                   className="form-checkbox"
                 />
                 <span className="text-sm font-medium ml-2">
-                  {LANG['common']['succeed'][lang]}
+                  {LANG["common"]["succeed"][lang]}
                 </span>
               </label>
             </li>
@@ -140,7 +140,7 @@ const FilterButton = ({ filter, setFilter, searchType }) => {
                     className="form-checkbox"
                   />
                   <span className="text-sm font-medium ml-2">
-                    {LANG['search']['Scheduled'][lang]}
+                    {LANG["search"]["Scheduled"][lang]}
                   </span>
                 </label>
               </li>
@@ -162,7 +162,7 @@ const FilterButton = ({ filter, setFilter, searchType }) => {
                   }}
                   className="btn-xs rounded-none bg-white border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600"
                 >
-                  {LANG['search']['Clear'][lang]}
+                  {LANG["search"]["Clear"][lang]}
                 </button>
               </li>
               <li>
@@ -174,7 +174,7 @@ const FilterButton = ({ filter, setFilter, searchType }) => {
                   }}
                   onBlur={() => setDropdownOpen(false)}
                 >
-                  {LANG['search']['Apply'][lang]}
+                  {LANG["search"]["Apply"][lang]}
                 </button>
               </li>
             </ul>

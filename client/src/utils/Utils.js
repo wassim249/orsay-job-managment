@@ -118,7 +118,6 @@ export const generateCron = (
       ...cron,
       weekdays: "1-5",
     };
-console.log( `${cron.minutes} ${cron.hours} ${cron.days} ${cron.months} ${cron.weekdays}`);
   return `${cron.minutes} ${cron.hours} ${cron.days} ${cron.months} ${cron.weekdays}`;
 };
 
@@ -160,15 +159,17 @@ export const generateColors = (length = 6) => {
 
 export const toCsv = (data) => {
   try {
-    let csv = ""
-    let headers = Object.keys(data[0])
-    csv += headers.join(",") + "\n"
-    data.forEach(row => {
-      csv += headers.map(field => {
-        return row[field]
-      }).join(",") + "\n"
-    })
-    
+    let csv = "";
+    let headers = Object.keys(data[0]);
+    csv += headers.join(",") + "\n";
+    data.forEach((row) => {
+      csv +=
+        headers
+          .map((field) => {
+            return row[field];
+          })
+          .join(",") + "\n";
+    });
   } catch (error) {
     console.log(error);
   }

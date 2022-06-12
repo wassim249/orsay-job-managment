@@ -6,7 +6,7 @@ import { AlertContext } from "../../contexts/AlertContext";
 import LangContext from "../../contexts/LangContext";
 import UserContext from "../../contexts/UserContext";
 import { loginService } from "../../services/auth";
-import LANG from '../../../../i18n/lang.json'
+import LANG from "../../../../i18n/lang.json";
 
 export const LoginPage = () => {
   const [user, setUser] = useContext(UserContext);
@@ -16,10 +16,9 @@ export const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [alertData, setAlertData] = useContext(AlertContext);
   const navigate = useNavigate();
-    const [lang, setLang] = useContext(LangContext);
+  const [lang, setLang] = useContext(LangContext);
 
   const handleLogin = async () => {
-
     setLoading(true);
     const response = await loginService(email, password);
     if (response.user) setUser(response.user);
@@ -30,7 +29,6 @@ export const LoginPage = () => {
         type: "error",
       });
     }
-    console.log(response);
     setLoading(false);
   };
 
@@ -52,11 +50,12 @@ export const LoginPage = () => {
             })
           );
         navigate("/home");
-      } else if (user.disabled == true)
+      } else if (user.disabled == true) {
         setAlertData({
           message: "Your account has been disabled",
           type: "error",
         });
+      }
     }
   }, [loading]);
 
@@ -64,12 +63,12 @@ export const LoginPage = () => {
     <div className="w-screen h-screen flex flex-col justify-center items-center bg-slate-50 font-montserat">
       {alertData && <AlertMessage />}
       <h1 className="text-secondary text-2xl font-bold mb-6  ">
-       {LANG['login']['Login to your account'][lang]}
+        {LANG["login"]["Login to your account"][lang]}
       </h1>
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col w-1/2">
         <div className="mb-4">
           <label className="block text-grey-darker text-sm  mb-2  ">
-            {LANG['login']['Email adress'][lang]} :
+            {LANG["login"]["Email adress"][lang]} :
           </label>
           <input
             className=" appearance-none border active:border-primary  w-full py-2 px-3 text-grey-darker"
@@ -83,7 +82,7 @@ export const LoginPage = () => {
         </div>
         <div className="mb-6">
           <label className="block text-grey-darker text-sm mb-2">
-            {LANG['login']['Password'][lang]} :
+            {LANG["login"]["Password"][lang]} :
           </label>
           <input
             className=" appearance-none border border-red  w-full py-2 px-3 text-grey-darker mb-3"
@@ -106,7 +105,7 @@ export const LoginPage = () => {
             color="#f88c6c"
           />
           <label className="  ml-2 text-sm">
-            {LANG['login']['Remember me'][lang]}
+            {LANG["login"]["Remember me"][lang]}
           </label>
         </div>
         <button
@@ -116,41 +115,37 @@ export const LoginPage = () => {
           }}
           className="bg-primary w-full py-3 text-white  font-bold hover:bg-darkPrimary transition duration-300"
         >
-          {loading ? <ClipLoader color="white" loading={loading} /> : LANG['login']['Login'][lang]}
+          {loading ? (
+            <ClipLoader color="white" loading={loading} />
+          ) : (
+            LANG["login"]["Login"][lang]
+          )}
         </button>
         <div className="mt-3 text-center">
           <span
             onClick={() => navigate("/register")}
             className="text-sm hover:cursor-pointer hover:underline"
           >
-            {LANG['login']['Get a new account'][lang]}
+            {LANG["login"]["Get a new account"][lang]}
           </span>
         </div>
       </form>
-      <div
-      className="flex justify-center items-center"
-      >
+      <div className="flex justify-center items-center">
         <span
-        className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
-        onClick={
-          () => setLang('EN')
-        }
+          className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
+          onClick={() => setLang("EN")}
         >
-         English (EN)
+          English (EN)
         </span>
         <span
-         onClick={
-          () => setLang('FR')
-        }
-        className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
+          onClick={() => setLang("FR")}
+          className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
         >
           Français (FR)
         </span>
         <span
-         onClick={
-          () => setLang('DE')
-        }
-        className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
+          onClick={() => setLang("DE")}
+          className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
         >
           Deutsch (DE)
         </span>

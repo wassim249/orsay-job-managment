@@ -95,8 +95,6 @@ function LangMenu() {
                 German <span className="text-primary">(DE)</span>
               </a>
             </li>
-
-            
           </ul>
         </div>
       </Transition>

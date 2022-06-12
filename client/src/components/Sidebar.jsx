@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { BiArrowBack } from "react-icons/bi";
-import { RiHomeLine, RiScan2Line, RiShoppingCart2Line, RiFilePaperLine } from "react-icons/ri";
-import Logo from "../images/logo.svg";
-import { BiSearchAlt, BiUserCircle } from "react-icons/bi";
+import {
+  RiHomeLine,
+  RiScan2Line,
+  RiShoppingCart2Line,
+  RiFilePaperLine,
+} from "react-icons/ri";
+import { BiSearchAlt, BiUserCircle, BiArrowBack } from "react-icons/bi";
 import UserContext from "../contexts/UserContext";
 import LANG from "../../../i18n/lang.json";
 import LangContext from "../contexts/LangContext";
@@ -99,7 +102,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           </button>
           {/* Logo */}
           <NavLink end to="/home" className="block">
-            <img src={Logo} alt="Logo" className="w-1/2 h-auto" />
+            <span
+            className="w-1/2 h-auto font-bold text-secondary"
+            >
+              CLIENT
+            </span>
+            
           </NavLink>
         </div>
 
@@ -255,7 +263,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                             : "text-secondary"
                         } lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200  `}
                       >
-                         Requests
+                        Requests
                       </span>
                     </div>
                   </NavLink>

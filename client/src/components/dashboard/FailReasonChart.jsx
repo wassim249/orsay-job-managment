@@ -4,7 +4,6 @@ import { generateColors } from "../../utils/Utils";
 import LANG from "../../../../i18n/lang.json";
 import LangContext from "../../contexts/LangContext";
 
-
 export const FailReasonChart = ({ data }) => {
   const [lang] = useContext(LangContext);
 
@@ -28,7 +27,7 @@ export const FailReasonChart = ({ data }) => {
     <div className="col-span-full xl:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
         <h2 className="font-semibold text-slate-800">
-         {LANG['home']['Reason for Failed scans'][lang]}
+          {LANG["home"]["Reason for Failed scans"][lang]}
         </h2>
       </header>
 

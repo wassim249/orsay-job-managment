@@ -12,7 +12,6 @@ export const SearchBar = ({
   setFilter,
   searchType,
   setSearchType,
-  sort,
   setSort,
   handleSearch,
 }) => {

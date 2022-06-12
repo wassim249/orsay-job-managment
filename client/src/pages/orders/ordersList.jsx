@@ -53,8 +53,8 @@ export const OrdersListPage = () => {
             {LANG["ordersList"]["showing"][lang]}{" "}
             {searchValue.current && searchValue.current.value.trim() != ""
               ? searchedOrders.length
-              : orders?.length}
-            {" "}order
+              : orders?.length}{" "}
+            order
             {orders?.length > 1 && "s"} number
           </span>
 

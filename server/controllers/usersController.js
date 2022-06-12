@@ -69,7 +69,11 @@ const editUser = async (req, res) => {
       firstLine: `Your account has been updated`,
       secondLine:
         req.body.password && ` Your new password is: ${req.body.password}`,
-      thirdLine: req.body.disabled  ? `Your account has been disabled` : (req.body.disabled == false ? `Your account has been enabled` : ""),
+      thirdLine: req.body.disabled
+        ? `Your account has been disabled`
+        : req.body.disabled == false
+        ? `Your account has been enabled`
+        : "",
     });
     res.json({
       user,

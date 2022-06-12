@@ -10,7 +10,7 @@ export const NewUsersChart = ({ data }) => {
     labels: data?.dates,
     datasets: [
       {
-        label: `${LANG['common']['roles']['scanner'][lang]}s`,
+        label: `${LANG["common"]["roles"]["scanner"][lang]}s`,
         data: data?.scanners,
         backgroundColor: "#f88c6c",
         hoverBackgroundColor: "#c26b51",
@@ -20,7 +20,7 @@ export const NewUsersChart = ({ data }) => {
       },
       // Blue bars
       {
-        label: `${LANG['common']['roles']['viewer'][lang]}s`,
+        label: `${LANG["common"]["roles"]["viewer"][lang]}s`,
         data: data?.viewers,
         backgroundColor: "#b8b8b8",
         hoverBackgroundColor: "#8c8c8c",
@@ -33,9 +33,9 @@ export const NewUsersChart = ({ data }) => {
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">{
-          LANG['home']['New users'][lang]
-        }</h2>
+        <h2 className="font-semibold text-slate-800">
+          {LANG["home"]["New users"][lang]}
+        </h2>
       </header>
 
       <BarChart01 data={chartData} width={595} height={248} />

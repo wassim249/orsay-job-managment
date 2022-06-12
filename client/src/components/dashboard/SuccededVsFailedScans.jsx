@@ -11,7 +11,7 @@ export const SuccededVsFailedScans = ({ data, className }) => {
     labels: data.dates,
     datasets: [
       {
-        label: LANG['common']['succeed'][lang],
+        label: LANG["common"]["succeed"][lang],
         data: data.succeded,
         borderColor: "#f88c6c",
         fill: false,
@@ -23,7 +23,7 @@ export const SuccededVsFailedScans = ({ data, className }) => {
       },
 
       {
-        label: LANG['common']['failed'][lang],
+        label: LANG["common"]["failed"][lang],
         data: data.failed,
         borderColor: "black",
         fill: false,
@@ -42,7 +42,7 @@ export const SuccededVsFailedScans = ({ data, className }) => {
     >
       <header className="px-5 py-4 border-b border-slate-100 flex items-center">
         <h2 className="font-semibold text-slate-800">
-          {LANG['home']['Succeded scans vs failed scans (over time)'][lang]}
+          {LANG["home"]["Succeded scans vs failed scans (over time)"][lang]}
         </h2>
       </header>
       <BarChart data={chartData} width={595} height={248} />

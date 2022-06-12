@@ -10,7 +10,6 @@ const searchForScans = async (req, res) => {
 
   try {
     const { searchValue, filter } = req.body;
-    console.log(req.body);
     let scans = await prisma.scan.findMany({
       where: {
         scheduled: filter?.scheduled || undefined,
@@ -37,10 +36,7 @@ const searchForScans = async (req, res) => {
       scans = scans.filter((scan) => {
         const log = JSON.parse(scan.log);
         for (let i = 0; i < log.length; i++)
-          if (log[i].type === "error") {
-            return true;
-          }
-        console.log(scan.id);
+          if (log[i].type === "error") return;
 
         return false;
       });
@@ -68,7 +64,6 @@ const searchForOrders = async (req, res) => {
 
   try {
     const { searchValue, filter } = req.body;
-    console.log(req.body);
     let orders = await prisma.orderNumber.findMany({
       where: {
         createdAt: {

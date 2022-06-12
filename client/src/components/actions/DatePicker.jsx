@@ -17,10 +17,12 @@ export const DatePicker = ({ rangeDate, setRangeDate }) => {
       instance.element.value = dateStr.replace("to", "-");
     },
     onChange: (selectedDates, dateStr, instance) => {
-      if(Array.isArray(selectedDates))
-        setRangeDate([moment(selectedDates[0]).toDate(),moment(selectedDates[1]).toDate()]);
-      else
-        setRangeDate([moment(selectedDates).toDate()]);
+      if (Array.isArray(selectedDates))
+        setRangeDate([
+          moment(selectedDates[0]).toDate(),
+          moment(selectedDates[1]).toDate(),
+        ]);
+      else setRangeDate([moment(selectedDates).toDate()]);
       instance.element.value = dateStr.replace("to", "-");
     },
   };

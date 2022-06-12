@@ -171,8 +171,8 @@ export const Dashboard = () => {
           X
         </span>
       </div>
-      {data2 && <SuccededVsFailedScans data={data2}  />}
-      {data3 && <FailReasonChart data={data3} className="my-10"/>}
+      {data2 && <SuccededVsFailedScans data={data2} />}
+      {data3 && <FailReasonChart data={data3} className="my-10" />}
       {newUsers && user && user.role == "admin" && (
         <NewUsersChart data={newUsers} />
       )}

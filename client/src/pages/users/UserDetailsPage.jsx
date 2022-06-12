@@ -26,10 +26,9 @@ export const UserDetailsPage = () => {
     const fetchUser = async () => {
       setLoading(true);
       const data = await getUsers(userID);
-      console.log(data.user);
+
       if (data?.user) setFetchedUser(data.user);
       else navigate("/notfound");
-console.log(data.user);
       setLoading(false);
     };
     fetchUser();
@@ -43,9 +42,7 @@ console.log(data.user);
         </div>
       ) : (
         <>
-          {
-            fetchedUser?.disabled && <Disabled lang={lang} />
-          }
+          {fetchedUser?.disabled && <Disabled lang={lang} />}
           <span className="  font-bold text-2xl text-secondary">
             {LANG["profile"]["User"][lang]} #{userID}
           </span>
@@ -166,21 +163,16 @@ console.log(data.user);
 const UserRole = ({ role = "viewer" }) => (
   <div
     className={`flex items-center justify-center w-1/3 border  ${
-      role == "admin" ? "border-primary text-primary" : "border-secondary text-secondary"
+      role == "admin"
+        ? "border-primary text-primary"
+        : "border-secondary text-secondary"
     }   font-bold py-2 px-4 `}
   >
     {role}
   </div>
 );
-const Disabled = ({lang})=> (
-  <div
-  className="flex flex-col items-center justify-center p-3 bg-slate-700 text-white w-1/6"
-  >
-    <span
-    className="font-bold"
-    >
-      {LANG["editUser"]["Disabled"][lang]}
-    </span>
+const Disabled = ({ lang }) => (
+  <div className="flex flex-col items-center justify-center p-3 bg-slate-700 text-white w-1/6">
+    <span className="font-bold">{LANG["editUser"]["Disabled"][lang]}</span>
   </div>
-)
-
+);

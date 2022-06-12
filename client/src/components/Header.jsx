@@ -14,7 +14,9 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
     keysPressed[event.key] = true;
     if (keysPressed["Control"] && event.key == "k") {
       event.preventDefault();
-     try{ setSearchModalOpen(() => !searchModalOpen);} catch(e) {}
+      try {
+        setSearchModalOpen(() => !searchModalOpen);
+      } catch (e) {}
     }
   });
   document.addEventListener("keyup", (event) => {

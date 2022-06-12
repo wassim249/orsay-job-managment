@@ -54,8 +54,6 @@ export const ScansListPage = () => {
               <RiScan2Fill size={40} color="#f88c6c" className="mr-2" />
               {LANG["scansList"]["Scans list"][lang]}
             </h1>
-           
-
             {user?.role != "viewer" && (
               <button
                 className="bg-secondary text-white py-2 px-3  "

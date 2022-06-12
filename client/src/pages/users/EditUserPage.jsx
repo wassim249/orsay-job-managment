@@ -43,7 +43,6 @@ export const EditUserPage = () => {
 
   const handleUserUpdate = async (e) => {
     e.preventDefault();
-    console.log(!validateEmail(fetchedUser?.email.trim()));
     if (fetchedUser?.firstName.trim() === "") {
       setAlertData({
         message: LANG["alerts"]["First name is required"][lang],
@@ -92,25 +91,27 @@ export const EditUserPage = () => {
 
   const handleDisableAccount = async (e) => {
     e.preventDefault();
-    setLoading(true)
-   
-    const data = await editUser(userID, {
-      disabled : !fetchedUser?.disabled }); console.log(data);
-    if (data) {setAlertData({
-      message: data.user?.disabled ?  LANG["editUser"]["Account disabled"][lang] : LANG["editUser"]["Account enabled"][lang],
-      type: "success",
-    });
-    navigate(`/user/${userID}`);
-  }
-      else 
-          setAlertData({
-          message: LANG["alerts"]["Something went wrong"][lang],
-          type: "error",
-        });
+    setLoading(true);
 
-      
-      setLoading(false);
-  }
+    const data = await editUser(userID, {
+      disabled: !fetchedUser?.disabled,
+    });
+    if (data) {
+      setAlertData({
+        message: data.user?.disabled
+          ? LANG["editUser"]["Account disabled"][lang]
+          : LANG["editUser"]["Account enabled"][lang],
+        type: "success",
+      });
+      navigate(`/user/${userID}`);
+    } else
+      setAlertData({
+        message: LANG["alerts"]["Something went wrong"][lang],
+        type: "error",
+      });
+
+    setLoading(false);
+  };
 
   return (
     <Layout>
@@ -121,7 +122,7 @@ export const EditUserPage = () => {
       ) : (
         <>
           {alertData && <AlertMessage />}
-        
+
           <span className="  font-bold text-2xl text-secondary">
             {LANG["editUser"]["Edit User"][lang]} #{userID}
           </span>
@@ -238,11 +239,12 @@ export const EditUserPage = () => {
 
             <div className="col-span-2 text-center">
               <span
-              onClick={(e)=>handleDisableAccount(e)}
-              className="text-secondary text-sm d mb-2 hover:underline hover:text-primary hover:cursor-pointer"
+                onClick={(e) => handleDisableAccount(e)}
+                className="text-secondary text-sm d mb-2 hover:underline hover:text-primary hover:cursor-pointer"
               >
-                {fetchedUser?.disabled ? LANG["editUser"]["Enable account"][lang] : LANG["editUser"]["Disable account"][lang]}
-                
+                {fetchedUser?.disabled
+                  ? LANG["editUser"]["Enable account"][lang]
+                  : LANG["editUser"]["Disable account"][lang]}
               </span>
             </div>
 
@@ -260,4 +262,3 @@ export const EditUserPage = () => {
     </Layout>
   );
 };
-

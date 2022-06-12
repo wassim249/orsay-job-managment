@@ -1,4 +1,9 @@
-const { login, registerRequest, getAuthRequests, changeRequestStatus } = require("../controllers/authController");
+const {
+  login,
+  registerRequest,
+  getAuthRequests,
+  changeRequestStatus,
+} = require("../controllers/authController");
 const router = require("express").Router();
 
 router.post("/login", login);

@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import Transition from "../../utils/Transition";
 import LANG from "../../../../i18n/lang.json";
 import LangContext from "../../contexts/LangContext";
 
-function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
+const SearchModal = ({ id, searchId, modalOpen, setModalOpen }) => {
   const modalContent = useRef(null);
   const searchInput = useRef(null);
   const [user] = useContext(UserContext);
@@ -124,9 +124,9 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
             {recentSearch.length > 0 ? (
               <div className="mb-3 last:mb-0">
                 <div className="w-full flex items-center justify-between text-xs font-semibold text-lightPrimary px-2 mb-2">
-                  <span className="">{
-                    LANG['layout']['Recent searches'][lang]
-                  }</span>
+                  <span className="">
+                    {LANG["layout"]["Recent searches"][lang]}
+                  </span>
                   <span
                     onClick={() => {
                       localStorage.removeItem(`ORSAY_SEARCH_${user.id}`);
@@ -134,7 +134,7 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
                     }}
                     className="hover:cursor-pointer hover:underline"
                   >
-                   { LANG['layout']['CLEAR'][lang]}
+                    {LANG["layout"]["CLEAR"][lang]}
                   </span>
                 </div>
 
@@ -168,6 +168,6 @@ function SearchModal({ id, searchId, modalOpen, setModalOpen }) {
       </Transition>
     </>
   );
-}
+};
 
 export default SearchModal;

@@ -5,7 +5,6 @@ const { generatePassword, sendEmail } = require("../helpers/utils");
 const LANG = require("../../i18n/lang.json");
 
 const login = async (req, res) => {
-  console.log(req.body);
   try {
     if (req.body.email == "" || req.body.password == "")
       res.json({
@@ -18,7 +17,6 @@ const login = async (req, res) => {
         password: req.body.password,
       },
     });
-    console.log(foundedUser);
     if (!foundedUser) {
       res.json({
         message: "Invalid credentials",
@@ -49,7 +47,6 @@ const login = async (req, res) => {
 const registerRequest = async (req, res) => {
   try {
     const { lang } = req.body;
-    console.log(req.body);
     const { username } = os.userInfo();
     if (username) {
       // check if user already have a pending or accepted request
@@ -99,9 +96,8 @@ const registerRequest = async (req, res) => {
   }
 };
 
-const getAuthRequests = async (req, res) => {
+const getAuthRequests = async (_, res) => {
   try {
-    const { lang } = req.body;
 
     const requests = await prisma.request.findMany();
     return res.json({
@@ -121,7 +117,6 @@ const changeRequestStatus = async (req, res) => {
     const { status, id, lang } = req.body;
     const { username } = os.userInfo();
     const pwd = generatePassword();
-    console.log(req.body);
     if (status == "ACCEPTED") {
       // create new user
       await prisma.user.create({

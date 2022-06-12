@@ -39,8 +39,7 @@ export const getScan = async (id) => {
 
 export const getScans = async () => {
   try {
- 
-    const { data } = await axios.post(`/scan`,{
+    const { data } = await axios.post(`/scan`, {
       lang: lang(),
     });
     return data;
@@ -68,7 +67,6 @@ export const scheduleScan = async (
       userId,
       lang: lang(),
     });
-console.log(cron);
     return data;
   } catch (error) {
     console.log(error);

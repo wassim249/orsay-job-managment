@@ -30,10 +30,12 @@ export const OrderNumber = ({ order }) => {
       </div>
 
       <div className="text-left w-full px-4 ">
-        <div 
-        onClick={()=> navigate(`/user/${order.scan.user.id}`)}
-        className="text-sm text-secondary flex items-center hover:cursor-pointer hover:underline">
-          <BiUserCircle size={15} color="#f88c6c" className="mr-2" /> {LANG['common']['By'][lang]} :
+        <div
+          onClick={() => navigate(`/user/${order.scan.user.id}`)}
+          className="text-sm text-secondary flex items-center hover:cursor-pointer hover:underline"
+        >
+          <BiUserCircle size={15} color="#f88c6c" className="mr-2" />{" "}
+          {LANG["common"]["By"][lang]} :
           <span>
             {`${order.scan.user.firstName} ${order.scan.user.lastName}`}
           </span>
@@ -41,12 +43,14 @@ export const OrderNumber = ({ order }) => {
         <div className="flex items-center">
           <AiOutlineFile size={15} color="#f88c6c" className="mr-2" />
           <span className="text-sm text-secondary">
-            {LANG['common']['File'][lang]} : ...{order.fileName.substr(order.fileName.length - 25)}
+            {LANG["common"]["File"][lang]} : ...
+            {order.fileName.substr(order.fileName.length - 25)}
           </span>
         </div>
 
-        <div className="flex items-center mb-2 hover:cursor-pointer hover:underline"
-        onClick={()=> navigate(`/scan/${order.scan.id}`)}
+        <div
+          className="flex items-center mb-2 hover:cursor-pointer hover:underline"
+          onClick={() => navigate(`/scan/${order.scan.id}`)}
         >
           <RiScan2Fill size={15} color="#f88c6c" className="mr-2" />
           <span className="text-sm text-secondary">Scan : {order.scan.id}</span>
@@ -58,7 +62,7 @@ export const OrderNumber = ({ order }) => {
               navigate(`/scan/${order.scan.id}`);
             }}
           >
-            {LANG['ordersList']['See more'][lang]}
+            {LANG["ordersList"]["See more"][lang]}
           </button>
         </div>
       </div>

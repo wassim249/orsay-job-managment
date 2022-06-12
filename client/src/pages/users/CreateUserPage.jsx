@@ -8,6 +8,7 @@ import { createUser } from "../../services/user";
 import { AlertContext } from "../../contexts/AlertContext";
 import LangContext from "../../contexts/LangContext";
 import LANG from "../../../../i18n/lang.json";
+import { AlertMessage } from "../../components/AlertMessage";
 
 export const CreateUserPage = () => {
   const [lang] = useContext(LangContext);
@@ -25,27 +26,27 @@ export const CreateUserPage = () => {
     e.preventDefault();
     if (createdUser?.firstName.trim() === "")
       return setAlertData({
-        message: LANG['alerts']['First name is required'][lang],
+        message: LANG["alerts"]["First name is required"][lang],
         type: "error",
       });
     if (createdUser?.lastName.trim() === "")
       return setAlertData({
-        message: LANG['alerts']['Last name is required'][lang],
+        message: LANG["alerts"]["Last name is required"][lang],
         type: "error",
       });
     if (createdUser?.email.trim() === "")
       return setAlertData({
-        message: LANG['alerts']['Email is required'][lang],
+        message: LANG["alerts"]["Email is required"][lang],
         type: "error",
       });
     if (!validateEmail(createdUser?.email))
       return setAlertData({
-        message: LANG['alerts']['Email is not valid'][lang],
+        message: LANG["alerts"]["Email is not valid"][lang],
         type: "error",
       });
     if (createdUser?.password.trim() === "")
       return setAlertData({
-        message: LANG['alerts']['Password is required'][lang],
+        message: LANG["alerts"]["Password is required"][lang],
         type: "error",
       });
     setLoading(true);

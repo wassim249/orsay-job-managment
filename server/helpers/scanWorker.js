@@ -28,8 +28,7 @@ parentPort.on("message", async (data) => {
     lang: lg,
   } = data;
   let lang = lg || "EN";
- console.log(data);
-  cron.schedule(cronExp, (date) => {
+  cron.schedule(cronExp, () => {
     if (errOccurred) {
       parentPort.postMessage({ status: "ERROR" });
     } else scan(orders, logFile, source, destination, userId, output, lang);
@@ -45,7 +44,6 @@ const scan = async (
   output,
   lang
 ) => {
-  console.log(lang);
   let createdOrders = [];
   let createdScan = null;
   const user = await prisma.user.findFirst({ where: { id: userId } });

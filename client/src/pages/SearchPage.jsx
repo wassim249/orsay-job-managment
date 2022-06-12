@@ -93,7 +93,7 @@ export const SearchPage = () => {
         }
       } else
         setAlertData({
-          message: LANG['alerts']['Something went wrong'],
+          message: LANG["alerts"]["Something went wrong"],
           type: "error",
         });
 
@@ -110,11 +110,10 @@ export const SearchPage = () => {
         else {
           setSearch(true);
           setOrders(result);
-          console.log(result);
         }
       } else
         setAlertData({
-          message: LANG['alerts']['Something went wrong'],
+          message: LANG["alerts"]["Something went wrong"],
           type: "error",
         });
       setLoading(false);
@@ -183,9 +182,9 @@ export const SearchPage = () => {
                               </td>
 
                               <td className="border p-2 font-bold">
-                                {scan &&
-                                 <Status success={scanSuccess(scan)} icon />
-                                 }
+                                {scan && (
+                                  <Status success={scanSuccess(scan)} icon />
+                                )}
                               </td>
                               <td className="border p-2">
                                 <button
@@ -202,9 +201,7 @@ export const SearchPage = () => {
                       </tbody>
                     </table>
                   ) : (
-                    <span>
-                      {LANG["search"]["No results found"][lang]}
-                    </span>
+                    <span>{LANG["search"]["No results found"][lang]}</span>
                   )}
                 </>
               )}

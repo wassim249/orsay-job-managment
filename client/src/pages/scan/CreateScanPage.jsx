@@ -64,7 +64,6 @@ export const CreateScanPage = () => {
         logFile,
         user.id
       );
-      console.log("handleScan");
       if (output) {
         if (output.finishedOrders.length > 0) navigate(`/scan/${scanId}`);
         else
@@ -122,7 +121,6 @@ export const CreateScanPage = () => {
             webkitdirectory="true"
             required
           />
-      
         </div>
         <div className="col-span-2">
           <label className="block text-secondary text-sm mb-2">

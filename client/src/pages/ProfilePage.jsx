@@ -64,7 +64,7 @@ export const ProfilePage = () => {
 
             <div>
               <label className="block text-secondary text-sm d mb-2  ">
-               {LANG['profile']['Email adress'][lang]} :
+                {LANG["profile"]["Email adress"][lang]} :
               </label>
               <span className="text-primary   font-bold">
                 {fetchedUser && fetchedUser.email}
@@ -75,7 +75,11 @@ export const ProfilePage = () => {
               <label className="block text-secondary text-sm d mb-2  ">
                 Role :
               </label>
-              <UserRole role={fetchedUser && LANG['common']['roles'][fetchedUser.role][lang]} />
+              <UserRole
+                role={
+                  fetchedUser && LANG["common"]["roles"][fetchedUser.role][lang]
+                }
+              />
             </div>
           </div>
 
@@ -110,11 +114,11 @@ export const ProfilePage = () => {
                       {scan &&
                         (scanSuccess(scan) ? (
                           <span className="bg-green-500 text-white px-2 py-3">
-                            {LANG['common']['succeed'][lang]}
+                            {LANG["common"]["succeed"][lang]}
                           </span>
                         ) : (
                           <span className="bg-red-500 text-white px-2 py-3">
-                            {LANG['common']['failed'][lang]}
+                            {LANG["common"]["failed"][lang]}
                           </span>
                         ))}
                     </td>
@@ -125,7 +129,7 @@ export const ProfilePage = () => {
                           navigate(`/scan/${scan.id}`);
                         }}
                       >
-                        {LANG['common']['view'][lang]}
+                        {LANG["common"]["view"][lang]}
                       </button>
                     </td>
                   </tr>

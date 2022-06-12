@@ -30,7 +30,6 @@ export const RequestsListPage = () => {
           message: data.message,
         });
       else setRequests(data.requests);
-      console.log(data.requests);
       setLoading(false);
     };
     fetchRequests();

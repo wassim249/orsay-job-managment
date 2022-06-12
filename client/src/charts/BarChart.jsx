@@ -91,7 +91,7 @@ export const BarChart = ({ data, width, height }) => {
       plugins: [
         {
           id: "htmlLegend",
-          afterUpdate(c, args, options) {
+          afterUpdate(c) {
             const ul = legend.current;
             if (!ul) return;
             while (ul.firstChild) ul.firstChild.remove();

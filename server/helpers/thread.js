@@ -14,7 +14,7 @@ const searchForXmlFile = (source, order) => {
       chunks[chunks.length - 1].push(files[i]);
     }
     let counter = 0;
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       childs.forEach((child, index) => {
         child.send({
           source,
