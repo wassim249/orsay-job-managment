@@ -10,7 +10,7 @@
       "FR": "Bon après-midi",
       "DE": "Guten Nachmittag"
     },
-    "good evening": {
+    "good evenning": {
       "EN": "Good evening",
       "FR": "Bonsoir",
       "DE": "Guten Abend"
@@ -487,6 +487,38 @@
       "DE": "Aktualisieren"
     }
   },
+  "register": {
+    "Send authentification request": {
+      "EN": "Send authentification request",
+      "FR": "Envoyer une demande d'authentification",
+      "DE": "Authentifizierungsanfrage senden"
+    },
+    "Thank you": {
+      "EN": "Thank you",
+      "FR": "Merci",
+      "DE": "Vielen Dank"
+    },
+    "your request has been submited": {
+      "EN": "your request has been submited",
+      "FR": "votre demande a été soumise",
+      "DE": "Ihre Anfrage wurde übermittelt"
+    },
+    "Your information will be sent to the adminstrator , you'll get your credentials once your request is accepted": {
+      "EN": "Your information will be sent to the adminstrator , you'll get your credentials once your request is accepted",
+      "FR": "Vos informations seront envoyées à l'administrateur, vous recevrez vos identifiants une fois votre demande acceptée",
+      "DE": "Ihre Informationen werden an den Administrator gesendet, Sie erhalten Ihre Zugangsdaten, sobald Ihre Anfrage akzeptiert wurde"
+    },
+    "GO BACK TO LOGIN": {
+      "EN": "GO BACK TO LOGIN",
+      "FR": "RETOUR À LA CONNEXION",
+      "DE": "ZURÜCK ZUR ANMELDUNG"
+    },
+    "SEND": {
+      "EN": "SEND",
+      "FR": "ENVOYER",
+      "DE": "SENDEN"
+    }
+  },
   "login": {
     "Login to your account": {
       "EN": "Login to your account",
@@ -513,38 +545,7 @@
       "FR": "Connexion",
       "DE": "Anmelden"
     },
-    "register": {
-      "Send authentification request": {
-        "EN": "Send authentification request",
-        "FR": "Envoyer une demande d'authentification",
-        "DE": "Authentifizierungsanfrage senden"
-      },
-      "Thank you": {
-        "EN": "Thank you",
-        "FR": "Merci",
-        "DE": "Vielen Dank"
-      },
-      "your request has been submited": {
-        "EN": "your request has been submited",
-        "FR": "votre demande a été soumise",
-        "DE": "Ihre Anfrage wurde übermittelt"
-      },
-      "Your information will be sent to the adminstrator , you'll get your credentials once your request is accepted": {
-        "EN": "Your information will be sent to the adminstrator , you'll get your credentials once your request is accepted",
-        "FR": "Vos informations seront envoyées à l'administrateur, vous recevrez vos identifiants une fois votre demande acceptée",
-        "DE": "Ihre Informationen werden an den Administrator gesendet, Sie erhalten Ihre Zugangsdaten, sobald Ihre Anfrage akzeptiert wurde"
-      },
-      "GO BACK TO LOGIN": {
-        "EN": "GO BACK TO LOGIN",
-        "FR": "RETOUR À LA CONNEXION",
-        "DE": "ZURÜCK ZUR ANMELDUNG"
-      },
-      "SEND": {
-        "EN": "SEND",
-        "FR": "ENVOYER",
-        "DE": "SENDEN"
-      }
-    },
+
 
     "Get a new account": {
       "EN": "Get a new account",

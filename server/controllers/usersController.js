@@ -97,6 +97,7 @@ const createUser = async (req, res) => {
         message: LANG["alerts"]["Email already in use"][lang],
       });
     else {
+      delete req.body.lang;
       const newUser = await prisma.user.create({
         data: {
           ...req.body,

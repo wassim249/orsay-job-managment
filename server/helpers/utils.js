@@ -112,6 +112,9 @@ const sendEmail = (email, subject, context) => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    tls : {
+      rejectUnauthorized: false
+    }
   });
 
   const mailOptions = {
@@ -121,6 +124,7 @@ const sendEmail = (email, subject, context) => {
     // text: message,
     template: "email.template",
     context,
+   
   };
 
   const handlebarOptions = {
@@ -134,8 +138,10 @@ const sendEmail = (email, subject, context) => {
   transporter.use("compile", hbs(handlebarOptions));
 
   transporter.sendMail(mailOptions, (error, info) => {
-    if (error) console.log(error);
-    else console.log(info);
+   if (error) 
+     console.log(error);
+    else 
+    console.log(info);
   });
 };
 

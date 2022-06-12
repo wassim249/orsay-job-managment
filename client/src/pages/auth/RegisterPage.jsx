@@ -74,6 +74,34 @@ export const RegisterPage = () => {
           )}
         </button>
       </div>
+      <div
+      className="flex justify-center items-center"
+      >
+        <span
+        className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
+        onClick={
+          () => setLang('EN')
+        }
+        >
+         English (EN)
+        </span>
+        <span
+         onClick={
+          () => setLang('FR')
+        }
+        className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
+        >
+          Français (FR)
+        </span>
+        <span
+         onClick={
+          () => setLang('DE')
+        }
+        className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
+        >
+          Deutsch (DE)
+        </span>
+      </div>
     </div>
   );
 };

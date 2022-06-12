@@ -45,7 +45,9 @@ export const OrderNumber = ({ order }) => {
           </span>
         </div>
 
-        <div className="flex items-center mb-2 hover:cursor-pointer hover:underline">
+        <div className="flex items-center mb-2 hover:cursor-pointer hover:underline"
+        onClick={()=> navigate(`/scan/${order.scan.id}`)}
+        >
           <RiScan2Fill size={15} color="#f88c6c" className="mr-2" />
           <span className="text-sm text-secondary">Scan : {order.scan.id}</span>
         </div>

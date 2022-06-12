@@ -54,7 +54,7 @@ export const OrdersListPage = () => {
             {searchValue.current && searchValue.current.value.trim() != ""
               ? searchedOrders.length
               : orders?.length}
-            order
+            {" "}order
             {orders?.length > 1 && "s"} number
           </span>
 
