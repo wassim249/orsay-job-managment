@@ -9,28 +9,30 @@ import LangContext from "../../contexts/LangContext";
 import SquareLoader from "react-spinners/SquareLoader";
 import { AlertContext } from "../../contexts/AlertContext";
 import { AlertMessage } from "../../components/AlertMessage";
+import { ImportFromFileModal } from "../../components/scan/ImportFromFileModal";
 
 export const CreateScanPage = () => {
+  const [showModal, setShowModal] = useState(false);
+
   const [user] = useContext(UserContext);
   const [lang] = useContext(LangContext);
-  const navigate = useNavigate(); 
-   const {state} = useLocation()
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
-  const [source, setSource] = useState( "");
+  const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
-  const [orderNumbers, setOrderNumbers] = useState( []);
-  const [logFile, setLogFile] = useState( "");
+  const [orderNumbers, setOrderNumbers] = useState([]);
+  const [logFile, setLogFile] = useState("");
   const orderNumber = useRef(null);
   const [loading, setLoading] = useState(false);
   const [alertData, setAlertData] = useContext(AlertContext);
 
-  useEffect(()=> {
+  useEffect(() => {
     setSource(state?.source || "");
     setDestination(state?.destination || "");
     setOrderNumbers(state?.orderNumbers || []);
     setLogFile(state?.logFile || "");
-
-  },[])
+  }, []);
 
   useEffect(() => {
     if (!user) navigate("/");
@@ -41,17 +43,17 @@ export const CreateScanPage = () => {
     setLoading(true);
     if (source.trim() === "")
       setAlertData({
-        message: LANG['alerts']['Please enter a source'][lang],
+        message: LANG["alerts"]["Please enter a source"][lang],
         type: "error",
       });
     else if (destination.trim() === "")
       setAlertData({
-        message: LANG['alerts']['Please enter a destination'][lang],
+        message: LANG["alerts"]["Please enter a destination"][lang],
         type: "error",
       });
     else if (orderNumbers.length === 0)
       setAlertData({
-        message: LANG['alerts']['Please enter at least one order number'][lang],
+        message: LANG["alerts"]["Please enter at least one order number"][lang],
         type: "error",
       });
     else {
@@ -82,7 +84,7 @@ export const CreateScanPage = () => {
       orderNumber.current.value = "";
     } else {
       setAlertData({
-        message: LANG['alerts']['Please enter an order number'][lang],
+        message: LANG["alerts"]["Please enter an order number"][lang],
         type: "error",
       });
     }
@@ -90,6 +92,13 @@ export const CreateScanPage = () => {
 
   return (
     <Layout>
+      {showModal && (
+        <ImportFromFileModal
+          orderNumbers={orderNumbers}
+          setOrderNumbers={setOrderNumbers}
+          setShowModal={setShowModal}
+        />
+      )}
       {alertData && <AlertMessage />}
       <h1 className="text-2xl text-secondary font-bold   flex items-center">
         <RiScan2Fill size={40} color="#f88c6c" className="mr-2" />
@@ -142,13 +151,22 @@ export const CreateScanPage = () => {
         <div className="flex flex-row items-end col-span-1">
           <button
             type="button"
-            onClick={e => {
+            onClick={(e) => {
               addOrder(e);
             }}
-            className="bg-primary text-white  sm:w-1/2 w-full px-2 py-2 font-bold  "
+            className="bg-primary text-white  px-3 py-[6px] mr-3 font-bold  "
           >
             <span className="text-white text-lg">+</span>
-            {LANG["createScan"]["add"][lang]}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setShowModal(true);
+            }}
+            className="bg-slate-400 text-white px-3 py-2 font-bold  "
+          >
+            {LANG["createScan"]["From a file"][lang]}
           </button>
         </div>
         <div className="col-span-2">
@@ -194,7 +212,9 @@ export const CreateScanPage = () => {
             else if (orderNumbers.length === 0)
               setAlertData({
                 message:
-                  LANG["createScan"]["please enter at least one order number"][lang],
+                  LANG["createScan"]["please enter at least one order number"][
+                    lang
+                  ],
                 type: "error",
               });
             else
@@ -245,9 +265,7 @@ export const CreateScanPage = () => {
                       type="button"
                       onClick={() => {
                         setOrderNumbers(
-                          orderNumbers.filter(
-                            (_, index) => index !== index
-                          )
+                          orderNumbers.filter((_, i) => i !== index)
                         );
                       }}
                     >
@@ -264,3 +282,4 @@ export const CreateScanPage = () => {
     </Layout>
   );
 };
+

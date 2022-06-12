@@ -52,6 +52,39 @@
     }
   },
   "createScan": {
+    "From a file" : {
+      "EN": "From a file",
+      "FR": "Depuis un fichier",
+      "DE": "Von einer Datei"
+    },
+    "Import order numbers from file" : {
+      "EN": "Import order numbers from file",
+      "FR": "Importer les numéros de commande depuis un fichier",
+      "DE": "Bestellnummern aus einer Datei importieren"
+    },
+    "Seperator" : {
+      "EN": "Seperator",
+      "FR": "Séparateur",
+      "DE": "Trennzeichen"
+    
+    },
+    "File" : {
+      "EN": "File",
+      "FR": "Fichier",
+      "DE": "Datei"
+    
+    },
+    "Close" :{
+      "EN": "Close",
+      "FR": "Fermer",
+      "DE": "Schließen"
+
+    },
+    "Apply" : {
+      "EN": "Apply",
+      "FR": "Appliquer",
+      "DE": "Anwenden"
+    },
     "create a new scan": {
       "EN": "Create a new scan",
       "FR": "Créer un nouveau scan",
