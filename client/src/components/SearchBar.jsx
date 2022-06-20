@@ -27,7 +27,7 @@ export const SearchBar = ({
           <input
             type="search"
             value={searchTerm}
-            className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500  "
+            className="block p-4 pl-10 appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             placeholder={LANG["search"]["Enter a search term..."][lang]}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -41,7 +41,7 @@ export const SearchBar = ({
           </span>
         </div>
         <button
-          className="px-3 py-1 bg-primary hover:bg-darkPrimary text-white h-14"
+          className="px-3 py-1 bg-teal-500 hover:bg-teal-800 rounded-lg hover:rounded transition duration-300 text-white h-14"
           type="submit"
         >
           {LANG["search"]["Search"][lang]}
@@ -52,7 +52,7 @@ export const SearchBar = ({
           onClick={(e) => {
             setSort(e.target.value);
           }}
-          className="p-4 w-1/3 h-14 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-primary focus:border-primary"
+          className="p-4 w-1/3 h-14 appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
         >
           <option defaultValue value="oldnew">
             {LANG["search"]["Oldest to newest"][lang]}
@@ -71,7 +71,7 @@ export const SearchBar = ({
           onChange={(e) => {
             setSearchType(e.target.value);
           }}
-          className="p-4 w-1/5 h-14 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-primary focus:border-primary  "
+          className="p-4 w-1/5 h-14 appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg"
           value={searchType}
         >
           <option value="scans">

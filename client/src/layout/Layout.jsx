@@ -5,7 +5,7 @@ const Layout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen font-montserat">
+    <div className="flex h-screen">
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="relative flex flex-col flex-1 overflow-y-auto bg-gray-50 overflow-x-hidden">
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />

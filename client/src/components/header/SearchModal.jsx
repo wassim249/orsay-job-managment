@@ -69,7 +69,7 @@ const SearchModal = ({ id, searchId, modalOpen, setModalOpen }) => {
       >
         <div
           ref={modalContent}
-          className="bg-white overflow-auto max-w-2xl w-full max-h-full rounded shadow-lg"
+          className="bg-white overflow-auto max-w-2xl w-full max-h-full rounded-lg shadow-lg"
         >
           {/* Search form */}
           <form
@@ -123,7 +123,7 @@ const SearchModal = ({ id, searchId, modalOpen, setModalOpen }) => {
           <div className="py-4 px-2">
             {recentSearch.length > 0 ? (
               <div className="mb-3 last:mb-0">
-                <div className="w-full flex items-center justify-between text-xs font-semibold text-lightPrimary px-2 mb-2">
+                <div className="w-full flex items-center justify-between text-xs font-semibold text-teal-500 px-2 mb-2">
                   <span className="">
                     {LANG["layout"]["Recent searches"][lang]}
                   </span>
@@ -142,7 +142,7 @@ const SearchModal = ({ id, searchId, modalOpen, setModalOpen }) => {
                   {recentSearch.map((s, key) => (
                     <li key={key}>
                       <span
-                        className="flex items-center p-2 text-secondary hover:bg-secondary hover:cursor-pointer hover:text-white group"
+                        className="flex items-center p-2 text-indigo-400 hover:bg-indigo-500 hover:cursor-pointer hover:text-white group rounded-md"
                         onClick={() => {
                           setModalOpen(!modalOpen);
                           navigate(`/search/`, {

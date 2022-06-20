@@ -49,7 +49,7 @@ export const ScanDetailsPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#f88c6c" loading={loading} size="20px" />
+          <SquareLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>
@@ -63,21 +63,19 @@ export const ScanDetailsPage = () => {
           </span>
           <div className=" flex justify-between items-center   ">
             <div className="flex items-center">
-              <RiScan2Fill size={40} color="#f88c6c" className="mr-2" />
-              <span className="  font-bold text-2xl text-secondary">
-                Scan #{id}
-              </span>
+              <RiScan2Fill size={40} color="#6366f1" className="mr-2" />
+              <span className="  font-bold text-2xl">Scan #{id}</span>
             </div>
 
             <div className="flex items-center">
-              <BsFillPersonFill size={30} color={"#f88c6c"} />
+              <BsFillPersonFill size={30} color={"#6366f1"} />
               <span
                 onClick={() => {
                   navigate(`/user/${scan && scan.user.id}`);
                 }}
                 className="ml-2 text-sm   hover:cursor-pointer hover:underline"
               >
-                {LANG["common"]["By"][lang]} : {scan && scan.user.firstName}{" "}
+                {LANG["common"]["By"][lang]} : {scan && scan.user.firstName}
                 {scan && scan.user.lastName}
               </span>
             </div>
@@ -85,7 +83,7 @@ export const ScanDetailsPage = () => {
 
           <div className="grid gap-10 grid-cols-2 mt-6">
             <div>
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block  text-sm d mb-2  ">
                 {LANG["createScan"]["source folder"][lang]} :
               </label>
               <span className="text-primary   font-bold">
@@ -94,7 +92,7 @@ export const ScanDetailsPage = () => {
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block  text-sm d mb-2  ">
                 {LANG["createScan"]["destination folder"][lang]} : :
               </label>
               <span className="text-primary   font-bold">
@@ -103,7 +101,7 @@ export const ScanDetailsPage = () => {
             </div>
 
             <div className="col-span-2">
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block  text-sm d mb-2  ">
                 {LANG["createScan"]["Log file location"][lang]} :
               </label>
               <span className="text-primary   font-bold">
@@ -112,7 +110,7 @@ export const ScanDetailsPage = () => {
             </div>
 
             <div className="col-span-2">
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block text-sm d mb-2  ">
                 {LANG["scanDetails"]["Orders List"][lang]} :
               </label>
               <div className="bg-slate-900 text-white p-2 text-sm   border-2 border-primary">
@@ -141,15 +139,13 @@ export const ScanDetailsPage = () => {
             </div>
 
             <div className="col-span-2">
-              <label className="block text-secondary text-sm d mb-2  ">
-                Log :
-              </label>
+              <label className="block text-sm d mb-2  ">Log :</label>
               <div className="bg-slate-900 text-white p-2 text-sm   border-2 border-primary">
                 {scan &&
                   JSON.parse(scan.log).map((log, key) => (
                     <span
                       key={key}
-                      className={`block font-bold text-sm ${
+                      className={`block text-sm ${
                         log.type === "info" ? "text-blue-500" : "text-red-500"
                       }`}
                     >

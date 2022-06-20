@@ -57,23 +57,26 @@ export const RequestsListPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#f88c6c" loading={loading} size="20px" />
+          <SquareLoader color="#6366f1
+" loading={loading} size="20px" />
         </div>
       ) : (
         <>
           {alertData && <AlertMessage />}
-          <h1 className="text-2xl text-secondary font-bold flex items-center">
-            <RiFilePaperLine size={40} color="#f88c6c" className="mr-2" />
+          <h1 className="text-2xl font-bold  flex items-center">
+            <RiFilePaperLine size={40} color="#6366f1" className="mr-2" />
             {LANG["requests"]["Lastest authentification requests"][lang]}
           </h1>
           <table className="table-auto w-full mt-4 overflow-x-auto">
-            <thead>
-              <tr className="bg-primary text-white  font-medium text-center">
+            <thead
+            className="bg-indigo-500 text-white  font-medium text-center"
+            >
+              <tr>
                 <th className=" py-2">ID</th>
                 <th className=" py-2">{LANG["requests"]["user"][lang]}</th>
                 <th className=" py-2">Date</th>
                 <th className=" py-2">status</th>
-                <th className=" py-2 bg-lightPrimary">Actions</th>
+                <th className=" py-2">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -125,7 +128,7 @@ const RequestStatus = ({ status = "PENDING", lang = "EN" }) => {
 
   return (
     <div
-      className={`flex justify-center items-center bg-${color}-500 px-4 py-2`}
+      className={`flex justify-center items-center bg-${color}-500 px-4 py-2 roundedl-lg`}
     >
       <span className={`test-sm text-white`}>
         {LANG["requests"][status][lang]}
@@ -137,7 +140,7 @@ const RequestStatus = ({ status = "PENDING", lang = "EN" }) => {
 const AcceptButton = ({ handleAccept }) => (
   <div
     onClick={() => handleAccept()}
-    className="flex bg-green-500 p-1 hover:cursor-pointer"
+    className="flex bg-green-400 p-1 hover:cursor-pointer rounded-lg"
   >
     <BsCheck color="white" size={23} />
   </div>
@@ -146,7 +149,7 @@ const AcceptButton = ({ handleAccept }) => (
 const RefuseButton = ({ handleRefuse }) => (
   <div
     onClick={() => handleRefuse()}
-    className="flex bg-red-500 p-1 hover:cursor-pointer"
+    className="flex bg-red-400 p-1 hover:cursor-pointer rounded-lg"
   >
     <AiOutlineClose color="white" size={23} />
   </div>

@@ -41,12 +41,12 @@ export const OrdersListPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#f88c6c" loading={loading} size="20px" />
+          <SquareLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>
           {alertData && <AlertMessage />}
-          <h1 className="text-2xl text-secondary font-bold">
+          <h1 className="text-2xl text-indigo-500 font-bold">
             {LANG["ordersList"]["scanned orders numbers list"][lang]}
           </h1>
           <span>
@@ -63,10 +63,10 @@ export const OrdersListPage = () => {
               type="search"
               ref={searchValue}
               placeholder={`${LANG["ordersList"]["Search"][lang]}...`}
-              className="  appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
+              className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
+/>
             <button
-              className="bg-secondary text-white py-2 px-3 ml-2 h-2/6"
+              className="bg-secondary text-white py-3 px-3 ml-2 h-2/6 rounded-lg"
               onClick={() => {
                 if (searchValue.current.value.trim() != "") {
                   setSearchedOrders(

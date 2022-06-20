@@ -5,11 +5,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#f88c6c",
-        darkPrimary: "#c26b51",
-        lightPrimary: "#fcc0ae",
-        superLightPrimary: "#f9e6e6",
-        secondary: "#000",
+        primary: "#6366f1",
+        secondary: "#14b8a6",
       },
       boxShadow: {
         DEFAULT:
@@ -19,11 +16,10 @@ module.exports = {
         xl: "0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.01)",
       },
       outline: {
-        blue: "2px solid #f88c6c",
+        blue: "2px solid #5046e5",
       },
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
-        montserat: ["Montserrat", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
       fontSize: {
         xs: ["0.75rem", { lineHeight: "1.5" }],

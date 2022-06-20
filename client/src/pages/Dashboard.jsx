@@ -121,44 +121,52 @@ export const Dashboard = () => {
       {alertData && <AlertMessage />}
       <WelcomeBanner />
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 mb-4">
-        <div className="bg-white shadow py-8 pl-5 flex items-center">
-          <div className="bg-primary p-4">
-            <RiScan2Fill color="white" size={30} />
-          </div>
-          <div className="ml-3">
-            <p className="text-sm">{LANG["home"]["Total scans"][lang]}</p>
-            <span className="text-black font-bold text-3xl">
-              {scanInfo && scanInfo.total}
-            </span>
-          </div>
-        </div>
-
-        <div className="bg-white shadow py-8 pl-5 flex items-center ">
-          <div className="bg-primary p-4">
-            <CgTimer color="white" size={30} />
-          </div>
-          <div className="ml-3">
-            <p className="text-sm">
-              {LANG["home"]["Total scan in the past 7 days"][lang]}
-            </p>
-            <span className="text-black font-bold text-3xl">
-              {scanInfo && scanInfo.total7Days}
-            </span>
+        <div className="bg-white py-4 px-8 mr-10 rounded-lg shadow-lg">
+          <div className="flex justify-between items-center">
+            <div>
+              <span className="text-slate-900 font-bold text-3xl">
+                {scanInfo && scanInfo?.total?.toString().length == 1
+                  ? `0${scanInfo.total}`
+                  : scanInfo?.total}
+              </span>
+              <p className="text-md text-slate-700">
+                {LANG["home"]["Total scans"][lang]}
+              </p>
+            </div>
+            <RiScan2Fill color="#f43f5e" size={80} />
           </div>
         </div>
 
-        <div className="bg-white shadow py-8 pl-5 flex items-center">
-          <div className="bg-primary p-4">
-            <MdDocumentScanner color="white" size={30} />
+        <div className="bg-white py-4 px-8 mr-10 rounded-lg shadow-lg">
+          <div className="flex justify-between items-center">
+            <div>
+              <span className="text-slate-900 font-bold text-3xl">
+                {scanInfo && scanInfo?.total7Days?.toString().length == 1
+                  ? `0${scanInfo?.total7Days}`
+                  : scanInfo?.total7Days}
+              </span>
+              <p className="text-md text-slate-700">
+                {LANG["home"]["Total scan in the past 7 days"][lang]}
+              </p>
+            </div>
+            <CgTimer color="#f43f5e" size={80} />
           </div>
-          <div className="ml-3">
-            <p className="text-sm">{LANG["home"]["Latest scan"][lang]}</p>
-            <span className="text-black font-bold text-xl">
-              {scanInfo &&
-                (scanInfo.latestScan
-                  ? moment(scanInfo?.latestScan).format("MM/DD/YYYY hh:mm")
-                  : "No scan")}
-            </span>
+        </div>
+
+        <div className="bg-white shadow-lg py-4 px-8 rounded-lg">
+          <div className="flex justify-between items-center">
+            <div>
+              <span className="text-slate-900 font-bold text-2xl">
+                {scanInfo &&
+                  (scanInfo.latestScan
+                    ? moment(scanInfo?.latestScan).format("MM/DD/YYYY hh:mm")
+                    : "No scan")}
+              </span>
+              <p className="text-md text-slate-700">
+                {LANG["home"]["Latest scan"][lang]}
+              </p>
+            </div>
+            <MdDocumentScanner color="#f43f5e" size={80} />
           </div>
         </div>
       </div>

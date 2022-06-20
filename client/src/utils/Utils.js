@@ -124,28 +124,28 @@ export const generateCron = (
 export const generateColors = (length = 6) => {
   const COLORS = [
     {
-      primary: "#f88c6c",
-      dark: "#bf6b52",
+      primary: "#6366f1",
+      dark: "#a5b4fc",
     },
     {
-      primary: "#A26654",
-      dark: "#7a4c3a",
+      primary: "#3b82f6",
+      dark: "#93c5fd",
     },
     {
-      primary: "#FFE6D7",
-      dark: "#ffc9a5",
+      primary: "#14b8a6",
+      dark: "#5eead4",
     },
     {
-      primary: "#d1c9b6",
-      dark: "#ffefd5",
+      primary: "#7dd3fc",
+      dark: "#0284c7",
     },
     {
-      primary: "#2d2e2e",
-      dark: "#1b1c1c",
+      primary: "#f97316",
+      dark: "#fdba74",
     },
     {
-      primary: "#c7c5c5",
-      dark: "#d9d9d9",
+      primary: "#fecaca",
+      dark: "#f87171",
     },
   ];
   let colors = [];
@@ -155,22 +155,4 @@ export const generateColors = (length = 6) => {
     else colors.push(color);
   }
   return colors;
-};
-
-export const toCsv = (data) => {
-  try {
-    let csv = "";
-    let headers = Object.keys(data[0]);
-    csv += headers.join(",") + "\n";
-    data.forEach((row) => {
-      csv +=
-        headers
-          .map((field) => {
-            return row[field];
-          })
-          .join(",") + "\n";
-    });
-  } catch (error) {
-    console.log(error);
-  }
 };

@@ -15,13 +15,13 @@ export const OrderNumber = ({ order }) => {
 
   return (
     <div className="bg-white shadow w-full flex flex-col justify-center items-center">
-      <div className="text-xl text-secondary bg-lightPrimary w-full h-24 flex justify-center items-center font-semibold mb-4">
+      <div className="text-xl bg-indigo-300 w-full h-24 flex justify-center items-center font-semibold mb-4">
         {order.order}
       </div>
       <div className="flex justify-between px-4 items-center w-full">
         <div className="flex items-center w-full ">
-          <FiClock size={15} color="#f88c6c" className="mr-2" />
-          <span className="text-sm text-secondary">
+          <FiClock size={15} color="#e11d48" className="mr-2" />
+          <span className="text-sm">
             {moment(order.createdAt).format("DD/MM/YYYY hh:mm:ss")}
           </span>
         </div>
@@ -34,15 +34,15 @@ export const OrderNumber = ({ order }) => {
           onClick={() => navigate(`/user/${order.scan.user.id}`)}
           className="text-sm text-secondary flex items-center hover:cursor-pointer hover:underline"
         >
-          <BiUserCircle size={15} color="#f88c6c" className="mr-2" />{" "}
+          <BiUserCircle size={15} color="#e11d48" className="mr-2" />{" "}
           {LANG["common"]["By"][lang]} :
           <span>
             {`${order.scan.user.firstName} ${order.scan.user.lastName}`}
           </span>
         </div>
         <div className="flex items-center">
-          <AiOutlineFile size={15} color="#f88c6c" className="mr-2" />
-          <span className="text-sm text-secondary">
+          <AiOutlineFile size={15} color="#e11d48" className="mr-2" />
+          <span className="text-sm">
             {LANG["common"]["File"][lang]} : ...
             {order.fileName.substr(order.fileName.length - 25)}
           </span>
@@ -52,17 +52,17 @@ export const OrderNumber = ({ order }) => {
           className="flex items-center mb-2 hover:cursor-pointer hover:underline"
           onClick={() => navigate(`/scan/${order.scan.id}`)}
         >
-          <RiScan2Fill size={15} color="#f88c6c" className="mr-2" />
-          <span className="text-sm text-secondary">Scan : {order.scan.id}</span>
+          <RiScan2Fill size={15} color="#e11d48" className="mr-2" />
+          <span className="text-sm ">Scan : {order.scan.id}</span>
         </div>
         <div className="flex justify-end">
           <button
-            className="bg-transparent hover:bg-secondary text-secondary font-semibold hover:text-white py-1 px-4 border border-secondary hover:border-transparent mb-4"
+            className="bg-transparent hover:bg-indigo-500 font-semibold text-indigo-500 hover:text-white py-1 px-4 border border-indigo-500 hover:border-transparent mb-4 transition duration-300 ease-in-out rounded-lg hover:rounded-full"
             onClick={() => {
               navigate(`/scan/${order.scan.id}`);
             }}
           >
-            {LANG["ordersList"]["See more"][lang]}
+            •••
           </button>
         </div>
       </div>

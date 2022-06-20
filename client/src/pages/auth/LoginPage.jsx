@@ -62,16 +62,16 @@ export const LoginPage = () => {
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center bg-slate-50 font-montserat">
       {alertData && <AlertMessage />}
-      <h1 className="text-secondary text-2xl font-bold mb-6  ">
+      <h1 className="text-slate-700 text-2xl font-bold mb-6  ">
         {LANG["login"]["Login to your account"][lang]}
       </h1>
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col w-1/2">
+      <form className="bg-white shadow-md px-8 pt-6 pb-8 mb-4 flex flex-col w-1/2 rounded-lg">
         <div className="mb-4">
           <label className="block text-grey-darker text-sm  mb-2  ">
             {LANG["login"]["Email adress"][lang]} :
           </label>
           <input
-            className=" appearance-none border active:border-primary  w-full py-2 px-3 text-grey-darker"
+            className="appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             type="email"
             placeholder="joe@cgi.com"
             required
@@ -81,15 +81,15 @@ export const LoginPage = () => {
           />
         </div>
         <div className="mb-6">
-          <label className="block text-grey-darker text-sm mb-2">
+          <label className="block text-slate-700 text-sm mb-2">
             {LANG["login"]["Password"][lang]} :
           </label>
           <input
-            className=" appearance-none border border-red  w-full py-2 px-3 text-grey-darker mb-3"
+            className="appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             id="password"
             type="password"
             required
-            placeholder="******************"
+            placeholder="•••••••••••"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
@@ -98,11 +98,11 @@ export const LoginPage = () => {
 
         <div className="flex justify-start items-center mb-3">
           <input
+          className="rounded"
             onChange={(e) => {
               setRememberMe(e.target.checked);
             }}
             type="checkbox"
-            color="#f88c6c"
           />
           <label className="  ml-2 text-sm">
             {LANG["login"]["Remember me"][lang]}
@@ -113,7 +113,7 @@ export const LoginPage = () => {
             e.preventDefault();
             handleLogin();
           }}
-          className="bg-primary w-full py-3 text-white  font-bold hover:bg-darkPrimary transition duration-300"
+          className="bg-indigo-700 w-full py-3 text-white  font-bold hover:bg-indigo-500 transition duration-300 rounded-lg border-none"
         >
           {loading ? (
             <ClipLoader color="white" loading={loading} />
@@ -124,7 +124,7 @@ export const LoginPage = () => {
         <div className="mt-3 text-center">
           <span
             onClick={() => navigate("/register")}
-            className="text-sm hover:cursor-pointer hover:underline"
+            className="text-sm text-rose-700 hover:cursor-pointer hover:underline hover:text-rose-900"
           >
             {LANG["login"]["Get a new account"][lang]}
           </span>
@@ -132,20 +132,20 @@ export const LoginPage = () => {
       </form>
       <div className="flex justify-center items-center">
         <span
-          className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
+          className="text-sm hover:cursor-pointer hover:underline hover:text-rose-700 px-3"
           onClick={() => setLang("EN")}
         >
           English (EN)
         </span>
         <span
           onClick={() => setLang("FR")}
-          className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
+          className="text-sm hover:cursor-pointer hover:underline hover:text-rose-700 px-3"
         >
           Français (FR)
         </span>
         <span
           onClick={() => setLang("DE")}
-          className="text-sm hover:cursor-pointer hover:underline hover:text-primary px-3"
+          className="text-sm hover:cursor-pointer hover:underline hover:text-rose-700 px-3"
         >
           Deutsch (DE)
         </span>

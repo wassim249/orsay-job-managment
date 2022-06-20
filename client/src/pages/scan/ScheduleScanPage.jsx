@@ -113,19 +113,19 @@ export const ScheduleScanPage = () => {
   return (
     <Layout>
       {alertData && <AlertMessage />}
-      <h1 className="text-2xl text-secondary font-bold   flex items-center">
-        <RiScan2Fill size={40} color="#f88c6c" className="mr-2" />{" "}
+      <h1 className="text-2xl font-bold flex items-center">
+        <RiScan2Fill size={40} color="#6366f1" className="mr-2" />{" "}
         {LANG["scheduleScan"]["Schedule a Scan"][lang]}
       </h1>
 
       <div className="flex justify-between items-center mt-4 flex-wrap  ">
         <div>
-          <label className="text-sm text-secondary block mb-2">
+          <label className="text-sm block mb-2">
             {LANG["scheduleScan"]["Minute"][lang]}s :
           </label>
           <select
             placeholder={`${LANG["scheduleScan"]["Minute"][lang]}s`}
-            className=""
+            className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             onChange={(e) => {
               setTimes({ ...times, minutes: e.target.value });
             }}
@@ -138,11 +138,12 @@ export const ScheduleScanPage = () => {
           </select>
         </div>
         <div>
-          <label className="text-sm text-secondary block mb-2">
+          <label className="text-sm  block mb-2">
             {LANG["scheduleScan"]["Hour"][lang]}s :
           </label>
           <select
             placeholder={`${LANG["scheduleScan"]["Hour"][lang]}s`}
+            className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             onChange={(e) => {
               setTimes({ ...times, hours: e.target.value });
             }}
@@ -155,11 +156,12 @@ export const ScheduleScanPage = () => {
           </select>
         </div>
         <div>
-          <label className="text-sm text-secondary block mb-2">
+          <label className="text-sm  block mb-2">
             {LANG["scheduleScan"]["Day"][lang]}s :
           </label>
           <select
             placeholder={`${LANG["scheduleScan"]["Day"][lang]}s`}
+            className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             onChange={(e) => {
               setTimes({ ...times, days: e.target.value });
             }}
@@ -172,11 +174,12 @@ export const ScheduleScanPage = () => {
           </select>
         </div>
         <div>
-          <label className="text-sm text-secondary block mb-2">
+          <label className="text-sm  block mb-2">
             {LANG["scheduleScan"]["Month"][lang]}s :
           </label>
           <select
             placeholder={`{LANG["scheduleScan"]["Month"][lang]}s`}
+            className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             onChange={(e) => {
               setTimes({ ...times, months: e.target.value });
             }}
@@ -194,13 +197,13 @@ export const ScheduleScanPage = () => {
         <div className="flex items-center mb-3">
           <input
             type="checkbox"
-            className="mr-2"
+            className="mr-2 rounded-sm"
             onChange={(e) => {
               setRepeatsChecked(e.target.checked);
               if (!e.target.checked) setRepeats(null);
             }}
           />
-          <span className="text-xl text-secondary">
+          <span className="text-xl">
             {LANG["scheduleScan"]["Repeats every"][lang]} :
           </span>
         </div>
@@ -208,8 +211,8 @@ export const ScheduleScanPage = () => {
         <div className="grid grid-cols-3 gap-x-2 gap-y-4">
           <div
             className={`flex items-center justify-center ${
-              repeatsChecked ? "bg-lightPrimary" : "bg-slate-200"
-            }  px-3 py-4 font-semibold text-secondary`}
+              repeatsChecked ? "bg-indigo-300" : "bg-slate-200"
+            }  px-3 py-4 font-semibold rounded-lg`}
           >
             <input
               type="radio"
@@ -220,7 +223,7 @@ export const ScheduleScanPage = () => {
               name="repeats"
             />
             <label
-              className={`text-sm block ml-2 ${
+              className={`text-sm block ml-2 text-white ${
                 !repeatsChecked && "text-slate-400"
               }`}
             >
@@ -230,8 +233,8 @@ export const ScheduleScanPage = () => {
 
           <div
             className={`flex items-center justify-center ${
-              repeatsChecked ? "bg-lightPrimary" : "bg-slate-200"
-            }  px-3 py-4 font-semibold text-secondary`}
+              repeatsChecked ? "bg-indigo-300" : "bg-slate-200"
+            }  px-3 py-4 font-semibold rounded-lg`}
           >
             <input
               onChange={(e) => {
@@ -242,7 +245,7 @@ export const ScheduleScanPage = () => {
               name="repeats"
             />
             <label
-              className={`text-sm block ml-2 ${
+              className={`text-sm block ml-2 text-white ${
                 !repeatsChecked && "text-slate-400"
               }`}
             >
@@ -252,8 +255,8 @@ export const ScheduleScanPage = () => {
 
           <div
             className={`flex items-center justify-center ${
-              repeatsChecked ? "bg-lightPrimary" : "bg-slate-200"
-            }  px-3 py-4 font-semibold text-secondary`}
+              repeatsChecked ? "bg-indigo-300" : "bg-slate-200"
+            }  px-3 py-4 font-semibold rounded-lg`}
           >
             <input
               onChange={(e) => {
@@ -264,7 +267,7 @@ export const ScheduleScanPage = () => {
               name="repeats"
             />
             <label
-              className={`text-sm block ml-2 ${
+              className={`text-sm block ml-2 text-white ${
                 !repeatsChecked && "text-slate-400"
               }`}
             >
@@ -274,8 +277,8 @@ export const ScheduleScanPage = () => {
 
           <div
             className={`flex items-center justify-center ${
-              repeatsChecked ? "bg-lightPrimary" : "bg-slate-200"
-            }  px-3 py-4 font-semibold text-secondary`}
+              repeatsChecked ? "bg-indigo-300" : "bg-slate-200"
+            }  px-3 py-4 font-semibold rounded-lg`}
           >
             <input
               onChange={(e) => {
@@ -286,7 +289,7 @@ export const ScheduleScanPage = () => {
               name="repeats"
             />
             <label
-              className={`text-sm block ml-2 ${
+              className={`text-sm block ml-2 text-white ${
                 !repeatsChecked && "text-slate-400"
               }`}
             >
@@ -296,8 +299,8 @@ export const ScheduleScanPage = () => {
 
           <div
             className={`flex items-center justify-center ${
-              repeatsChecked ? "bg-lightPrimary" : "bg-slate-200"
-            }  px-3 py-4 font-semibold text-secondary col-span-2`}
+              repeatsChecked ? "bg-indigo-300" : "bg-slate-200"
+            }  px-3 py-4 font-semibold  col-span-2 rounded-lg`}
           >
             <input
               onChange={(e) => {
@@ -308,7 +311,7 @@ export const ScheduleScanPage = () => {
               name="repeats"
             />
             <label
-              className={`text-sm block mx-2 ${
+              className={`text-sm block mx-2 text-white ${
                 !repeatsChecked && "text-slate-400"
               }`}
             >
@@ -316,6 +319,7 @@ export const ScheduleScanPage = () => {
             </label>
             <select
               disabled={repeats == "dayOfwekk"}
+              className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg"
               placeholder={`${LANG["scheduleScan"]["Day of the week"][lang]}`}
               onChange={(e) => {
                 setDayOfWeek(e.target.value);
@@ -331,9 +335,10 @@ export const ScheduleScanPage = () => {
         </div>
       </div>
 
-      <div className="flex items-center mt-3 text-secondary">
+      <div className="flex items-center mt-3">
         <input
           type="checkbox"
+          className="rounded-sm"
           onChange={(e) => {
             setExludeSunSat(e.target.checked);
           }}
@@ -343,7 +348,7 @@ export const ScheduleScanPage = () => {
         </span>
       </div>
 
-      <div className="bg-slate-700 w-full px-3 py-4 mt-6">
+      <div className="bg-slate-700 w-full px-3 py-4 mt-6 rounded-lg">
         <p className="text-slate-300 text-sm italic">
           {LANG["scheduleScan"]["This scan will be executed"][lang]}{" "}
           {cronToString()}
@@ -355,7 +360,7 @@ export const ScheduleScanPage = () => {
           handleSchedule();
         }}
         disabled={cronToString() == ""}
-        className="mt-8 bg-primary text-white font-bold py-2 w-full hover:bg-darkPrimary disabled:bg-lightPrimary"
+        className="mt-8 bg-indigo-500 text-white font-bold py-2 w-full hover:bg-indigo-700 disabled:bg-indigo-200 disabled:cursor-not-allowed transition duration-300 rounded-lg"
       >
         {LANG["scheduleScan"]["Schedule"][lang]}
       </button>

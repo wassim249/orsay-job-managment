@@ -128,7 +128,7 @@ export const SearchPage = () => {
       </h1>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#f88c6c" loading={loading} size="20px" />
+          <SquareLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>
@@ -145,7 +145,7 @@ export const SearchPage = () => {
           />
           {search && (
             <>
-              <span className="text-secondary font-bold text-xl mt-3">
+              <span className="font-bold text-xl mt-3">
                 {LANG["search"]["Showing result for"][lang]}: {searchTerm}
               </span>
               <span className="block">{`${
@@ -154,14 +154,14 @@ export const SearchPage = () => {
               {searchType == "scans" && (
                 <>
                   {scans.length > 0 ? (
-                    <table className="table-auto mt-4 overflow-x-auto">
-                      <thead>
-                        <tr className="bg-primary text-white  font-medium text-center">
+                    <table className="table-auto mt-4 overflow-x-auto w-full">
+                      <thead className="bg-indigo-500 text-white  font-medium text-center">
+                        <tr>
                           <th className="px-4 py-2">Date</th>
                           <th className="px-4 py-2">Source</th>
                           <th className="px-4 py-2">Destination</th>
                           <th className="px-4 py-2">Status</th>
-                          <th className="px-4 py-2 bg-lightPrimary">Actions</th>
+                          <th className="px-4 py-2">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -188,7 +188,7 @@ export const SearchPage = () => {
                               </td>
                               <td className="border p-2">
                                 <button
-                                  className="bg-transparent hover:bg-secondary text-secondary font-semibold hover:text-white py-2 px-4 border border-secondary hover:border-transparent"
+                                  className="bg-transparent hover:bg-indigo-500 text-indigo-500 font-semibold hover:text-white py-2 px-4 border border-indigo-500 rounded-lg hover:border-transparent"
                                   onClick={() => {
                                     navigate(`/scan/${scan.id}`);
                                   }}

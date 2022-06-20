@@ -128,12 +128,12 @@ export const EditUserPage = () => {
           </span>
           <form className="grid grid-cols-2 gap-5 mt-10  ">
             <div className="col-span-2">
-              <label className="block text-secondary text-sm d mb-2">
-                {LANG["createUser"]["First name"][lang]} :{" "}
+              <label className="block  text-sm d mb-2">
+                {LANG["createUser"]["First name"][lang]} :
                 <span className="text-primary">*</span>
               </label>
               <input
-                className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
                 type="text"
                 onChange={(e) =>
                   setFetchedUser({ ...fetchedUser, firstName: e.target.value })
@@ -145,12 +145,12 @@ export const EditUserPage = () => {
             </div>
 
             <div className="col-span-2">
-              <label className="block text-secondary text-sm d mb-2">
+              <label className="block text-sm d mb-2">
                 {LANG["createUser"]["Last name"][lang]} :
                 <span className="text-primary">*</span>
               </label>
               <input
-                className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
                 type="text"
                 onChange={(e) =>
                   setFetchedUser({ ...fetchedUser, lastName: e.target.value })
@@ -162,12 +162,12 @@ export const EditUserPage = () => {
             </div>
 
             <div className="col-span-2">
-              <label className="block text-secondary text-sm d mb-2">
+              <label className="block text-sm d mb-2">
                 {LANG["createUser"]["Email adress"][lang]} :{" "}
                 <span className="text-primary">*</span>
               </label>
               <input
-                className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
                 type="email"
                 onChange={(e) =>
                   setFetchedUser({ ...fetchedUser, email: e.target.value })
@@ -179,11 +179,11 @@ export const EditUserPage = () => {
             </div>
 
             <div className="col-span-2">
-              <label className="block text-secondary text-sm d mb-2">
+              <label className="block text-sm d mb-2">
                 Role : <span className="text-primary">*</span>
               </label>
               <select
-                className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
                 type="text"
                 onChange={(e) =>
                   setFetchedUser({ ...fetchedUser, role: e.target.value })
@@ -204,20 +204,20 @@ export const EditUserPage = () => {
             </div>
 
             <div className="col-span-2 mt-4 mb-6">
-              <label className="block text-secondary text-sm d mb-2">
+              <label className="block text-sm d mb-2">
                 {LANG["createUser"]["Generate password"][lang]} :
               </label>
               <div className="flex justify-between items-center w-full ">
                 {fetchedUser?.password && (
-                  <div className="border border-gray-600 bg-white w-full py-2 px-3">
-                    <span className="font-bold text-xl">
+                  <div className="bg-white py-2 px-3 border border-gray-300 text-gray-900 text-sm rounded-lg w-full">
+                    <span className="font-bold text-xl text-slate-500">
                       {dotsPwd(fetchedUser?.password.length)}
                     </span>
                   </div>
                 )}
 
                 <button
-                  className={`bg-transparent border border-secondary hover:bg-primary-dark text-secondary ml-3 py-2 px-4 focus:outline-none focus:shadow-outline hover:bg-secondary hover:text-white ${
+                  className={`bg-transparent border border-secondary hover:bg-primary-dark rounded-lg transition duration-300 text-secondary ml-3 py-2 px-4 focus:outline-none focus:shadow-outline hover:bg-secondary hover:text-white ${
                     !fetchedUser?.password && `w-full`
                   }`}
                   onClick={(e) => {
@@ -240,7 +240,7 @@ export const EditUserPage = () => {
             <div className="col-span-2 text-center">
               <span
                 onClick={(e) => handleDisableAccount(e)}
-                className="text-secondary text-sm d mb-2 hover:underline hover:text-primary hover:cursor-pointer"
+                className="text-secondary text-sm d mb-2 hover:underline hover:text-teal-500 hover:cursor-pointer"
               >
                 {fetchedUser?.disabled
                   ? LANG["editUser"]["Enable account"][lang]
@@ -251,7 +251,7 @@ export const EditUserPage = () => {
             <div className="col-span-2">
               <button
                 onClick={handleUserUpdate}
-                className="bg-primary hover:bg-darkPrimary w-full text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+                className="bg-teal-500 hover:bg-teal-700 rounded-lg w-full text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
               >
                 {LANG["editUser"]["Update"][lang]}
               </button>

@@ -30,8 +30,11 @@ export const UserDetailsPage = () => {
       if (data?.user) setFetchedUser(data.user);
       else navigate("/notfound");
       setLoading(false);
+
+     
     };
     fetchUser();
+   
   }, []);
 
   return (
@@ -48,7 +51,7 @@ export const UserDetailsPage = () => {
           </span>
           <div className="grid grid-cols-2 grid-gap-4 mt-10">
             <div>
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block text-sm d mb-2  ">
                 {LANG["profile"]["First name"][lang]} :
               </label>
               <span className="text-primary   font-bold">
@@ -57,7 +60,7 @@ export const UserDetailsPage = () => {
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block text-sm d mb-2  ">
                 {LANG["profile"]["Last name"][lang]} :
               </label>
               <span className="text-primary   font-bold">
@@ -66,7 +69,7 @@ export const UserDetailsPage = () => {
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block text-sm d mb-2  ">
                 {LANG["profile"]["Email adress"][lang]} :
               </label>
               <span className="text-primary   font-bold">
@@ -75,14 +78,14 @@ export const UserDetailsPage = () => {
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block text-sm d mb-2  ">
                 Role :
               </label>
-              <UserRole role={fetchedUser && fetchedUser.role} />
+              <UserRole role={fetchedUser && fetchedUser.role || 'viewer'} lang={lang} />
             </div>
 
             <div>
-              <label className="block text-secondary text-sm   ">
+              <label className="block text-sm   ">
                 {LANG["usersList"]["last connection"][lang]} :
               </label>
               <span className="text-primary   font-bold">
@@ -97,18 +100,20 @@ export const UserDetailsPage = () => {
             </div>
           </div>
 
-          <span className="  font-bold text-2xl text-secondary mt-6">
+          <span className="  font-bold text-2xl mt-6">
             {fetchedUser && fetchedUser.firstName}'s Scans
           </span>
 
-          <table className="table-fixed mt-4   overflow-x-auto">
-            <thead>
-              <tr className="bg-primary text-white  font-medium text-center">
+          <table className="table-auto w-full mt-4 overflow-x-auto">
+            <thead
+            className="bg-indigo-500 text-white  font-medium text-center"
+            >
+              <tr>
                 <th className="px-4 py-2">Date</th>
                 <th className="px-4 py-2">Source</th>
                 <th className="px-4 py-2">Destination</th>
                 <th className="px-4 py-2">Status</th>
-                <th className="px-4 py-2 bg-lightPrimary">Actions</th>
+                <th className="px-4 py-2 ">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -149,7 +154,7 @@ export const UserDetailsPage = () => {
               onClick={() => {
                 navigate(`/user/edit/${userID}`);
               }}
-              className="bg-primary text-white   font-bold py-2 px-4 hover:bg-darkPrimary "
+              className="bg-teal-500 text-white   font-bold py-2 px-4 hover:bg-teal-800 rounded-lg"
             >
               {LANG["usersList"]["Edit"][lang]}
             </button>
@@ -160,19 +165,18 @@ export const UserDetailsPage = () => {
   );
 };
 
-const UserRole = ({ role = "viewer" }) => (
+const UserRole = ({ role = "viewer" , lang }) => (
   <div
-    className={`flex items-center justify-center w-1/3 border  ${
-      role == "admin"
-        ? "border-primary text-primary"
-        : "border-secondary text-secondary"
-    }   font-bold py-2 px-4 `}
+    className={`flex items-center justify-center w-1/4 rounded-lg  ${
+      role == "admin" ? "bg-teal-500" : "bg-indigo-500"
+    }   font-bold py-2 px-4 text-white`}
   >
-    {role}
+    {LANG['common']['roles'][role][lang]}
   </div>
 );
+
 const Disabled = ({ lang }) => (
   <div className="flex flex-col items-center justify-center p-3 bg-slate-700 text-white w-1/6">
     <span className="font-bold">{LANG["editUser"]["Disabled"][lang]}</span>
   </div>
-);
+)

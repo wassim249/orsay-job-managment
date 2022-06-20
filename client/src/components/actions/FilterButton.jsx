@@ -160,14 +160,14 @@ const FilterButton = ({ filter, setFilter, searchType }) => {
                       scheduled: false,
                     });
                   }}
-                  className="btn-xs rounded-none bg-white border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600"
+                  className="btn-xs rounded-none bg-white border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-600 text-sm"
                 >
                   {LANG["search"]["Clear"][lang]}
                 </button>
               </li>
               <li>
                 <button
-                  className="px-3 py-1 bg-primary hover:bg-darkPrimary text-white"
+                  className="px-3 py-1 bg-teal-500 hover:bg-teal-700 text-white rounded-lg text-sm"
                   onClick={(e) => {
                     e.preventDefault();
                     setDropdownOpen(false);

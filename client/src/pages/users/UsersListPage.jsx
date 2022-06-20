@@ -45,26 +45,28 @@ export const UsersListPage = () => {
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
           {alertData && <AlertMessage />}
-          <SquareLoader color="#f88c6c" loading={loading} size="20px" />
+          <SquareLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl text-secondary font-bold   flex items-center">
-              <BiGroup size={40} color="#f88c6c" className="mr-2" />
+            <h1 className="text-2xl font-bold   flex items-center">
+              <BiGroup size={40} color="#6366f1" className="mr-2" />
               {LANG["usersList"]["Users list"][lang]}
             </h1>
             <button
-              className="bg-secondary text-white py-2 px-3  "
-              onClick={() => navigate("/user/create")}
+                className="border-2 border-rose-400 text-rose-400 hover:text-white hover:bg-rose-400 py-2 px-3 font-bold  rounded-lg"
+                onClick={() => navigate("/user/create")}
             >
               + {LANG["usersList"]["Create user"][lang]}
             </button>
           </div>
 
           <table className="table-auto w-full mt-4 overflow-x-auto">
-            <thead>
-              <tr className="bg-primary text-white  font-medium text-center">
+            <thead
+            className="bg-indigo-500 text-white  font-medium text-center"
+            >
+              <tr>
                 <th className="px-4 py-2">ID</th>
                 <th className="px-4 py-2">
                   {LANG["usersList"]["Full name"][lang]}
@@ -73,19 +75,19 @@ export const UsersListPage = () => {
                 <th className="px-4 py-2">
                   {LANG["usersList"]["last connection"][lang]}
                 </th>
-                <th className="px-4 py-2 bg-lightPrimary">Actions</th>
+                <th className="px-4 py-2 ">Actions</th>
               </tr>
             </thead>
             <tbody>
               {users &&
                 users.map((user, key) => (
                   <tr key={key}>
-                    <td className=" p-2">{user && user.id}</td>
-                    <td className=" p-2">
+                    <td className=" p-2 border">{user && user.id}</td>
+                    <td className=" p-2 border">
                       {user && `${user.firstName} ${user.lastName}`}
                     </td>
-                    <td className=" p-2">{user && user.email}</td>
-                    <td className=" p-2 text-center">
+                    <td className=" p-2 border">{user && user.email}</td>
+                    <td className=" p-2 text-center border">
                       {user &&
                         (moment(user.lastConnection).toDate().getFullYear() !=
                         1970
@@ -96,7 +98,7 @@ export const UsersListPage = () => {
                     </td>
                     <td className="border p-2">
                       <button
-                        className="bg-transparent hover:bg-secondary text-secondary font-semibold hover:text-white py-2 px-4 border border-secondary hover:border-transparent"
+                        className="bg-transparent hover:bg-indigo-500 text-indigo-500 font-semibold hover:text-white py-2 px-4 border border-indigo-500 rounded-lg hover:border-transparent"
                         onClick={() => {
                           navigate(`/user/${user.id}`);
                         }}

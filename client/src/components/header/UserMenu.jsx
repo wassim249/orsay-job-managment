@@ -58,7 +58,7 @@ const UserMenu = () => {
           lastName={user && user.lastName}
         />
         <div className="flex items-center truncate">
-          <span className="truncate ml-2 text-sm   group-hover:text-darkPrimary text-primary">
+          <span className="truncate ml-2 text-sm  text-indigo-700 font-semibold">
             {user && user.firstName}
           </span>
           <IoIosArrowDown size="15" color="black" />
@@ -91,7 +91,7 @@ const UserMenu = () => {
           <ul>
             <li>
               <Link
-                className="font-medium text-sm text-primary   hover:text-darkPrimary flex items-center py-1 px-3"
+                className="font-medium text-sm text-rose-500   hover:text-rose-900 flex items-center py-1 px-3"
                 to="/profile"
                 onClick={() => {
                   setDropdownOpen(!dropdownOpen);
@@ -102,7 +102,7 @@ const UserMenu = () => {
             </li>
             <li>
               <span
-                className="font-medium text-sm text-primary   hover:text-darkPrimary flex items-center py-1 px-3 hover:cursor-pointer"
+                className="font-medium text-sm text-rose-500   hover:text-rose-900 flex items-center py-1 px-3 hover:cursor-pointer"
                 onClick={() => {
                   setDropdownOpen(!dropdownOpen);
                   localStorage.removeItem("ORSAY_USER");

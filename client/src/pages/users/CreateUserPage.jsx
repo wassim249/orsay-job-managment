@@ -73,12 +73,12 @@ export const CreateUserPage = () => {
       <span className="block   text-sm">User will be notified by email</span>
       <form className="grid grid-cols-2 gap-5 mt-8  ">
         <div className="col-span-2">
-          <label className="block text-secondary text-sm d mb-2">
+          <label className="block text-sm d mb-2">
             {LANG["createUser"]["First name"][lang]} :{" "}
             <span className="text-primary">*</span>
           </label>
           <input
-            className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             type="text"
             value={createdUser?.firstName || ""}
             onChange={(e) =>
@@ -90,12 +90,12 @@ export const CreateUserPage = () => {
         </div>
 
         <div className="col-span-2">
-          <label className="block text-secondary text-sm d mb-2">
+          <label className="block text-sm d mb-2">
             {LANG["createUser"]["Last name"][lang]} :{" "}
             <span className="text-primary">*</span>
           </label>
           <input
-            className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             type="text"
             value={createdUser?.lastName || ""}
             onChange={(e) =>
@@ -107,12 +107,12 @@ export const CreateUserPage = () => {
         </div>
 
         <div className="col-span-2">
-          <label className="block text-secondary text-sm d mb-2">
+          <label className="block text-sm d mb-2">
             {LANG["createUser"]["Email adress"][lang]} :{" "}
             <span className="text-primary">*</span>
           </label>
           <input
-            className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             type="email"
             value={createdUser?.email || ""}
             onChange={(e) =>
@@ -124,11 +124,11 @@ export const CreateUserPage = () => {
         </div>
 
         <div className="col-span-2">
-          <label className="block text-secondary text-sm d mb-2">
+          <label className="block text-sm d mb-2">
             Role : <span className="text-primary">*</span>
           </label>
           <select
-            className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
             type="text"
             defaultValue={createdUser?.role || "viewer"}
             onChange={(e) =>
@@ -149,22 +149,22 @@ export const CreateUserPage = () => {
         </div>
 
         <div className="col-span-2 mt-4 mb-6">
-          <label className="block text-secondary text-sm d mb-2">
+          <label className="block  text-sm d mb-2">
             {LANG["createUser"]["Generate password"][lang]} :
             <span className="text-primary">*</span>
           </label>
           <div className="flex justify-between items-center w-full ">
             <input
-              className="appearance-none border grow py-2 px-3 text-slate-700 bg-slate-100 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
               type="password"
               disabled
               value={createdUser?.password || ""}
-              placeholder="•••••••••••••••"
+              placeholder="••••••••"
               required
             />
 
             <button
-              className="bg-transparent border   border-secondary hover:bg-primary-dark text-secondary ml-3 py-2 px-4 focus:outline-none focus:shadow-outline hover:bg-secondary hover:text-white"
+              className="bg-transparent border border-secondary hover:bg-primary-dark text-secondary ml-3 py-2 px-4 focus:outline-none focus:shadow-outline hover:bg-secondary hover:text-white rounded-lg transition duration-300"
               onClick={(e) => {
                 e.preventDefault();
                 const password = generatePassword();
@@ -179,7 +179,7 @@ export const CreateUserPage = () => {
         <div className="col-span-2">
           <button
             onClick={handleUserCreate}
-            className="bg-primary hover:bg-darkPrimary w-full text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+            className="col-span-2 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out rounded-lg hover:rounded  w-full"
           >
             {loading ? (
               <SquareLoader size={20} color={"#fff"} />

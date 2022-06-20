@@ -53,7 +53,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
                   aria-controls="search-modal"
                 >
                   <span className="sr-only">Search</span>
-                  <BsSearch size="25" color="black" />
+                  <BsSearch size="25" color="#475569" />
                 </button>
 
                 <SearchModal

@@ -12,8 +12,8 @@ export const NewUsersChart = ({ data }) => {
       {
         label: `${LANG["common"]["roles"]["scanner"][lang]}s`,
         data: data?.scanners,
-        backgroundColor: "#f88c6c",
-        hoverBackgroundColor: "#c26b51",
+        backgroundColor: "#6366f1",
+        hoverBackgroundColor: "#312e81",
 
         barPercentage: 0.66,
         categoryPercentage: 0.66,
@@ -22,8 +22,8 @@ export const NewUsersChart = ({ data }) => {
       {
         label: `${LANG["common"]["roles"]["viewer"][lang]}s`,
         data: data?.viewers,
-        backgroundColor: "#b8b8b8",
-        hoverBackgroundColor: "#8c8c8c",
+        backgroundColor: "#fb7185",
+        hoverBackgroundColor: "#e11d48",
         barPercentage: 0.66,
         categoryPercentage: 0.66,
       },

@@ -27,7 +27,7 @@ export const AlertMessage = () => {
 
   return (
     <div
-      className={`absolute z-60 bottom-4 right-4 selection: bg-${color}-500 p-2 flex justify-center items-center ease-in-out duration-300 transition-opacity shadow-lg`}
+      className={`absolute z-60 bottom-4 right-4 selection: bg-${color}-300 p-2 flex justify-center items-center ease-in-out duration-300 transition-opacity shadow-lg rounded-lg`}
     >
       {icon}
       <p className="text-white text-sm mx-2">{message}</p>

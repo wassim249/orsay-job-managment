@@ -72,27 +72,27 @@ function LangMenu() {
             <li>
               <a
                 onClick={() => setLang("EN")}
-                className="font-medium text-sm text-secondary   py-1 px-3 hover:cursor-pointer"
+                className="font-medium text-sm text-slate-700 py-1 px-3 hover:cursor-pointer"
               >
-                English <span className="text-primary">(EN)</span>
+                English <span className="text-rose-500">(EN)</span>
               </a>
             </li>
 
             <li>
               <a
                 onClick={() => setLang("FR")}
-                className="font-medium text-sm text-secondary   py-1 px-3 hover:cursor-pointer"
+                className="font-medium text-sm text-slate-700   py-1 px-3 hover:cursor-pointer"
               >
-                French <span className="text-primary">(FR)</span>
+                French <span className="text-rose-500">(FR)</span>
               </a>
             </li>
 
             <li>
               <a
                 onClick={() => setLang("DE")}
-                className="font-medium text-sm text-secondary   py-1 px-3 hover:cursor-pointer"
+                className="font-medium text-sm text-slate-700   py-1 px-3 hover:cursor-pointer"
               >
-                German <span className="text-primary">(DE)</span>
+                German <span className="text-rose-500">(DE)</span>
               </a>
             </li>
           </ul>

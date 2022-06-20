@@ -8,6 +8,7 @@ import { getUsers } from "../services/user";
 import { scanSuccess } from "../utils/Utils";
 import LangContext from "../contexts/LangContext";
 import LANG from "../../../i18n/lang.json";
+import { Status } from "../components/Status";
 
 export const ProfilePage = () => {
   const [user] = useContext(UserContext);
@@ -36,16 +37,16 @@ export const ProfilePage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#f88c6c" loading={loading} size="20px" />
+          <SquareLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
-        <>
-          <span className="  font-bold text-2xl text-secondary">
+        <div className="w-full">
+          <span className="  font-bold text-2xl">
             {LANG["profile"]["Your profile"][lang]}
           </span>
           <div className="grid grid-cols-2 grid-gap-4 mt-10">
             <div>
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block text-sm d mb-2  ">
                 {LANG["profile"]["First name"][lang]}
               </label>
               <span className="text-primary   font-bold">
@@ -54,7 +55,7 @@ export const ProfilePage = () => {
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block text-sm d mb-2  ">
                 {LANG["profile"]["Last name"][lang]}:
               </label>
               <span className="text-primary   font-bold">
@@ -63,7 +64,7 @@ export const ProfilePage = () => {
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2  ">
+              <label className="block text-sm d mb-2  ">
                 {LANG["profile"]["Email adress"][lang]} :
               </label>
               <span className="text-primary   font-bold">
@@ -72,9 +73,7 @@ export const ProfilePage = () => {
             </div>
 
             <div>
-              <label className="block text-secondary text-sm d mb-2  ">
-                Role :
-              </label>
+              <label className="block text-sm d mb-2  ">Role :</label>
               <UserRole
                 role={
                   fetchedUser && LANG["common"]["roles"][fetchedUser.role][lang]
@@ -83,18 +82,18 @@ export const ProfilePage = () => {
             </div>
           </div>
 
-          <span className="  font-bold text-2xl text-secondary mt-10">
+          <span className="  font-bold text-2xl mt-10">
             {LANG["profile"]["Latest scans"][lang]}
           </span>
 
-          <table className="table-fixed mt-4   overflow-x-auto">
-            <thead>
-              <tr className="bg-primary text-white  font-medium text-center">
+          <table className="table-auto w-full mt-4 overflow-x-auto">
+            <thead className="bg-indigo-500 text-white  font-medium text-center">
+              <tr>
                 <th className="px-4 py-2">Date</th>
                 <th className="px-4 py-2">Source</th>
                 <th className="px-4 py-2">Destination</th>
                 <th className="px-4 py-2">Status</th>
-                <th className="px-4 py-2 bg-lightPrimary">Actions</th>
+                <th className="px-4 py-2 ">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -111,20 +110,11 @@ export const ProfilePage = () => {
                     </td>
 
                     <td className="border p-2 font-bold">
-                      {scan &&
-                        (scanSuccess(scan) ? (
-                          <span className="bg-green-500 text-white px-2 py-3">
-                            {LANG["common"]["succeed"][lang]}
-                          </span>
-                        ) : (
-                          <span className="bg-red-500 text-white px-2 py-3">
-                            {LANG["common"]["failed"][lang]}
-                          </span>
-                        ))}
+                      {scan && <Status success={scanSuccess(scan)} icon />}
                     </td>
                     <td className="border p-2">
                       <button
-                        className="bg-transparent hover:bg-secondary text-secondary font-semibold hover:text-white py-2 px-4 border border-secondary hover:border-transparent"
+                        className="bg-transparent hover:bg-indigo-500 text-indigo-500 font-semibold hover:text-white py-2 px-4 border border-indigo-500 rounded-lg hover:border-transparent"
                         onClick={() => {
                           navigate(`/scan/${scan.id}`);
                         }}
@@ -136,7 +126,7 @@ export const ProfilePage = () => {
                 ))}
             </tbody>
           </table>
-        </>
+        </div>
       )}
     </Layout>
   );
@@ -144,8 +134,8 @@ export const ProfilePage = () => {
 
 const UserRole = ({ role = "viewer" }) => (
   <div
-    className={`flex items-center justify-center w-1/3  ${
-      role == "admin" ? "bg-primary" : "bg-secondary"
+    className={`flex items-center justify-center w-1/4 rounded-lg  ${
+      role == "admin" ? "bg-teal-500" : "bg-indigo-500"
     }   font-bold py-2 px-4 text-white`}
   >
     {role}

@@ -45,18 +45,18 @@ export const ScansListPage = () => {
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
           {alertData && <AlertMessage />}
-          <SquareLoader color="#f88c6c" loading={loading} size="20px" />
+          <SquareLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>
           <div className="flex justify-between items-center w-full">
-            <h1 className="text-2xl text-secondary font-bold flex items-center">
-              <RiScan2Fill size={40} color="#f88c6c" className="mr-2" />
+            <h1 className="text-2xl font-bold flex items-center">
+              <RiScan2Fill size={40} color="#6366f1" className="mr-2" />
               {LANG["scansList"]["Scans list"][lang]}
             </h1>
             {user?.role != "viewer" && (
               <button
-                className="bg-secondary text-white py-2 px-3  "
+                className="border-2 border-rose-400 text-rose-400 hover:text-white hover:bg-rose-400 py-2 px-3 font-bold  rounded-lg"
                 onClick={() => navigate("/scan/create")}
               >
                 + {LANG["scansList"]["Create scan"][lang]}
@@ -64,17 +64,19 @@ export const ScansListPage = () => {
             )}
           </div>
 
-          <table className="table-auto mt-4 overflow-x-auto">
-            <thead>
-              <tr className="bg-primary text-white  font-medium text-center">
-                <th className=" py-2">Date</th>
+          <table className="table-auto w-full mt-4 overflow-x-auto rounded-lg">
+            <thead
+            className="bg-indigo-500 text-white  font-medium text-center"
+            >
+              <tr >
+                <th className=" py-2  rounded-tl-lg">Date</th>
                 <th className=" py-2">Source</th>
                 <th className=" py-2">Destination</th>
                 <th className=" py-2">
                   {LANG["scansList"]["Scanned orders"][lang]}
                 </th>
                 <th className=" py-2">Status</th>
-                <th className=" py-2 bg-lightPrimary">Actions</th>
+                <th className=" py-2 rounded-tr-lg">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -95,9 +97,9 @@ export const ScansListPage = () => {
                     <td className="border p-2 font-bold">
                       {scan && <Status success={scanSuccess(scan)} icon />}
                     </td>
-                    <td className="border p-2">
+                    <td className={`border p-2`}>
                       <button
-                        className="bg-transparent hover:bg-secondary text-secondary font-semibold hover:text-white py-2 px-4 border border-secondary hover:border-transparent"
+                        className="bg-transparent hover:bg-indigo-500 text-indigo-500 font-semibold hover:text-white py-2 px-4 border border-indigo-500 rounded-lg hover:border-transparent"
                         onClick={() => {
                           navigate(`/scan/${scan.id}`);
                         }}

@@ -9,13 +9,13 @@ function WelcomeBanner() {
   const [user] = useContext(UserContext);
   const [lang] = useContext(LangContext);
   return (
-    <div className="relative bg-pink-100 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
+    <div className="relative bg-indigo-100 p-4 sm:p-6 overflow-hidden mb-8 rounded-lg shadow hover:bg-indigo-200 transition duration-300">
       {/* Content */}
       <div className="relative">
-        <h1 className="text-2xl md:text-xl text-secondary   font-bold mb-1">
+        <h1 className="text-2xl md:text-xl text-indigo-500   font-bold mb-1">
           {salute(lang)}, {user && `${user.firstName} ${user.lastName}`}.
         </h1>
-        <p className="  text-sm">
+        <p className="text-sm text-indigo-900">
           {LANG["home"]["last connection"][lang]} :&nbsp;
           {user &&
             (moment(user.lastConnection).toDate().getFullYear() != 1970
