@@ -121,7 +121,7 @@ export const Dashboard = () => {
       {alertData && <AlertMessage />}
       <WelcomeBanner />
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 mb-4">
-        <div className="bg-white py-4 px-8 mr-10 rounded-lg shadow-lg">
+        <div className="bg-white py-4 px-8 mr-10 rounded-lg shadow-lg hover:scale-110 transition-all duration-300 ease-in-out">
           <div className="flex justify-between items-center">
             <div>
               <span className="text-slate-900 font-bold text-3xl">
@@ -129,7 +129,7 @@ export const Dashboard = () => {
                   ? `0${scanInfo.total}`
                   : scanInfo?.total}
               </span>
-              <p className="text-md text-slate-700">
+              <p className="text-sm text-slate-700">
                 {LANG["home"]["Total scans"][lang]}
               </p>
             </div>
@@ -137,7 +137,7 @@ export const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-white py-4 px-8 mr-10 rounded-lg shadow-lg">
+        <div className="bg-white py-4 px-8 mr-10 rounded-lg shadow-lg hover:scale-110 transition-all duration-300 ease-in-out">
           <div className="flex justify-between items-center">
             <div>
               <span className="text-slate-900 font-bold text-3xl">
@@ -145,7 +145,7 @@ export const Dashboard = () => {
                   ? `0${scanInfo?.total7Days}`
                   : scanInfo?.total7Days}
               </span>
-              <p className="text-md text-slate-700">
+              <p className="text-sm text-slate-700">
                 {LANG["home"]["Total scan in the past 7 days"][lang]}
               </p>
             </div>
@@ -153,7 +153,7 @@ export const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-white shadow-lg py-4 px-8 rounded-lg">
+        <div className="bg-white shadow-lg py-4 px-8 rounded-lg hover:scale-110 transition-all duration-300 ease-in-out">
           <div className="flex justify-between items-center">
             <div>
               <span className="text-slate-900 font-bold text-2xl">
@@ -162,7 +162,7 @@ export const Dashboard = () => {
                     ? moment(scanInfo?.latestScan).format("MM/DD/YYYY hh:mm")
                     : "No scan")}
               </span>
-              <p className="text-md text-slate-700">
+              <p className="text-sm text-slate-700">
                 {LANG["home"]["Latest scan"][lang]}
               </p>
             </div>

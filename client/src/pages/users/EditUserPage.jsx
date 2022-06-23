@@ -123,7 +123,7 @@ export const EditUserPage = () => {
         <>
           {alertData && <AlertMessage />}
 
-          <span className="  font-bold text-2xl text-secondary">
+          <span className="  font-bold text-2xl">
             {LANG["editUser"]["Edit User"][lang]} #{userID}
           </span>
           <form className="grid grid-cols-2 gap-5 mt-10  ">
@@ -217,7 +217,7 @@ export const EditUserPage = () => {
                 )}
 
                 <button
-                  className={`bg-transparent border border-secondary hover:bg-primary-dark rounded-lg transition duration-300 text-secondary ml-3 py-2 px-4 focus:outline-none focus:shadow-outline hover:bg-secondary hover:text-white ${
+                  className={`bg-transparent border border-rose-500 hover:bg-primary-dark rounded-lg transition duration-300 text-rose-500 ml-3 py-2 px-4 focus:outline-none focus:shadow-outline hover:bg-rose-500 hover:text-white ${
                     !fetchedUser?.password && `w-full`
                   }`}
                   onClick={(e) => {
@@ -240,7 +240,7 @@ export const EditUserPage = () => {
             <div className="col-span-2 text-center">
               <span
                 onClick={(e) => handleDisableAccount(e)}
-                className="text-secondary text-sm d mb-2 hover:underline hover:text-teal-500 hover:cursor-pointer"
+                className="text-sm d mb-2 hover:underline hover:text-rose-500 hover:cursor-pointer"
               >
                 {fetchedUser?.disabled
                   ? LANG["editUser"]["Enable account"][lang]
@@ -251,7 +251,7 @@ export const EditUserPage = () => {
             <div className="col-span-2">
               <button
                 onClick={handleUserUpdate}
-                className="bg-teal-500 hover:bg-teal-700 rounded-lg w-full text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+                className="bg-indigo-500 hover:rounded-sm rounded-lg w-full text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out"
               >
                 {LANG["editUser"]["Update"][lang]}
               </button>

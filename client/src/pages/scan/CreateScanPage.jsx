@@ -155,7 +155,7 @@ export const CreateScanPage = () => {
             onClick={(e) => {
               addOrder(e);
             }}
-            className="bg-rose-400 text-white px-3 py-[6px] mr-3 font-bold rounded-lg "
+            className="bg-rose-500 text-white px-3 py-[6px] mr-3 font-bold rounded-lg "
           >
             <span className="text-white text-lg">+</span>
           </button>
@@ -223,7 +223,7 @@ export const CreateScanPage = () => {
                 state: { source, destination, orderNumbers, logFile },
               });
           }}
-          className="col-span-2 border-2 border-rose-400 bg-transparent hover:bg-rose-400 hover:text-white text-rose-400 font-bold py-2 px-4 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out rounded-lg"
+          className="col-span-2 border-2 border-rose-500 bg-transparent hover:bg-rose-500 hover:text-white text-rose-500 font-bold py-2 px-4 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out rounded-lg"
           type="submit"
         >
           {LANG["createScan"]["schedule"][lang]}

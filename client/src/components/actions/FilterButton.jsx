@@ -167,7 +167,7 @@ const FilterButton = ({ filter, setFilter, searchType }) => {
               </li>
               <li>
                 <button
-                  className="px-3 py-1 bg-teal-500 hover:bg-teal-700 text-white rounded-lg text-sm"
+                  className="px-3 py-1 bg-rose-500 hover:bg-rose-700 text-white rounded-lg text-sm"
                   onClick={(e) => {
                     e.preventDefault();
                     setDropdownOpen(false);

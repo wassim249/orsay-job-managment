@@ -69,12 +69,12 @@ export const CreateUserPage = () => {
   return (
     <Layout>
       {alertData && <AlertMessage />}
-      <span className="  font-bold text-2xl text-secondary">Create User</span>
+      <span className="  font-bold text-2xl text-rose-500">Create User</span>
       <span className="block   text-sm">User will be notified by email</span>
       <form className="grid grid-cols-2 gap-5 mt-8  ">
         <div className="col-span-2">
           <label className="block text-sm d mb-2">
-            {LANG["createUser"]["First name"][lang]} :{" "}
+            {LANG["createUser"]["First name"][lang]} :
             <span className="text-primary">*</span>
           </label>
           <input
@@ -179,7 +179,7 @@ export const CreateUserPage = () => {
         <div className="col-span-2">
           <button
             onClick={handleUserCreate}
-            className="col-span-2 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out rounded-lg hover:rounded  w-full"
+            className="col-span-2 bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out rounded-lg hover:rounded  w-full"
           >
             {loading ? (
               <SquareLoader size={20} color={"#fff"} />

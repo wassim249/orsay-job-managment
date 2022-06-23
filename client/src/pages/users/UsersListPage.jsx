@@ -50,12 +50,12 @@ export const UsersListPage = () => {
       ) : (
         <>
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-bold   flex items-center">
+            <h1 className="text-xl font-bold   flex items-center">
               <BiGroup size={40} color="#6366f1" className="mr-2" />
               {LANG["usersList"]["Users list"][lang]}
             </h1>
             <button
-                className="border-2 border-rose-400 text-rose-400 hover:text-white hover:bg-rose-400 py-2 px-3 font-bold  rounded-lg"
+                className="border-2 border-rose-400 text-rose-400 hover:text-white hover:bg-rose-400 p-2 font-bold rounded-lg transition-all duration-300 ease-in-out"
                 onClick={() => navigate("/user/create")}
             >
               + {LANG["usersList"]["Create user"][lang]}

@@ -14,8 +14,8 @@ export const OrderNumber = ({ order }) => {
   const [lang] = useContext(LangContext);
 
   return (
-    <div className="bg-white shadow w-full flex flex-col justify-center items-center">
-      <div className="text-xl bg-indigo-300 w-full h-24 flex justify-center items-center font-semibold mb-4">
+    <div className="bg-white shadow w-full flex flex-col justify-center items-center rounded-lg hover:scale-105 transition-all duration-300 ease-in-out">
+      <div className="text-xl bg-indigo-300 w-full h-24 flex justify-center items-center font-semibold mb-4 rounded-lg">
         {order.order}
       </div>
       <div className="flex justify-between px-4 items-center w-full">

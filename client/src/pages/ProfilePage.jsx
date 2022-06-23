@@ -114,7 +114,7 @@ export const ProfilePage = () => {
                     </td>
                     <td className="border p-2">
                       <button
-                        className="bg-transparent hover:bg-indigo-500 text-indigo-500 font-semibold hover:text-white py-2 px-4 border border-indigo-500 rounded-lg hover:border-transparent"
+                        className="bg-transparent hover:bg-indigo-500 text-indigo-500 font-semibold hover:text-white py-2 px-4 border border-indigo-500 rounded-lg hover:border-transparent transition-all duration-300 ease-in-out"
                         onClick={() => {
                           navigate(`/scan/${scan.id}`);
                         }}
@@ -135,7 +135,7 @@ export const ProfilePage = () => {
 const UserRole = ({ role = "viewer" }) => (
   <div
     className={`flex items-center justify-center w-1/4 rounded-lg  ${
-      role == "admin" ? "bg-teal-500" : "bg-indigo-500"
+      role == "admin" ? "bg-rose-500" : "bg-indigo-500"
     }   font-bold py-2 px-4 text-white`}
   >
     {role}

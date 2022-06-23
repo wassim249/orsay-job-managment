@@ -57,13 +57,12 @@ export const RequestsListPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#6366f1
-" loading={loading} size="20px" />
+          <SquareLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>
           {alertData && <AlertMessage />}
-          <h1 className="text-2xl font-bold  flex items-center">
+          <h1 className="text-xl font-bold  flex items-center">
             <RiFilePaperLine size={40} color="#6366f1" className="mr-2" />
             {LANG["requests"]["Lastest authentification requests"][lang]}
           </h1>
@@ -123,12 +122,12 @@ export const RequestsListPage = () => {
 
 const RequestStatus = ({ status = "PENDING", lang = "EN" }) => {
   let color = "slate";
-  if (status == "ACCEPTED") color = "green";
-  else if (status == "REFUSED") color = "red";
+  if (status == "ACCEPTED") color = "amber";
+  else if (status == "REFUSED") color = "rose";
 
   return (
     <div
-      className={`flex justify-center items-center bg-${color}-500 px-4 py-2 roundedl-lg`}
+      className={`flex justify-center items-center bg-${color}-500 px-4 py-2 rounded-lg`}
     >
       <span className={`test-sm text-white`}>
         {LANG["requests"][status][lang]}

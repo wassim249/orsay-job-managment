@@ -8,7 +8,7 @@ export const Status = ({ success = true, className = "", icon = false }) => {
   return icon ? (
     <div
       className={`${
-        success ? "bg-teal-500" : "bg-red-400"
+        success ? "bg-teal-500" : "bg-rose-500"
       }  p-2 text-center text-white font-bold ${className} rounded-md`}
     >
       {success ? "✓" : "X"}
@@ -16,7 +16,7 @@ export const Status = ({ success = true, className = "", icon = false }) => {
   ) : (
     <div
       className={`${
-        success ? "bg-teal-500" : "bg-red-400"
+        success ? "bg-rose-500" : "bg-red-400"
       }  px-3 py-2 w-32 text-center text-white font-bold ${className} rounded-md`}
     >
       {success

@@ -123,7 +123,7 @@ export const SearchPage = () => {
   return (
     <Layout>
       {alertData && <AlertMessage />}
-      <h1 className="text-2xl font-bold text-secondary mb-10">
+      <h1 className="text-xl font-bold mb-10">
         {LANG["search"]["Search for a scan or order number"][lang]}
       </h1>
       {loading ? (

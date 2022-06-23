@@ -41,12 +41,12 @@ export const UserDetailsPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#f88c6c" loading={loading} size="20px" />
+          <SquareLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>
           {fetchedUser?.disabled && <Disabled lang={lang} />}
-          <span className="  font-bold text-2xl text-secondary">
+          <span className="  font-bold text-2xl">
             {LANG["profile"]["User"][lang]} #{userID}
           </span>
           <div className="grid grid-cols-2 grid-gap-4 mt-10">
@@ -154,7 +154,7 @@ export const UserDetailsPage = () => {
               onClick={() => {
                 navigate(`/user/edit/${userID}`);
               }}
-              className="bg-teal-500 text-white   font-bold py-2 px-4 hover:bg-teal-800 rounded-lg"
+              className="bg-rose-500 text-white font-bold py-2 px-4 hover:rounded-sm rounded-lg transition-all duration-300 ease-in-out"
             >
               {LANG["usersList"]["Edit"][lang]}
             </button>
@@ -168,7 +168,7 @@ export const UserDetailsPage = () => {
 const UserRole = ({ role = "viewer" , lang }) => (
   <div
     className={`flex items-center justify-center w-1/4 rounded-lg  ${
-      role == "admin" ? "bg-teal-500" : "bg-indigo-500"
+      role == "admin" ? "bg-rose-500" : "bg-indigo-500"
     }   font-bold py-2 px-4 text-white`}
   >
     {LANG['common']['roles'][role][lang]}

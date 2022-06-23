@@ -41,7 +41,7 @@ export const SearchBar = ({
           </span>
         </div>
         <button
-          className="px-3 py-1 bg-teal-500 hover:bg-teal-800 rounded-lg hover:rounded transition duration-300 text-white h-14"
+          className="px-3 py-1 bg-rose-500 rounded-lg hover:rounded-sm transition-all duration-300 ease-in-out text-white h-14"
           type="submit"
         >
           {LANG["search"]["Search"][lang]}

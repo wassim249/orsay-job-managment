@@ -7,8 +7,8 @@ import { AlertContext } from "../contexts/AlertContext";
 export const AlertMessage = () => {
   const [{ type, message }, setAlertData] = useContext(AlertContext);
   let color = "info";
-  if (type === "error") color = "red";
-  else if (type === "success") color = "green";
+  if (type === "error") color = "rose";
+  else if (type === "success") color = "amber";
 
   setTimeout(() => {
     setAlertData(null);
@@ -27,7 +27,7 @@ export const AlertMessage = () => {
 
   return (
     <div
-      className={`absolute z-60 bottom-4 right-4 selection: bg-${color}-300 p-2 flex justify-center items-center ease-in-out duration-300 transition-opacity shadow-lg rounded-lg`}
+      className={`absolute z-90 bottom-4 right-4 selection: bg-${color}-400 p-2 flex justify-center items-center hover:scale-110 shadow-lg rounded-lg  transition-all duration-300 ease-in-out`}
     >
       {icon}
       <p className="text-white text-sm mx-2">{message}</p>

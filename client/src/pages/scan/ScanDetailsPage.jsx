@@ -113,7 +113,7 @@ export const ScanDetailsPage = () => {
               <label className="block text-sm d mb-2  ">
                 {LANG["scanDetails"]["Orders List"][lang]} :
               </label>
-              <div className="bg-slate-900 text-white p-2 text-sm   border-2 border-primary">
+              <div className="bg-slate-900 text-white p-2 text-sm   border-2 border-primary rounded-md">
                 {orders &&
                   orders.map((order, key) => (
                     <span className=" block" key={key}>
@@ -140,7 +140,7 @@ export const ScanDetailsPage = () => {
 
             <div className="col-span-2">
               <label className="block text-sm d mb-2  ">Log :</label>
-              <div className="bg-slate-900 text-white p-2 text-sm   border-2 border-primary">
+              <div className="bg-slate-900 text-white p-2 text-sm   border-2 border-primary rounded-md">
                 {scan &&
                   JSON.parse(scan.log).map((log, key) => (
                     <span

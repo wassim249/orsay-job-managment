@@ -50,13 +50,13 @@ export const ScansListPage = () => {
       ) : (
         <>
           <div className="flex justify-between items-center w-full">
-            <h1 className="text-2xl font-bold flex items-center">
+            <h1 className="text-xl font-bold flex items-center">
               <RiScan2Fill size={40} color="#6366f1" className="mr-2" />
               {LANG["scansList"]["Scans list"][lang]}
             </h1>
             {user?.role != "viewer" && (
               <button
-                className="border-2 border-rose-400 text-rose-400 hover:text-white hover:bg-rose-400 py-2 px-3 font-bold  rounded-lg"
+                className="border-2 border-rose-400 text-rose-400 text-sm hover:text-white hover:bg-rose-400 p-2 font-bold transition-all duration-300 ease-in-out  rounded-lg"
                 onClick={() => navigate("/scan/create")}
               >
                 + {LANG["scansList"]["Create scan"][lang]}

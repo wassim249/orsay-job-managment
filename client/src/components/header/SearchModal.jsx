@@ -123,7 +123,7 @@ const SearchModal = ({ id, searchId, modalOpen, setModalOpen }) => {
           <div className="py-4 px-2">
             {recentSearch.length > 0 ? (
               <div className="mb-3 last:mb-0">
-                <div className="w-full flex items-center justify-between text-xs font-semibold text-teal-500 px-2 mb-2">
+                <div className="w-full flex items-center justify-between text-xs font-semibold text-rose-500 px-2 mb-2">
                   <span className="">
                     {LANG["layout"]["Recent searches"][lang]}
                   </span>

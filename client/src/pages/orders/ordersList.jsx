@@ -66,7 +66,7 @@ export const OrdersListPage = () => {
               className="appearance-none border border-gray-300 text-gray-900 text-sm rounded-lg w-full"
 />
             <button
-              className="bg-secondary text-white py-3 px-3 ml-2 h-2/6 rounded-lg"
+              className="bg-rose-500 text-white py-3 px-3 ml-2 h-2/6 rounded-lg hover:rounded-sm transition-all  duration-300 ease-in-out"
               onClick={() => {
                 if (searchValue.current.value.trim() != "") {
                   setSearchedOrders(
