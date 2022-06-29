@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import UserContext from "../../contexts/UserContext";
 import Layout from "../../layout/Layout";
 import { BiGroup } from "react-icons/bi";
-import SquareLoader from "react-spinners/SquareLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import moment from "moment";
 import LANG from "../../../../i18n/lang.json";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,7 @@ export const UsersListPage = () => {
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
           {alertData && <AlertMessage />}
-          <SquareLoader color="#6366f1" loading={loading} size="20px" />
+          <BeatLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>
@@ -91,9 +91,9 @@ export const UsersListPage = () => {
                       {user &&
                         (moment(user.lastConnection).toDate().getFullYear() !=
                         1970
-                          ? moment(user.lastConnection).format(
+                          ? (moment(user.lastConnection).format(
                               "DD/MM/YYYY HH:mm"
-                            )
+                            ) || 'Jamais')
                           : LANG["common"]["Never"][lang])}
                     </td>
                     <td className="border p-2">

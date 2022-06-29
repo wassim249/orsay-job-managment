@@ -6,7 +6,7 @@ import { RiScan2Fill } from "react-icons/ri";
 import { createScan } from "../../services/scan";
 import LANG from "../../../../i18n/lang.json";
 import LangContext from "../../contexts/LangContext";
-import SquareLoader from "react-spinners/SquareLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import { AlertContext } from "../../contexts/AlertContext";
 import { AlertMessage } from "../../components/AlertMessage";
 import { ImportFromFileModal } from "../../components/scan/ImportFromFileModal";
@@ -191,7 +191,7 @@ export const CreateScanPage = () => {
           type="submit"
         >
           {loading ? (
-            <SquareLoader color="#fff" loading={loading} size="20px" />
+            <BeatLoader color="#fff" loading={loading} size="20px" />
           ) : (
             LANG["createScan"]["create"][lang]
           )}

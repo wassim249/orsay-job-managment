@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Layout from "../../layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import SquareLoader from "react-spinners/SquareLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import { getUsers } from "../../services/user";
 import moment from "moment";
 import { scanSuccess } from "../../utils/Utils";
@@ -41,7 +41,7 @@ export const UserDetailsPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#6366f1" loading={loading} size="20px" />
+          <BeatLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>

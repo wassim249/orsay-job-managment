@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Layout from "../../layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import SquareLoader from "react-spinners/SquareLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import { editUser, getUsers } from "../../services/user";
 import { generatePassword, validateEmail } from "../../utils/Utils";
 import { AlertContext } from "../../contexts/AlertContext";
@@ -117,7 +117,7 @@ export const EditUserPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#f88c6c" loading={loading} size="20px" />
+          <BeatLoader color="#f88c6c" loading={loading} size="20px" />
         </div>
       ) : (
         <>

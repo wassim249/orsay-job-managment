@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Layout from "../../layout/Layout";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import SquareLoader from "react-spinners/SquareLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import { generatePassword, validateEmail } from "../../utils/Utils";
 import { createUser } from "../../services/user";
 import { AlertContext } from "../../contexts/AlertContext";
@@ -182,7 +182,7 @@ export const CreateUserPage = () => {
             className="col-span-2 bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out rounded-lg hover:rounded  w-full"
           >
             {loading ? (
-              <SquareLoader size={20} color={"#fff"} />
+              <BeatLoader size={20} color={"#fff"} />
             ) : (
               LANG["createUser"]["Create"][lang]
             )}

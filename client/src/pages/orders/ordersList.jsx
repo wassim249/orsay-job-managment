@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import Layout from "../../layout/Layout";
-import SquareLoader from "react-spinners/SquareLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import { useNavigate } from "react-router-dom";
 import { getAllOrders } from "../../services/order";
 import { OrderNumber } from "../../components/OrderNumber";
@@ -41,7 +41,7 @@ export const OrdersListPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#6366f1" loading={loading} size="20px" />
+          <BeatLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>

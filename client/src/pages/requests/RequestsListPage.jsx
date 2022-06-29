@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Layout from "../../layout/Layout";
-import SquareLoader from "react-spinners/SquareLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import UserContext from "../../contexts/UserContext";
 import LangContext from "../../contexts/LangContext";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -57,7 +57,7 @@ export const RequestsListPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#6366f1" loading={loading} size="20px" />
+          <BeatLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>

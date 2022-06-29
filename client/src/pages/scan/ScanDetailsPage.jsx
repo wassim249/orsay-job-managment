@@ -6,7 +6,7 @@ import UserContext from "../../contexts/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { getScan } from "../../services/scan";
 import { scanSuccess } from "../../utils/Utils";
-import SquareLoader from "react-spinners/SquareLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import { RiScan2Fill } from "react-icons/ri";
 import { Scheduled } from "../../components/Scheduled";
 import { Status } from "../../components/Status";
@@ -49,7 +49,7 @@ export const ScanDetailsPage = () => {
     <Layout>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#6366f1" loading={loading} size="20px" />
+          <BeatLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>

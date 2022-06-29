@@ -3,7 +3,7 @@ import UserContext from "../contexts/UserContext";
 import Layout from "../layout/Layout";
 import { SearchBar } from "../components/SearchBar";
 import { getSearchedOrders, getSearchedScans } from "../services/search";
-import SquareLoader from "react-spinners/SquareLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import moment from "moment";
 import { scanSuccess } from "../utils/Utils";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -128,7 +128,7 @@ export const SearchPage = () => {
       </h1>
       {loading ? (
         <div className="w-full h-screen flex justify-center items-center">
-          <SquareLoader color="#6366f1" loading={loading} size="20px" />
+          <BeatLoader color="#6366f1" loading={loading} size="20px" />
         </div>
       ) : (
         <>
